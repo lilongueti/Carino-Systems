@@ -24,7 +24,7 @@ sudo dnf update -y && sudo dnf install https://download1.rpmfusion.org/free/fedo
     else
         echo $'\e[1;32m'NVIDIA drivers were not installed$'\e[0m'
     fi
-    if [ $hostname == "fedora" ]
+    if [ hostnamectl == "fedora" ]
     then
         echo $'\e[1;32m'Please provide a hostname for the computer$'\e[0m'
         read hostname
