@@ -1,11 +1,13 @@
 Write-Host "The following are the users and the owners"
 (
     "Mozilla.Firefox",
+    #"ojdkbuild.ojdkbuild",
     "eloston.ungoogled-chromium",
     "CodecGuide.K-LiteCodecPackMega",
     "Transmission.Transmission",
     "FileConverter.FileConverter",
     "7zip.7zip",
+    #"ONLYOFFICE.DesktopEditors",
     "OBSProject.OBSStudio",
     "Oracle.JavaRuntimeEnvironment",
     "KeePassXCTeam.KeePassXC",

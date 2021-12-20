@@ -12,6 +12,6 @@ Write-Host "The following are the users and the owners"
     "Mozilla.Thunderbird",
     "AnyDeskSoftwareGmbH.AnyDes",
     "Telegram.TelegramDesktop",
-    "Rufus.Rufus"
+    "Rufus.Rufus",
 ) | foreach {winget install -e --id $_}
 iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JJ8R4'))
