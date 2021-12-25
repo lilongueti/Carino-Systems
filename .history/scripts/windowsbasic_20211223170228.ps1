@@ -25,7 +25,6 @@ Write-Host "Basic profile for Windows 10"
     "Rufus.Rufus",
     "Zoom.Zoom",
     "Microsoft.Skype",
-    "TeamViewer.TeamViewer",
     #"Valve.Steam"
 ) | foreach {winget install -e --id $_}
 #Setting up a new hostname
