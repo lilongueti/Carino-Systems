@@ -6,9 +6,9 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf 
 #Building MPV
 sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv && sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 #Enabling RDP
-echo $'\e[1;33m'To continue, please specify a port for your remote desktop connection$'\e[0m'
-read port
-sudo firewall-cmd --permanent --add-port=$port/tcp && sudo firewall-cmd --reload && sudo chcon --type=bin_t /usr/sbin/xrdp && sudo chcon --type=bin_t /usr/sbin/xrdp-sesman
+#echo $'\e[1;33m'To continue, please specify a port for your remote desktop connection$'\e[0m'
+#read port
+#sudo firewall-cmd --permanent --add-port=$port/tcp && sudo firewall-cmd --reload && sudo chcon --type=bin_t /usr/sbin/xrdp && sudo chcon --type=bin_t /usr/sbin/xrdp-sesman
 #Installing NVIDIA drivers
     if lspci | grep 'NVIDIA' > /dev/null;
     then
