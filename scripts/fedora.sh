@@ -27,9 +27,6 @@ sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a 
         read hostname
         sudo hostnamectl set-hostname --static $hostname
     fi
-    #Setup Projects
-    cd /home/carino/Documents && git clone https://github.com/MiguelCarino/Carino-Systems && cd Carino-Systems && git config --global user.email miguel.carino1994@outlook.com && git config --global user.name MiguelCarino && cd .. && git clone https://github.com/MiguelCarino/visa.moe && cd visa.moe && sudo git config --global user.email miguel.carino1994@outlook.com && sudo git config --global user.name MiguelCarino && cd ..
-
     echo $'\e[1;32m'The process has been completed, here is a review of your system.$'\e[0m'
     neofetch
     echo $'\e[1;32m'You should reboot to make sure everything is completed, do you want to reboot now?$'\e[0m'
