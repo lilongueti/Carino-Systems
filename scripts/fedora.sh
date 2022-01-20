@@ -19,6 +19,7 @@ then
 else
   echo 'Mpv is already installed'
 fi
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 #Enabling RDP
 #echo $'\e[1;33m'To continue, please specify a port for your remote desktop connection$'\e[0m'
