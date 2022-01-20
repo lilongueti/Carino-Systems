@@ -28,9 +28,9 @@ if [ $option == y ]
 then
     echo $'\e[1;32m'What is the server name you wish to connect?$'\e[0m'
     read server
-    echo $'\e[1;32m'What is the shared folder of such server?$'\e[0m'
+    echo $'\e[1;32m'What is the shared folder of $server?$'\e[0m'
     read folder
-    echo $'\e[1;32m'What is the user to connect to such server?$'\e[0m'
+    echo $'\e[1;32m'What is the user to connect to $folder in $server?$'\e[0m'
     read srvuser
     sudo mkdir /home/$(whoami)/WinFiles/ && sudo mount.cifs //$server/$folder /home/$(whoami)/WinFiles/ -o user=$srvuser
     echo $'\e[1;32m'Windows Shared Folder has been successfully mounted!$'\e[0m'
