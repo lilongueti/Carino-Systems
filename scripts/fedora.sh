@@ -33,7 +33,9 @@ sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a 
         echo $'\e[1;91m'NVIDIA drivers were not installed.$'\e[0m'
     fi
     #Installing SVP
-    wget https://www.svp-team.com/files/svp4-latest.php?linux && tar -xf svp4-latest.php?linux && sudo -u carino ./svp4-linux-64.run && rm svp4*
+    wget https://www.svp-team.com/files/svp4-latest.php?linux
+    tar -xf svp4-latest.php?linux
+    sudo -u carino ./svp4-linux-64.run && rm svp4*
     #Setting up a hostname
     if [[ $(hostname) == 'fedora' ]];
     then
