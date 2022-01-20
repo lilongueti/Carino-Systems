@@ -1,8 +1,14 @@
 #!/bin/bash
 echo $'\e[1;32m'This is an script from carino systems $'\e[0m'
 echo $'\e[1;32m'Carino Setup for Fedora$'\e[0m'
-#Adding repos and installing packages
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/ && sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc && sudo dnf update -y && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf install keepassxc telegram-desktop thunderbird transmission gimp krita kdenlive shotcut blender htop remmina neofetch mediainfo microsoft-edge-stable brave-browser code obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf install https://github.com/ipfs/ipfs-desktop/releases/download/v0.18.1/ipfs-desktop-0.18.1-linux-x86_64.rpm -y && flatpak install flathub com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client -y && sudo -u carino steam && sudo mkdir ~/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc2-GE-1/Proton-7.0rc2-GE-1.tar.gz && sudo tar -xf Proton-7.0rc2-GE-1.tar.gz -C ~/.steam/root/compatibilitytools.d/ && rm Proton-7.0rc2-GE-1.tar.gz
+#Adding repos
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/ && sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc && sudo dnf update -y && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -y
+#Installing packages
+sudo dnf install keepassxc telegram-desktop thunderbird transmission gimp krita kdenlive shotcut blender htop remmina neofetch mediainfo microsoft-edge-stable brave-browser code obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && sudo dnf install https://github.com/ipfs/ipfs-desktop/releases/download/v0.18.1/ipfs-desktop-0.18.1-linux-x86_64.rpm -y && flatpak install flathub com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client -y
+#Opening Steam for configuration
+sudo -u carino steam
+#Installing Proton EG
+sudo mkdir ~/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C ~/.steam/root/compatibilitytools.d/ && rm Proton-7.0rc2-GE-1.tar.gz
 #Building MPV
 pkgs='mpv'
 if ! dpkg -s $pkgs >/dev/null 2>&1; then
@@ -16,19 +22,24 @@ sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a 
 #Installing NVIDIA drivers
     if lspci | grep 'NVIDIA' > /dev/null;
     then
+        #needs depuration (too many packages?)
         sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers -y && sudo nvidia-xconfig && git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
     else
         echo $'\e[1;91m'NVIDIA drivers were not installed.$'\e[0m'
     fi
+    #Installing SVP
     wget https://www.svp-team.com/files/svp4-latest.php?linux && tar -xf svp4-latest.php?linux && sudo -u carino ./svp4-linux-64.run && rm svp4*
+    #Setting up a hostname
     if [[ $(hostname) == 'fedora' ]];
     then
         echo $'\e[1;32m'Please provide a hostname for the computer$'\e[0m'
         read hostname
         sudo hostnamectl set-hostname --static $hostname
     fi
+    #Showing system review
     echo $'\e[1;32m'The process has been completed, here is a review of your system.$'\e[0m'
     neofetch
+    #asking for a reboot
     echo $'\e[1;32m'You should reboot to make sure everything is completed, do you want to reboot now?$'\e[0m'
     read reboot
     if [ $reboot == y ]
