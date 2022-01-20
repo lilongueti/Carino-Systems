@@ -6,7 +6,7 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf 
 #Updating the system
 sudo dnf update -y 
 #Installing packages
-sudo dnf install keepassxc telegram-desktop thunderbird transmission gimp krita kdenlive shotcut blender htop powertop remmina neofetch mediainfo microsoft-edge-stable brave-browser code obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && sudo dnf install https://github.com/ipfs/ipfs-desktop/releases/download/v0.18.1/ipfs-desktop-0.18.1-linux-x86_64.rpm -y && flatpak install flathub com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client -y
+sudo dnf install keepassxc telegram-desktop thunderbird transmission gimp krita kdenlive shotcut blender htop powertop remmina neofetch mediainfo microsoft-edge-stable brave-browser code obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && sudo dnf install https://github.com/ipfs/ipfs-desktop/releases/download/v0.18.1/ipfs-desktop-0.18.1-linux-x86_64.rpm -y && flatpak install flathub com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client -y
 #Opening Steam for configuration
 sudo -u carino steam
 #Installing Proton EG
@@ -21,6 +21,22 @@ else
 fi
 gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
+#Mounting Windows Shared folder
+echo $'\e[1;32m'Do you want to setup a Windows Shared Folder?$'\e[0m'
+read option
+if [ $option == y ]
+then
+    echo $'\e[1;32m'What is the server name you wish to connect?$'\e[0m'
+    read server
+    echo $'\e[1;32m'What is the shared folder of such server?$'\e[0m'
+    read folder
+    echo $'\e[1;32m'What is the user to connect to such server?$'\e[0m'
+    read srvuser
+    sudo mkdir /home/$(whoami)/WinFiles/ && sudo mount.cifs //$server/$folder /home/$(whoami)/WinFiles/ -o user=$srvuser
+    echo $'\e[1;32m'Windows Shared Folder has been successfully mounted!$'\e[0m'
+else
+    echo 'Have a nice day'
+fi
 #Enabling RDP
 #echo $'\e[1;33m'To continue, please specify a port for your remote desktop connection$'\e[0m'
 #read port
