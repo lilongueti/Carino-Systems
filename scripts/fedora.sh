@@ -4,9 +4,18 @@ echo $'\e[1;32m'Carino Setup for Fedora$'\e[0m'
 #Adding repos
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/ && sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #Updating the system
-sudo dnf update -y 
+sudo dnf update -y
 #Installing packages
 sudo dnf install keepassxc telegram-desktop thunderbird transmission gimp krita kdenlive shotcut blender htop powertop remmina neofetch mediainfo microsoft-edge-stable brave-browser code obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && sudo dnf install https://github.com/ipfs/ipfs-desktop/releases/download/v0.18.1/ipfs-desktop-0.18.1-linux-x86_64.rpm -y && flatpak install flathub com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client -y
+#Changing global settings
+gsettings set org.gnome.desktop.interface clock-format 24h
+gsettings set org.gnome.desktop.interface clock-show-seconds true
+gsettings set org.gnome.desktop.interface clock-show-date true
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
+#gsettings set org.gnome.desktop.interface enable-animations false #For IT
+#gsettings set org.gnome.desktop.media-handling automount
+
 #Opening Steam for configuration
 sudo -u carino steam
 #Installing Proton EG
@@ -19,7 +28,6 @@ then
 else
   echo 'Mpv is already installed'
 fi
-gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 #Mounting Windows Shared folder
 echo $'\e[1;32m'Do you want to setup a Windows Shared Folder?$'\e[0m'
