@@ -1,6 +1,8 @@
 #!/bin/bash
-echo $'\e[1;32m'This is an script from carino systems $'\e[0m'
-echo $'\e[1;32m'Carino Setup for Fedora$'\e[0m'
+echo $'\e[1;32m'This is an script from Carino Systems $'\e[0m'
+echo $'\e[1;32m'Este es un script de Carino Systems $'\e[0m'
+echo $'\e[1;32m'Это скрипт от Carino Systems $'\e[0m'
+echo $'\e[1;32m'これはカリーノシステムズのスクリプトです$'\e[0m'
 #Adding repos
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/ && sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #Updating the system
@@ -26,22 +28,41 @@ if [which $pkgs &>/dev/null]
 then
   sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
 else
-  echo 'Mpv is already installed'
+  echo $'\e[1;32m'Mpv is already installed$'\e[0m'
+  echo $'\e[1;32m'Mpv ya está instalado$'\e[0m'
+  echo $'\e[1;32m'Mpv уже установлен$'\e[0m'
+  echo $'\e[1;32m'Mpv は既にインストールされています。$'\e[0m'
 fi
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 #Mounting Windows Shared folder
 echo $'\e[1;32m'Do you want to setup a Windows Shared Folder?$'\e[0m'
+echo $'\e[1;32m'¿Quieres agregar una carpeta compartida de Windows? $'\e[0m'
+echo $'\e[1;32m'Вы хотите настроить общую папку Windows? $'\e[0m'
+echo $'\e[1;32m'Windows 共有フォルダをセットアップしますか?$'\e[0m'
 read option
 if [ $option == y ]
 then
-    echo $'\e[1;32m'What is the server name you wish to connect?$'\e[0m'
+    echo $'\e[1;32m'What is the server name you wish to connect to?$'\e[0m'
+    echo $'\e[1;32m'¿Cuál es el nombre del servidor al que se desea conectar? $'\e[0m'
+    echo $'\e[1;32m'С каким именем сервера вы хотите подключиться? $'\e[0m'
+    echo $'\e[1;32m'接続するサーバー名を指定してください。$'\e[0m'
     read server
     echo $'\e[1;32m'What is the shared folder of $server?$'\e[0m'
+    echo $'\e[1;32m'¿A qué carpeta compartida del $server desea conectarse?$'\e[0m'
+    echo $'\e[1;32m'Что такое общая папка с $server? $'\e[0m'
+    echo $'\e[1;32m'$serverの共有フォルダとは何ですか。 $'\e[0m'
     read folder
     echo $'\e[1;32m'What is the user to connect to $folder in $server?$'\e[0m'
+    echo $'\e[1;32m'¿Cuál es el usuario que se va a conectar a la carpeta $folder en $server?$'\e[0m'
+    echo $'\e[1;32m'Какой пользователь должен подключиться к папке на сервере? $'\e[0m'
+    echo $'\e[1;32m'$server内の$folderに接続するユーザーは何ですか。 $'\e[0m'
     read srvuser
     sudo mkdir /home/$(whoami)/WinFiles/ && sudo mount.cifs //$server/$folder /home/$(whoami)/WinFiles/ -o user=$srvuser
     echo $'\e[1;32m'Windows Shared Folder has been successfully mounted!$'\e[0m'
+    echo $'\e[1;32m'¡La carpeta compartida de Windows se ha montado correctamente! $'\e[0m'
+    echo $'\e[1;32m'Общая папка Windows успешно смонтирована! $'\e[0m'
+    echo $'\e[1;32m'Windows 共有フォルダが正常にマウントされました。$'\e[0m'
+    
 else
     echo 'Have a nice day'
 fi
@@ -60,9 +81,15 @@ fi
             git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
         else
             echo 'nvtop is already installed'
+            echo $'\e[1;32m'$'\e[0m'
+            echo $'\e[1;32m'$'\e[0m'
+            echo $'\e[1;32m'$'\e[0m'
         fi
     else
         echo $'\e[1;91m'NVIDIA drivers were not installed.$'\e[0m'
+        echo $'\e[1;32m'$'\e[0m'
+        echo $'\e[1;32m'$'\e[0m'
+        echo $'\e[1;32m'$'\e[0m'
     fi
     #Installing SVP
     wget https://www.svp-team.com/files/svp4-latest.php?linux
@@ -77,13 +104,22 @@ fi
     fi
     #Showing system review
     echo $'\e[1;32m'The process has been completed, here is a review of your system.$'\e[0m'
+    echo $'\e[1;32m'El proceso se ha completado, aquí hay una revisión de su sistema.$'\e[0m'
+    echo $'\e[1;32m'Процесс завершен, вот обзор вашей системы.$'\e[0m'
+    echo $'\e[1;32m'プロセスが完了しました、 ここにあなたのシステムのレビューがあります。$'\e[0m'
     neofetch
     #asking for a reboot
-    echo $'\e[1;32m'You should reboot to make sure everything is completed, do you want to reboot now?$'\e[0m'
+    echo $'\e[1;32m'You should reboot to make sure the process is completed, do you want to reboot now?$'\e[0m'
+    echo $'\e[1;32m'Debe reiniciar para asegurarse de que el proceso se haya completado, ¿desea reiniciar ahora?$'\e[0m'
+    echo $'\e[1;32m'Вы должны перезагрузиться, чтобы убедиться, что процесс завершен, вы хотите перезагрузиться сейчас?$'\e[0m'
+    echo $'\e[1;32m'プロセスが完了したことを確認するために再起動する必要があります。$'\e[0m'
     read reboot
     if [ $reboot == y ]
     then
         sudo reboot
     else
-        echo $'\e[1;32m'The system will not be rebooted. The process has been concluded.$'\e[0m'
+        echo $'\e[1;32m'The system will not be rebooted. The script has been concluded.$'\e[0m'
+        echo $'\e[1;32m'El sistema no se reiniciará. El script ha concluido.$'\e[0m'
+        echo $'\e[1;32m'Система не будет перезагружена. Сценарий завершен.$'\e[0m'
+        echo $'\e[1;32m'システムは再起動されません。スクリプトは終了しました。$'\e[0m'
     fi
