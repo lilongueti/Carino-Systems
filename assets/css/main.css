@@ -121,6 +121,7 @@ input, select, textarea {
 		font-size: 16pt;
 		font-weight: 300;
 		line-height: 1.75;
+		background-color: #333333;
 	}
 
 		@media screen and (max-width: 1680px) {
