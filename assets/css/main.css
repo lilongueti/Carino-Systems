@@ -3261,7 +3261,7 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			#footer {
-				padding: 3em 0 1em 0 ;
+				padding: 0em 0 0em 0 ;
 			}
 
 				#footer > .inner {
