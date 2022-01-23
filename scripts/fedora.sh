@@ -13,9 +13,17 @@ sudo dnf install keepassxc telegram-desktop thunderbird transmission gimp krita 
 gsettings set org.gnome.desktop.interface clock-format 24h && gsettings set org.gnome.desktop.interface clock-show-seconds true && gsettings set org.gnome.desktop.interface clock-show-date true && gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 #gsettings set org.gnome.desktop.interface enable-animations false #For IT
 #gsettings set org.gnome.desktop.media-handling automount
-
 #Opening Steam for configuration
-sudo -u carino steam
+pkgs='steam'
+if [which $pkgs >/dev/null]
+then
+  sudo -u carino steam
+else
+  echo $'\e[1;32m'Steam is already installed$'\e[0m'
+  echo $'\e[1;32m'Steam ya está instalado$'\e[0m'
+  echo $'\e[1;32m'Steam уже установлен$'\e[0m'
+  echo $'\e[1;32m'Steam は既にインストールされています。$'\e[0m'
+fi
 #Installing Proton EG
 sudo mkdir ~/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C ~/.steam/root/compatibilitytools.d/ && rm Proton-7.0rc2-GE-1.tar.gz
 #Checking for mpv installation and building it from the repo if necessary
