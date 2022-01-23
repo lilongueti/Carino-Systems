@@ -35,33 +35,33 @@ else
 fi
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 #Mounting Windows Shared folder
-echo $'\e[1;32m'Do you want to setup a Windows Shared Folder?$'\e[0m'
-echo $'\e[1;32m'¿Quieres agregar una carpeta compartida de Windows? $'\e[0m'
-echo $'\e[1;32m'Вы хотите настроить общую папку Windows? $'\e[0m'
-echo $'\e[1;32m'Windows 共有フォルダをセットアップしますか?$'\e[0m'
+echo $'\e[1;36m'Do you want to setup a Windows Shared Folder?$'\e[0m'
+echo $'\e[1;36m'¿Quieres agregar una carpeta compartida de Windows? $'\e[0m'
+echo $'\e[1;36m'Вы хотите настроить общую папку Windows? $'\e[0m'
+echo $'\e[1;36m'Windows 共有フォルダをセットアップしますか?$'\e[0m'
 read option
 if [ $option == y ]
 then
-    echo $'\e[1;32m'What is the server name you wish to connect to?$'\e[0m'
-    echo $'\e[1;32m'¿Cuál es el nombre del servidor al que se desea conectar? $'\e[0m'
-    echo $'\e[1;32m'С каким именем сервера вы хотите подключиться? $'\e[0m'
-    echo $'\e[1;32m'接続するサーバー名を指定してください。$'\e[0m'
+    echo $'\e[1;36m'What is the server name you wish to connect to?$'\e[0m'
+    echo $'\e[1;36m'¿Cuál es el nombre del servidor al que se desea conectar? $'\e[0m'
+    echo $'\e[1;36m'С каким именем сервера вы хотите подключиться? $'\e[0m'
+    echo $'\e[1;36m'接続するサーバー名を指定してください。$'\e[0m'
     read server
-    echo $'\e[1;32m'What is the shared folder of $server?$'\e[0m'
-    echo $'\e[1;32m'¿A qué carpeta compartida del $server desea conectarse?$'\e[0m'
-    echo $'\e[1;32m'Что такое общая папка с $server? $'\e[0m'
-    echo $'\e[1;32m'$serverの共有フォルダとは何ですか。 $'\e[0m'
+    echo $'\e[1;36m'What is the shared folder of $server?$'\e[0m'
+    echo $'\e[1;36m'¿A qué carpeta compartida del $server desea conectarse?$'\e[0m'
+    echo $'\e[1;36m'Что такое общая папка с $server? $'\e[0m'
+    echo $'\e[1;36m'$serverの共有フォルダとは何ですか。 $'\e[0m'
     read folder
-    echo $'\e[1;32m'What is the user to connect to $folder in $server?$'\e[0m'
-    echo $'\e[1;32m'¿Cuál es el usuario que se va a conectar a la carpeta $folder en $server?$'\e[0m'
-    echo $'\e[1;32m'Какой пользователь должен подключиться к папке на сервере? $'\e[0m'
-    echo $'\e[1;32m'$server内の$folderに接続するユーザーは何ですか。 $'\e[0m'
+    echo $'\e[1;36m'What is the user to connect to $folder in $server?$'\e[0m'
+    echo $'\e[1;36m'¿Cuál es el usuario que se va a conectar a la carpeta $folder en $server?$'\e[0m'
+    echo $'\e[1;36m'Какой пользователь должен подключиться к папке на сервере? $'\e[0m'
+    echo $'\e[1;36m'$server内の$folderに接続するユーザーは何ですか。 $'\e[0m'
     read srvuser
     sudo mkdir /home/$(whoami)/WinFiles/ && sudo mount.cifs //$server/$folder /home/$(whoami)/WinFiles/ -o user=$srvuser
-    echo $'\e[1;32m'Windows Shared Folder has been successfully mounted!$'\e[0m'
-    echo $'\e[1;32m'¡La carpeta compartida de Windows se ha montado correctamente! $'\e[0m'
-    echo $'\e[1;32m'Общая папка Windows успешно смонтирована! $'\e[0m'
-    echo $'\e[1;32m'Windows 共有フォルダが正常にマウントされました。$'\e[0m'
+    echo $'\e[1;36m'Windows Shared Folder has been successfully mounted!$'\e[0m'
+    echo $'\e[1;36m'¡La carpeta compartida de Windows se ha montado correctamente! $'\e[0m'
+    echo $'\e[1;36m'Общая папка Windows успешно смонтирована! $'\e[0m'
+    echo $'\e[1;36m'Windows 共有フォルダが正常にマウントされました。$'\e[0m'
     
 else
     echo 'Have a nice day'
@@ -80,16 +80,16 @@ fi
         then
             git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
         else
-            echo 'nvtop is already installed'
-            echo $'\e[1;32m'$'\e[0m'
-            echo $'\e[1;32m'$'\e[0m'
-            echo $'\e[1;32m'$'\e[0m'
+            echo $'\e[1;32m'nvtop is already installed$'\e[0m'
+            echo $'\e[1;32m'nvtop ya está instalado$'\e[0m'
+            echo $'\e[1;32m'nvtop уже установлен$'\e[0m'
+            echo $'\e[1;32m'nvtop は既にインストールされています。$'\e[0m'
         fi
     else
-        echo $'\e[1;91m'NVIDIA drivers were not installed.$'\e[0m'
-        echo $'\e[1;32m'$'\e[0m'
-        echo $'\e[1;32m'$'\e[0m'
-        echo $'\e[1;32m'$'\e[0m'
+        echo $'\e[1;31m'NVIDIA drivers were not installed.$'\e[0m'
+        echo $'\e[1;31m'$'\e[0m'
+        echo $'\e[1;31m'$'\e[0m'
+        echo $'\e[1;31m'$'\e[0m'
     fi
     #Installing SVP
     wget https://www.svp-team.com/files/svp4-latest.php?linux
@@ -109,17 +109,17 @@ fi
     echo $'\e[1;32m'プロセスが完了しました、 ここにあなたのシステムのレビューがあります。$'\e[0m'
     neofetch
     #asking for a reboot
-    echo $'\e[1;32m'You should reboot to make sure the process is completed, do you want to reboot now?$'\e[0m'
-    echo $'\e[1;32m'Debe reiniciar para asegurarse de que el proceso se haya completado, ¿desea reiniciar ahora?$'\e[0m'
-    echo $'\e[1;32m'Вы должны перезагрузиться, чтобы убедиться, что процесс завершен, вы хотите перезагрузиться сейчас?$'\e[0m'
-    echo $'\e[1;32m'プロセスが完了したことを確認するために再起動する必要があります。$'\e[0m'
+    echo $'\e[1;31m'You should reboot to make sure the process is completed, do you want to reboot now?$'\e[0m'
+    echo $'\e[1;31m'Debe reiniciar para asegurarse de que el proceso se haya completado, ¿desea reiniciar ahora?$'\e[0m'
+    echo $'\e[1;31m'Вы должны перезагрузиться, чтобы убедиться, что процесс завершен, вы хотите перезагрузиться сейчас?$'\e[0m'
+    echo $'\e[1;31m'プロセスが完了したことを確認するために再起動する必要があります。$'\e[0m'
     read reboot
     if [ $reboot == y ]
     then
         sudo reboot
     else
-        echo $'\e[1;32m'The system will not be rebooted. The script has been concluded.$'\e[0m'
-        echo $'\e[1;32m'El sistema no se reiniciará. El script ha concluido.$'\e[0m'
-        echo $'\e[1;32m'Система не будет перезагружена. Сценарий завершен.$'\e[0m'
-        echo $'\e[1;32m'システムは再起動されません。スクリプトは終了しました。$'\e[0m'
+        echo $'\e[1;31m'The system will not be rebooted. The script has been concluded.$'\e[0m'
+        echo $'\e[1;31m'El sistema no se reiniciará. El script ha concluido.$'\e[0m'
+        echo $'\e[1;31m'Система не будет перезагружена. Сценарий завершен.$'\e[0m'
+        echo $'\e[1;31m'システムは再起動されません。スクリプトは終了しました。$'\e[0m'
     fi
