@@ -125,7 +125,6 @@ then
     tar -xf svp4-latest.php?linux
     sudo -u $user ./svp4-linux-64.run && rm svp4*
 fi
-    
 #Setting up a hostname
 if [[ $(hostname) == 'fedora' ]];
 then
