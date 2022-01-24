@@ -43,17 +43,7 @@ then
 else
     sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
 fi
-
-#if rpm -q $pkgs | grep "not installed" > /dev/null
-#then
-#  sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
-#else
-#  echo $'\e[1;32m'Mpv is already installed$'\e[0m'
-#  echo $'\e[1;32m'Mpv ya está instalado$'\e[0m'
-#  echo $'\e[1;32m'Mpv уже установлен$'\e[0m'
-#  echo $'\e[1;32m'Mpv は既にインストールされています。$'\e[0m'
-#  echo $'\e[1;32m'--------------------------------------$'\e[0m'
-#fi
+#Enabling XRDP
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 #Mounting Windows Shared folder
 echo $'\e[1;36m'Do you want to setup a Windows Shared Folder?$'\e[0m'
@@ -86,7 +76,7 @@ then
     echo $'\e[1;36m'Windows 共有フォルダが正常にマウントされました。$'\e[0m'
     echo $'\e[1;32m'--------------------------------------$'\e[0m'
 else
-    echo $'\e[1;31m'Now Windows shared folders were added$'\e[0m'
+    echo $'\e[1;31m'No Windows shared folders were added$'\e[0m'
     echo $'\e[1;31m'--------------------------------------$'\e[0m'
 fi
 #Enabling RDP
@@ -94,7 +84,7 @@ fi
 #read port
 #sudo firewall-cmd --permanent --add-port=$port/tcp && sudo firewall-cmd --reload && sudo chcon --type=bin_t /usr/sbin/xrdp && sudo chcon --type=bin_t /usr/sbin/xrdp-sesman
 #Installing NVIDIA drivers
-    if lspci | grep 'NVIDIA' > /dev/null;
+if lspci | grep 'NVIDIA' > /dev/null;
     then
         #needs depuration (too many packages?)
         sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers -y && sudo nvidia-xconfig
