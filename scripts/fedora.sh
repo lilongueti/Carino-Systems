@@ -3,6 +3,7 @@ echo $'\e[1;32m'This is an script from Carino Systems $'\e[0m'
 echo $'\e[1;32m'Este es un script de Carino Systems $'\e[0m'
 echo $'\e[1;32m'Это скрипт от Carino Systems $'\e[0m'
 echo $'\e[1;32m'これはカリーノシステムズのスクリプトです$'\e[0m'
+echo $'\e[1;32m'--------------------------------------$'\e[0m'
 #Adding repos
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/ && sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #Updating the system
@@ -23,6 +24,7 @@ else
   echo $'\e[1;32m'Steam ya está instalado$'\e[0m'
   echo $'\e[1;32m'Steam уже установлен$'\e[0m'
   echo $'\e[1;32m'Steam は既にインストールされています。$'\e[0m'
+  echo $'\e[1;32m'--------------------------------------$'\e[0m'
 fi
 #Installing Proton EG
 sudo mkdir ~/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C ~/.steam/root/compatibilitytools.d/ && rm Proton-7.0rc2-GE-1.tar.gz
@@ -36,6 +38,7 @@ else
   echo $'\e[1;32m'Mpv ya está instalado$'\e[0m'
   echo $'\e[1;32m'Mpv уже установлен$'\e[0m'
   echo $'\e[1;32m'Mpv は既にインストールされています。$'\e[0m'
+  echo $'\e[1;32m'--------------------------------------$'\e[0m'
 fi
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 #Mounting Windows Shared folder
@@ -44,6 +47,7 @@ echo $'\e[1;36m'¿Quieres agregar una carpeta compartida de Windows? $'\e[0m'
 echo $'\e[1;36m'Вы хотите настроить общую папку Windows? $'\e[0m'
 echo $'\e[1;36m'Windows 共有フォルダをセットアップしますか?$'\e[0m'
 read option
+echo $'\e[1;32m'--------------------------------------$'\e[0m'
 if [ $option == y ]
 then
     echo $'\e[1;36m'What is the server name you wish to connect to?$'\e[0m'
@@ -66,9 +70,11 @@ then
     echo $'\e[1;36m'¡La carpeta compartida de Windows se ha montado correctamente! $'\e[0m'
     echo $'\e[1;36m'Общая папка Windows успешно смонтирована! $'\e[0m'
     echo $'\e[1;36m'Windows 共有フォルダが正常にマウントされました。$'\e[0m'
+    echo $'\e[1;32m'--------------------------------------$'\e[0m'
     
 else
-    echo 'Have a nice day'
+    echo $'\e[1;31m'Now Windows shared folders were added$'\e[0m'
+    echo $'\e[1;31m'--------------------------------------$'\e[0m'
 fi
 #Enabling RDP
 #echo $'\e[1;33m'To continue, please specify a port for your remote desktop connection$'\e[0m'
