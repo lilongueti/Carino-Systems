@@ -17,31 +17,44 @@ gsettings set org.gnome.desktop.interface clock-format 24h && gsettings set org.
 #gsettings set org.gnome.desktop.interface enable-animations false #For IT
 #gsettings set org.gnome.desktop.media-handling automount
 #Opening Steam for configuration
-pkgs='steam'
-if [which $pkgs &>/dev/null]
-then
-  sudo -u $user steam
-else
-  echo $'\e[1;32m'Steam is already installed$'\e[0m'
-  echo $'\e[1;32m'Steam ya está instalado$'\e[0m'
-  echo $'\e[1;32m'Steam уже установлен$'\e[0m'
-  echo $'\e[1;32m'Steam は既にインストールされています。$'\e[0m'
-  echo $'\e[1;32m'--------------------------------------$'\e[0m'
-fi
+sudo -u $user steam
 #Installing Proton EG
-sudo mkdir /home/$user/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C /home/$user/.steam/root/compatibilitytools.d && rm Proton-7.0rc6-GE-1.tar.gz
+DESTDIR="/home/carino/.steam/root/compatibilitytools.d"
+if [[ -d $DESTDIR ]]
+then
+    sudo mkdir /home/$user/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C /home/$user/.steam/root/compatibilitytools.d && rm Proton-7.0rc6-GE-1.tar.gz
+else
+    echo $'\e[1;32m'$DESTDIR is already on your system.$'\e[0m'
+    echo $'\e[1;32m'$DESTDIR ya está en tu sistema.$'\e[0m'
+    echo $'\e[1;32m'$DESTDIR уже установлен.$'\e[0m'
+    echo $'\e[1;32m'$DESTDIR は既にインストールされています。$'\e[0m'
+    echo $'\e[1;32m'--------------------------------------$'\e[0m'
+fi
 #Checking for mpv installation and building it from the repo if necessary
 pkgs='mpv'
-if [which $pkgs &>/dev/null]
+#read -p "Package Name: " pkgs
+which $pkgs > /dev/null 2>&1
+if [ $? == 0 ]
 then
-  sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
+    echo $'\e[1;32m'$pkgs is already installed.$'\e[0m'
+    echo $'\e[1;32m'$pkgs ya está instalado.$'\e[0m'
+    echo $'\e[1;32m'$pkgs уже установлен.$'\e[0m'
+    echo $'\e[1;32m'$pkgs は既にインストールされています。$'\e[0m'
+    echo $'\e[1;32m'--------------------------------------$'\e[0m'
 else
-  echo $'\e[1;32m'Mpv is already installed$'\e[0m'
-  echo $'\e[1;32m'Mpv ya está instalado$'\e[0m'
-  echo $'\e[1;32m'Mpv уже установлен$'\e[0m'
-  echo $'\e[1;32m'Mpv は既にインストールされています。$'\e[0m'
-  echo $'\e[1;32m'--------------------------------------$'\e[0m'
+    sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
 fi
+
+#if rpm -q $pkgs | grep "not installed" > /dev/null
+#then
+#  sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
+#else
+#  echo $'\e[1;32m'Mpv is already installed$'\e[0m'
+#  echo $'\e[1;32m'Mpv ya está instalado$'\e[0m'
+#  echo $'\e[1;32m'Mpv уже установлен$'\e[0m'
+#  echo $'\e[1;32m'Mpv は既にインストールされています。$'\e[0m'
+#  echo $'\e[1;32m'--------------------------------------$'\e[0m'
+#fi
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 #Mounting Windows Shared folder
 echo $'\e[1;36m'Do you want to setup a Windows Shared Folder?$'\e[0m'
@@ -88,33 +101,30 @@ fi
         #needs depuration (too many packages?)
         sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers -y && sudo nvidia-xconfig
         pkgs='nvtop'
-        if [which $pkgs &>/dev/null]
+        #read -p "Package Name: " pkgs
+        which $pkgs > /dev/null 2>&1
+        if [ $? == 0 ]
         then
-            git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
+            echo $'\e[1;32m'$pkgs is already installed.$'\e[0m'
+            echo $'\e[1;32m'$pkgs ya está instalado.$'\e[0m'
+            echo $'\e[1;32m'$pkgs уже установлен.$'\e[0m'
+            echo $'\e[1;32m'$pkgs は既にインストールされています。$'\e[0m'
+            echo $'\e[1;32m'--------------------------------------$'\e[0m'
         else
-            echo $'\e[1;32m'nvtop is already installed$'\e[0m'
-            echo $'\e[1;32m'nvtop ya está instalado$'\e[0m'
-            echo $'\e[1;32m'nvtop уже установлен$'\e[0m'
-            echo $'\e[1;32m'nvtop は既にインストールされています。$'\e[0m'
+            git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
         fi
-    else
-        echo $'\e[1;31m'NVIDIA drivers were not installed.$'\e[0m'
-        echo $'\e[1;31m'$'\e[0m'
-        echo $'\e[1;31m'$'\e[0m'
-        echo $'\e[1;31m'$'\e[0m'
-    fi
 #Installing SVP
-pkgs='/home/carino/SVP\ 4/SVPManager'
-if [which $pkgs &>/dev/null]
+DESTDIR='/home/carino/SVP 4/'
+if [ -d  $DESTDIR ]
 then
-    wget https://www.svp-team.com/files/svp4-latest.php?linux
-    tar -xf svp4-latest.php?linux
-    sudo -u $user ./svp4-linux-64.run && rm svp4*
-else
     echo $'\e[1;32m'SVP is already installed$'\e[0m'
     echo $'\e[1;32m'SVP ya está instalado$'\e[0m'
     echo $'\e[1;32m'SVP уже установлен$'\e[0m'
     echo $'\e[1;32m'SVP は既にインストールされています。$'\e[0m'
+    else
+    wget https://www.svp-team.com/files/svp4-latest.php?linux
+    tar -xf svp4-latest.php?linux
+    sudo -u $user ./svp4-linux-64.run && rm svp4*
 fi
     
 #Setting up a hostname
