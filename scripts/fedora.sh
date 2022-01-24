@@ -15,6 +15,7 @@ sudo dnf install keepassxc telegram-desktop thunderbird transmission gimp krita 
 which $pkgs > /dev/null 2>&1
 if [ $? == 0 ]
 then
+    echo 'ipfs is already installed'
 else
     sudo dnf install https://github.com/ipfs/ipfs-desktop/releases/download/v0.18.1/ipfs-desktop-0.18.1-linux-x86_64.rpm -y
 fi
