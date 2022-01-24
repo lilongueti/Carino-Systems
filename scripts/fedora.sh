@@ -17,18 +17,17 @@ gsettings set org.gnome.desktop.interface clock-format 24h && gsettings set org.
 #gsettings set org.gnome.desktop.interface enable-animations false #For IT
 #gsettings set org.gnome.desktop.media-handling automount
 #Opening Steam for configuration
-sudo -u $user steam
 #Installing Proton EG
 DESTDIR="/home/carino/.steam/root/compatibilitytools.d"
 if [[ -d $DESTDIR ]]
 then
-    sudo mkdir /home/$user/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C /home/$user/.steam/root/compatibilitytools.d && rm Proton-7.0rc6-GE-1.tar.gz
-else
     echo $'\e[1;32m'$DESTDIR is already on your system.$'\e[0m'
     echo $'\e[1;32m'$DESTDIR ya está en tu sistema.$'\e[0m'
     echo $'\e[1;32m'$DESTDIR уже установлен.$'\e[0m'
     echo $'\e[1;32m'$DESTDIR は既にインストールされています。$'\e[0m'
     echo $'\e[1;32m'--------------------------------------$'\e[0m'
+else
+    sudo mkdir /home/$user/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C /home/$user/.steam/root/compatibilitytools.d && rm Proton-7.0rc6-GE-1.tar.gz && sudo -u $user steam
 fi
 #Checking for mpv installation and building it from the repo if necessary
 pkgs='mpv'
