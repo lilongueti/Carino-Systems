@@ -92,23 +92,23 @@ fi
 #read port
 #sudo firewall-cmd --permanent --add-port=$port/tcp && sudo firewall-cmd --reload && sudo chcon --type=bin_t /usr/sbin/xrdp && sudo chcon --type=bin_t /usr/sbin/xrdp-sesman
 #Installing NVIDIA drivers
-if lspci | grep 'NVIDIA' > /dev/null;
-    then
-        #needs depuration (too many packages?)
-        sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers -y && sudo nvidia-xconfig
-        pkgs='nvtop'
-        #read -p "Package Name: " pkgs
-        which $pkgs > /dev/null 2>&1
-        if [ $? == 0 ]
+    if lspci | grep 'NVIDIA' > /dev/null;
         then
-            echo $'\e[1;32m'$pkgs is already installed.$'\e[0m'
-            echo $'\e[1;32m'$pkgs ya está instalado.$'\e[0m'
-            echo $'\e[1;32m'$pkgs уже установлен.$'\e[0m'
-            echo $'\e[1;32m'$pkgs は既にインストールされています。$'\e[0m'
-            echo $'\e[1;32m'--------------------------------------$'\e[0m'
-        else
-            git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
-        fi
+            #needs depuration (too many packages?)
+            sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers -y && sudo nvidia-xconfig
+            pkgs='nvtop'
+            #read -p "Package Name: " pkgs
+            which $pkgs > /dev/null 2>&1
+            if [ $? == 0 ]
+            then
+                echo $'\e[1;32m'$pkgs is already installed.$'\e[0m'
+                echo $'\e[1;32m'$pkgs ya está instalado.$'\e[0m'
+                echo $'\e[1;32m'$pkgs уже установлен.$'\e[0m'
+                echo $'\e[1;32m'$pkgs は既にインストールされています。$'\e[0m'
+                echo $'\e[1;32m'--------------------------------------$'\e[0m'
+            else
+                git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
+    fi
 #Installing SVP
 DESTDIR='/home/carino/SVP 4/'
 if [ -d  $DESTDIR ]
