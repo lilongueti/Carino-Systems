@@ -4,6 +4,8 @@ echo $'\e[1;32m'Este es un script de Carino Systems $'\e[0m'
 echo $'\e[1;32m'Это скрипт от Carino Systems $'\e[0m'
 echo $'\e[1;32m'これはカリーノシステムズのスクリプトです$'\e[0m'
 echo $'\e[1;32m'--------------------------------------$'\e[0m'
+#Getting info
+user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
 #Adding repos
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/ && sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #Updating the system
@@ -18,7 +20,7 @@ gsettings set org.gnome.desktop.interface clock-format 24h && gsettings set org.
 pkgs='steam'
 if [which $pkgs &>/dev/null]
 then
-  sudo -u carino steam
+  sudo -u $user steam
 else
   echo $'\e[1;32m'Steam is already installed$'\e[0m'
   echo $'\e[1;32m'Steam ya está instalado$'\e[0m'
@@ -27,7 +29,6 @@ else
   echo $'\e[1;32m'--------------------------------------$'\e[0m'
 fi
 #Installing Proton EG
-user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
 sudo mkdir /home/$user/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C /home/$user/.steam/root/compatibilitytools.d && rm Proton-7.0rc2-GE-1.tar.gz
 #Checking for mpv installation and building it from the repo if necessary
 pkgs='mpv'
@@ -108,7 +109,7 @@ if [which $pkgs &>/dev/null]
 then
     wget https://www.svp-team.com/files/svp4-latest.php?linux
     tar -xf svp4-latest.php?linux
-    sudo -u carino ./svp4-linux-64.run && rm svp4*
+    sudo -u $user ./svp4-linux-64.run && rm svp4*
 else
     echo $'\e[1;32m'SVP is already installed$'\e[0m'
     echo $'\e[1;32m'SVP ya está instalado$'\e[0m'
