@@ -12,6 +12,7 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf 
 sudo dnf update -y
 #Installing packages
 sudo dnf install keepassxc telegram-desktop thunderbird transmission gimp krita kdenlive shotcut blender htop powertop remmina neofetch mediainfo microsoft-edge-stable brave-browser code obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && flatpak install flathub com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client -y
+pkgs='ipfs-desktop'
 which $pkgs > /dev/null 2>&1
 if [ $? == 0 ]
 then
