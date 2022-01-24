@@ -85,7 +85,6 @@ then
     echo $'\e[1;36m'Общая папка Windows успешно смонтирована! $'\e[0m'
     echo $'\e[1;36m'Windows 共有フォルダが正常にマウントされました。$'\e[0m'
     echo $'\e[1;32m'--------------------------------------$'\e[0m'
-    
 else
     echo $'\e[1;31m'Now Windows shared folders were added$'\e[0m'
     echo $'\e[1;31m'--------------------------------------$'\e[0m'
