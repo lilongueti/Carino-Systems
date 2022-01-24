@@ -27,7 +27,7 @@ else
   echo $'\e[1;32m'--------------------------------------$'\e[0m'
 fi
 #Installing Proton EG
-sudo mkdir '/root/.steam/root/compatibilitytools.d' && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C ~/.steam/root/compatibilitytools.d/ && rm Proton-7.0rc2-GE-1.tar.gz
+cd ~/.steam/root/ && sudo mkdir 'compatibilitytools.d/' && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C ~/.steam/root/compatibilitytools.d/ && rm Proton-7.0rc2-GE-1.tar.gz && cd
 #Checking for mpv installation and building it from the repo if necessary
 pkgs='mpv'
 if [which $pkgs &>/dev/null]
