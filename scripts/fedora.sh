@@ -115,31 +115,31 @@ else
     echo $'\e[1;32m'SVP は既にインストールされています。$'\e[0m'
 fi
     
-    #Setting up a hostname
-    if [[ $(hostname) == 'fedora' ]];
-    then
-        echo $'\e[1;32m'Please provide a hostname for the computer$'\e[0m'
-        read hostname
-        sudo hostnamectl set-hostname --static $hostname
-    fi
-    #Showing system review
-    echo $'\e[1;32m'The process has been completed, here is a review of your system.$'\e[0m'
-    echo $'\e[1;32m'El proceso se ha completado, aquí hay una revisión de su sistema.$'\e[0m'
-    echo $'\e[1;32m'Процесс завершен, вот обзор вашей системы.$'\e[0m'
-    echo $'\e[1;32m'プロセスが完了しました、 ここにあなたのシステムのレビューがあります。$'\e[0m'
-    neofetch
-    #asking for a reboot
-    echo $'\e[1;31m'You should reboot to make sure the process is completed, do you want to reboot now?$'\e[0m'
-    echo $'\e[1;31m'Debe reiniciar para asegurarse de que el proceso se haya completado, ¿desea reiniciar ahora?$'\e[0m'
-    echo $'\e[1;31m'Вы должны перезагрузиться, чтобы убедиться, что процесс завершен, вы хотите перезагрузиться сейчас?$'\e[0m'
-    echo $'\e[1;31m'プロセスが完了したことを確認するために再起動する必要があります。$'\e[0m'
-    read reboot
-    if [ $reboot == y ]
-    then
-        sudo reboot
-    else
-        echo $'\e[1;31m'The system will not be rebooted. The script has been concluded.$'\e[0m'
-        echo $'\e[1;31m'El sistema no se reiniciará. El script ha concluido.$'\e[0m'
-        echo $'\e[1;31m'Система не будет перезагружена. Сценарий завершен.$'\e[0m'
-        echo $'\e[1;31m'システムは再起動されません。スクリプトは終了しました。$'\e[0m'
-    fi
+#Setting up a hostname
+if [[ $(hostname) == 'fedora' ]];
+then
+    echo $'\e[1;32m'Please provide a hostname for the computer$'\e[0m'
+    read hostname
+    sudo hostnamectl set-hostname --static $hostname
+fi
+#Showing system review
+echo $'\e[1;32m'The process has been completed, here is a review of your system.$'\e[0m'
+echo $'\e[1;32m'El proceso se ha completado, aquí hay una revisión de su sistema.$'\e[0m'
+echo $'\e[1;32m'Процесс завершен, вот обзор вашей системы.$'\e[0m'
+echo $'\e[1;32m'プロセスが完了しました、 ここにあなたのシステムのレビューがあります。$'\e[0m'
+neofetch
+#asking for a reboot
+echo $'\e[1;31m'You should reboot to make sure the process is completed, do you want to reboot now?$'\e[0m'
+echo $'\e[1;31m'Debe reiniciar para asegurarse de que el proceso se haya completado, ¿desea reiniciar ahora?$'\e[0m'
+echo $'\e[1;31m'Вы должны перезагрузиться, чтобы убедиться, что процесс завершен, вы хотите перезагрузиться сейчас?$'\e[0m'
+echo $'\e[1;31m'プロセスが完了したことを確認するために再起動する必要があります。$'\e[0m'
+read reboot
+if [ $reboot == y ]
+then
+    sudo reboot
+else
+    echo $'\e[1;31m'The system will not be rebooted. The script has been concluded.$'\e[0m'
+    echo $'\e[1;31m'El sistema no se reiniciará. El script ha concluido.$'\e[0m'
+    echo $'\e[1;31m'Система не будет перезагружена. Сценарий завершен.$'\e[0m'
+    echo $'\e[1;31m'システムは再起動されません。スクリプトは終了しました。$'\e[0m'
+fi
