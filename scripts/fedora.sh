@@ -15,7 +15,7 @@ gsettings set org.gnome.desktop.interface clock-format 24h && gsettings set org.
 #gsettings set org.gnome.desktop.media-handling automount
 #Opening Steam for configuration
 pkgs='steam'
-if [which $pkgs >/dev/null]
+if [which $pkgs &>/dev/null]
 then
   sudo -u carino steam
 else
@@ -28,7 +28,7 @@ fi
 sudo mkdir ~/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.0rc6-GE-1/Proton-7.0rc6-GE-1.tar.gz && sudo tar -xf Proton-7.0rc6-GE-1.tar.gz -C ~/.steam/root/compatibilitytools.d/ && rm Proton-7.0rc2-GE-1.tar.gz
 #Checking for mpv installation and building it from the repo if necessary
 pkgs='mpv'
-if [which $pkgs >/dev/null]
+if [which $pkgs &>/dev/null]
 then
   sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
 else
