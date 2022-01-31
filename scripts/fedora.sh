@@ -6,7 +6,6 @@ echo $'\e[1;32m'これはカリーノシステムズのスクリプトです$'\e
 echo $'\e[1;32m'--------------------------------------$'\e[0m'
 #Getting info
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
-confirmuser = $user
 #Removing packages (reasons vary)
 sudo dnf remove firefox libreoffice-* -y
 #Adding repos
