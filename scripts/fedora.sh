@@ -62,7 +62,10 @@ then
     echo $'\e[1;32m'$DESTDIR は既にインストールされています。$'\e[0m'
     echo $'\e[1;32m'--------------------------------------$'\e[0m'
 else
-    sudo mkdir /home/$user/.steam/ && sudo mkdir /home/$user/.steam/root/ && sudo mkdir /home/$user/.steam/root/compatibilitytools.d/ && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.1-GE-2/Proton-7.1-GE-2.tar.gz && sudo tar -xf Proton-7.1-GE-2.tar.gz -C /home/$user/.steam/root/compatibilitytools.d && rm Proton-7.1-GE-2.tar.gz && sudo -u $user steam
+    sudo mkdir ~/.steam/
+    sudo mkdir ~/.steam/root/
+    sudo mkdir ~/.steam/root/compatibilitytools.d
+    wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.1-GE-2/Proton-7.1-GE-2.tar.gz && sudo tar -xf Proton-7.1-GE-2.tar.gz -C ~/.steam/root/compatibilitytools.d && rm Proton-7.1-GE-2.tar.gz && sudo -u $user steam
 fi
 #Checking for mpv installation and building it from the repo if necessary
 which mpv > /dev/null 2>&1
