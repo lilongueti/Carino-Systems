@@ -6,6 +6,7 @@ echo $'\e[1;32m'これはカリーノシステムズのスクリプトです$'\e
 echo $'\e[1;32m'--------------------------------------$'\e[0m'
 #Getting info
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
+confirmuser = $user
 #Removing packages (reasons vary)
 sudo dnf remove firefox libreoffice-* -y
 #Adding repos
@@ -143,7 +144,7 @@ if [which $pkgs &>/dev/null]
 then
     wget https://www.svp-team.com/files/svp4-latest.php?linux
     tar -xf svp4-latest.php?linux
-    sudo -u $user ./svp4-linux-64.run && rm svp4*
+    sudo -u $confirmuser ./svp4-linux-64.run && rm svp4*
 else
     echo $'\e[1;32m'SVP is already installed$'\e[0m'
     echo $'\e[1;32m'SVP ya está instalado$'\e[0m'
