@@ -18,21 +18,33 @@ sudo dnf install keepassxc librewolf thunderbird transmission gimp krita kdenliv
 which distrobox > /dev/null 2>&1
 if [ $? == 0 ]
 then
-    echo 'distrobox is already installed'
+    echo $'\e[1;32m'distrobox is already installed$'\e[0m'
+    echo $'\e[1;32m'distrobox ya está instalado$'\e[0m'
+    echo $'\e[1;32m'distrobox уже установлен$'\e[0m'
+    echo $'\e[1;32m'distrobox は既にインストールされています。$'\e[0m'
+    echo $'\e[1;32m'--------------------------------------$'\e[0m'
 else
     curl https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
 fi
 which rustdesk > /dev/null 2>&1
 if [ $? == 0 ]
 then
-    echo 'rustdesk is already installed'
+    echo $'\e[1;32m'rustdesk is already installed$'\e[0m'
+    echo $'\e[1;32m'rustdesk ya está instalado$'\e[0m'
+    echo $'\e[1;32m'rustdesk уже установлен$'\e[0m'
+    echo $'\e[1;32m'rustdesk は既にインストールされています。$'\e[0m'
+    echo $'\e[1;32m'--------------------------------------$'\e[0m'
 else
     sudo dnf install https://github.com/rustdesk/rustdesk/releases/download/1.1.8/rustdesk-1.1.8-fedora28-centos8.rpm -y
 fi
 which ipfs-desktop > /dev/null 2>&1
 if [ $? == 0 ]
 then
-    echo 'ipfs is already installed'
+    echo $'\e[1;32m'ipfs-desktop is already installed$'\e[0m'
+    echo $'\e[1;32m'ipfs-desktop ya está instalado$'\e[0m'
+    echo $'\e[1;32m'ipfs-desktop уже установлен$'\e[0m'
+    echo $'\e[1;32m'ipfs-desktop は既にインストールされています。$'\e[0m'
+    echo $'\e[1;32m'--------------------------------------$'\e[0m'
 else
     sudo dnf install https://github.com/ipfs/ipfs-desktop/releases/download/v0.18.1/ipfs-desktop-0.18.1-linux-x86_64.rpm -y
 fi
@@ -139,7 +151,7 @@ fi
     fi
 #Installing SVP
 pkgs='/home/carino/SVP\ 4/SVPManager'
-which pkgs > /dev/null 2>&1
+which $pkgs > /dev/null 2>&1
 if [ $? == 0 ]
 then
   echo $'\e[1;32m'SVP is already installed$'\e[0m'
@@ -150,7 +162,7 @@ then
 else
     wget https://www.svp-team.com/files/svp4-latest.php?linux
     tar -xf svp4-latest.php?linux
-    sudo -u $confirmuser ./svp4-linux-64.run && rm svp4*
+    sudo -u $user ./svp4-linux-64.run && rm svp4*
 fi
     
 #Setting up a hostname
