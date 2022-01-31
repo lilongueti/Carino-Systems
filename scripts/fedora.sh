@@ -27,7 +27,7 @@ if [ $? == 0 ]
 then
     echo 'rustdesk is already installed'
 else
-    sudo dnf install https://github.com/rustdesk/rustdesk/releases/download/1.1.8/rustdesk-1.1.8-fedora28-centos8.rpm
+    sudo dnf install https://github.com/rustdesk/rustdesk/releases/download/1.1.8/rustdesk-1.1.8-fedora28-centos8.rpm -y
 fi
 which ipfs-desktop > /dev/null 2>&1
 if [ $? == 0 ]
@@ -53,16 +53,16 @@ else
     sudo mkdir /home/$user/.steam/root/compatibilitytools.d && wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.1-GE-2/Proton-7.1-GE-2.tar.gz && sudo tar -xf Proton-7.1-GE-2.tar.gz -C /home/$user/.steam/root/compatibilitytools.d && rm Proton-7.1-GE-2.tar.gz && sudo -u $user steam
 fi
 #Checking for mpv installation and building it from the repo if necessary
-pkgs='mpv'
-if [sudo which $pkgs &>/dev/null]
+which mpv > /dev/null 2>&1
+if [ $? == 0 ]
 then
-  sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
-else
   echo $'\e[1;32m'Mpv is already installed$'\e[0m'
   echo $'\e[1;32m'Mpv ya está instalado$'\e[0m'
   echo $'\e[1;32m'Mpv уже установлен$'\e[0m'
   echo $'\e[1;32m'Mpv は既にインストールされています。$'\e[0m'
   echo $'\e[1;32m'--------------------------------------$'\e[0m'
+else
+  sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
 fi
 #Installing XRDP and enabling libvirtd
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
