@@ -153,7 +153,7 @@ fi
         echo $'\e[1;31m'--------------------------------------$'\e[0m'
     fi
 #Installing SVP
-pkgs='/home/carino/SVP\ 4/SVPManager'
+pkgs="/home/$user/SVP\ 4/SVPManager"
 which $pkgs > /dev/null 2>&1
 if [ $? == 0 ]
 then
