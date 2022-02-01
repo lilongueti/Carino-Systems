@@ -75,7 +75,7 @@ echo 'Do you want to install the Gaming packages?'
 read choice
 if [ $choice == y ]
 then
-    sudo dnf install steam goverlay mumble
+    sudo dnf install steam goverlay mumble -y
     #Installing Proton EG
     DESTDIR="~/.steam/root/compatibilitytools.d"
     if [[ -d $DESTDIR ]]
