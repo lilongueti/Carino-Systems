@@ -165,7 +165,7 @@ then
 else
     wget https://www.svp-team.com/files/svp4-latest.php?linux
     tar -xf svp4-latest.php?linux
-    sudo -u $user ./svp4-linux-64.run && rm svp4*
+    sudo -u $user ./svp4-linux-64.run && rm svp4-latest*
 fi
     
 #Setting up a hostname
