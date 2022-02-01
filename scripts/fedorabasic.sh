@@ -1,17 +1,19 @@
 #!/bin/bash
 echo $'\e[1;32m'Basic profile for Fedora$'\e[0m'
-echo $'\e[1;32m'Perfil básico de Fedora$'\e[0m'
+echo $'\e[1;32m'Perfil básico para Fedora$'\e[0m'
 echo $'\e[1;32m'Базовый профиль для Fedora$'\e[0m'
 echo $'\e[1;32m'Fedora の基本プロファイル$'\e[0m'
 echo $'\e[1;32m'--------------------------------------$'\e[0m'
 #Getting info
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
+#Removing packages (reasons vary)
+sudo dnf remove libreoffice-* -y
 #Adding repos
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #Updating the system and changing GNOME global settings
 gsettings set org.gnome.desktop.interface clock-format 24h && gsettings set org.gnome.desktop.interface clock-show-seconds true && gsettings set org.gnome.desktop.interface clock-show-date true && gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" && sudo dnf update -y
 #Installing packages
-sudo dnf install keepassxc thunderbird transmission gimp krita blender htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dnf-plugins-core -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors -y
+sudo dnf install google-chrome-stable keepassxc thunderbird transmission gimp krita blender htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dnf-plugins-core -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors -y
 #Installing packages not available in rpm or flatpak repos
 which rustdesk > /dev/null 2>&1
 if [ $? == 0 ]
