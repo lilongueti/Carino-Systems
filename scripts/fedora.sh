@@ -53,7 +53,7 @@ fi
 #gsettings set org.gnome.desktop.interface enable-animations false #For IT
 #gsettings set org.gnome.desktop.media-handling automount
 #Installing Proton EG
-DESTDIR="/home/root/.steam/root/compatibilitytools.d"
+DESTDIR="~/.steam/root/compatibilitytools.d"
 if [[ -d $DESTDIR ]]
 then
     echo $'\e[1;32m'$DESTDIR is already on your system.$'\e[0m'
@@ -65,7 +65,7 @@ else
     sudo mkdir ~/.steam/
     sudo mkdir ~/.steam/root/
     sudo mkdir ~/.steam/root/compatibilitytools.d
-    wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.1-GE-2/Proton-7.1-GE-2.tar.gz && sudo tar -xf Proton-7.1-GE-2.tar.gz -C ~/.steam/root/compatibilitytools.d && rm Proton-7.1-GE-2.tar.gz && sudo -u $user steam
+    wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/7.1-GE-2/Proton-7.1-GE-2.tar.gz && sudo tar -xf Proton-7.1-GE-2.tar.gz -C ~/.steam/root/compatibilitytools.d && rm Proton-7.1-GE-2.tar.gz
 fi
 #Checking for mpv installation and building it from the repo if necessary
 which mpv > /dev/null 2>&1
