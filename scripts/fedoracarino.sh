@@ -13,7 +13,7 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo rpm 
 #Updating the system and changing GNOME global settings
 gsettings set org.gnome.desktop.interface clock-format 24h && gsettings set org.gnome.desktop.interface clock-show-seconds true && gsettings set org.gnome.desktop.interface clock-show-date true && gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']" && sudo dnf update -y
 #Installing packages
-sudo dnf install keepassxc librewolf thunderbird transmission gimp krita kdenlive shotcut blender htop powertop remmina neofetch mediainfo microsoft-edge-stable brave-browser code obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client -y
+sudo dnf install keepassxc librewolf thunderbird transmission gimp krita kdenlive shotcut blender htop powertop remmina neofetch mediainfo microsoft-edge-stable brave-browser code obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.github.gi_lom.dialect com.skype.Client -y
 #Installing packages not available in rpm or flatpak repos
 which distrobox > /dev/null 2>&1
 if [ $? == 0 ]
@@ -79,6 +79,38 @@ then
 else
   sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
 fi
+#Installing NVIDIA drivers
+    if lspci | grep 'NVIDIA' > /dev/null;
+    then
+        if [which akmod-nvidia &>/dev/null]
+        then
+            #needs depuration (too many packages?)
+            sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers -y && sudo nvidia-xconfig
+            pkgs='nvtop'
+            if [which $pkgs &>/dev/null]
+            then
+                git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
+            else
+                echo $'\e[1;32m'nvtop is already installed$'\e[0m'
+                echo $'\e[1;32m'nvtop ya está instalado$'\e[0m'
+                echo $'\e[1;32m'nvtop уже установлен$'\e[0m'
+                echo $'\e[1;32m'nvtop は既にインストールされています。$'\e[0m'
+                echo $'\e[1;32m'--------------------------------------$'\e[0m'
+            fi
+        else
+            echo $'\e[1;31m'NVIDIA drivers are installed already.$'\e[0m'
+            echo $'\e[1;31m'$'\e[0m'
+            echo $'\e[1;31m'$'\e[0m'
+            echo $'\e[1;31m'$'\e[0m'
+            echo $'\e[1;31m'--------------------------------------$'\e[0m'
+        fi
+    else
+        echo $'\e[1;31m'NVIDIA drivers were not installed.$'\e[0m'
+        echo $'\e[1;31m'$'\e[0m'
+        echo $'\e[1;31m'$'\e[0m'
+        echo $'\e[1;31m'$'\e[0m'
+        echo $'\e[1;31m'--------------------------------------$'\e[0m'
+    fi
 #Installing XRDP and enabling libvirtd
 sudo sudo systemctl start xrdp && sudo systemctl enable xrdp && sudo usermod -a -G libvirt $(whoami) && sudo systemctl start libvirtd && sudo systemctl enable libvirtd
 #Mounting Windows Shared folder
@@ -120,38 +152,6 @@ fi
 #echo $'\e[1;33m'To continue, please specify a port for your remote desktop connection$'\e[0m'
 #read port
 #sudo firewall-cmd --permanent --add-port=$port/tcp && sudo firewall-cmd --reload && sudo chcon --type=bin_t /usr/sbin/xrdp && sudo chcon --type=bin_t /usr/sbin/xrdp-sesman
-#Installing NVIDIA drivers
-    if lspci | grep 'NVIDIA' > /dev/null;
-    then
-        if [which akmod-nvidia &>/dev/null]
-        then
-            #needs depuration (too many packages?)
-            sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers -y && sudo nvidia-xconfig
-            pkgs='nvtop'
-            if [which $pkgs &>/dev/null]
-            then
-                git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
-            else
-                echo $'\e[1;32m'nvtop is already installed$'\e[0m'
-                echo $'\e[1;32m'nvtop ya está instalado$'\e[0m'
-                echo $'\e[1;32m'nvtop уже установлен$'\e[0m'
-                echo $'\e[1;32m'nvtop は既にインストールされています。$'\e[0m'
-                echo $'\e[1;32m'--------------------------------------$'\e[0m'
-            fi
-        else
-            echo $'\e[1;31m'NVIDIA drivers are installed already.$'\e[0m'
-            echo $'\e[1;31m'$'\e[0m'
-            echo $'\e[1;31m'$'\e[0m'
-            echo $'\e[1;31m'$'\e[0m'
-            echo $'\e[1;31m'--------------------------------------$'\e[0m'
-        fi
-    else
-        echo $'\e[1;31m'NVIDIA drivers were not installed.$'\e[0m'
-        echo $'\e[1;31m'$'\e[0m'
-        echo $'\e[1;31m'$'\e[0m'
-        echo $'\e[1;31m'$'\e[0m'
-        echo $'\e[1;31m'--------------------------------------$'\e[0m'
-    fi
 #Installing SVP
 pkgs="/home/$user/SVP\ 4/SVPManager"
 which $pkgs > /dev/null 2>&1
@@ -167,7 +167,6 @@ else
     tar -xf svp4-latest.php?linux
     sudo -u $user ./svp4-linux-64.run && rm svp4-latest*
 fi
-    
 #Setting up a hostname
 if [[ $(hostname) == 'fedora' ]];
 then
