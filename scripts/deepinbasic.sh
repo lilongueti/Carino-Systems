@@ -7,7 +7,7 @@ echo $'\e[1;32m'--------------------------------------$'\e[0m'
 #Getting info
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
 #Removing packages (reasons vary)
-sudo dnf remove libreoffice-* firefox -y
+sudo dnf remove libreoffice-* firefox -y    
 #Adding repos
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 #Updating the system and changing GNOME global settings
