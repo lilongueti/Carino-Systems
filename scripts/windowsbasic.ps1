@@ -12,7 +12,7 @@ Write-Host "Basic profile for Windows 10"
 (
     "Mozilla.Firefox",
     "Google.Chrome",
-    "CodecGuide.K-LiteCodecPackMega",
+    "CodecGuide.K-LiteCodecPack.Mega",
     "Transmission.Transmission",
     "FileConverter.FileConverter",
     "7zip.7zip",
