@@ -10,22 +10,22 @@ Stop-Process -name explorer -force
 #Installing packages
 Write-Host "Basic profile for Windows 10"
 (
-    "Mozilla.Firefox",
-    "Google.Chrome",
+    #"Mozilla.Firefox",
+    #"Google.Chrome",
     "CodecGuide.K-LiteCodecPackMega",
-    "Transmission.Transmission",
+    #"Transmission.Transmission",
     "FileConverter.FileConverter",
     "7zip.7zip",
-    "OBSProject.OBSStudio",
+    #"OBSProject.OBSStudio",
     #"Oracle.JavaRuntimeEnvironment",
-    "KeePassXCTeam.KeePassXC",
-    "Mozilla.Thunderbird",
-    "AnyDeskSoftwareGmbH.AnyDes",
-    "Telegram.TelegramDesktop",
+    #"KeePassXCTeam.KeePassXC",
+    #"Mozilla.Thunderbird",
+    #"AnyDeskSoftwareGmbH.AnyDes",
+    #"Telegram.TelegramDesktop",
     "Rufus.Rufus",
-    "Zoom.Zoom",
-    "Microsoft.Skype",
-    "TeamViewer.TeamViewer"#,
+    #"Zoom.Zoom",
+    #"Microsoft.Skype",
+    #"TeamViewer.TeamViewer"#,
     #"Valve.Steam"
 ) | foreach {winget install -e --id $_}
 #Setting up a new hostname
