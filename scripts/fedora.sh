@@ -179,6 +179,41 @@ then
 else
     echo 'THE NVIDIA process has been skipped'
 fi
+#Mounting Windows Shared folder
+echo $'\e[1;36m'Do you want to setup a Windows Shared Folder?$'\e[0m'
+echo $'\e[1;36m'¿Quieres agregar una carpeta compartida de Windows? $'\e[0m'
+echo $'\e[1;36m'Вы хотите настроить общую папку Windows? $'\e[0m'
+echo $'\e[1;36m'Windows 共有フォルダをセットアップしますか?$'\e[0m'
+read option
+echo $'\e[1;32m'--------------------------------------$'\e[0m'
+if [ $option == y ]
+then
+    echo $'\e[1;36m'What is the server name you wish to connect to?$'\e[0m'
+    echo $'\e[1;36m'¿Cuál es el nombre del servidor al que se desea conectar? $'\e[0m'
+    echo $'\e[1;36m'С каким именем сервера вы хотите подключиться? $'\e[0m'
+    echo $'\e[1;36m'接続するサーバー名を指定してください。$'\e[0m'
+    read server
+    echo $'\e[1;36m'What is the shared folder of $server?$'\e[0m'
+    echo $'\e[1;36m'¿A qué carpeta compartida del $server desea conectarse?$'\e[0m'
+    echo $'\e[1;36m'Что такое общая папка с $server? $'\e[0m'
+    echo $'\e[1;36m'$serverの共有フォルダとは何ですか。 $'\e[0m'
+    read folder
+    echo $'\e[1;36m'What is the user to connect to $folder in $server?$'\e[0m'
+    echo $'\e[1;36m'¿Cuál es el usuario que se va a conectar a la carpeta $folder en $server?$'\e[0m'
+    echo $'\e[1;36m'Какой пользователь должен подключиться к папке на сервере? $'\e[0m'
+    echo $'\e[1;36m'$server内の$folderに接続するユーザーは何ですか。 $'\e[0m'
+    read srvuser
+    sudo mkdir /home/$(whoami)/WinFiles/ && sudo mount.cifs //$server/$folder /home/$(whoami)/WinFiles/ -o user=$srvuser
+    echo $'\e[1;36m'Windows Shared Folder has been successfully mounted!$'\e[0m'
+    echo $'\e[1;36m'¡La carpeta compartida de Windows se ha montado correctamente! $'\e[0m'
+    echo $'\e[1;36m'Общая папка Windows успешно смонтирована! $'\e[0m'
+    echo $'\e[1;36m'Windows 共有フォルダが正常にマウントされました。$'\e[0m'
+    echo $'\e[1;32m'--------------------------------------$'\e[0m'
+    
+else
+    echo $'\e[1;31m'No Windows shared folders were added$'\e[0m'
+    echo $'\e[1;31m'--------------------------------------$'\e[0m'
+fi
 #Setting up a hostname
 #echo "Testing hostname"
 if [[ $(hostname) == 'fedora' ]];
