@@ -102,6 +102,21 @@ case $choice in
     else
         sudo dnf install https://github.com/ipfs/ipfs-desktop/releases/download/v0.18.1/ipfs-desktop-0.18.1-linux-x86_64.rpm -y
     fi
+    #Installing SVP
+    pkgs="/home/$user/SVP\ 4/SVPManager"
+    which $pkgs > /dev/null 2>&1
+    if [ $? == 0 ]
+    then
+      echo $'\e[1;32m'SVP is already installed$'\e[0m'
+      echo $'\e[1;32m'SVP ya está instalado$'\e[0m'
+      echo $'\e[1;32m'SVP уже установлен$'\e[0m'
+      echo $'\e[1;32m'SVP は既にインストールされています。$'\e[0m'
+      echo $'\e[1;32m'--------------------------------------$'\e[0m'
+    else
+        wget https://www.svp-team.com/files/svp4-latest.php?linux
+        tar -xf svp4-latest.php?linux
+        sudo -u $user ./svp4-linux-64.run && rm svp4-latest*
+    fi
     support=y
     mpv=y
     nvidia=y
