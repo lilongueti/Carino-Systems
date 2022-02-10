@@ -1,5 +1,10 @@
 #!/bin/bash
 #Defining functions
+#Defining values in variables
+nvidia=n
+support=n
+mpv=n
+sharedfolder=n
 #Retrieving information
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
 #Main Menu
@@ -55,7 +60,7 @@ case $choice in
     support=y
     mpv=y
     nvidia=y
-    network=y
+    sharedfolder=y
     ;;
   #Artist profile starts
   "4")
@@ -157,8 +162,8 @@ then
     else
       sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
     fi
-else
-    echo 'THE mpv process has been skipped'
+#else
+#    echo 'THE mpv process has been skipped'
 fi
 #Installing NVIDIA drivers
 #echo $nvidia
@@ -195,11 +200,11 @@ then
         echo $'\e[1;31m'$'\e[0m'
         echo $'\e[1;31m'--------------------------------------$'\e[0m'
     fi
-else
-    echo 'THE NVIDIA process has been skipped'
+#else
+#    echo 'THE NVIDIA process has been skipped'
 fi
 #Mounting Windows Shared folder
-if [ network == 'y']
+if [ $sharedfolder == y]
 then
     echo $'\e[1;36m'Do you want to setup a Windows Shared Folder?$'\e[0m'
     echo $'\e[1;36m'¿Quieres agregar una carpeta compartida de Windows? $'\e[0m'
