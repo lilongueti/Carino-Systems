@@ -199,7 +199,7 @@ else
     echo 'THE NVIDIA process has been skipped'
 fi
 #Mounting Windows Shared folder
-if [ network == y]
+if [ network == 'y']
 then
     echo $'\e[1;36m'Do you want to setup a Windows Shared Folder?$'\e[0m'
     echo $'\e[1;36m'¿Quieres agregar una carpeta compartida de Windows? $'\e[0m'
