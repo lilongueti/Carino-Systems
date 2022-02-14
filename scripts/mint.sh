@@ -15,10 +15,12 @@ case $choice in
   "2")
     echo "Gaming profile"
     #Removing packages (reasons vary)
-    sudo dnf remove libreoffice-* -y
+    sudo apt remove libreoffice-* -y
     #Adding repos and updating system
-    sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf update -y
-    sudo dnf install steam goverlay lutris mumble -y && flatpak install flathub com.discordapp.Discord -y
+    sudo add-apt-repository ppa:lutris-team/lutris -y && sudo add-apt-repository ppa:flexiondotorg/mangohud -y
+    sudo apt update -y && sudo apt upgrade
+    #Installing packages
+    sudo apt install steam goverlay lutris mumble -y && flatpak install flathub com.discordapp.Discord -y
     #Installing Proton EG
     DESTDIR="~/.steam/root/compatibilitytools.d"
     if [[ -d $DESTDIR ]]
@@ -41,9 +43,9 @@ case $choice in
     #Removing packages (reasons vary)
     sudo dnf remove libreoffice-* -y
     #Adding repos and updating system
-    sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf update -y
+    sudo apt update -y && sudo apt upgrade
     #Installing packages
-    sudo dnf install google-chrome-stable celluloid keepassxc thunderbird transmission gimp krita htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dnf-plugins-core -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors -y
+    sudo apt install google-chrome-stable celluloid keepassxc thunderbird transmission gimp krita htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dnf-plugins-core -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors -y
     support=y
     nvidia=y
     ;;
