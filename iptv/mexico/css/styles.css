@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+body {
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    background: #05000B;
+    line-height: 14px;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-right: 0rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+    background: #38373D;
+    z-index: 10;
+}
+
+#sidebar-wrapper .sidebar-heading{
+    padding: 0.875rem 1.7rem;
+    font-size: 1rem;
+}
+
+#sidebar-wrapper .sidebar-heading span{
+    margin-left: 1.45rem;
+    font-weight: bold;
+}
+
+.canal{
+    padding: 0.5rem 1.25rem;
+    border-top: solid 1px #1D1D1D;
+    cursor: pointer;
+    transition: all .1s;
+    display: block;
+    min-height: 74px;
+}
+.canal:hover{
+    background: #1D1D1D;
+}
+.canal:active{
+    background: #0c0c0c;
+}
+#sidebar-wrapper .list-group {
+    width: 18rem;
+    height: 90vh;
+}
+
+#page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-right: -13rem;
+}
+
+#wrapper.toggled #sidebar-wrapper .sidebar-heading{
+    padding: 0.875rem 1.25rem;
+}
+
+#wrapper.toggled #sidebar-wrapper .list-group .canal{
+    padding: 0.5rem .8rem;
+}
+
+.canal img{
+    border: solid 3px #1D1D1D;
+}
+
+.canal .titulo{
+    padding: 0.5rem 1.25rem;
+}
+.canal .titulo h2{
+    font-size: .95rem;
+    margin-bottom: 0px;
+}
+.canal .titulo span{
+    font-size: .75rem;
+}
+
+.canal.activo{
+    border-left: solid 5px #00bb2d;
+    transition: all .2s;
+}
+.canal.activo img{
+    border-color: #00bb2d;
+    margin-left: -5px!important;
+    transition: all .2s;
+}
+
+@media (max-width: 720px){
+   
+    iframe{
+        height: 200px!important;
+        width: 100%!important;
+    } 
+}
+
+/*scroll*/
+/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
+
+.list-group::-webkit-scrollbar{
+    width: 7px;
+    background-color: #3f3f3f;
+}
+.list-group::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #3f3f3f;
+}
+.list-group::-webkit-scrollbar-thumb{
+    background-color: #0f0f0f; 
+    border-radius: 50px;
+}
