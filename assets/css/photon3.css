@@ -1,0 +1,204 @@
+/*
+@font-face { font-family: "D-DIN"; font-weight: 400; src: url(/fonts/D-DIN.ttf);}
+@font-face { font-family: "D-DIN"; font-weight: 600; src: url(/fonts/D-DINB.ttf);}
+*/
+@import "fonts/ptrootui.css";
+@font-face { font-family: "dripicons"; font-weight: 400; src: url(fonts/dripicons-v2.woff); }
+
+/* for playr */
+@font-face { font-family: "basis33"; font-weight: 400; src: url(fonts/basis33.ttf); }
+
+html {
+    /*
+    background-image: linear-gradient(#c84, #444);
+    background-size: 100% 100%;
+    */
+    background: url(dots8a.png);
+    background-attachment: fixed;
+}
+body {
+    font: 400 12pt "PT Root UI", "Trebuchet MS", "Liberation Sans", "Arial", sans-serif;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+h1 {
+    background: #111;
+    color: #fff;
+    margin: 0;
+    padding: 16px;
+    text-align: left;
+    font-size: 20pt;
+}
+h2 {
+    padding: 0;
+    margin: 0 0 0.2em;
+    font-size: 16pt;
+}
+nav {
+    background: #333;
+    color: #fff;
+    float: right;
+    width: 200px;
+}
+nav a {
+    display: block;
+    padding: 8px 12px;
+    font-size: 12pt;
+    font-weight: bold;
+}
+article {
+    background: #eaeaea;
+    padding: 16px;
+    border-bottom: 2px dashed #aaaaaa;
+    margin-right: 200px;
+}
+a {
+    margin: 3px 0;
+    color: #d72;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a.current {
+    color: inherit;
+    font-weight: bold;
+}
+.details {
+    font-size: 10pt;
+    color: #777;
+    margin-top: 8px;
+}
+.details a {
+    color: inherit;
+}
+footer {
+    background: #aaaaaa;
+    color: #000;
+    padding: 16px;
+}
+td {
+    padding: 4px 8px;
+}
+p {
+    padding: 4px 0;
+    margin: 0;
+}
+.dripicon {
+    font-family: "dripicons";
+    font-weight: 400;
+    font-size: 0.8em;
+}
+code {
+    display: block;
+    font: 400 10pt "Inconsolata LGC", "Noto Mono", "Roboto Mono", "Consolas", "Lucida Console", monospace;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    margin: 8px 0;
+}
+/* dirty workaround */
+/* article canvas { width: 100%; } */
+ul {
+    padding-left: 4px;
+}
+ul > ul {
+    padding-left: 24px;
+}
+ul > ul > li:before {
+    font-family: sans-serif;
+    content: "\2012"
+}
+li:before {
+    font-family: sans-serif;
+    content: "\2012";
+    margin-right: 8px;
+}
+li {
+    list-style: none outside;
+    margin-bottom: 6px;
+}
+/* articles wrapper */
+nav + div {
+    background: #48464A;
+    min-height: 150px;
+}
+.sidebar {
+    float: right;
+}
+/** cards **/
+header {
+    padding: 10px 16px;
+    background: #dadada;
+    font-weight: bold;
+    color: #d72;
+    margin-right: 200px;
+    text-transform: uppercase;
+}
+nav > a.subpage {
+    margin-left: 20px;
+    font-size: 10pt;
+    padding: 4px 12px;
+}
+.card {
+    width: 232px; /* 354px; */
+    box-sizing: border-box;
+    border: 1px solid #BBB;
+    display: inline-block;
+    padding: 10px;
+    margin: 0 5px 10px;
+    vertical-align: top;
+    background-color: #DDD;
+}
+.card-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.card-link:hover {
+    margin-bottom: 8px;
+    border-bottom: 2px solid #444;
+    text-decoration: none;
+}
+.card-info {
+    margin: 0;
+    font-size: 0.9em;
+    min-height: 4em;
+    text-overflow: ellipsis;
+}
+@media only screen and (max-width: 960px) {
+  body {
+      width: 100% !important;
+      margin: 0;
+  }
+  h1 {
+      text-align: center;
+  }
+  nav {
+      display: block;
+      float: none;
+      width: 100%;
+      text-align: center;
+  }
+  article, header {
+      margin: 0;
+  }
+  nav a {
+      display: inline-block;
+      font-size: 12pt;
+      padding: 4px 8px;
+  }
+  nav > a.subpage {
+    font-size: 10pt;
+    padding: 4px 12px 4px 4px;
+    margin: 0;
+  }
+  .card {
+      width: 100%;
+      margin: 5px 0;
+  }
+}
