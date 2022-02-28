@@ -1,4 +1,4 @@
-#Remember to Set-ExecutionPolicy AllSigned
+#Remember to Set-ExecutionPolicy Bypass
 #Hiding unwanted taskbar elements
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name SearchBoxTaskbarMode -Value 0 -Type DWord -Force
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" -Name "ShellFeedsTaskbarViewMode" -Value 2
