@@ -24,7 +24,7 @@ body {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
 }
 h1 {
-    background: #111;
+    background-image: image(/images/lain.jpg);
     color: #fff;
     margin: 0;
     padding: 16px;
