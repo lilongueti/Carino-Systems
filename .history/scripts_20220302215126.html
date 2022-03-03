@@ -5,21 +5,24 @@
 <title>Carino Systems</title>
 <link rel="stylesheet" type="text/css" href="./assets/css/photon3.css">
 <meta name="viewport" content="width=device-width, user-scalable=no">
-<link rel="icon" href="./images/logo.svg">
+<link rel="icon" href="../images/logo.svg">
 </head>
 <body>
 <h1>Carino Systems</h1>
 <nav>
-  <a href="https://carino.systems">Home</a>
-  <a href="/en/simple/images.html">Simple mode</a>
+    <a href="./index.html" class="current">Home</a>
+    <a href="./en/simple/scripts.html">Simple mode</a>
 </nav>
 <div>
     <article>
         <h2 style="color: black;">Scripts</h3>
-            Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).
+            Performs setup tasks that users normally do, but this time you can just run the script and be done without wasting time setting up your system.
             <p></p>
-            <h2 style="color: red;">Disclaimer</h3>
-            <p style="color: red;"><b>I'm biased towards x86_64 and Workstation images with a Desktop Environment pre-installed. The less you have to configure, the better.</b> Server images and other architectures may be available at the 'Other options' link.</p>
+            <h2 style="color: red;">Profiles</h3>
+            <p><b style="color: blueviolet;">Basic.</b> For the most basic use cases like media playback, internet browsing, office suite, file manipulation, communication and remote assistance.
+                <br><b style="color: blueviolet;">Gaming.</b> Is Basic profile plus popular gaming platforms and utilities.
+                <br><b style="color: blueviolet;">Corporate.</b> Delivers the most packages for office work, videocalls, including applications for specific working ecosystems like Microsoft's and Google's.
+                <br><b style="color: blueviolet;">Artist.</b> For 2D & 3D media creators and video editors.                
     </article>
     <header class="section">
 		Windows Systems
@@ -27,110 +30,97 @@
 	<article>
 		<div class="card">
             <a class="card-link" href="https://www.microsoft.com/en-us/software-download/windows11">Windows 11</a>
-            <p class="card-info">Newest version (requires <a href="https://en.wikipedia.org/wiki/Trusted_Platform_Module">TPM</a>)<br><a href="https://www.microsoft.com/en-us/software-download/windows11">Direct Download</a><br><a href="">Mirror</a><br><a href="ipfs/QmZXrzrsafXrVNK6tpADEFktbUzix2tihr2gswJTC9siyi?filename=Win11_English_x64v1.iso">IPFS</a></p>
+            <p class="card-info">Description<br><a href="">Direct Download</a></p>
         </div><!--
     --><div class="card">
         <a class="card-link" href="https://www.microsoft.com/en-us/software-download/windows10ISO">Windows 10</a>
-        <p class="card-info">Supported until October, 2025<br><a href="https://www.microsoft.com/en-us/software-download/windows10ISO">Direct Download</a><br><a href="">Mirror</a><br><a href="ipfs/QmTSf3AnwjSpHFkEHmyhJERLUJUeHwVch1kXCLqT2mDGZq?filename=Win10_21H2_English_x64.iso">IPFS</a>
+        <p class="card-info">Only basic profile<br><a href="./scripts/windowsbasic.ps1">Direct Download</a></p>
     </div><!--
     --><div class="card">
         <a class="card-link" href="https://www.microsoft.com/en-us/windows-server/">Windows Server</a>
-        <p class="card-info">Another versions<br><a href="https://www.microsoft.com/en-us/windows-server/">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
-    </div>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
 	</article>
 	<header class="section">
 		Linux Systems
 	</header>
 	<article>
-        <div class="card" style="background-image: url(./images/osimages/fedora.png);">
+        <div class="card">
             <a class="card-link" href="https://getfedora.org/">Fedora</a>
-            <p class="card-info">General use distro that aims to be on the leading edge of open-source technologies.<br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/35/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-35-1.2.iso">Direct Download</a><br><a href="https://1drv.ms/u/s!AqXIgPGILShBqu82TDkcPXpsypMp5w?e=2ATCAG">Mirror</a><br><a href="ipfs/QmWhnJ8Jkhs1NHoSHYvdXXa1dtFQ6a4D2XFyYMQDzxkWYw?filename=Fedora-Workstation-Live-x86_64-35-1.2.iso">IPFS</a></p>
+            <p class="card-info">Description<br><a href="./scripts/fedora.sh">Direct Download</a></p>
         </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/mint.jpg);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/teed-0.1.htm">Linux Mint</a>
-        <p class="card-info">Most balanced Ubuntu based distro, it also offers a Debian version.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/endeavour.png);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/projects/p4/index.html">Endeavour</a>
-        <p class="card-info">The most balanced and stable experience you will ever get with Arch.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/ultramarine.jpg);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/projects/table0/table.htm">Ultramarine Linux</a>
-        <p class="card-info">A Fedora Remix that offers tweaks and pre-installed NVIDIA drivers.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/popos.png);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/calc.htm">Pop_OS!</a>
-        <p class="card-info">Most beginner-friendly experience with NVIDIA drivers pre-installed<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/manjaro.jpg);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/colourmixer.htm">Manjaro</a>
-        <p class="card-info">Plan B in case Endeavour fails.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/compressor.htm">OpenSUSE</a>
-        <p class="card-info">One of the best distros for technical users in working environments.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/nanorsa.htm">KDE Neon</a>
-        <p class="card-info">Best experience with KDE software among Ubuntu-based distros.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/cardsim.htm">Sabayon</a>
-        <p class="card-info">One of the best Gentoo-based distros to start compiling packages right away.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/redhat8.jpg);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/bfer.htm">Red Hat Linux Enterprise</a>
-        <p class="card-info">A commercially supported distribution.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/cutefish.jpg);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/synths/amsyn.htm">Cutefish</a>
-        <p class="card-info">Based in unstable Debian, they aim to create a friendly and new Desktop Environment.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/deepin.jpg);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/synths/eleqtroniqa2.htm">Deepin</a>
-        <p class="card-info">Based in unstable Debian. they aim to create a new ecosystem in the Linux community.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/alma.jpg);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/whiteboard.htm">Alma Linux</a>
-        <p class="card-info">Compatible RHEL alternive, commercially sponsored and community supported.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/clear.jpg);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/games/scroll/brace.htm">Clear Linux</a>
-        <p class="card-info">Highly tuned for Intel platforms where all optimization is turned on by default.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/games/applets/modxor.htm">Guix</a>
-        <p class="card-info">A distro with a purely functional package manager for the GNU system.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/debian.jpg);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/tempocalc.htm">Debian</a>
-        <p class="card-info">A distro to get free (as in freedom) software for everyone.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/applets/repitchcalc.htm">Arch</a>
-        <p class="card-info">A distro to get the most binary packages in their latest stable versions.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
-    --><div class="card" style="background-image: url(./images/osimages/);">
+    --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/projects/wormhole/index.html">Gentoo</a>
-        <p class="card-info">A distro to get the most updated dependencies to compile the latest stable versions of applications.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div><!--
     --><div class="card">
         <a class="card-link" href="https://ake.neocities.org/works.htm">Astra Linux</a>
-        <p class="card-info">Linux distro developed to meet the needs of armed forces and intelligence agencies.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
-    </div><!--
-    --><div class="card">
-        <a class="card-link" href="https://ake.neocities.org/works.htm">Collapse OS</a>
-        <p class="card-info">An OS to preserve the ability to program microcontrollers through civilizational collapse.<br><a href="">Direct Download</a><br><a href="">Mirror</a><br><a href="">IPFS</a></p>
+        <p class="card-info">Description<br><a href="">Direct Download</a></p>
     </div>
 	</article>
-    <header class="section">
-		FAQ
-	</header>
-    <article>
-        <b>Why isn't my distro here?</b><br>I don't like it or haven't used it, if you know about Linux this isn't your website anyway.<br>
-        <br><b>Why is X distro here?</b><br>I like it or use it, if you know about Linux this isn't your website anyway.<br>
-        <br><b>These distros don't really follow my ideals of freedom.</b><br><a href="https://www.gnu.org/distros/free-distros.html">Here you go</a>, sod off.
-    </article>
 </div>
 <footer>
   <a href="https://ake.neocities.org/"><img src="./Ake&#39;s corner02_files/88x31mono.png"></a>
