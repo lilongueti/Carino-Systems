@@ -1,0 +1,61 @@
+Hello deluge
+Please select a profile:
+1. Basic profile
+2. Gaming profile
+3. Corporate profile
+4. Migrate to Ultramarine Linux
+5. Install Nvidia drivers
+6. Exit
+Welcome to the Fedora to Ultramarine Linux migration script!
+This script will migrate your Fedora system to Ultramarine Linux.
+Please make sure you have a backup of your system before proceeding, as this script will make major changes to your system.
+This script will also update your system to the latest version of Fedora before proceeding. Please make sure you can properly update your system before proceeding.
+
+Are you sure you want to continue? (y/n) Exiting...
+./fedora.sh: line 227: [: missing `]'
+[1;32mThe process has been completed, here is a review of your system.[0m
+[1;32mEl proceso se ha completado, aquí hay una revisión de su sistema.[0m
+[1;32mПроцесс завершен, вот обзор вашей системы.[0m
+[1;32mプロセスが完了しました、 ここにあなたのシステムのレビューがあります。[0m
+[?25l[?7l[38;5;12m[1m             .',;::::;,'.
+         .';:cccccccccccc:;,.
+      .;cccccccccccccccccccccc;.
+    .:cccccccccccccccccccccccccc:.
+  .;ccccccccccccc;[37m[0m[1m.:dddl:.[38;5;12m[1m;ccccccc;.
+ .:ccccccccccccc;[37m[0m[1mOWMKOOXMWd[38;5;12m[1m;ccccccc:.
+.:ccccccccccccc;[37m[0m[1mKMMc[38;5;12m[1m;cc;[37m[0m[1mxMMc[38;5;12m[1m:ccccccc:.
+,cccccccccccccc;[37m[0m[1mMMM.[38;5;12m[1m;cc;[37m[0m[1m;WW:[38;5;12m[1m:cccccccc,
+:cccccccccccccc;[37m[0m[1mMMM.[38;5;12m[1m;cccccccccccccccc:
+:ccccccc;[37m[0m[1moxOOOo[38;5;12m[1m;[37m[0m[1mMMM0OOk.[38;5;12m[1m;cccccccccccc:
+cccccc:[37m[0m[1m0MMKxdd:[38;5;12m[1m;[37m[0m[1mMMMkddc.[38;5;12m[1m;cccccccccccc;
+ccccc:[37m[0m[1mXM0'[38;5;12m[1m;cccc;[37m[0m[1mMMM.[38;5;12m[1m;cccccccccccccccc'
+ccccc;[37m[0m[1mMMo[38;5;12m[1m;ccccc;[37m[0m[1mMMW.[38;5;12m[1m;ccccccccccccccc;
+ccccc;[37m[0m[1m0MNc.[38;5;12m[1mccc[37m[0m[1m.xMMd[38;5;12m[1m:ccccccccccccccc;
+cccccc;[37m[0m[1mdNMWXXXWM0:[38;5;12m[1m:cccccccccccccc:,
+cccccccc;[37m[0m[1m.:odl:.[38;5;12m[1m;cccccccccccccc:,.
+:cccccccccccccccccccccccccccc:'.
+.:cccccccccccccccccccccc:;,..
+  '::cccccccccccccc::;,.[0m
+[19A[9999999D[41C[0m[1m[38;5;12m[1mcarino[0m@[38;5;12m[1mfedorita[0m 
+[41C[0m---------------[0m 
+[41C[38;5;12m[1mOS[0m[0m:[0m Fedora Linux 35 (Workstation Edition) x86_64[0m 
+[41C[38;5;12m[1mKernel[0m[0m:[0m 5.16.12-200.fc35.x86_64[0m 
+[41C[38;5;12m[1mUptime[0m[0m:[0m 10 hours, 12 mins[0m 
+[41C[38;5;12m[1mPackages[0m[0m:[0m 2916 (rpm), 28 (flatpak)[0m 
+[41C[38;5;12m[1mShell[0m[0m:[0m bash 5.1.8[0m 
+[41C[38;5;12m[1mResolution[0m[0m:[0m 2560x1080[0m 
+[41C[38;5;12m[1mDE[0m[0m:[0m GNOME 41.4[0m 
+[41C[38;5;12m[1mWM[0m[0m:[0m Mutter[0m 
+[41C[38;5;12m[1mWM Theme[0m[0m:[0m Adwaita[0m 
+[41C[38;5;12m[1mTheme[0m[0m:[0m Adwaita-dark [GTK2/3][0m 
+[41C[38;5;12m[1mIcons[0m[0m:[0m Adwaita [GTK2/3][0m 
+[41C[38;5;12m[1mTerminal[0m[0m:[0m gnome-terminal[0m 
+[41C[38;5;12m[1mCPU[0m[0m:[0m AMD Ryzen 9 5900X (24) @ 3.700GHz[0m 
+[41C[38;5;12m[1mGPU[0m[0m:[0m NVIDIA GeForce RTX 2060[0m 
+[41C[38;5;12m[1mMemory[0m[0m:[0m 3796MiB / 15933MiB[0m 
+
+[41C[30m[40m   [31m[41m   [32m[42m   [33m[43m   [34m[44m   [35m[45m   [36m[46m   [37m[47m   [m
+[41C[38;5;8m[48;5;8m   [38;5;9m[48;5;9m   [38;5;10m[48;5;10m   [38;5;11m[48;5;11m   [38;5;12m[48;5;12m   [38;5;13m[48;5;13m   [38;5;14m[48;5;14m   [38;5;15m[48;5;15m   [m
+
+
+[?25h[?7h

@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Log all output to file
+LOG=carino-setup.log
+exec > >(tee -a "$LOG") 2>&1
 #Defining functions
 #Defining values in variables
 nvidia=n
@@ -18,6 +22,11 @@ if [ "$os_id" = "fedora" ] && [ "$os_version" -ge 35 ]; then
 elif [ "$os_id" = "fedora" ] || [ "$os_version" -lt 35 ]; then
     # set MIGRATABLE to false
     echo "This script is only for Fedora 35 or newer."
+else
+# set MIGRATABLE to false
+    echo "OS $os_id version $os_version is not supported. Please run this script on a copy of Fedora Linux 35 or newer."
+    MIGRATABLE=false
+fi
 #Getting User
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
 #Main Menu
@@ -36,11 +45,7 @@ case $choice in
     DESTDIR="~/.steam/root/compatibilitytools.d"
     if [[ -d $DESTDIR ]]
     then
-        echo $'\e[1;32m'$DESTDIR is already on your system.$'\e[0m'
-        echo $'\e[1;32m'$DESTDIR ya está en tu sistema.$'\e[0m'
-        echo $'\e[1;32m'$DESTDIR уже установлен.$'\e[0m'
-        echo $'\e[1;32m'$DESTDIR は既にインストールされています。$'\e[0m'
-        echo $'\e[1;32m'--------------------------------------$'\e[0m'
+        echo "$DESTDIR is already on your system."
     else
         sudo mkdir ~/.steam/
         sudo mkdir ~/.steam/root/
