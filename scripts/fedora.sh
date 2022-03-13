@@ -17,7 +17,7 @@ os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
 # if os_id is fedora and os_version is greater than or equal to 35
 if [ "$os_id" = "fedora" ] && [ "$os_version" -ge 35 ]; then
     # run fedora setup script
-    MIGRATABLE=true
+    VALID=true
 # elif it's not f35 or newer
 elif [ "$os_id" = "fedora" ] || [ "$os_version" -lt 35 ]; then
     # set MIGRATABLE to false
@@ -25,7 +25,7 @@ elif [ "$os_id" = "fedora" ] || [ "$os_version" -lt 35 ]; then
 else
 # set MIGRATABLE to false
     echo "OS $os_id version $os_version is not supported. Please run this script on a copy of Fedora Linux 35 or newer."
-    MIGRATABLE=false
+    VALID=false
 fi
 #Getting User
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
