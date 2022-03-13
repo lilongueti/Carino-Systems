@@ -6,6 +6,19 @@ support=n
 mpv=n
 sharedfolder=n
 #Retrieving information
+# get distro data from /etc/os-release
+os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
+# get distro version data from /etc/os-release
+os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
+# if os_id is fedora and os_version is greater than or equal to 35
+if [ "$os_id" = "fedora" ] && [ "$os_version" -ge 35 ]; then
+    # run fedora setup script
+    MIGRATABLE=true
+# elif it's not f35 or newer
+elif [ "$os_id" = "fedora" ] || [ "$os_version" -lt 35 ]; then
+    # set MIGRATABLE to false
+    echo "This script is only for Fedora 35 or newer."
+#Getting User
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
 #Main Menu
 echo -e "Hello $user\nPlease select a profile:\n1. Basic profile\n2. Gaming profile\n3. Corporate profile\n4. Migrate to Ultramarine Linux\n5. Install Nvidia drivers\n6. Exit"
