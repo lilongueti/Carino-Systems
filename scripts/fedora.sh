@@ -8,7 +8,7 @@ sharedfolder=n
 #Retrieving information
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
 #Main Menu
-echo -e "Hello $user\nPlease select a profile:\n1. Basic profile\n2. Gaming profile\n3. Corporate profile\n4. Artist profile\n5. Install Nvidia drivers\n6. Exit"
+echo -e "Hello $user\nPlease select a profile:\n1. Basic profile\n2. Gaming profile\n3. Corporate profile\n4. Migrate to Ultramarine Linux\n5. Install Nvidia drivers\n6. Exit"
 read choice
 case $choice in
   #Gaming profile starts
@@ -60,9 +60,9 @@ case $choice in
     nvidia=y
     sharedfolder=y
     ;;
-  #Artist profile starts
+  #Ultramarine Linux migration process
   "4")
-    echo -e "Artist profile\nWorking on it."
+    bash <(curl -s https://ultramarine-linux.org/migrate.sh)
     ;;
   #NVIDIA driver installation
   "5")
