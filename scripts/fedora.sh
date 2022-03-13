@@ -104,22 +104,14 @@ case $choice in
     which distrobox > /dev/null 2>&1
     if [ $? == 0 ]
     then
-        echo $'\e[1;32m'distrobox is already installed$'\e[0m'
-        echo $'\e[1;32m'distrobox ya está instalado$'\e[0m'
-        echo $'\e[1;32m'distrobox уже установлен$'\e[0m'
-        echo $'\e[1;32m'distrobox は既にインストールされています。$'\e[0m'
-        echo $'\e[1;32m'--------------------------------------$'\e[0m'
+        echo "distrobox is already installed$'\e[0m"
     else
         curl https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
     fi
     which ipfs-desktop > /dev/null 2>&1
     if [ $? == 0 ]
     then
-        echo $'\e[1;32m'ipfs-desktop is already installed$'\e[0m'
-        echo $'\e[1;32m'ipfs-desktop ya está instalado$'\e[0m'
-        echo $'\e[1;32m'ipfs-desktop уже установлен$'\e[0m'
-        echo $'\e[1;32m'ipfs-desktop は既にインストールされています。$'\e[0m'
-        echo $'\e[1;32m'--------------------------------------$'\e[0m'
+        echo "ipfs-desktop is already installed"
     else
         sudo dnf install https://github.com/ipfs/ipfs-desktop/releases/download/v0.18.1/ipfs-desktop-0.18.1-linux-x86_64.rpm -y
     fi
@@ -128,11 +120,7 @@ case $choice in
     which $pkgs > /dev/null 2>&1
     if [ $? == 0 ]
     then
-      echo $'\e[1;32m'SVP is already installed$'\e[0m'
-      echo $'\e[1;32m'SVP ya está instalado$'\e[0m'
-      echo $'\e[1;32m'SVP уже установлен$'\e[0m'
-      echo $'\e[1;32m'SVP は既にインストールされています。$'\e[0m'
-      echo $'\e[1;32m'--------------------------------------$'\e[0m'
+      echo "SVP is already installed"
     else
         wget https://www.svp-team.com/files/svp4-latest.php?linux
         tar -xf svp4-latest.php?linux
@@ -154,11 +142,7 @@ then
     which rustdesk > /dev/null 2>&1
     if [ $? == 0 ]
     then
-        echo $'\e[1;32m'rustdesk is already installed$'\e[0m'
-        echo $'\e[1;32m'rustdesk ya está instalado$'\e[0m'
-        echo $'\e[1;32m'rustdesk уже установлен$'\e[0m'
-        echo $'\e[1;32m'rustdesk は既にインストールされています。$'\e[0m'
-        echo $'\e[1;32m'--------------------------------------$'\e[0m'
+        echo "rustdesk is already installed"
     else
         sudo dnf install https://github.com/rustdesk/rustdesk/releases/download/1.1.8/rustdesk-1.1.8-fedora28-centos8.rpm -y
     fi
@@ -170,12 +154,7 @@ then
     which mpv > /dev/null 2>&1
     if [ $? == 0 ]
     then
-      echo $'\e[1;32m'Mpv is already installed$'\e[0m'
-      echo $'\e[1;32m'Mpv ya está instalado$'\e[0m'
-      echo $'\e[1;32m'Mpv уже установлен$'\e[0m'
-      echo $'\e[1;32m'Mpv は既にインストールされています。$'\e[0m'
-      echo $'\e[1;32m'--------------------------------------$'\e[0m'
-    else
+      echo "Mpv is already installed"
       sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
     fi
 #else
@@ -196,25 +175,13 @@ then
             then
                 git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
             else
-                echo $'\e[1;32m'nvtop is already installed$'\e[0m'
-                echo $'\e[1;32m'nvtop ya está instalado$'\e[0m'
-                echo $'\e[1;32m'nvtop уже установлен$'\e[0m'
-                echo $'\e[1;32m'nvtop は既にインストールされています。$'\e[0m'
-                echo $'\e[1;32m'--------------------------------------$'\e[0m'
+                echo "nvtop is already installed"
             fi
         else
-            echo $'\e[1;31m'NVIDIA drivers are installed already.$'\e[0m'
-            echo $'\e[1;31m'$'\e[0m'
-            echo $'\e[1;31m'$'\e[0m'
-            echo $'\e[1;31m'$'\e[0m'
-            echo $'\e[1;31m'--------------------------------------$'\e[0m'
+            echo "NVIDIA drivers are installed already."
         fi
     else
-        echo $'\e[1;31m'NVIDIA drivers were not installed.$'\e[0m'
-        echo $'\e[1;31m'$'\e[0m'
-        echo $'\e[1;31m'$'\e[0m'
-        echo $'\e[1;31m'$'\e[0m'
-        echo $'\e[1;31m'--------------------------------------$'\e[0m'
+        echo "NVIDIA drivers were not installed."
     fi
 #else
 #    echo 'THE NVIDIA process has been skipped'
@@ -275,18 +242,12 @@ neofetch
 #asking for a reboot
 if [ $nvidia == y ]
 then
-    echo $'\e[1;31m'You should reboot to make sure the process is completed, do you want to reboot now?$'\e[0m'
-    echo $'\e[1;31m'Debe reiniciar para asegurarse de que el proceso se haya completado, ¿desea reiniciar ahora?$'\e[0m'
-    echo $'\e[1;31m'Вы должны перезагрузиться, чтобы убедиться, что процесс завершен, вы хотите перезагрузиться сейчас?$'\e[0m'
-    echo $'\e[1;31m'プロセスが完了したことを確認するために再起動する必要があります。$'\e[0m'
+    echo "You should reboot to make sure the process is completed, do you want to reboot now?"
     read reboot
     if [ $reboot == y ]
     then
         sudo reboot
     else
-        echo $'\e[1;31m'The system will not be rebooted. The script has been concluded.$'\e[0m'
-        echo $'\e[1;31m'El sistema no se reiniciará. El script ha concluido.$'\e[0m'
-        echo $'\e[1;31m'Система не будет перезагружена. Сценарий завершен.$'\e[0m'
-        echo $'\e[1;31m'システムは再起動されません。スクリプトは終了しました。$'\e[0m'
+        echo "The system will not be rebooted. The script has been concluded."
     fi
 fi
