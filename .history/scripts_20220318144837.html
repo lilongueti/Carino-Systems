@@ -6,20 +6,6 @@
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <link rel="icon" href="./images/logo.svg">
 </head>
-<script>function myFunction() {
-    /* Get the text field */
-    var copyText = document.getElementById("myInput");
-  
-    /* Select the text field */
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /* For mobile devices */
-  
-     /* Copy the text inside the text field */
-    navigator.clipboard.writeText(copyText.value);
-  
-    /* Alert the copied text */
-    alert("Copied the text: " + copyText.value);
-  }</script>
 <body>
 <h1><a href="https://carino.systems">Carino Systems</a></h1>
 <nav>
@@ -47,7 +33,9 @@
         <a class="card-link">Windows 10</a>
         <p class="card-info">Run on Terminal<br><b>Set-ExecutionPolicy Bypass</b>, then you can run the <br><a href="https://carino.systems/scripts/windowsbasic.ps1">Script</a>.</p>
     </div><!--
-    -->
+    --><div class="card">
+        <a class="card-link">Windows Server</a>
+        <p class="card-info">N/A.</p>
 	</article>
 	<header class="section">
 		Linux Systems
@@ -55,50 +43,29 @@
 	<article>
         <div class="card">
             <a class="card-link">Fedora</a>
-            <p class="card-info">
+            <p class="card-info"><div>
                 <!-- The text field -->
-                <input type="text" value="bash <(curl -s https://carino.systems/scripts/fedora.sh)" id="myInput" style="width: 70%;">
+                <input type="text" value="Hello World" id="myInput" style="width: 50%;">
                 <!-- The button used to copy the text -->
-                <button onclick="myFunction()" style="width: 20%;">Copy</button>
-            </p>
-                <!--<br>Get the <a href="./scripts/fedora.sh">Script</a>.-->
+                <button onclick="myFunction()">Copy text</button>
+           </div>Get the <a href="./scripts/fedora.sh">Script</a>.</p>
         </div><!--
     --><div class="card">
         <a class="card-link">Linux Mint</a>
-        <p class="card-info">
-            <!-- The text field -->
-            <input type="text" value="bash <(curl -s https://carino.systems/scripts/fedora.sh)" id="myInput" style="width: 70%;">
-            <!-- The button used to copy the text -->
-            <button onclick="myFunction()" style="width: 20%;">Copy</button>
-            </p>
-        </div><!--
+        <p class="card-info">N/A.</p>
+    </div><!--
     --><div class="card">
         <a class="card-link">Endeavour</a>
-        <p class="card-info">
-        <!-- The text field -->
-        <input type="text" value="bash <(curl -s https://carino.systems/scripts/fedora.sh)" id="myInput" style="width: 70%;">
-        <!-- The button used to copy the text -->
-        <button onclick="myFunction()" style="width: 20%;">Copy</button>
-        </p>
+        <p class="card-info">N/A.</p>
     </div><!--
     --><div class="card">
         <a class="card-link">Pop_OS!</a>
-        <p class="card-info">
-            <!-- The text field -->
-            <input type="text" value="bash <(curl -s https://carino.systems/scripts/fedora.sh)" id="myInput" style="width: 70%;">
-            <!-- The button used to copy the text -->
-            <button onclick="myFunction()" style="width: 20%;">Copy</button>
-            </p>
-        </div><!--
+        <p class="card-info">N/A.</p>
+    </div><!--
     --><div class="card">
         <a class="card-link">Red Hat Linux Enterprise</a>
-        <p class="card-info">
-            <!-- The text field -->
-            <input type="text" value="bash <(curl -s https://carino.systems/scripts/fedora.sh)" id="myInput" style="width: 70%;">
-            <!-- The button used to copy the text -->
-            <button onclick="myFunction()" style="width: 20%;">Copy</button>
-            </p>
-        </div>
+        <p class="card-info">N/A.</p>
+    </div>
 	</article>
     <header class="section">
 		Software Package Management
