@@ -88,7 +88,7 @@ case $choice in
     ;;
   #Exit program
   "6")
-    echo "Exit" 
+    echo "Exit"b n
     exit
     ;;
   #Carino profile starts
@@ -209,7 +209,7 @@ fi
 #Setting up a hostname
 if [[ $(hostname) == 'fedora' ]];
 then
-    echo $'\e[1;32m'Please provide a hostname for the computer$'\e[0m'
+    echo "Please provide a hostname for the computer"
     read hostname
     echo 'hostname was not changed'
     sudo hostnamectl set-hostname --static $hostname
