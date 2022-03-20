@@ -104,7 +104,7 @@ case $choice in
     which distrobox > /dev/null 2>&1
     if [ $? == 0 ]
     then
-        echo "distrobox is already installed$'\e[0m"
+        echo "distrobox is already installed"
     else
         curl https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
     fi
@@ -155,6 +155,7 @@ then
     if [ $? == 0 ]
     then
       echo "Mpv is already installed"
+    else
       sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
     fi
 #else
