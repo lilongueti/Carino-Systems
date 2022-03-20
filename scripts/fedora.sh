@@ -188,7 +188,7 @@ then
 #    echo 'THE NVIDIA process has been skipped'
 fi
 #Mounting Windows Shared folder
-if [ $sharedfolder == y]
+if [ $sharedfolder == y];
 then
     echo "Do you want to setup a Windows Shared Folder?"
     if [ $option == y ]
@@ -207,7 +207,6 @@ then
     fi
 fi
 #Setting up a hostname
-#echo "Testing hostname"
 if [[ $(hostname) == 'fedora' ]];
 then
     echo $'\e[1;32m'Please provide a hostname for the computer$'\e[0m'
