@@ -88,7 +88,7 @@ case $choice in
     ;;
   #Exit program
   "6")
-    echo "Exit"b n
+    echo "Exit"
     exit
     ;;
   #Carino profile starts
@@ -188,9 +188,14 @@ then
 #    echo 'THE NVIDIA process has been skipped'
 fi
 #Mounting Windows Shared folder
-if [ $sharedfolder == y];
+if [ $support == y ]
+then
+    which rustdesk > /dev/null 2>&1
+
+if [ $sharedfolder == y]
 then
     echo "Do you want to setup a Windows Shared Folder?"
+    read option
     if [ $option == y ]
     then
         echo "What is the server name you wish to connect to?"
@@ -205,6 +210,9 @@ then
         echo "No Windows shared folders were added."
         echo "--------------------------------------"
     fi
+else
+    echo "No Windows shared folders were added."
+    echo "--------------------------------------"
 fi
 #Setting up a hostname
 if [[ $(hostname) == 'fedora' ]];

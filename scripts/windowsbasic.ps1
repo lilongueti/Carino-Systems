@@ -20,7 +20,7 @@ Write-Host "Basic profile for Windows 10"
     #"Oracle.JavaRuntimeEnvironment",
     "KeePassXCTeam.KeePassXC",
     "Mozilla.Thunderbird",
-    "AnyDeskSoftwareGmbH.AnyDes",
+    "AnyDeskSoftwareGmbH.AnyDesk",
     "Telegram.TelegramDesktop",
     "Rufus.Rufus",
     "Zoom.Zoom",
