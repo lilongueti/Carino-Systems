@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Log all output to file
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
@@ -201,10 +202,6 @@ then
 #    echo 'THE NVIDIA process has been skipped'
 fi
 #Mounting Windows Shared folder
-if [ $support == y ]
-then
-    which rustdesk > /dev/null 2>&1
-
 if [ $sharedfolder == y]
 then
     echo "Do you want to setup a Windows Shared Folder?"
@@ -232,6 +229,7 @@ if [[ $(hostname) == 'fedora' ]];
 then
     echo "Please provide a hostname for the computer"
     read hostname
+else
     echo 'hostname was not changed'
     sudo hostnamectl set-hostname --static $hostname
 fi
