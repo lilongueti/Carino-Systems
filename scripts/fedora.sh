@@ -9,7 +9,7 @@ nvidia=n
 support=n
 mpv=n
 sharedfolder=n
-version=2.0220326.2
+version=2.0220326.3
 #Retrieving information
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
@@ -202,7 +202,7 @@ then
 #    echo 'THE NVIDIA process has been skipped'
 fi
 #Mounting Windows Shared folder
-if [ $sharedfolder == y]
+if [ $sharedfolder == y];
 then
     echo "Do you want to setup a Windows Shared Folder?"
     read option
