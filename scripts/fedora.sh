@@ -212,28 +212,28 @@ else
 fi
 #Mounting Windows Shared folder
 #Corporate option is the only one that enables mounting a shared folder
-if [ $sharedfolder == y];
-then
-    echo "Do you want to setup a Windows Shared Folder?"
-    read option
-    if [ $option == y ]
-    then
-        echo "What is the server name you wish to connect to?"
-        read server
-        echo "What is the shared folder of $server?"
-        read folder
-        echo "What is the user to connect to $folder in $server?"
-        read srvuser
-        sudo mkdir /home/$(whoami)/WinFiles/ && sudo mount.cifs //$server/$folder /home/$(whoami)/WinFiles/ -o user=$srvuser
-        echo "Windows Shared Folder has been successfully mounted!"
-    else
-        echo "No Windows shared folders were added."
-        echo "--------------------------------------"
-    fi
-else
-    echo "No Windows shared folders were added."
-    echo "--------------------------------------"
-fi
+#if [ $sharedfolder == y];
+#then
+#    echo "Do you want to setup a Windows Shared Folder?"
+#    read option
+#    if [ $option == y ]
+#    then
+#        echo "What is the server name you wish to connect to?"
+#        read server
+#        echo "What is the shared folder of $server?"
+#        read folder
+#        echo "What is the user to connect to $folder in $server?"
+#        read srvuser
+#        sudo mkdir /home/$(whoami)/WinFiles/ && sudo mount.cifs //$server/$folder /home/$(whoami)/WinFiles/ -o user=$srvuser
+#        echo "Windows Shared Folder has been successfully mounted!"
+#    else
+#        echo "No Windows shared folders were added."
+#        echo "--------------------------------------"
+#    fi
+#else
+#    echo "No Windows shared folders were added."
+#    echo "--------------------------------------"
+#fi
 #Showing system review
 echo "The process has been completed, here is a review of your system."
 neofetch
