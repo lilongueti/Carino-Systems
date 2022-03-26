@@ -9,7 +9,7 @@ nvidia=n
 support=n
 mpv=n
 sharedfolder=n
-version=2.0220325.2
+version=2.0220326.1
 #Retrieving information
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
