@@ -9,6 +9,7 @@ nvidia=n
 support=n
 mpv=n
 sharedfolder=n
+version=2.0220325.1
 #Retrieving information
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
@@ -30,7 +31,7 @@ fi
 #Getting User
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
 #Main Menu
-echo -e "Fedora Setup Scripts\nVersion 2.0220319.1\nHello $user\nPlease select a profile:\n1. Basic profile\n2. Gaming profile\n3. Corporate profile\n4. Migrate to Ultramarine Linux\n5. Install Nvidia drivers\n6. Exit"
+echo -e "Fedora Setup Scripts\nVersion $version\nHello $user\nPlease select a profile:\n1. Basic profile\n2. Gaming profile\n3. Corporate profile\n4. Migrate to Ultramarine Linux\n5. Install Nvidia drivers\n6. Exit"
 read choice
 case $choice in
   #Gaming profile starts
