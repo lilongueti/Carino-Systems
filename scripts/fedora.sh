@@ -226,14 +226,15 @@ fi
 echo "The process has been completed, here is a review of your system."
 neofetch
 #asking for a reboot
-if [ $nvidia == y ]
+if [ $nvidia == y ];
 then
-    echo "You should reboot to make sure the process is completed, do you want to reboot now?"
-    read reboot
-    if [ $reboot == y ]
+    echo "Do you want to reboot your system?"
+    read option
+    if [ $option == y ]
     then
         sudo reboot
     else
-        echo "The system will not be rebooted. The script has been concluded."
+        echo "No reboot was requested"
     fi
+fi
 fi
