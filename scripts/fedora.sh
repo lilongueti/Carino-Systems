@@ -9,7 +9,7 @@ nvidia=n
 support=n
 mpv=n
 sharedfolder=n
-version=2.0220326.1
+version=2.0220326.2
 #Retrieving information
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
@@ -247,5 +247,4 @@ then
     else
         echo "No reboot was requested"
     fi
-fi
 fi
