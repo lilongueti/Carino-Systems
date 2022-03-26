@@ -9,7 +9,7 @@ nvidia=n
 support=n
 mpv=n
 sharedfolder=n
-version=2.0220325.1
+version=2.0220325.2
 #Retrieving information
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
@@ -90,6 +90,15 @@ case $choice in
   #Testing
   "10")
     echo "Testing"
+    sudo dnf update
+    which neofetch > /dev/null 2>&1
+    if [ $? == 0 ]
+    then
+        echo "neofetch is already installed"
+    else
+        sudo dnf install neofetch -y
+    fi
+    echo "Testing complete, $user will now move on to the next step."
     ;;
   #Exit program
   "6")
