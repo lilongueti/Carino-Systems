@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Log all output to file
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
