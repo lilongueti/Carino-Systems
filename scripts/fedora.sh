@@ -220,11 +220,12 @@ if [[ $(hostname) == 'fedora' ]];
 then
     echo "Please provide a hostname for the computer"
     read hostname
+    sudo hostnamectl set-hostname --static $hostname
 else
     echo 'hostname was not changed'
-    sudo hostnamectl set-hostname --static $hostname
 fi
 #Mounting Windows Shared folder
+#Corporate option is the only one that enables mounting a shared folder
 if [ $sharedfolder == y];
 then
     echo "Do you want to setup a Windows Shared Folder?"
