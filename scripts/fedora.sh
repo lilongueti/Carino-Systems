@@ -87,6 +87,10 @@ case $choice in
   "5")
     nvidia=y
     ;;
+  #Testing
+  "10")
+    echo "Testing"
+    ;;
   #Exit program
   "6")
     echo "Exit"
@@ -164,7 +168,7 @@ then
 fi
 #Installing NVIDIA drivers
 #echo $nvidia
-if [ $nvidia == y ]
+if [ $nvidia == y ];
 then
     if lspci | grep 'NVIDIA' > /dev/null;
     then
