@@ -1,4 +1,11 @@
 #!/bin/bash
+#setup script for redhat based systems
+
+
+#install the necessary packages
+sudo dnf install -y wget git gcc make gcc-c++ kernel-devel kernel-headers zlib-devel openssl-devel readline-devel libyaml-devel libffi-devel libxml2-devel libxslt-devel autoconf automake libtool bison libtool-ltdl-devel libffi-devel libyaml-devel -y
+
+
 echo $'\e[1;32m'This is an script from carino systems $'\e[0m'
 echo $'\e[1;32m'Basic Setup for Fedora$'\e[0m'
 sudo dnf update -y && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf install mpv chromium keepassxc telegram-desktop thunderbird transmission gimp htop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp cmake gnome-tweaks gnome-extensions-app elinks git xkill -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && flatpak install flathub com.spotify.Client us.zoom.Zoom org.onlyoffice.desktopeditors com.anydesk.Anydesk -y
