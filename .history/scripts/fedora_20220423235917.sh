@@ -74,7 +74,7 @@ case $choice in
     #Adding repos
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo rpm --import https://keys.openpgp.org/vks/v1/by-fingerprint/034F7776EF5E0C613D2F7934D29FBD5F93C0CFC3 && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo dnf config-manager --add-repo  https://rpm.librewolf.net && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf update -y
     #Installing packages
-    sudo dnf install celluloid keepassxc thunderbird transmission gimp htop powertop remmina neofetch mediainfo microsoft-edge-stable code obs-studio barrier wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && flatpak install flathub org.telegram.desktop us.zoom.Zoom com.dropbox.Client com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client com.microsoft.Teams com.github.gi_lom.dialect com.slack.Slack com.usebottles.bottles -y
+    sudo dnf install celluloid keepassxc thunderbird transmission gimp htop powertop remmina neofetch mediainfo microsoft-edge-stable code obs-studio barrier wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && flatpak install flathub org.telegram.desktop us.zoom.Zoom com.dropbox.Client com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client com.microsoft.Teams com.github.gi_lom.dialect com.slack.Slack com.usebottles.bottles -y
     support=y
     nvidia=y
     sharedfolder=y
@@ -115,13 +115,13 @@ case $choice in
     #Installing packages
     sudo dnf install keepassxc librewolf thunderbird transmission gimp krita kdenlive shotcut blender htop powertop remmina neofetch mediainfo microsoft-edge-stable brave-browser code obs-studio barrier wine NetworkManager-tui yt-dlp cmake lshw gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server xrdp powershell dnf-plugins-core -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.github.gi_lom.dialect com.skype.Client com.usebottles.bottles -y
     #Installing packages not available in rpm or flatpak repos
-    #which distrobox > /dev/null 2>&1
-    #if [ $? == 0 ]
-    #then
-    #    echo "distrobox is already installed"
-    #else
-    #    curl https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
-    #fi
+    which distrobox > /dev/null 2>&1
+    if [ $? == 0 ]
+    then
+        echo "distrobox is already installed"
+    else
+        curl https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
+    fi
     which ipfs-desktop > /dev/null 2>&1
     if [ $? == 0 ]
     then
