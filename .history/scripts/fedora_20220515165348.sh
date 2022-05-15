@@ -106,6 +106,7 @@ case $choice in
         fi
 
     fi
+    exit
     ;;
   #Exit program
   "7")
