@@ -9,6 +9,7 @@ nvidia=n
 support=n
 mpv=n
 sharedfolder=n
+upgrade=n
 reboot=y
 version=2.0.0.20220515
 #Retrieving information
@@ -96,13 +97,13 @@ case $choice in
         rm upgrade
     else
         echo "Upgrading packages of your version of Fedora..."
-        sudo dnf --refresh upgrade -y > upgrade
+        sudo dnf --refresh upgrade -y
         echo "Done."
         if [ $(grep -c "Nothing to do." upgrade) == 1 ];#Still to solve
         then
             echo "System updated, please reboot and run the script again to upgrade to Fedora 36."
         else
-            echo "System couldn't be updated."
+            echo "You are already upgraded to Fedora 36."
         fi
 
     fi

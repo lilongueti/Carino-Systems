@@ -9,6 +9,7 @@ nvidia=n
 support=n
 mpv=n
 sharedfolder=n
+upgrade=n
 reboot=y
 version=2.0.0.20220515
 #Retrieving information

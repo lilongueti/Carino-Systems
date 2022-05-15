@@ -9,6 +9,7 @@ nvidia=n
 support=n
 mpv=n
 sharedfolder=n
+upgrade=n
 reboot=y
 version=2.0.0.20220515
 #Retrieving information
@@ -102,7 +103,7 @@ case $choice in
         then
             echo "System updated, please reboot and run the script again to upgrade to Fedora 36."
         else
-            echo "System couldn't be updated."
+            echo "You are already upgraded to Fedora 36."
         fi
 
     fi

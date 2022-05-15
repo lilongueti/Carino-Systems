@@ -9,8 +9,7 @@ nvidia=n
 support=n
 mpv=n
 sharedfolder=n
-reboot=y
-version=2.0.0.20220515
+version=2.0.0.20220513
 #Retrieving information
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
@@ -90,19 +89,18 @@ case $choice in
     ;;
   #Upgrade to Fedora 36
   "6")
-    if [ -f upgrade ]
+    if [ -f "upgradeauth" ];
     then
         sudo dnf system-upgrade download --releasever=36
-        rm upgrade
     else
         echo "Upgrading packages of your version of Fedora..."
         sudo dnf --refresh upgrade -y > upgrade
-        echo "Done."
-        if [ $(grep -c "Nothing to do." upgrade) == 1 ];#Still to solve
+        if [awk -n -e "Nothing to do." upgrade];
         then
-            echo "System updated, please reboot and run the script again to upgrade to Fedora 36."
+            echo "Upgrade available. Please run the following command to upgrade:"
+            echo "sudo dnf system-upgrade download --releasever=36"
         else
-            echo "System couldn't be updated."
+            echo "Nothing to do."
         fi
 
     fi
@@ -231,11 +229,8 @@ then
 else
     echo 'hostname was not changed'
 fi
-if [ $rdp == y];
-then
-    #Starting xrdp service
-    sudo systemctl enable xrdp && sudo systemctl start xrdp
-fi
+#Starting xrdp service
+sudo systemctl enable xrdp && sudo systemctl start xrdp
 #Mounting Windows Shared folder
 #Corporate option is the only one that enables mounting a shared folder
 if [ $sharedfolder == y];
@@ -265,7 +260,7 @@ echo "The process has been completed, here is a review of your system."
 neofetch
 speedtest
 #asking for a reboot
-if [ $reboot == y ];
+if [ $nvidia == y ];
 then
     echo "Do you want to reboot your system?"
     read option
