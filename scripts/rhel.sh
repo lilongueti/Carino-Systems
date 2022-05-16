@@ -158,7 +158,7 @@ esac
 #Support
 if [ $support == y ]
 then
-    if command -v curl > /dev/null;
+    if command -v speedtest > /dev/null;
     then
         echo "speedtest-cli is installed"
     else
