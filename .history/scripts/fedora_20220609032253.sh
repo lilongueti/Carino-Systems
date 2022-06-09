@@ -11,7 +11,7 @@ mpv=n
 sharedfolder=n
 rdp=n
 reboot=y
-version=2.0.0.20220609
+version=2.0.0.20220530
 #Retrieving information
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
