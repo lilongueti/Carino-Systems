@@ -64,7 +64,7 @@ case $choice in
     #Adding repos and updating system
     sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf config-manager --set-enabled google-chrome && sudo dnf update -y
     #Installing packages
-    sudo dnf install google-chrome-stable celluloid keepassxc thunderbird transmission gimp krita htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp cmake lshw lm_sensors.x86_64 gnome-tweaks gnome-extensions-app git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dnf-plugins-core --skip-broken -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors -y
+    sudo dnf install telegram-desktop google-chrome-stable celluloid keepassxc thunderbird transmission gimp krita htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp cmake lshw lm_sensors.x86_64 gnome-tweaks gnome-extensions-app git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dnf-plugins-core --skip-broken -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors -y
     support=y
     nvidia=y
     ;;
@@ -132,12 +132,14 @@ case $choice in
   "0")
     echo "Carino profile"
     #Removing packages (reasons vary)
-    sudo dnf remove gnome-tour gnome-photos firefox libreoffice-* -y
+    sudo dnf remove gnome-tour gnome-photos libreoffice-* -y
     #Adding repos and updating
-    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo rpm --import https://keys.openpgp.org/vks/v1/by-fingerprint/034F7776EF5E0C613D2F7934D29FBD5F93C0CFC3 && sudo dnf config-manager --add-repo  https://rpm.librewolf.net && sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo' && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf update -y
+    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+    #curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo &&
+    sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf update -y
     #Installing packages
-    #Not needed packages: blender
-    sudo dnf install keepassxc telegram-desktop microsoft-edge-stable code librewolf thunderbird transmission gimp krita kdenlive shotcut htop powertop remmina neofetch mediainfo obs-studio barrier wine NetworkManager-tui yt-dlp cmake lshw lm_sensors.x86_64 gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server cockpit xrdp powershell dnf-plugins-core dhcp-server https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm --skip-broken -y #&& flatpak install flathub com.visualstudio.code com.microsoft.edge org.telegram.desktop org.onlyoffice.desktopeditors 
+    #Not needed packages: blender microsoft-edge-stable krita shotcut kdenlive powershell
+    sudo dnf install firefox keepassxc telegram-desktop code thunderbird transmission gimp htop powertop remmina neofetch mediainfo obs-studio barrier wine NetworkManager-tui yt-dlp cmake lshw lm_sensors.x86_64 gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server cockpit xrdp dnf-plugins-core dhcp-server https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm --skip-broken -y #&& flatpak install flathub com.visualstudio.code com.microsoft.edge org.telegram.desktop org.onlyoffice.desktopeditors 
     #Installing packages not available in rpm or flatpak repos
     which ipfs-desktop > /dev/null 2>&1
     if [ $? == 0 ]
@@ -168,22 +170,22 @@ case $choice in
 esac
 #Installing packages according to variables
 #Support
-if [ $support == y ]
-then
-    if command -v speedtest > /dev/null;
-    then
-        echo "speedtest-cli is installed"
-    else
-        curl -s https://install.speedtest.net/app/cli/install.rpm.sh | sudo bash
-        sudo dnf install speedtest
-    fi
-    if command -v rustdesk > /dev/null;
-    then
-        echo "rustdesk is already installed"
-    else
-        sudo dnf install https://github.com/rustdesk/rustdesk/releases/download/1.1.8/rustdesk-1.1.8-fedora28-centos8.rpm -y
-    fi
-fi
+#if [ $support == y ]
+#then
+#    if command -v speedtest > /dev/null;
+#    then
+#        echo "speedtest-cli is installed"
+#    else
+#        curl -s https://install.speedtest.net/app/cli/install.rpm.sh | sudo bash
+#        sudo dnf install speedtest
+#    fi
+#    if command -v rustdesk > /dev/null;
+#    then
+#        echo "rustdesk is already installed"
+#    else
+#        sudo dnf install https://github.com/rustdesk/rustdesk/releases/download/1.1.8/rustdesk-1.1.8-fedora28-centos8.rpm -y
+#    fi
+#fi
 #MPV
 #echo $mpv
 if [ $mpv == y ]
