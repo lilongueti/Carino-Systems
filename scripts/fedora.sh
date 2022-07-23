@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Log all output to file
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
@@ -18,9 +17,10 @@ os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
 # get distro version data from /etc/os-release
 os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
 # if os_id is fedora and os_version is greater than or equal to 35
-if [ "$os_id" = "fedora" ] && [ "$os_version" -ge 35 ]; then
+if [ "$os_id" = "fedora" ] && [ "$os_version" -ge 35 || 36 ]; then
     # run fedora setup script
     VALID=true
+    echo "It is a valid Fedora $os_id installation"
 # elif it's not f35 or newer
 elif [ "$os_id" = "fedora" ] || [ "$os_version" -lt 35 ]; then
     # set MIGRATABLE to false
