@@ -17,12 +17,12 @@ os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
 # get distro version data from /etc/os-release
 os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
 # if os_id is fedora and os_version is greater than or equal to 35
-if [ "$os_id" = "fedora" ] && [ "$os_version" -ge 35 || 36 ]; then
+if [ "$os_id" = "fedora" ] && [ "$os_version" -ge "35" ]; then
     # run fedora setup script
     VALID=true
     echo "It is a valid Fedora $os_id installation"
 # elif it's not f35 or newer
-elif [ "$os_id" = "fedora" ] || [ "$os_version" -lt 35 ]; then
+elif [ "$os_id" = "fedora" ] || [ "$os_version" -ge 35 ]; then
     # set MIGRATABLE to false
     echo "This script is only for Fedora 35 or newer."
 else
@@ -32,7 +32,7 @@ else
 fi
 #Getting User
 user=$(awk -F: '{ print $1}' /etc/passwd |& tail -1)
-#Main Menu
+#Workstation menu
 echo -e "Fedora Setup Scripts\nVersion $version\nHello $user\nPlease select a profile:\n1. Basic profile\n2. Gaming profile\n3. Corporate profile\n4. Migrate to Ultramarine Linux\n5. Install Nvidia drivers\n6. Upgrade to Fedora 36\n7. Exit\n"
 read choice
 case $choice in
@@ -45,8 +45,6 @@ case $choice in
     sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf update -y
     #Installing essential packages
     sudo dnf install wget nano curl --skip-broken -y
-    #Adding Desktop Environment if necessary
-    bash<(curl -L https://carino.systems/scripts/de.sh)
     #Installing packages
     sudo dnf install steam goverlay lutris mumble --skip-broken -y && flatpak install flathub com.discordapp.Discord -y
     #Installing Proton EG
@@ -70,8 +68,6 @@ case $choice in
     sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf config-manager --set-enabled google-chrome && sudo dnf update -y
     #Installing essential packages
     sudo dnf install wget nano curl --skip-broken -y
-    #Adding Desktop Environment if necessary
-    bash<(curl -L https://carino.systems/scripts/de.sh)
     #Installing packages
     sudo dnf install telegram-desktop google-chrome-stable celluloid keepassxc thunderbird transmission gimp krita htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp cmake lshw lm_sensors.x86_64 gnome-tweaks gnome-extensions-app git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dnf-plugins-core --skip-broken -y && flatpak install flathub org.telegram.desktop com.spotify.Client org.onlyoffice.desktopeditors -y
     support=y
@@ -88,8 +84,6 @@ case $choice in
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo rpm --import https://keys.openpgp.org/vks/v1/by-fingerprint/034F7776EF5E0C613D2F7934D29FBD5F93C0CFC3 && sudo dnf config-manager --add-repo  https://rpm.librewolf.net && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf update -y
     #Installing essential packages
     sudo dnf install wget nano curl --skip-broken -y
-    #Adding Desktop Environment if necessary
-    bash<(curl -L https://carino.systems/scripts/de.sh)
     #Installing packages
     sudo dnf install celluloid keepassxc thunderbird transmission gimp htop powertop remmina neofetch mediainfo obs-studio barrier wine NetworkManager-tui yt-dlp cmake lshw lm_sensors.x86_64 gnome-tweaks gnome-extensions-app elinks git xkill tldr qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server cockpit xrdp powershell dnf-plugins-core dhcp-server --skip-broken -y && flatpak install flathub org.telegram.desktop us.zoom.Zoom com.dropbox.Client com.spotify.Client org.onlyoffice.desktopeditors com.anydesk.Anydesk com.skype.Client com.microsoft.Teams com.visualstudio.code com.microsoft.edge com.github.gi_lom.dialect com.slack.Slack com.usebottles.bottles -y
     support=y
@@ -152,8 +146,6 @@ case $choice in
     sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo && sudo dnf update -y
     #Installing essential packages
     sudo dnf install wget nano curl --skip-broken -y
-    #Adding Desktop Environment if necessary
-    bash<(curl -L https://carino.systems/scripts/de.sh)
     #Installing packages
     #Not needed packages: blender microsoft-edge-stable krita shotcut kdenlive powershell
     sudo dnf install firefox keepassxc telegram-desktop code thunderbird transmission gimp htop powertop remmina neofetch mediainfo obs-studio barrier wine NetworkManager-tui yt-dlp cmake lshw lm_sensors.x86_64 gnome-tweaks gnome-extensions-app elinks git xkill mumble goverlay tldr steam qt5-qtbase-devel python3-vapoursynth bridge-utils cifs-utils distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager tigervnc-server cockpit xrdp dnf-plugins-core dhcp-server https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm --skip-broken -y #&& flatpak install flathub com.visualstudio.code com.microsoft.edge org.telegram.desktop org.onlyoffice.desktopeditors 
