@@ -9,5 +9,5 @@
             echo "NVIDIA drivers are installed already."
         fi
     else
-        echo "NVIDIA drivers were not installed."
+        echo "No NVIDIA card detected, driveres won't be installed."
     fi
