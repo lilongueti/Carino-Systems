@@ -14,7 +14,6 @@ exec > >(tee -a "$LOG") 2>&1
 support=n
 sharedfolder=n
 rdp=n
-pivote="1"
 version=2.0.0.20220723
 #Retrieving information
 # get distro data from /etc/os-release
@@ -55,49 +54,56 @@ case $optionmenu in
     sudo dnf update -y
     sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
     #Asking for Desktop Environment of choice
-    echo "What Desktop Environment you want?\n1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9.NONE"
-    read option
-    case $option in
-    "1")
-        sudo dnf install @workstation-product-environment xrdp && sudo systemctl set-default graphical.target
-        echo "You have $DESKTOP_SESSION installed, moving on"
-        ;;
-    "2")
-        sudo dnf install @xfce-desktop-environment xrdp && sudo systemctl set-default graphical.target
-        echo "You have $DESKTOP_SESSION installed, moving on"
-        ;;
-    "3")
-        sudo dnf install @kde-desktop-environment xrdp && sudo systemctl set-default graphical.target
-        echo "You have $DESKTOP_SESSION installed, moving on"
-        ;;
-    "4")
-        sudo dnf install @lxqt-desktop-environment xrdp && sudo systemctl set-default graphical.target
-        echo "You have $DESKTOP_SESSION installed, moving on"
-        ;;
-    "5")
-        sudo dnf install @cinnamon-desktop-environment xrdp && sudo systemctl set-default graphical.target
-        echo "You have $DESKTOP_SESSION installed, moving on"
-        ;;
-    "6")
-        sudo dnf install @mate-desktop-environment xrdp && sudo systemctl set-default graphical.target
-        echo "You have $DESKTOP_SESSION installed, moving on"
-        ;;
-    "7")
-        sudo dnf install @i3-desktop-environment xrdp && sudo systemctl set-default graphical.target
-        echo "You have $DESKTOP_SESSION installed, moving on"
-        ;;
-    "8")
-        sudo dnf install @basic-desktop-environment xrdp && sudo systemctl set-default graphical.target
-        echo "You have $DESKTOP_SESSION installed, moving on"
-        ;;
-    "9")
-        echo "No Desktop Environment will be installed"
-        ;;
-    *)
-        echo "Wrong choice"
-        exit
-        ;;
-    esac
+    if [$deinstalled =! 1]
+    then
+        echo "What Desktop Environment you want?\n1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9.NONE"
+        read option
+        case $option in
+
+        "1")
+            sudo dnf install @workstation-product-environment xrdp && sudo systemctl set-default graphical.target
+            workstation=1
+            ;;
+        "2")
+            sudo dnf install @xfce-desktop-environment xrdp && sudo systemctl set-default graphical.target
+            workstation=1
+            ;;
+        "3")
+            sudo dnf install @kde-desktop-environment xrdp && sudo systemctl set-default graphical.target
+            workstation=1
+            ;;
+        "4")
+            sudo dnf install @lxqt-desktop-environment xrdp && sudo systemctl set-default graphical.target
+            workstation=1
+            ;;
+        "5")
+            sudo dnf install @cinnamon-desktop-environment xrdp && sudo systemctl set-default graphical.target
+            workstation=1
+            ;;
+        "6")
+            sudo dnf install @mate-desktop-environment xrdp && sudo systemctl set-default graphical.target
+            workstation=1
+            ;;
+        "7")
+            sudo dnf install @i3-desktop-environment xrdp && sudo systemctl set-default graphical.target
+            workstation=1
+            ;;
+        "8")
+            sudo dnf install @basic-desktop-environment xrdp && sudo systemctl set-default graphical.target
+            workstation=1
+            ;;
+        "9")
+            echo "No Desktop Environment will be installed"
+            workstation=1
+            ;;
+        *)
+            echo "Wrong choice"
+            exit
+            ;;
+        esac
+    else
+    echo "You have $DESKTOP_SESSION installed, moving on"
+    fi
     #Installing NVIDIA drivers
     if lspci | grep 'NVIDIA' > /dev/null;
     then
