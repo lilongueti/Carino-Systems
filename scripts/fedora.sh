@@ -271,8 +271,8 @@ fi
 sudo journalctl --vacuum-size=2G --vacuum-time=35d
 #Showing system review
 echo "The process has been completed, here is a review of your system."
-neofetch
-speedtest
+neofetch | lolcat
+#speedtest
 #asking for a reboot
 if [ $reboot == y ];
 then
