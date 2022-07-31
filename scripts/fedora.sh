@@ -335,6 +335,7 @@ then
 else
     echo ""
 fi
+
 #Setting up a hostname
 if [[ $(hostname) == 'fedora' ]];
 then
