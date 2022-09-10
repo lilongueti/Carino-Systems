@@ -67,7 +67,7 @@ case $optionmenu in
     #Installing essential packages
     sudo dnf install wget nano curl cmake nasm ncurses-devel git gedit lolcat figlet dnf-plugins-core --skip-broken -y
     #Installing bloat
-    sudo dnf install firefox telegram-desktop thunderbird transmission gimp htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp lshw lm_sensors.x86_64 xkill tldr qt5-qtbase-devel python3-qt5 python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dhcp-server elinks -y --skip-broken
+    sudo dnf install firefox telegram-desktop thunderbird transmission gimp htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp lshw lm_sensors.x86_64 xkill tldr qt5-qtbase-devel python3-qt5 python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dhcp-server elinks sshpass sftp -y --skip-broken
     #Asking for Desktop Environment of choice
     echo -e "What Desktop Environment you want?\n${YELLOW}1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. NONE${ENDCOLOR}"
     read option
@@ -108,7 +108,7 @@ case $optionmenu in
         echo "No Desktop Environment will be installed"
         ;;
     *)
-        echo "${RED}Wrong choice. Exiting script.${ENDCOLOR}"
+        echo -e "${RED}Wrong choice. Exiting script.${ENDCOLOR}"
         exit
         ;;
     esac
@@ -117,23 +117,23 @@ case $optionmenu in
     then
         if nvidia-smi
         then
-             echo "${GREEN}NVIDIA drivers are installed already.${ENDCOLOR}"
+             echo -e "${GREEN}NVIDIA drivers are installed already.${ENDCOLOR}"
         else
             #needs depuration (too many packages?)
             sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers -y && sudo nvidia-xconfig && git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
         fi
     else
-        echo "${RED}No NVIDIA card detected${ENDCOLOR}, drivers won't be installed."
+        echo -e "${RED}No NVIDIA card detected${ENDCOLOR}, drivers won't be installed."
     fi
     #asking for a reboot
-    echo "${YELLOW}Do you want to reboot your system?${ENDCOLOR}"
+    echo -e "${YELLOW}Do you want to reboot your system?${ENDCOLOR}"
     read option
     if [ $option == y ]
     then
         workstation=y
         sudo reboot
     else
-        echo "${RED}No reboot was requested.${ENDCOLOR}"
+        echo -e "${RED}No reboot was requested.${ENDCOLOR}"
     fi
 ;&
 "3")
@@ -151,8 +151,8 @@ case $optionmenu in
         #Installing packages
         sudo dnf install steam goverlay lutris mumble --skip-broken -y && flatpak install flathub com.discordapp.Discord -y
         timeout 180s steam
-        #Installing Proton EG
-        bash <(curl -s https://carino.systems/scripts/protoneg.sh)
+        #Installing Proton GE
+        bash <(curl -s https://carino.systems/scripts/protonge.sh)
         ;&
       #Basic profile starts
       "1")
@@ -253,8 +253,8 @@ case $optionmenu in
         #Not needed packages: blender krita shotcut kdenlive ghc-X11-xft-devel
         sudo dnf install microsoft-edge-stable google-chrome-stable code powershell mpv remmina barrier keepassxc mumble goverlay steam bottles podman distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager vpnc cargo https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://download.anydesk.com/linux/anydesk-6.2.0-1.el8.x86_64.rpm https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm --skip-broken -y #&& flatpak install flathub com.visualstudio.code com.microsoft.edge org.telegram.desktop org.onlyoffice.desktopeditors
         timeout 180s steam
-        #Installing Proton EG
-        bash <(curl -s https://carino.systems/scripts/protoneg.sh)
+        #Installing Proton GE
+        bash <(curl -s https://carino.systems/scripts/protonge.sh)
         #Compiling and installing MPV (Seems not to be necessary anymore)
         #which mpv > /dev/null 2>&1
         #if [ $? == 0 ]
