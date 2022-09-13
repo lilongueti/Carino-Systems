@@ -10,6 +10,7 @@ GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
 #Script starts
+kill 
 if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
 then
     PROTONVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3) && PROTONVERSION=$(($PROTONVERSION+1))
@@ -26,7 +27,7 @@ else
     sudo mkdir ~/.steam/
     sudo mkdir ~/.steam/root/
     sudo mkdir ~/.steam/root/compatibilitytools.d
-    for I in 35 34 33 32 31
+    for I in 36 35 34 33 32
     do
         PROTONVERSION=$I
         wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton7-$PROTONVERSION/GE-Proton7-$PROTONVERSION.tar.gz
