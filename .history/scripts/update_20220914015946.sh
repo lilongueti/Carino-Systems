@@ -20,7 +20,7 @@ if [ "$os_id" = "fedora" ] && [ "$os_version" -ge "35" ]; then
     # run fedora setup script
     VALID=true
     echo "This is a valid Fedora $os_id installation"
-    sudo dnf update && bash <(curl -s https://carino.systems/scripts/protonge.sh)
+    sudo dnf update && bash <(curl -s http)
 # elif it's not f35 or newer
 elif [ "$os_id" = "fedora" ] && [ "$os_version" -ge 35 ]; then
     # set MIGRATABLE to false
