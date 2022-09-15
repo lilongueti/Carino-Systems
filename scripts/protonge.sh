@@ -27,7 +27,7 @@ CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
                 echo -e "${GREEN}ProtonGE $PROTONVERSION has been installed.${ENDCOLOR}"
                 break
             else
-                echo -e "${RED}Version $PROTONVERSION not found (yet).${ENDCOLOR}"
+                #echo -e "${RED}Version $PROTONVERSION not found (yet).${ENDCOLOR}"
             fi
         fi
     done
@@ -37,7 +37,6 @@ CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
 if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
 then
     installproton
-    
 else
     sudo mkdir ~/.steam/ &> /dev/null
     sudo mkdir ~/.steam/root/ &> /dev/null
