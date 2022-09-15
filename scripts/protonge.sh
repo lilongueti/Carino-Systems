@@ -27,7 +27,7 @@ CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
                 echo -e "${GREEN}ProtonGE $PROTONVERSION has been installed.${ENDCOLOR}"
                 break
             else
-                echo -e "${RED}Version $PROTONVERSION not founded (yet).${ENDCOLOR}"
+                echo -e "${RED}Version $PROTONVERSION not found (yet).${ENDCOLOR}"
             fi
         fi
     done
