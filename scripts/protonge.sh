@@ -1,14 +1,15 @@
 #!/bin/bash
-# Log all output to file
-LOG=carino-protonge-setup$version.log
-exec > >(tee -a "$LOG") 2>&1
-#Installing Proton GE
+#Installing Proton GE Script
 #Defining values in variables
+version=3.20220915
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
+# Log all output to file
+LOG=carino-protonge-setup$version.log
+exec > >(tee -a "$LOG") 2>&1
 #Installing Proton GE
 installproton () {
 CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
