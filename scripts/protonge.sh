@@ -2,21 +2,21 @@
 # Log all output to file
 LOG=carino-protonge-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
-#Installing Proton EG
+#Installing Proton GE
 #Defining values in variables
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
-#Installing Proton EG
+#Installing Proton GE
 installproton () {
 CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
    for I in 40 39 38 37 36 35 34 33
     do
         if [[ $CURRENTVERSION -eq $I ]]
         then
-            echo -e "${GREEN}You already have the latest ProtonEG $I version.${ENDCOLOR}"
+            echo -e "${GREEN}You already have the latest ProtonGE $I version.${ENDCOLOR}"
         else
             PROTONVERSION=$I
             wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton7-$PROTONVERSION/GE-Proton7-$PROTONVERSION.tar.gz &> /dev/null
@@ -24,7 +24,7 @@ CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
             then
                 echo -e "Installing version $PROTONVERSION..."
                 sudo tar -xf GE-Proton7-$PROTONVERSION.tar.gz -C ~/.steam/root/compatibilitytools.d && rm GE-Proton7-$PROTONVERSION.tar.gz
-                echo -e "${GREEN}ProtonEG $PROTONVERSION has been installed.${ENDCOLOR}"
+                echo -e "${GREEN}ProtonGE $PROTONVERSION has been installed.${ENDCOLOR}"
                 break
             else
                 echo -e "${RED}Version $PROTONVERSION not founded (yet).${ENDCOLOR}"
