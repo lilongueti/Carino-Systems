@@ -1,15 +1,21 @@
 #!/bin/bash
 # Log all output to file
-LOG=carino-setup$version.log
+LOG=carino-update$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining functions
 #Defining values in variables
-version=3.20220914
+version=3.20220915
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
+#Functions
+steam () {
+    whereis steam
+    if [ $? -eq 0 ]
+    ''
+}
 #Retrieving information
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
