@@ -27,13 +27,11 @@ CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
                 echo -e "${GREEN}ProtonGE $PROTONVERSION has been installed.${ENDCOLOR}"
                 break
             else
-                echo "..." &> /dev/null
-                #echo -e "${RED}Version $PROTONVERSION not found (yet).${ENDCOLOR}"
+                echo -e "${RED}Version $PROTONVERSION not found (yet).${ENDCOLOR}" &> /dev/null
             fi
         fi
     done
 }
-
 #Script starts
 if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
 then
