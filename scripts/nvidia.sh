@@ -24,7 +24,7 @@ if lspci | grep 'NVIDIA' > /dev/null;
 then
     if nvidia-smi
     then
-         echo -e "${GREEN}NVIDIA drivers are installed already.${ENDCOLOR}"
+         echo -e "${GR EEN}NVIDIA drivers are installed already.${ENDCOLOR}"
     else
         case $os_id in
         "arch")
@@ -49,7 +49,7 @@ then
           else
             echo "This script is only for Fedora 35 or newer."
           fi
-          ;;
+          ;;2f
         "ubuntu")
           echo "Ubuntu distro"
           sudo apt update -y && sudo apt upgrade -y
