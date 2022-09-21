@@ -24,7 +24,7 @@ if lspci | grep 'NVIDIA' > /dev/null;
 then
     if nvidia-smi
     then
-         echo -e "${GR EEN}NVIDIA drivers are installed already.${ENDCOLOR}"
+         echo -e "${GREEN}NVIDIA drivers are installed already.${ENDCOLOR}"
     else
         case $os_id in
         "arch")
@@ -35,21 +35,17 @@ then
             echo "Nvidia driver for Debian"
             if [ "$os_version" -ge "10" ]; then
                 sudo apt install nvidia-driver
+            fi
             ;;
         "fedora")
           echo "Fedora distro"
           if [ "$os_version" -ge "35" ]; then
                     #needs depuration (too many packages?)
                     sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers libdrm-devel -y && sudo nvidia-xconfig && git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
-                fi
-            else
-                echo -e "${RED}No NVIDIA card detected${ENDCOLOR}, drivers won't be installed."
-            fi
-          # elif it's not f35 or newer
           else
-            echo "This script is only for Fedora 35 or newer."
+              echo -e "${RED}No NVIDIA card detected${ENDCOLOR}, drivers won't be installed."
           fi
-          ;;2f
+          ;;
         "ubuntu")
           echo "Ubuntu distro"
           sudo apt update -y && sudo apt upgrade -y
@@ -70,3 +66,5 @@ then
           echo "Another distro"
           ;;
         esac
+  fi
+fi
