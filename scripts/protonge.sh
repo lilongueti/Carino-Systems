@@ -13,7 +13,7 @@ exec > >(tee -a "$LOG") 2>&1
 #Installing Proton GE
 installproton () {
 CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-   for I in 40 39 38 37 36 35 34 33
+   for I in 40 39 38 37 36 35
     do
         if [[ $CURRENTVERSION -eq $I ]]
         then
