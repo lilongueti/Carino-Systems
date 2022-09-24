@@ -43,7 +43,7 @@ then
                     #needs depuration (too many packages?)
                     sudo dnf install kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig ocl-icd-devel opencl-headers libdrm-devel -y && sudo nvidia-xconfig && git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
           else
-              echo -e "${RED}No NVIDIA card detected${ENDCOLOR}, drivers won't be installed."
+              echo -e "${RED}You need Fedora 35 or greater${ENDCOLOR}, drivers won't be installed."
           fi
           ;;
         "ubuntu")
@@ -67,4 +67,6 @@ then
           ;;
         esac
   fi
+else
+  echo -e "${RED}No NVIDIA card detected${ENDCOLOR}, drivers won't be installed."
 fi
