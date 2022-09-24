@@ -67,7 +67,7 @@ case $optionmenu in
     #Installing essential packages
     sudo dnf install wget nano curl cmake nasm ncurses-devel git gedit lolcat figlet dnf-plugins-core --skip-broken -y
     #Installing bloat
-    sudo dnf install firefox telegram-desktop thunderbird transmission gimp htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp lshw lm_sensors.x86_64 xkill tldr qt5-qtbase-devel python3-qt5 python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dhcp-server elinks sshpass sftp cowsay -y --skip-broken
+    sudo dnf install firefox telegram-desktop thunderbird transmission gimp htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp lshw lm_sensors.x86_64 xkill tldr qt5-qtbase-devel python3-qt5 python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dhcp-server elinks sshpass ftp sftp cowsay -y --skip-broken
     #Asking for Desktop Environment of choice
     echo -e "What Desktop Environment you want?\n${YELLOW}1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. NONE${ENDCOLOR}"
     read option
@@ -97,7 +97,7 @@ case $optionmenu in
         echo "You have MATE installed, moving on"
         ;;
     "7")
-        sudo dnf install @i3-desktop-environment scrot xclip thunar tumbler thunar-archive-plugin file-roller -y && sudo systemctl set-default graphical.target
+        sudo dnf install @i3-desktop-environment nnn scrot xclip thunar tumbler thunar-archive-plugin file-roller -y && sudo systemctl set-default graphical.target
         echo "You have i3 installed, moving on"
         ;;
     "8")
@@ -239,7 +239,7 @@ case $optionmenu in
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-beta.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf config-manager --set-enabled google-chrome && sudo dnf update -y
         #Installing packages
         #Not needed packages: blender krita shotcut kdenlive ghc-X11-xft-devel
-        sudo dnf install microsoft-edge-stable google-chrome-stable code powershell mpv remmina barrier keepassxc mumble goverlay steam bottles podman distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager vpnc cargo https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://download.anydesk.com/linux/anydesk-6.2.0-1.el8.x86_64.rpm https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm --skip-broken -y #&& flatpak install flathub com.visualstudio.code com.microsoft.edge org.telegram.desktop org.onlyoffice.desktopeditors
+        sudo dnf install microsoft-edge-stable google-chrome-stable epiphany code powershell mpv remmina barrier keepassxc mumble goverlay steam bottles podman distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager vpnc cargo https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://download.anydesk.com/linux/anydesk-6.2.0-1.el8.x86_64.rpm https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm --skip-broken -y #&& flatpak install flathub com.visualstudio.code com.microsoft.edge org.telegram.desktop org.onlyoffice.desktopeditors
         timeout 180s steam
         #Installing Proton GE
         bash <(curl -s https://carino.systems/scripts/protonge.sh)
