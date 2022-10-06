@@ -21,9 +21,7 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<a href="#" class="icon solid fa-home"><span>Home</span></a>
-						<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
-						<a href="#images" class="icon solid fa-folder"><span>Images</span></a>
-						<a href="#scripts" class="icon solid fa-folder"><span>scripts</span></a>
+						<a href="#images" class="icon solid fa-folder"><span>Images&Scripts</span></a>
 						<a href="#tools" class="icon solid fa-folder"><span>tools</span></a>
 						<a href="#lurking" class="icon solid fa-folder"><span>lurking</span></a>
 						<a href="#moneh" class="icon solid fa-folder"><span>moneh</span></a>
@@ -35,7 +33,9 @@
 
 						<!-- Me -->
 							<article id="home" class="panel intro">
-								<header>
+								<header><header class="section">
+									Software Package Management
+								</header>
 									<h1>Miguel Carino</h1>
 									<p>CS Dropout<br>Bash, Python, Perl<br>Basic web development<br>RHEL/Ubuntu systems<br>I mostly do forks and server related jobs</p>
 								</header>
@@ -44,29 +44,6 @@
 									<img src="./images/logo.svg" alt="" />
 								</a>
 							</article>
-						
-						<!-- Work -->
-						<article id="work" class="panel">
-							<header>
-								<h2>Work</h2>
-							</header>
-							<p>
-								I mostly do forks because I find it fun.
-							</p>
-							<section>
-								<div class="row">
-									<div class="col-4 col-6-medium col-12-small">
-										<a href="https://distro.moe/" class="image fit"><img src="images/pic01.jpg" alt=""></a>
-									</div>
-									<div class="col-4 col-6-medium col-12-small">
-										<a href="https://xn--gckvbwctf.xn--q9jyb4c/" class="image fit"><img src="images/pic02.jpg" alt=""></a>
-									</div>
-									<div class="col-4 col-6-medium col-12-small">
-										<a href="https://nakadashi.systems" class="image fit"><img src="images/pic03.jpg" alt=""></a>
-									</div>
-								</div>
-							</section>
-						</article>
 
 						<!-- Images -->
 						<article id="images" class="panel">
@@ -258,6 +235,130 @@
 											<p>Based on BeOS, targets personal computing, easy to learn, use and powerful.<br><a href="http://mirror.rit.edu/haiku/r1beta3/haiku-r1beta3-x86_64-anyboot.iso">Direct Download</a><br><a href="https://1drv.ms/u/s!AucSofUHmk_6gRUn7mZjppktpYdt?e=KK8OEq">Mirror</a><br>
 										</div>
 									</div>
+									<article>
+										<h2 style="color: black;">Scripts & Packages</h3>
+											Performs setup tasks that users normally do, but this time you can just run the script and be done without wasting too much time setting up your system.
+											<p></p>
+											<h2 style="color: red;">Profiles</h3>
+											<p><b style="color: rgb(247, 55, 48);">Basic.</b> For the most basic use cases like media playback, internet browsing, office suite, file manipulation, communication and remote assistance.
+												<br><b style="color: rgb(247, 55, 48);;">Gaming.</b> Is Basic profile plus popular gaming platforms and utilities.
+												<br><b style="color: rgb(247, 55, 48);;">Corporate.</b> Delivers the most packages for office work, videocalls, including applications for specific working ecosystems like Microsoft's, Google's and Cisco's.
+									</article>
+									<header class="section">
+										Windows Systems
+									</header>
+									<article>
+										<div class="card hvr-grow" style="background-image: url(./images/osimages/win11.webp);">
+											<a>Windows 11</a>
+											<p>Run on Terminal<br><b>Set-ExecutionPolicy Bypass</b>, then you can run the <br><a href="https://carino.systems/scripts/windowsbasic.ps1">Script</a>.</p>
+										</div><!--
+									--><div class="card hvr-grow" style="background-image: url(./images/osimages/win10.webp);">
+										<a>Windows 10</a>
+										<p>Run on Terminal<br><b>Set-ExecutionPolicy Bypass</b>, then you can run the <br><a href="https://carino.systems/scripts/windowsbasic.ps1">Script</a>.</p>
+									</div><!--
+									-->
+									</article>
+									<header class="section">
+										Linux Systems
+									</header>
+									<article>
+										<div class="card hvr-grow" style="background-image: url(./images/osimages/fedora36.webp);">
+											<a>Fedora</a>
+											<p>
+												<!-- The text field -->
+												<input type="text" value="bash <(curl -s https://carino.systems/scripts/fedora.sh)" id="fedorascript" style="width: 70%;">
+												<!-- The button used to copy the text -->
+												<button onclick="fedorascript()" style="width: 20%;">Copy</button>
+											</p>
+												<!--<br>Get the <a href="./scripts/fedora.sh">Script</a>.-->
+										</div><!--
+									--><div class="card hvr-grow" style="background-image: url(./images/osimages/mint.webp);">
+										<a>Linux Mint</a>
+										<p>
+											<!-- The text field -->
+											<input type="text" value="bash <(curl -s https://carino.systems/scripts/mint.sh)" id="mintscript" style="width: 70%;">
+											<!-- The button used to copy the text -->
+											<button onclick="mintscript()" style="width: 20%;">Copy</button>
+											</p>
+										</div><!--
+									--><div class="card hvr-grow" style="background-image: url(./images/osimages/endeavour.webp);">
+										<a>Endeavour</a>
+										<p>
+										<!-- The text field -->
+										<input type="text" value="bash <(curl -s https://carino.systems/scripts/endeavour.sh)" id="endeavourscript" style="width: 70%;">
+										<!-- The button used to copy the text -->
+										<button onclick="endeavourscript()" style="width: 20%;">Copy</button>
+										</p>
+									</div><!--
+									--><div class="card hvr-grow" style="background-image: url(./images/osimages/popos.webp);">
+										<a>Pop_OS!</a>
+										<p>
+											<!-- The text field -->
+											<input type="text" value="bash <(curl -s https://carino.systems/scripts/popos.sh)" id="poposscript" style="width: 70%;">
+											<!-- The button used to copy the text -->
+											<button onclick="poposscript()" style="width: 20%;">Copy</button>
+											</p>
+										</div><!--
+									--><div class="card hvr-grow" style="background-image: url(./images/osimages/redhat9.webp); background-position: right;">
+										<a>Red Hat Linux Enterprise 9</a>
+										<p>
+											<!-- The text field -->
+											<input type="text" value="bash <(curl -s https://carino.systems/scripts/rhel.sh)" id="rhelscript" style="width: 70%;">
+											<!-- The button used to copy the text -->
+											<button onclick="rhelscript()" style="width: 20%;">Copy</button>
+											</p>
+										</div>
+									</article>
+									<article>
+										<h2>Software Packages</h2>
+										These are the sources to look for specific software packages you can install through a package manager for any of the above operating systems. Most general source is <a href="https://pkgs.org/">pkgs.org</a>
+										<br>
+										<br>
+										<div class="card hvr-grow">
+											<a>Winget</a>
+											<p>Update <a href="https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1">App Installer</a>, then open PowerShell or Windows Terminal as Administrator to start installing <a href="https://winget.run/">Winget packages</a>.</p>
+										</div><!--
+									--><div class="card hvr-grow">
+										<a>Homebrew</a>
+										<p>Install <a href="https://apps.apple.com/us/app/xcode/id497799835?mt=12">Xcode</a> (on macOS), then install <a href="https://github.com/Homebrew/install">homebrew</a> and start installing <a href="https://formulae.brew.sh/">Homebrew packages</a>.</p>
+									</div><!--
+									--><div class="card hvr-grow">
+										<a>Apt</a>
+										<p>There are many repositories.
+										<br><a href="https://packages.ubuntu.com/">Ubuntu</a>
+										<br><a href="https://packages.debian.org/">Debian</a>
+										<br><a href="http://packages.linuxmint.com/">Linux Mint</a>
+										</div><!--
+										--><div class="card hvr-grow">
+											<a>DNF</a>
+											<p>Look in the <a href="https://packages.fedoraproject.org/">Fedora repo</a> or install <a href="https://copr.fedorainfracloud.org/">COPR packages</a>.</p>
+										</div><!--
+										--><div class="card hvr-grow">
+											<a>pacman</a>
+											<p><a href="https://archlinux.org/packages/">Arch Official repo</a>, or install an AUR helper to get <a href="https://aur.archlinux.org/">AUR packages</a>.</p>
+										</div><!--
+										--><div class="card hvr-grow">
+											<a>Swupd</a>
+											<p><a href="https://clearlinux.org/software">Clear Linux Store</a>.</p>
+										</div><!--
+										--><div class="card hvr-grow">
+											<a>Guix</a>
+											<p><a href="https://hpc.guix.info/browse">Guix Official repo</a>.</p>
+										</div><!--
+										--><div class="card hvr-grow">
+											<a>zypper</a>
+											<p><a href="https://software.opensuse.org/search">Search here</a>.</p>
+										</div><!--
+										--><div class="card hvr-grow">
+											<a>Flatpak</a>
+											<p>Its most popular repo is <a href="https://flathub.org/home">Flathub</a>.</p>
+											</div><!--
+										--><div class="card hvr-grow">
+											<a>Appimage</a>
+											<p>It is not a package manager, you can get appimages directly from this hub <a href="https://www.appimagehub.com/">AppImageHub</a>.</p>
+											</div>
+											
+									</article>
 									<header class="section">
 										<h2>FAQ</h2>
 									</header>
@@ -274,132 +375,7 @@
 							<header>
 								<h2>Scripts</h2>
 							</header>
-							<article>
-								<h2 style="color: black;">Scripts & Packages</h3>
-									Performs setup tasks that users normally do, but this time you can just run the script and be done without wasting too much time setting up your system.
-									<p></p>
-									<h2 style="color: red;">Profiles</h3>
-									<p><b style="color: rgb(247, 55, 48);">Basic.</b> For the most basic use cases like media playback, internet browsing, office suite, file manipulation, communication and remote assistance.
-										<br><b style="color: rgb(247, 55, 48);;">Gaming.</b> Is Basic profile plus popular gaming platforms and utilities.
-										<br><b style="color: rgb(247, 55, 48);;">Corporate.</b> Delivers the most packages for office work, videocalls, including applications for specific working ecosystems like Microsoft's, Google's and Cisco's.
-							</article>
-							<header class="section">
-								Windows Systems
-							</header>
-							<article>
-								<div class="card hvr-grow" style="background-image: url(./images/osimages/win11.webp);">
-									<a>Windows 11</a>
-									<p>Run on Terminal<br><b>Set-ExecutionPolicy Bypass</b>, then you can run the <br><a href="https://carino.systems/scripts/windowsbasic.ps1">Script</a>.</p>
-								</div><!--
-							--><div class="card hvr-grow" style="background-image: url(./images/osimages/win10.webp);">
-								<a>Windows 10</a>
-								<p>Run on Terminal<br><b>Set-ExecutionPolicy Bypass</b>, then you can run the <br><a href="https://carino.systems/scripts/windowsbasic.ps1">Script</a>.</p>
-							</div><!--
-							-->
-							</article>
-							<header class="section">
-								Linux Systems
-							</header>
-							<article>
-								<div class="card hvr-grow" style="background-image: url(./images/osimages/fedora36.webp);">
-									<a>Fedora</a>
-									<p>
-										<!-- The text field -->
-										<input type="text" value="bash <(curl -s https://carino.systems/scripts/fedora.sh)" id="fedorascript" style="width: 70%;">
-										<!-- The button used to copy the text -->
-										<button onclick="fedorascript()" style="width: 20%;">Copy</button>
-									</p>
-										<!--<br>Get the <a href="./scripts/fedora.sh">Script</a>.-->
-								</div><!--
-							--><div class="card hvr-grow" style="background-image: url(./images/osimages/mint.webp);">
-								<a>Linux Mint</a>
-								<p>
-									<!-- The text field -->
-									<input type="text" value="bash <(curl -s https://carino.systems/scripts/mint.sh)" id="mintscript" style="width: 70%;">
-									<!-- The button used to copy the text -->
-									<button onclick="mintscript()" style="width: 20%;">Copy</button>
-									</p>
-								</div><!--
-							--><div class="card hvr-grow" style="background-image: url(./images/osimages/endeavour.webp);">
-								<a>Endeavour</a>
-								<p>
-								<!-- The text field -->
-								<input type="text" value="bash <(curl -s https://carino.systems/scripts/endeavour.sh)" id="endeavourscript" style="width: 70%;">
-								<!-- The button used to copy the text -->
-								<button onclick="endeavourscript()" style="width: 20%;">Copy</button>
-								</p>
-							</div><!--
-							--><div class="card hvr-grow" style="background-image: url(./images/osimages/popos.webp);">
-								<a>Pop_OS!</a>
-								<p>
-									<!-- The text field -->
-									<input type="text" value="bash <(curl -s https://carino.systems/scripts/popos.sh)" id="poposscript" style="width: 70%;">
-									<!-- The button used to copy the text -->
-									<button onclick="poposscript()" style="width: 20%;">Copy</button>
-									</p>
-								</div><!--
-							--><div class="card hvr-grow" style="background-image: url(./images/osimages/redhat9.webp); background-position: right;">
-								<a>Red Hat Linux Enterprise 9</a>
-								<p>
-									<!-- The text field -->
-									<input type="text" value="bash <(curl -s https://carino.systems/scripts/rhel.sh)" id="rhelscript" style="width: 70%;">
-									<!-- The button used to copy the text -->
-									<button onclick="rhelscript()" style="width: 20%;">Copy</button>
-									</p>
-								</div>
-							</article>
-							<header class="section">
-								Software Package Management
-							</header>
-							<article>
-								These are the sources to look for specific software packages you can install through a package manager for any of the above operating systems. Most general source is <a href="https://pkgs.org/">pkgs.org</a>
-								<br>
-								<br>
-								<div class="card hvr-grow">
-									<a>Winget</a>
-									<p>Update <a href="https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1">App Installer</a>, then open PowerShell or Windows Terminal as Administrator to start installing <a href="https://winget.run/">Winget packages</a>.</p>
-								</div><!--
-							--><div class="card hvr-grow">
-								<a>Homebrew</a>
-								<p>Install <a href="https://apps.apple.com/us/app/xcode/id497799835?mt=12">Xcode</a> (on macOS), then install <a href="https://github.com/Homebrew/install">homebrew</a> and start installing <a href="https://formulae.brew.sh/">Homebrew packages</a>.</p>
-							</div><!--
-							--><div class="card hvr-grow">
-								<a>Apt</a>
-								<p>There are many repositories.
-								<br><a href="https://packages.ubuntu.com/">Ubuntu</a>
-								<br><a href="https://packages.debian.org/">Debian</a>
-								<br><a href="http://packages.linuxmint.com/">Linux Mint</a>
-								</div><!--
-								--><div class="card hvr-grow">
-									<a>DNF</a>
-									<p>Look in the <a href="https://packages.fedoraproject.org/">Fedora repo</a> or install <a href="https://copr.fedorainfracloud.org/">COPR packages</a>.</p>
-								</div><!--
-								--><div class="card hvr-grow">
-									<a>pacman</a>
-									<p><a href="https://archlinux.org/packages/">Arch Official repo</a>, or install an AUR helper to get <a href="https://aur.archlinux.org/">AUR packages</a>.</p>
-								</div><!--
-								--><div class="card hvr-grow">
-									<a>Swupd</a>
-									<p><a href="https://clearlinux.org/software">Clear Linux Store</a>.</p>
-								</div><!--
-								--><div class="card hvr-grow">
-									<a>Guix</a>
-									<p><a href="https://hpc.guix.info/browse">Guix Official repo</a>.</p>
-								</div><!--
-								--><div class="card hvr-grow">
-									<a>zypper</a>
-									<p><a href="https://software.opensuse.org/search">Search here</a>.</p>
-								</div><!--
-								--><div class="card hvr-grow">
-									<a>Flatpak</a>
-									<p>Its most popular repo is <a href="https://flathub.org/home">Flathub</a>.</p>
-									</div><!--
-								--><div class="card hvr-grow">
-									<a>Appimage</a>
-									<p>It is not a package manager, you can get appimages directly from this hub <a href="https://www.appimagehub.com/">AppImageHub</a>.</p>
-									</div>
-									
-							</article>
+							
 							<section>
 								<div class="row">
 									<div class="col-4 col-6-medium col-12-small">
