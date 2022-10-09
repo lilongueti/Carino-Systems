@@ -25,7 +25,7 @@ function windows10tweaks{
     #Dark Theme
     Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
     #Hiding unwanted taskbar elements
-    Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name SearchBoxTaskbarMode -Value 0 -Type DWord -Force
+    Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name SearchBoxTaskbarMode -Value 0
     Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" -Name "ShellFeedsTaskbarViewMode" -Value 2
     #Does not add 'Shortcut' to new shortcuts
     REM Does not add "- Shortcut" to new shortcuts
@@ -51,6 +51,8 @@ function windows11tweaks{
     Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name TaskbarMn -Value 0 
     # Default StartMenu alignment 0=Left
     #Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced  -Name TaskbarAl -Value 0
+    #Stops explorer to load changes
+    Stop-Process -name explorer -force
 }
 #Selecting case
 Write-Host "Microsoft Windows Setup Script"
