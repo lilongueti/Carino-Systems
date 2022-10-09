@@ -50,12 +50,13 @@ function windows11tweaks{
     # Default StartMenu alignment 0=Left
     #Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced  -Name TaskbarAl -Value 0
 }
+#Selecting case
+Write-Host "Microsoft Windows Setup Script"
+Read-Host -Prompt "Welcome $env:username`nPlease select an option:`n1. Setup for Workstation`n2. Setup for Server`n3. Update my Windows System`n4. Install Video Drivers`n"
 #Getting Windows Version
 $windoeVersion=(Get-CimInstance Win32_OperatingSystem).version
 "Your current Windows version is $windoeVersion"
 $a=(Get-CimInstance Win32_OperatingSystem).version
-Write-Host "Microsoft Windows Setup Script"
-Read-Host -Prompt "Welcome $env:username`nPlease select an option:`n1. Setup for Workstation`n2. Setup for Server`n3. Update my Windows System`n4. Install Video Drivers`n"
 switch ($a)
 {
  "10.0.22000" {
