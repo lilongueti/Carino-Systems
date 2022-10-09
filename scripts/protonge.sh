@@ -1,7 +1,7 @@
 #!/bin/bash
 #Installing Proton GE Script
 #Defining values in variables
-version=3.20220915
+version=3.20221009
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -13,7 +13,7 @@ exec > >(tee -a "$LOG") 2>&1
 #Installing Proton GE
 installproton () {
 CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-   for I in 40 39 38 37 36 35
+   for I in 42 41 40 39 38 37
     do
         if [[ $CURRENTVERSION -eq $I ]]
         then
