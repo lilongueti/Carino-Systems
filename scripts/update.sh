@@ -43,21 +43,29 @@ case $os_id in
     echo "This script is only for Fedora 35 or newer."
   fi
   ;;
-"ubuntu")
+"gentoo")
+  echo "Gentoo distro"
+  #sudo pacman -Syu && steamcheck
+  ;;
+"nixos")
   echo "Ubuntu distro"
-  sudo apt update -y && sudo apt upgrade -y && steamcheck
+
+  ;;
+"suse")
+  echo "Ubuntu distro"
+
+  ;;
+"rhel")
+  echo "Red Hat Enterprise Linux"
+  sudo dnf update -y && steamcheck
   ;;
 "slackware")
   echo "Slackware distro"
   #sudo pacman -Syu && steamcheck
   ;;
-"gentoo")
-  echo "Gentoo distro"
-  #sudo pacman -Syu && steamcheck
-  ;;
-"rhel")
-  echo "Red Hat Enterprise Linux"
-  sudo dnf update -y && steamcheck
+"ubuntu")
+  echo "Ubuntu distro"
+  sudo apt update -y && sudo apt upgrade -y && steamcheck
   ;;
 *)
   echo "Another distro"

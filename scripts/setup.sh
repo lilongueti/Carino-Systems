@@ -30,20 +30,28 @@ case $os_id in
     echo "This script is only for Fedora 35 or newer."
   fi
   ;;
-"ubuntu")
+"gentoo")
+  echo "Gentoo distro"
+
+  ;;
+"nixos")
   echo "Ubuntu distro"
+
+  ;;
+"suse")
+  echo "Ubuntu distro"
+
+  ;;
+"rhel")
+  echo "Red Hat Enterprise Linux"
 
   ;;
 "slackware")
   echo "Slackware distro"
 
   ;;
-"gentoo")
-  echo "Gentoo distro"
-
-  ;;
-"rhel")
-  echo "Red Hat Enterprise Linux"
+"ubuntu")
+  echo "Ubuntu distro"
 
   ;;
 *)
