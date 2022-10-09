@@ -54,7 +54,7 @@ function windows11tweaks{
 }
 #Selecting case
 Write-Host "Microsoft Windows Setup Script"
-Read-Host -Prompt "Welcome $env:username`nPlease select an option:`n1. Setup for Workstation`n2. Setup for Server`n3. Update my Windows System`n4. Install Video Drivers`n"
+#Read-Host -Prompt "Welcome $env:username`nPlease select an option:`n1. Setup for Workstation`n2. Setup for Server`n3. Update my Windows System`n4. Install Video Drivers`n"
 #Getting Windows Version
 $windoeVersion=(Get-CimInstance Win32_OperatingSystem).version
 "Your current Windows version is $windoeVersion"
