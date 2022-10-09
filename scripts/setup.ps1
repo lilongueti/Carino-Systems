@@ -137,6 +137,7 @@ switch ($b)
     "Mozilla.Thunderbird",
     "RustDesk.RustDesk",
     "VSCodium.VSCodium"
+) | foreach {winget install $_}
    }
    "5" {
     Write-Host "Installing packages..."
