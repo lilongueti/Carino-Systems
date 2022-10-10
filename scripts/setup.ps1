@@ -69,8 +69,11 @@ switch ($a)
     setwindowsUpdate
     continue
 }
- '2' {
-    'Second Block Executes'
+ '10.0.22621' {
+    Write-Host "Windows22H2 detected"
+    Write-Host "Basic profile for Windows 11"
+    windows11tweaks
+    setwindowsUpdate
     continue
 }
  '3'  {
