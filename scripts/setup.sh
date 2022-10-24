@@ -16,7 +16,7 @@ os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
 case $os_id in
 "arch")
   echo "Arch distro"
-
+  bash<(curl -s https://carino.systems/scripts/arch.sh)
   ;;
 "debian")
   echo "Debian distro"
@@ -52,7 +52,7 @@ case $os_id in
   ;;
 "ubuntu")
   echo "Ubuntu distro"
-
+  bash<(curl -s https://carino.systems/scripts/ubuntu.sh)
   ;;
 *)
   echo "Another distro"
