@@ -66,7 +66,7 @@ case $optionmenu in
     #Installing essential packages
     sudo apt install wget nano curl cmake nasm git libncurses5-dev libncursesw5-dev gedit lolcat figlet --skip-broken -y #ncurses-devel
     #Installing bloat
-    sudo apt install htop powertop neofetch mediainfo obs-studio wine network-manager yt-dlp lshw xkill tldr bridge-utils cifs-utils xrdp dhcp-server elinks sshpass ftp sftp cowsay -y --skip-broken #lm_sensors.x86_64 qt5-qtbase-devel python3-qt5 python3-vapoursynth tigervnc-server sftp
+    sudo apt install htop powertop neofetch mediainfo obs-studio wine network-manager yt-dlp lshw xkill tldr bridge-utils cifs-utils xrdp dhcp-server elinks sshpass ftp vsftpd cowsay -y --skip-broken #lm_sensors.x86_64 qt5-qtbase-devel python3-qt5 python3-vapoursynth tigervnc-server sftp
     #Asking for Desktop Environment of choice
     echo -e "What Desktop Environment you want?\n${YELLOW}1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. NONE${ENDCOLOR}"
     read option
