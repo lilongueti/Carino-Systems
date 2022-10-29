@@ -67,7 +67,7 @@ case $optionmenu in
     #Installing essential packages
     sudo dnf install wget nano curl cmake nasm ncurses-devel git gedit lolcat figlet dnf-plugins-core --skip-broken -y
     #Installing bloat
-    sudo dnf install htop powertop neofetch mediainfo obs-studio wine NetworkManager-tui yt-dlp lshw lm_sensors.x86_64 xkill tldr qt5-qtbase-devel python3-qt5 python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dhcp-server elinks sshpass ftp sftp cowsay -y --skip-broken
+    sudo dnf install htop powertop neofetch mediainfo obs-studio ffmpegthumbnailer tumbler gstreamer* wine NetworkManager-tui yt-dlp lshw lm_sensors.x86_64 xkill tldr qt5-qtbase-devel python3-qt5 python3-vapoursynth bridge-utils cifs-utils tigervnc-server xrdp dhcp-server elinks sshpass ftp sftp cowsay -y --skip-broken
     #Asking for Desktop Environment of choice
     echo -e "What Desktop Environment you want?\n${YELLOW}1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. NONE${ENDCOLOR}"
     read option
