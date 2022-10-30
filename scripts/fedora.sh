@@ -112,10 +112,13 @@ case $optionmenu in
         exit
         ;;
     esac
+    #Installing INTEL drivers
+    #bash <(curl -s https://carino.systems/scripts/intel.sh)
+    #Installing AMD drivers
+    bash <(curl -s https://carino.systems/scripts/amd.sh)
+    #sudo dnf install libdrm-devel systemd-devel amdgpu-install xorg-x11-drv-amdgpu mesa-dri-drivers
     #Installing NVIDIA drivers
     bash <(curl -s https://carino.systems/scripts/nvidia.sh)
-    #Installing AMD drivers
-    #sudo dnf install libdrm-devel systemd-devel amdgpu-install xorg-x11-drv-amdgpu mesa-dri-drivers
     #asking for a reboot
     echo -e "${YELLOW}Do you want to reboot your system?${ENDCOLOR}"
     read option
