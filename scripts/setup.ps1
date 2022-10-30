@@ -165,8 +165,29 @@ switch ($b)
    "6" {
     exit
    }
-   "0" {
-    exit
+   "0" {#Probably can execute basic case then gaming to avoid repeating so many packages
+    Write-Host "Installing packages..."
+(
+    "CodecGuide.K-LiteCodecPack.Mega",
+    "AdrienAllard.FileConverter",
+    "7zip.7zip",
+    "Oracle.JavaRuntimeEnvironment",
+    "Mozilla.Thunderbird",
+    "AnyDeskSoftwareGmbH.AnyDesk",
+    "Telegram.TelegramDesktop",
+    "ONLYOFFICE.DesktopEditors",
+    "Valve.Steam",
+    "OBSProject.OBSStudio",
+    "Mumble.Mumble.Client",
+    "Cisco.WebexTeams",
+    "Cisco.Jabber",
+    "Git.Git",
+    "Transmission.Transmission",
+    "DebaucheeOpenSourceGroup.Barrier",
+    "KeePassXCTeam.KeePassXC",
+    "Google.Chrome",
+    "Notepad++.Notepad++"
+) | foreach {winget install $_}
    }
    Default {
     'Nothing will be installed'
