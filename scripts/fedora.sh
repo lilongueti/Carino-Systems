@@ -115,7 +115,7 @@ case $optionmenu in
     #Installing INTEL drivers
     #bash <(curl -s https://carino.systems/scripts/intel.sh)
     #Installing AMD drivers
-    bash <(curl -s https://carino.systems/scripts/amd.sh)
+    #bash <(curl -s https://carino.systems/scripts/amd.sh)
     #sudo dnf install libdrm-devel systemd-devel amdgpu-install xorg-x11-drv-amdgpu mesa-dri-drivers
     #Installing NVIDIA drivers
     bash <(curl -s https://carino.systems/scripts/nvidia.sh)
@@ -167,7 +167,7 @@ case $optionmenu in
         ##Microsoft (Edge, VSCode, Powershell) and Google (Chrome)
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-beta.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf config-manager --set-enabled google-chrome && sudo dnf update -y
         #Installing packages
-        sudo dnf install celluloid microsoft-edge-stable google-chrome-stable firefox telegram-desktop thunderbird transmission gimp remmina barrier keepassxc bottles podman distrobox cockpit vpnc https://go.skype.com/skypeforlinux-64.rpm https://zoom.us/client/latest/zoom_x86_64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.10453-1.x86_64.rpm https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm https://download.anydesk.com/linux/anydesk-6.2.0-1.el8.x86_64.rpm --skip-broken -y && flatpak install flathub com.dropbox.Client com.spotify.Client com.slack.Slack -y #com.skype.Client us.zoom.Zoom  org.telegram.desktop org.onlyoffice.desktopeditors com.visualstudio.code com.microsoft.edge com.usebottles.bottles
+        sudo dnf install celluloid microsoft-edge-stable google-chrome-stable firefox telegram-desktop thunderbird transmission gimp remmina barrier keepassxc bottles podman cockpit vpnc https://go.skype.com/skypeforlinux-64.rpm https://zoom.us/client/latest/zoom_x86_64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.10453-1.x86_64.rpm https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm https://download.anydesk.com/linux/anydesk-6.2.0-1.el8.x86_64.rpm --skip-broken -y && flatpak install flathub com.dropbox.Client com.spotify.Client com.slack.Slack -y #com.skype.Client us.zoom.Zoom  org.telegram.desktop org.onlyoffice.desktopeditors com.visualstudio.code com.microsoft.edge com.usebottles.bottles
         #Mounting Windows Shared folder
         echo "Do you want to setup a Windows Shared Folder?"
         read option
@@ -244,7 +244,7 @@ case $optionmenu in
         sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-beta.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo && sudo dnf config-manager --set-enabled google-chrome && sudo dnf update -y
         #Installing packages
         #Not needed packages: blender krita shotcut kdenlive ghc-X11-xft-devel
-        sudo dnf install microsoft-edge-stable google-chrome-stable telegram-desktop thunderbird transmission gimp code powershell mpv remmina barrier filezilla keepassxc mumble goverlay steam bottles podman distrobox @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager vpnc cargo https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://download.anydesk.com/linux/anydesk-6.2.0-1.el8.x86_64.rpm https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm --skip-broken -y #&& flatpak install flathub com.visualstudio.code com.microsoft.edge org.telegram.desktop org.onlyoffice.desktopeditors
+        sudo dnf install microsoft-edge-stable google-chrome-stable telegram-desktop thunderbird transmission gimp code powershell mpv remmina barrier filezilla keepassxc mumble goverlay steam bottles podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager vpnc cargo https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm https://download.anydesk.com/linux/anydesk-6.2.0-1.el8.x86_64.rpm https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm --skip-broken -y #&& flatpak install flathub com.visualstudio.code com.microsoft.edge org.telegram.desktop org.onlyoffice.desktopeditors
         timeout 180s steam
         #Installing Proton GE
         bash <(curl -s https://carino.systems/scripts/protonge.sh)
@@ -268,6 +268,15 @@ case $optionmenu in
             sudo chmod +x svp4-linux-64.run
             sudo -u $(whoami) ./svp4-linux-64.run && rm svp4-latest* svp4-linux-64.run 
         fi
+        #Installing Distrobox containers
+        curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
+        distrobox-create --name fedora --image quay.io/fedora/fedora:36
+        distrobox-create --name ubuntu18 --image docker.io/library/ubuntu:18.04
+        distrobox-create --name ubuntu20 --image docker.io/library/ubuntu:20.04
+        distrobox-create --name ubuntu22 --image docker.io/library/ubuntu:22.04
+        distrobox-create --name rhel8 --image registry.access.redhat.com/ubi8/ubi
+        distrobox-create --name rhel9 --image registry.access.redhat.com/ubi9/ubi
+        distrobox-create --name arch --image docker.io/library/archlinux:latest
         #Setting libvirt as non-root
         sudo usermod -aG libvirt $(whoami)
         #Starting xrdp service
