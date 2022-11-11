@@ -77,7 +77,7 @@ case $optionmenu in
         echo "You have GNOME installed, moving on"
         ;;
     "2")
-        sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:bgstack15:Chicago95/Fedora_32/home:bgstack15:Chicago95.repo && sudo dnf install @xfce-desktop-environment chicago95-theme-all -y && sudo systemctl set-default graphical.target
+        sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:bgstack15:Chicago95/Fedora_32/home:bgstack15:Chicago95.repo && sudo dnf install @xfce-desktop-environment chicago95-theme-all thunar-archive-plugin file-roller -y && sudo systemctl set-default graphical.target
         echo "You have XFCE installed, moving on"
         ;;
     "3")
@@ -116,7 +116,7 @@ case $optionmenu in
     #bash <(curl -s https://carino.systems/scripts/intel.sh)
     #Installing AMD drivers
     #bash <(curl -s https://carino.systems/scripts/amd.sh)
-    #sudo dnf install libdrm-devel systemd-devel amdgpu-install xorg-x11-drv-amdgpu mesa-dri-drivers
+    sudo dnf install libdrm-devel systemd-devel amdgpu-install xorg-x11-drv-amdgpu mesa-dri-drivers --skip-broken -y
     #Installing NVIDIA drivers
     bash <(curl -s https://carino.systems/scripts/nvidia.sh)
     #asking for a reboot
