@@ -84,7 +84,7 @@ dnfDistro ()
       fi 
     sudo systemctl disable NetworkManager-wait-online.service
     if [ "$os_id" == "fedora" ]; then
-      sudo $pkgm $argument https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo dnf update -y
+      sudo $pkgm $argument https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages
     else
       sudo $pkgm update -y && sudo $pkgm install $essentialPackages
     fi
