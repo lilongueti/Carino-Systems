@@ -26,7 +26,7 @@ case $os_id in
     info "$pkmg"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
     enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo"
+    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo"
     xfcePackages="@xfce-desktop-environment chicago95-theme-all thunar-archive-plugin file-roller"
     gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
     kdePackages="@kde-desktop-environment"
@@ -85,7 +85,31 @@ rhel)
     error "This script is only for "$os_id" 8 or newer."
   fi
   ;;
-*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*)
+*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)pkgm=pacman
+  pkgm="apt"
+  argument="install"
+  addMicrosoft=""
+  enableMicrosoft=""
+  essentialPackages=""
+  xfcePackages=""
+  gnomePackages=""
+  kdePackages=""
+  lxqtPackages=""
+  cinnamonPackages=""
+  matePackages=""
+  i3Packages=""
+  openboxPackages=""
+  nvidiaPackages=""
+  amdPackages=""
+  basicPackages=""
+  gamingPackages=""
+  multimediaPackages=""
+  virtconPackages=""
+  supportPackages=""
+  microsoftPackages=""
+  corporateGeneric=""
+  googlePackages=""
+  ciscoPackages="vpnc"
   graphicDrivers
   aptDistro
   ;;
@@ -221,6 +245,8 @@ profileMenu ()
       installproton
       sudo usermod -aG libvirt $(whoami)
       sudo systemctl enable xrdp && sudo systemctl start xrdp
+      xdg-settings set default-web-browser microsoft-edge.desktop
+
     ;;
     *)
       error "Invalid option"
@@ -363,7 +389,7 @@ installDistrobox ()
           echo ""
         else
           curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
-          distrobox-create --name fedora --image quay.io/fedora/fedora:36 -Y
+          distrobox-create --name fedora --image quay.io/fedora/fedora:37 -Y
           distrobox-create --name tumbleweed --image registry.opensuse.org/opensuse/tumbleweed:latest -Y
           distrobox-create --name ubuntu20 --image docker.io/library/ubuntu:20.04 -Y
           distrobox-create --name ubuntu22 --image docker.io/library/ubuntu:22.04 -Y
@@ -407,6 +433,7 @@ finalTweaks ()
       gsettings set org.gnome.desktop.interface color-scheme prefer-dark
       gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
       gsettings set org.gnome.desktop.session idle-delay 0
+      xdg-mime default thunar.desktop inode/directory
   else
       echo ""
   fi
