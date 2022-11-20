@@ -51,6 +51,33 @@ case $os_id in
     error "This script is only for "$os_id" 36 or newer."
   fi
   ;;
+*arch*|*endeavouros*)
+    pkgm=pacman
+    argument=-S
+    addMicrosoft="git clone https://aur.archlinux.org/microsoft-edge-stable-bin.git && cd microsoft-edge-stable-bin/ && makepkg -si && cd .. && sudo rm -rf *microsoft* && git clone https://aur.archlinux.org/visual-studio-code-bin.git && mkpkg -si && cd .. && sudo rm -rf *visual*"
+    enableMicrosoft=""
+    essentialPackages=""
+    xfcePackages="https://aur.archlinux.org/chicago95-git.git"
+    gnomePackages=""
+    kdePackages=""
+    lxqtPackages=""
+    cinnamonPackages=""
+    matePackages=""
+    i3Packages=""
+    openboxPackages=""
+    nvidiaPackages=""
+    amdPackages=""
+    basicPackages=""
+    gamingPackages=""
+    multimediaPackages=""
+    virtconPackages=""
+    supportPackages=""
+    microsoftPackages=""
+    corporateGeneric=""
+    googlePackages=""
+    ciscoPackages="vpnc"
+    archDistro
+  ;;
 rhel)
   if [ "$os_version" -ge "8" ]; then
     dnfDistro
