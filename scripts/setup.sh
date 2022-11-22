@@ -62,6 +62,13 @@ rhel)
   graphicDrivers
   aptDistro
   ;;
+debian)
+  if [ "$os_version" -ge "10" ]; then
+    dnfDistro
+  else
+    error "This script is only for "$os_id" 8 or newer."
+  fi
+  ;;
 *)
   info $os_id
   error "Another distro, unable to run the script"
@@ -112,6 +119,7 @@ aptDistro ()
   case $optionmenu in
     1)
       success "Workstation"
+      pkgm=apt
       argument=install
       desktopenvironmentMenu
       graphicDrivers
