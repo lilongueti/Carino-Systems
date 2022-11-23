@@ -35,7 +35,7 @@ case $os_id in
     i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
     openboxPackages="@basic-desktop-environment"
     nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-    amdPackages="ocl-icd-devel opencl-headers libdrm-devel systemd-devel"
+    amdPackages="ocl-icd-dev opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel"
     basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
@@ -98,8 +98,8 @@ rhel)
   matePackages="task-mate-desktop"
   i3Packages="i3"
   openboxPackages="openbox"
-  nvidiaPackages="nvidia-driver"
-  amdPackages=""
+  nvidiaPackages="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan"
+  amdPackages="ocl-icd-dev opencl-headers libdrm-devel xserver-xorg-video-amdgpu systemd-devel"
   basicPackages=""
   gamingPackages=""
   multimediaPackages=""
@@ -162,6 +162,7 @@ aptDistro ()
     1)
       success "Workstation"
       argument=install
+      sudo $pkgm update -y && sudo $pkgm upgrade -y
       sudo $pkgm install $essentialPackages -y
       desktopenvironmentMenu
       graphicDrivers
