@@ -162,6 +162,7 @@ aptDistro ()
     1)
       success "Workstation"
       argument=install
+      sudo $pkgm install $essentialPackages -ya
       desktopenvironmentMenu
       graphicDrivers
       nvtopInstall
