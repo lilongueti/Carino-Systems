@@ -85,7 +85,7 @@ rhel)
     error "This script is only for "$os_id" 8 or newer."
   fi
   ;;
-*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)pkgm=pacman
+*debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)pkgm=pacman
   pkgm="apt"
   argument="install"
   addMicrosoft=""
