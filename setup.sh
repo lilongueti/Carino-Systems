@@ -23,7 +23,6 @@ case $os_id in
   if [ "$os_version" -ge "36" ]; then
     pkgm=dnf
     argument=install
-    info "$pkmg"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
     enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
     essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo"
@@ -86,11 +85,11 @@ rhel)
   fi
   ;;
 *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)pkgm=pacman
-  pkgm="apt"
-  argument="install"
+  pkgm=apt
+  argument=install
   addMicrosoft=""
   enableMicrosoft=""
-  essentialPackages="linux-headers-amd64 linux-image-amd64"
+  essentialPackages="linux-headers-amd64 linux-image-amd64 wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo"
   xfcePackages=""
   gnomePackages="task-gnome-desktop"
   kdePackages="task-kde-desktop"
@@ -110,7 +109,6 @@ rhel)
   corporateGeneric=""
   googlePackages=""
   ciscoPackages="vpnc"
-  graphicDrivers
   aptDistro
   ;;
 *)
