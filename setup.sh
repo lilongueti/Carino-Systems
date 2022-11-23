@@ -89,7 +89,7 @@ rhel)
   argument=install
   addMicrosoft=""
   enableMicrosoft=""
-  essentialPackages="linux-headers-amd64 linux-image-amd64 wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo"
+  essentialPackages="build-essential manpages-dev linux-headers-amd64 linux-image-amd64 wget nano curl gedit figlet network-manager isc-dhcp-server elinks cmake nasm libncurses-dev git htop powertop neofetch tldr sshpass ftp vsftpd lshw lm-sensors x11-utils rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-standalone-server tigervnc-common xrdp cargo"
   xfcePackages=""
   gnomePackages="task-gnome-desktop"
   kdePackages="task-kde-desktop"
