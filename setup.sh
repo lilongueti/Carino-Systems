@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20221115
+version=1.20221123
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -40,7 +40,7 @@ case $os_id in
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit transmission remmina filezilla barrier keepassxc"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc"
     microsoftPackages="microsoft-edge-stable code powershell https://go.skype.com/skypeforlinux-64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.23861-1.x86_64.rpm"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
@@ -84,13 +84,17 @@ rhel)
     error "This script is only for "$os_id" 8 or newer."
   fi
   ;;
-*debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)pkgm=pacman
+*debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
   pkgm=apt
   argument=install
-  addMicrosoft=""
-  enableMicrosoft=""
-  essentialPackages="build-essential manpages-dev linux-headers-amd64 linux-image-amd64 wget nano curl gedit figlet network-manager isc-dhcp-server elinks cmake nasm libncurses-dev git htop powertop neofetch tldr sshpass ftp vsftpd lshw lm-sensors x11-utils rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-standalone-server tigervnc-common xrdp cargo"
-  xfcePackages=""
+  if [ "$os_id" == "debian" ]; then
+      addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
+    else
+      addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
+  fi
+  enableMicrosoft="sudo apt-add-repository https://packages.microsoft.com/$os_id/$os_version/prod"
+  essentialPackages="build-essential manpages-dev linux-headers-amd64 linux-image-amd64 wget nano curl gedit figlet network-manager isc-dhcp-server elinks cmake nasm libncurses5-dev libncursesw5-dev git htop powertop neofetch tldr sshpass ftp vsftpd lshw lm-sensors x11-utils rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-standalone-server tigervnc-common xrdp cargo libgl1-mesa-dev"
+  xfcePackages="task-xfce-desktop"
   gnomePackages="task-gnome-desktop"
   kdePackages="task-kde-desktop"
   lxqtPackages="task-lxqt-desktop"
@@ -98,17 +102,17 @@ rhel)
   matePackages="task-mate-desktop"
   i3Packages="i3"
   openboxPackages="openbox"
-  nvidiaPackages="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan"
-  amdPackages="ocl-icd-dev opencl-headers libdrm-devel xserver-xorg-video-amdgpu systemd-devel"
-  basicPackages=""
-  gamingPackages=""
-  multimediaPackages=""
-  virtconPackages=""
-  supportPackages=""
-  microsoftPackages=""
-  corporateGeneric=""
-  googlePackages=""
-  ciscoPackages="vpnc"
+  nvidiaPackages="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
+  amdPackages="ocl-icd-dev opencl-headers libdrm-dev xserver-xorg-video-amdgpu libsystemd-dev"
+  basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb"
+  gamingPackages="steam goverlay lutris mumble"
+  multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
+  virtconPackages="podman qemu qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon python3 python3-pip virt-manager wine"
+  supportPackages="https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb stacer bleachbit deluge remmina filezilla barrier keepassxc"
+  microsoftPackages="microsoft-edge-stable code powershell https://repo.skype.com/latest/skypeforlinux-64.deb https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.5.00.23861_amd64.deb"
+  corporateGeneric="https://zoom.us/client/latest/zoom_amd64.deb"
+  googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+  ciscoPackages="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb vpnc"
   aptDistro
   ;;
 *)
@@ -161,7 +165,6 @@ aptDistro ()
   case $optionmenu in
     1)
       success "Workstation"
-      argument=install
       sudo $pkgm update -y && sudo $pkgm upgrade -y
       sudo $pkgm install $essentialPackages -y
       desktopenvironmentMenu
