@@ -110,15 +110,15 @@ rhel)
   openboxPackages="openbox"
   nvidiaPackages="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
   amdPackages="ocl-icd-dev opencl-headers libdrm-dev xserver-xorg-video-amdgpu libsystemd-dev"
-  basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb"
+  basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk"#https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
   gamingPackages="steam goverlay lutris mumble"
   multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
   virtconPackages="podman qemu qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon python3 python3-pip virt-manager wine"
-  supportPackages="https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb stacer bleachbit deluge remmina filezilla barrier keepassxc"
-  microsoftPackages="microsoft-edge-stable code powershell https://repo.skype.com/latest/skypeforlinux-64.deb https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.5.00.23861_amd64.deb"
-  corporateGeneric="https://zoom.us/client/latest/zoom_amd64.deb"
-  googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-  ciscoPackages="https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb vpnc"
+  supportPackages="stacer bleachbit deluge remmina filezilla barrier keepassxc"#https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
+  microsoftPackages="microsoft-edge-stable code powershell"#https://repo.skype.com/latest/skypeforlinux-64.deb https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.5.00.23861_amd64.deb
+  corporateGeneric=""#https://zoom.us/client/latest/zoom_amd64.deb
+  googlePackages=""#https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  ciscoPackages="vpnc"#https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb
   aptDistro
   ;;
 *)
