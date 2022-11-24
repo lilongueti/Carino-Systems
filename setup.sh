@@ -23,6 +23,8 @@ case $os_id in
   if [ "$os_version" -ge "36" ]; then
     pkgm=dnf
     argument=install
+    preFlags=""
+    postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
     enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
     essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo"
@@ -53,6 +55,8 @@ case $os_id in
 *arch*|*endeavouros*)
     pkgm=pacman
     argument=-S
+    preFlags=""
+    postFlags=""
     addMicrosoft="git clone https://aur.archlinux.org/microsoft-edge-stable-bin.git && cd microsoft-edge-stable-bin/ && makepkg -si && cd .. && sudo rm -rf *microsoft* && git clone https://aur.archlinux.org/visual-studio-code-bin.git && mkpkg -si && cd .. && sudo rm -rf *visual*"
     enableMicrosoft=""
     essentialPackages=""
@@ -87,6 +91,8 @@ rhel)
 *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
   pkgm=apt
   argument=install
+  preFlags="-f"
+  postFlags="-y"
   if [ "$os_id" == "debian" ]; then
       addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
     else
@@ -212,36 +218,36 @@ profileMenu ()
   read optionmenu
   case $optionmenu in
     1)
-      sudo $pkgm $argument $basicPackages $googlePackages --skip-broken -y
+      sudo $pkgm $argument $preFlags $basicPackages $googlePackages $postFlags
     ;;
     2)
-      sudo $pkgm $argument $basicPackages $googlePackages $gamingPackages --skip-broken -y
+      sudo $pkgm $argument $preFlags $basicPackages $googlePackages $gamingPackages $postFlags
       timeout 180s steam
     ;;
     3)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argument $basicPackages $microsoftPackages --skip-broken -y
+      sudo $pkgm $argument $preFlags $basicPackages $microsoftPackages $postFlags
       #onedrive pending
       sharedFolder
     ;;
     4)
-      sudo $pkgm $argument $basicPackages $googlePackages --skip-broken -y
+      sudo $pkgm $argument $preFlags $basicPackages $googlePackages $postFlags
       #google cloud pending
     ;;
     5)
-      sudo $pkgm $argument $basicPackages $googlePackages $ciscoPackages --skip-broken -y
+      sudo $pkgm $argument $preFlags $basicPackages $googlePackages $ciscoPackages $postFlags
     ;;
     6)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argument $basicPackages $microsoftPackages $googlePackages $ciscoPackages $corporateGeneric --skip-broken -y
+      sudo $pkgm $argument $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $corporateGeneric $postFlags
       sharedFolder
     ;;
     0)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argument $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages  --skip-broken -y
+      sudo $pkgm $argument $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages  $postFlags
       timeout 180s steam
       installSVP
       installDistrobox
