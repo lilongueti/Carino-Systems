@@ -394,6 +394,7 @@ installDistrobox ()
           curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
           distrobox-create --name fedora --image quay.io/fedora/fedora:37 -Y
           distrobox-create --name tumbleweed --image registry.opensuse.org/opensuse/tumbleweed:latest -Y
+          distrobox-create --name ubuntu18 --image docker.io/library/ubuntu:18.04 -Y
           distrobox-create --name ubuntu20 --image docker.io/library/ubuntu:20.04 -Y
           distrobox-create --name ubuntu22 --image docker.io/library/ubuntu:22.04 -Y
           distrobox-create --name rhel8 --image registry.access.redhat.com/ubi8/ubi -Y
