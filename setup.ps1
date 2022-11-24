@@ -90,10 +90,10 @@ switch ($b)
     "AdrienAllard.FileConverter",
     "7zip.7zip",
     "Oracle.JavaRuntimeEnvironment",
-    "Mozilla.Thunderbird",
+    #"Mozilla.Thunderbird",
     "AnyDeskSoftwareGmbH.AnyDesk",
-    "Telegram.TelegramDesktop",
-    "ONLYOFFICE.DesktopEditors",
+    #"Telegram.TelegramDesktop",
+    #"ONLYOFFICE.DesktopEditors",
     "Spotify.Spotify"
 ) | foreach {winget install $_}
    } 
