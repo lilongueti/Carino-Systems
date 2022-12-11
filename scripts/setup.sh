@@ -296,7 +296,7 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 48 47 46 45 44 43 42 41
+      for I in 49 48 47 46 45 44 43 42
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
