@@ -287,8 +287,7 @@ case $optionmenu in
         exit
         ;;
     esac
-    #Journal settings for Workstations
-    sudo journalctl --vacuum-size=2G --vacuum-time=35d
+    
 ;;
 #Quick Fedora Server Setup
 "2")
