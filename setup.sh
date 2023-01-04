@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20221123
+version=1.20230104
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -27,7 +27,7 @@ case $os_id in
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
     enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo"
+    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
     xfcePackages="@xfce-desktop-environment chicago95-theme-all thunar-archive-plugin file-roller"
     gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
     kdePackages="@kde-desktop-environment"
@@ -36,13 +36,15 @@ case $os_id in
     matePackages="@mate-desktop-environment"
     i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
     openboxPackages="@basic-desktop-environment"
+    budgiePackages=""
+    swayPackages=""
     nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
     amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel"
     basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell https://go.skype.com/skypeforlinux-64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.23861-1.x86_64.rpm"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
@@ -68,6 +70,8 @@ case $os_id in
     matePackages=""
     i3Packages=""
     openboxPackages=""
+    budgiePackages=""
+    swayPackages=""
     nvidiaPackages=""
     amdPackages=""
     basicPackages=""
@@ -108,6 +112,8 @@ rhel)
   matePackages="task-mate-desktop"
   i3Packages="i3"
   openboxPackages="openbox"
+  budgiePackages=""
+  swayPackages=""
   nvidiaPackages="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
   amdPackages="ocl-icd-dev opencl-headers libdrm-dev xserver-xorg-video-amdgpu libsystemd-dev"
   basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk"#https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
@@ -248,7 +254,7 @@ profileMenu ()
     0)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argument $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages  $postFlags
+      sudo $pkgm $argument $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages $postFlags
       timeout 180s steam
       installSVP
       installDistrobox
@@ -301,6 +307,16 @@ desktopenvironmentMenu ()
         success "You have OPENBOX installed, moving on"
         ;;
     9)
+        info "Desktop Environment will be added on Fedora 38"
+        #sudo $pkgm $argument $budgiePackages -y && sudo systemctl set-default graphical.target
+        #success "You have BUDGIE installed, moving on"
+        ;;
+    10)
+        info "Desktop Environment will be added on Fedora 38"
+        #sudo $pkgm $argument $swayPackages -y && sudo systemctl set-default graphical.target
+        #success "You have SWAY installed, moving on"
+        ;;
+    11)
         caution "No Desktop Environment will be installed"
         ;;
     *)
@@ -350,7 +366,7 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 48 47 46 45 44 43 42 41
+      for I in 50 49 48 47 46 45 44 43
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
@@ -399,11 +415,11 @@ installDistrobox ()
         else
           curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
           distrobox-create --name fedora --image quay.io/fedora/fedora:37 -Y
-          distrobox-create --name tumbleweed --image registry.opensuse.org/opensuse/tumbleweed:latest -Y
+          #distrobox-create --name tumbleweed --image registry.opensuse.org/opensuse/tumbleweed:latest -Y
           distrobox-create --name ubuntu18 --image docker.io/library/ubuntu:18.04 -Y
-          distrobox-create --name ubuntu20 --image docker.io/library/ubuntu:20.04 -Y
+          #distrobox-create --name ubuntu20 --image docker.io/library/ubuntu:20.04 -Y
           distrobox-create --name ubuntu22 --image docker.io/library/ubuntu:22.04 -Y
-          distrobox-create --name rhel8 --image registry.access.redhat.com/ubi8/ubi -Y
+          #distrobox-create --name rhel8 --image registry.access.redhat.com/ubi8/ubi -Y
           distrobox-create --name rhel9 --image registry.access.redhat.com/ubi9/ubi -Y
           distrobox-create --name arch --image docker.io/library/archlinux:latest -Y
         fi
