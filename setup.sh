@@ -4,6 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
+version=1.20230107
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
