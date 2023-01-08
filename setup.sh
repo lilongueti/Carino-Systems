@@ -4,7 +4,6 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230104
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -333,7 +332,14 @@ graphicDrivers ()
     then
         success "NVIDIA drivers are installed already."
     else
-        sudo $pkgm $argument $nvidiaPackages $amdPackages -y
+        caution "Nvidia card detected. Would you like to install NVIDIA packages?"
+        read option
+        if [ $option == y ]
+        then
+          sudo $pkgm $argument $nvidiaPackages $amdPackages -y
+        else
+          caution "Nvidia packages will not be installed."
+        fi
     fi
   else
     sudo $pkgm $argument $amdPackages -y
