@@ -153,7 +153,7 @@ dnfDistro ()
     else
       sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     fi
-    sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:bgstack15:Chicago95/Fedora_32/home:bgstack15:Chicago95.repo
+    sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:bgstack15:Chicago95/Fedora_36/home:bgstack15:Chicago95.repo
     desktopenvironmentMenu
     graphicDrivers
     nvtopInstall
