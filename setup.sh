@@ -347,6 +347,7 @@ graphicDrivers ()
           sudo $pkgm $argument $nvidiaPackages $amdPackages -y
         else
           caution "Nvidia packages will not be installed."
+          sudo $pkgm $argument $amdPackages -y
         fi
     fi
   else
