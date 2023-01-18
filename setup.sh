@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230107
+version=1.20230117
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -421,7 +421,6 @@ installgstreamerobs ()
           mkdir ~/.config/obs-studio/plugins && unzip obs-gstreamer.zip -d obs-gstreamer/ && cp obs-gstreamer/linux/obs-gstreamer.so ~/.config/obs-studio/plugins/
           success "obs-gstreamer has been installed."
       fi
-    done
   else
       error "OBS is not installed, obs-gstreamer won't be installed either."
   fi
