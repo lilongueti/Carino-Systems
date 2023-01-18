@@ -39,7 +39,7 @@ case $os_id in
     budgiePackages=""
     swayPackages=""
     nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld"
+    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
     basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
@@ -375,6 +375,17 @@ askReboot ()
     else
         caution "No reboot was requested."
     fi
+}
+installmpv ()
+{
+ #Compiling and installing MPV (Seems not to be necessary anymore)
+        #which mpv > /dev/null 2>&1
+        #if [ $? == 0 ]
+        #then
+        #  echo "Mpv is already installed"
+        #else
+        #  sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
+        #fi
 }
 installproton ()
 {
