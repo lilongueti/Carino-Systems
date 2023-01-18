@@ -39,7 +39,7 @@ case $os_id in
     budgiePackages=""
     swayPackages=""
     nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel"
+    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld"
     basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
@@ -259,6 +259,9 @@ profileMenu ()
       installSVP
       installDistrobox
       installproton
+      installgstreamerobs
+      sudo dnf install plymouth-theme-spinfinity
+      sudo plymouth-set-default-theme spinfinity -R
       sudo usermod -aG libvirt $(whoami)
       sudo systemctl enable xrdp && sudo systemctl start xrdp
       sudo firewall-cmd --permanent --add-port=3389/tcp
@@ -401,6 +404,26 @@ installproton ()
       sudo mkdir ~/.steam/root/ &> /dev/null
       sudo mkdir ~/.steam/root/compatibilitytools.d
       installproton
+  fi
+}
+installgstreamerobs ()
+{
+  if [ $(ls ~/.config/obs-studio/) ]
+  then
+      wget https://github.com/fzwoch/obs-gstreamer/releases/download/v0.4.0/obs-gstreamer.zip
+      if [ $(ls ~/.config/obs-studio/ | grep plugins) ]
+      then
+          info "Installing obs-gstreamer..."
+          unzip obs-gstreamer.zip -d obs-gstreamer/ && cp obs-gstreamer/linux/obs-gstreamer.so ~/.config/obs-studio/plugins/
+          success "obs-gstreamer has been installed."
+      else
+          info "Installing obs-gstreamer..."
+          mkdir ~/.config/obs-studio/plugins && unzip obs-gstreamer.zip -d obs-gstreamer/ && cp obs-gstreamer/linux/obs-gstreamer.so ~/.config/obs-studio/plugins/
+          success "obs-gstreamer has been installed."
+      fi
+    done
+  else
+      error "OBS is not installed, obs-gstreamer won't be installed either."
   fi
 }
 installSVP ()
