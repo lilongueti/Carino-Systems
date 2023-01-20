@@ -17,7 +17,7 @@ os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
 # get distro version data from /etc/os-release
 os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
 # if os_id is rhel and os_version is greater than or equal to 35
-if [ "$os_id" = "rhel" ] && [ "$os_version" -ge "9.0" ]; then
+if [ "$os_id" = "rhel" ] && [ "$os_version" -ge "9.0" ] || [ "$os_version" -ge "9.1" ]; then
     # run rhel setup script
     VALID=true
 # elif it's not f35 or newer
