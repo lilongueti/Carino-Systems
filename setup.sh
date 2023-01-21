@@ -14,12 +14,12 @@ ENDCOLOR="\e[0m"
 #Distro related
 identifyDistro ()
 {
-  # get distro data from /etc/os-release
+# get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
 # get distro version data from /etc/os-release
 os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
 case $os_id in
-*fedora*|*nobara*|*risi*|*ultramarine*)
+*fedora*)
   if [ "$os_version" -ge "36" ]; then
     pkgm=dnf
     argument=install
@@ -38,7 +38,44 @@ case $os_id in
     openboxPackages="@basic-desktop-environment"
     budgiePackages=""
     swayPackages=""
-    nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
+    intelPackages=""
+		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
+    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld"
+    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
+    gamingPackages="steam goverlay lutris mumble"
+    multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    microsoftPackages="microsoft-edge-stable code powershell https://go.skype.com/skypeforlinux-64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.23861-1.x86_64.rpm"
+    corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
+    googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+    ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
+    dnfDistro
+  else
+    error "This script is only for "$os_id" 36 or newer."
+  fi
+  ;;
+*nobara*|*risi*|*ultramarine*)
+      if [ "$os_version" -ge "36" ]; then
+    pkgm=dnf
+    argument=install
+    preFlags=""
+    postFlags="--skip-broken -y"
+    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
+    xfcePackages="@xfce-desktop-environment chicago95-theme-all thunar-archive-plugin file-roller"
+    gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
+    kdePackages="@kde-desktop-environment"
+    lxqtPackages="@lxqt-desktop-environment"
+    cinnamonPackages="@cinnamon-desktop-environment"
+    matePackages="@mate-desktop-environment"
+    i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
+    openboxPackages="@basic-desktop-environment"
+    budgiePackages=""
+    swayPackages=""
+    intelPackages=""
+		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
     amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
     basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
     gamingPackages="steam goverlay lutris mumble"
@@ -72,7 +109,8 @@ case $os_id in
     openboxPackages=""
     budgiePackages=""
     swayPackages=""
-    nvidiaPackages=""
+    intelPackages=""
+		nvidiaPackages=""
     amdPackages=""
     basicPackages=""
     gamingPackages=""
@@ -86,7 +124,75 @@ case $os_id in
     archDistro
   ;;
 rhel)
-  if [ "$os_version" -ge "8" ]; then
+  case $os_version in
+
+  8)
+    pkgm=dnf
+    argument=install
+    preFlags=""
+    postFlags="--skip-broken -y"
+    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
+    xfcePackages="@xfce-desktop-environment chicago95-theme-all thunar-archive-plugin file-roller"
+    gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
+    kdePackages="@kde-desktop-environment"
+    lxqtPackages="@lxqt-desktop-environment"
+    cinnamonPackages="@cinnamon-desktop-environment"
+    matePackages="@mate-desktop-environment"
+    i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
+    openboxPackages="@basic-desktop-environment"
+    budgiePackages=""
+    swayPackages=""
+    intelPackages=""
+		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
+    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
+    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
+    gamingPackages="steam goverlay lutris mumble"
+    multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    microsoftPackages="microsoft-edge-stable code powershell https://go.skype.com/skypeforlinux-64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.23861-1.x86_64.rpm"
+    corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
+    googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+    ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
+  ;;
+  9)
+    pkgm=dnf
+    argument=install
+    preFlags=""
+    postFlags="--skip-broken -y"
+    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
+    xfcePackages="@xfce-desktop-environment chicago95-theme-all thunar-archive-plugin file-roller"
+    gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
+    kdePackages="@kde-desktop-environment"
+    lxqtPackages="@lxqt-desktop-environment"
+    cinnamonPackages="@cinnamon-desktop-environment"
+    matePackages="@mate-desktop-environment"
+    i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
+    openboxPackages="@basic-desktop-environment"
+    budgiePackages=""
+    swayPackages=""
+    intelPackages=""
+		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
+    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
+    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
+    gamingPackages="steam goverlay lutris mumble"
+    multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    microsoftPackages="microsoft-edge-stable code powershell https://go.skype.com/skypeforlinux-64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.23861-1.x86_64.rpm"
+    corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
+    googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+    ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
+  ;;
+  
+  
+  
+   [ "$os_version" -ge "8" ]; then
+    
     dnfDistro
   else
     error "This script is only for "$os_id" 8 or newer."
@@ -114,7 +220,8 @@ rhel)
   openboxPackages="openbox"
   budgiePackages=""
   swayPackages=""
-  nvidiaPackages="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
+  intelPackages=""
+	nvidiaPackages="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
   amdPackages="ocl-icd-dev opencl-headers libdrm-dev xserver-xorg-video-amdgpu libsystemd-dev"
   basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk"#https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
   gamingPackages="steam goverlay lutris mumble"
@@ -259,6 +366,7 @@ profileMenu ()
       installSVP
       installDistrobox
       installproton
+      installamdgpupro
       installgstreamerobs
       sudo dnf install plymouth-theme-spinfinity
       sudo plymouth-set-default-theme spinfinity -R
@@ -436,6 +544,16 @@ installgstreamerobs ()
   else
       error "OBS is not installed, obs-gstreamer won't be installed either."
   fi
+}
+installamdgpupro ()
+{
+  git clone https://github.com/CosmicFusion/fedora-amdgpu-pro
+  cd fedora-amdgpu-pro
+  ./package-builder.sh amdamf-pro-runtime 64
+  ./package-builder.sh amdvlk-pro 64
+  ./package-builder.sh libdrm-pro 64
+  cd packages
+  sudo dnf install *.rpm
 }
 installSVP ()
 {
