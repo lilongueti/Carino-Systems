@@ -192,7 +192,7 @@ rhel)
     error "Another distro, unable to run the script"
   ;;
   esac
-
+;;
 *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
   pkgm=apt
   argument=install
