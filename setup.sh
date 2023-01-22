@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230117
+version=1.20230121
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -27,7 +27,7 @@ case $os_id in
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
     enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
+    essentialPackages="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
     xfcePackages="@xfce-desktop-environment chicago95-theme-all thunar-archive-plugin file-roller"
     gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
     kdePackages="@kde-desktop-environment"
@@ -40,7 +40,7 @@ case $os_id in
     swayPackages=""
     intelPackages=""
 		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld"
+    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel"
     basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
@@ -125,7 +125,6 @@ case $os_id in
   ;;
 rhel)
   case $os_version in
-
   8)
     pkgm=dnf
     argument=install
@@ -188,16 +187,12 @@ rhel)
     googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
   ;;
-  
-  
-  
-   [ "$os_version" -ge "8" ]; then
-    
-    dnfDistro
-  else
-    error "This script is only for "$os_id" 8 or newer."
-  fi
+  *)
+    info $os_id
+    error "Another distro, unable to run the script"
   ;;
+  esac
+
 *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
   pkgm=apt
   argument=install
@@ -486,6 +481,7 @@ askReboot ()
 }
 installmpv ()
 {
+  echo "mpv"
  #Compiling and installing MPV (Seems not to be necessary anymore)
         #which mpv > /dev/null 2>&1
         #if [ $? == 0 ]
@@ -500,7 +496,7 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 50 49 48 47 46 45 44 43
+      for I in 55 54 53 52 51 50 49 48 47
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
@@ -531,14 +527,14 @@ installgstreamerobs ()
   if [ $(ls ~/.config/obs-studio/) ]
   then
       wget https://github.com/fzwoch/obs-gstreamer/releases/download/v0.4.0/obs-gstreamer.zip
-      if [ $(ls ~/.config/obs-studio/ | grep plugins) ]
+      if [ $(ls ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/ | grep 64bit) ]
       then
           info "Installing obs-gstreamer..."
-          unzip obs-gstreamer.zip -d obs-gstreamer/ && cp obs-gstreamer/linux/obs-gstreamer.so ~/.config/obs-studio/plugins/
+          unzip obs-gstreamer.zip -d ls ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/ && cp obs-gstreamer/linux/obs-gstreamer.so ls ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/
           success "obs-gstreamer has been installed."
       else
           info "Installing obs-gstreamer..."
-          mkdir ~/.config/obs-studio/plugins && unzip obs-gstreamer.zip -d obs-gstreamer/ && cp obs-gstreamer/linux/obs-gstreamer.so ~/.config/obs-studio/plugins/
+          mkdir -p ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/ && unzip obs-gstreamer.zip -d obs-gstreamer/ && cp obs-gstreamer/linux/obs-gstreamer.so ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/ && rm -r obs-gstreamer/
           success "obs-gstreamer has been installed."
       fi
   else
