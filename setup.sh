@@ -363,7 +363,7 @@ profileMenu ()
       installproton
       installamdgpupro
       installgstreamerobs
-      sudo dnf install plymouth-theme-spinfinity
+      sudo dnf install plymouth-theme-spinfinity -y
       sudo plymouth-set-default-theme spinfinity -R
       sudo usermod -aG libvirt $(whoami)
       sudo systemctl enable xrdp && sudo systemctl start xrdp
@@ -516,6 +516,36 @@ installproton ()
            fi
        done
   else
+      sudo mkdir -p ~/.steam/root/compatibilitytools.d
+      installproton
+  fi
+}
+#This function will be a test ground for installing packages from different architectures.
+installcrowtranslator ()
+{
+  if [ $(crow) ]
+  then
+      CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
+      for I in 55 54 53 52 51 50 49 48 47
+       do
+           if [[ $CURRENTVERSION -eq $I ]]
+           then
+               echo -e "${GREEN}You already have the latest ProtonGE $I version.${ENDCOLOR}"
+           else
+               PROTONVERSION=$I
+               wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton7-$PROTONVERSION/GE-Proton7-$PROTONVERSION.tar.gz &> /dev/null
+               if [ $? -eq 0 ]
+               then
+                   echo -e "Installing version $PROTONVERSION..."
+                   sudo tar -xf GE-Proton7-$PROTONVERSION.tar.gz -C ~/.steam/root/compatibilitytools.d && rm GE-Proton7-$PROTONVERSION.tar.gz
+                   echo -e "${GREEN}ProtonGE $PROTONVERSION has been installed.${ENDCOLOR}"
+                   break
+               else
+                   echo -e "${RED}Version $PROTONVERSION not found (yet).${ENDCOLOR}" &> /dev/null
+               fi
+           fi
+       done
+  else
       sudo mkdir ~/.steam/ &> /dev/null
       sudo mkdir ~/.steam/root/ &> /dev/null
       sudo mkdir ~/.steam/root/compatibilitytools.d
@@ -549,7 +579,7 @@ installamdgpupro ()
   ./package-builder.sh amdvlk-pro 64
   ./package-builder.sh libdrm-pro 64
   cd packages
-  sudo dnf install *.rpm
+  sudo dnf install *.rpm -y
 }
 installSVP ()
 {
