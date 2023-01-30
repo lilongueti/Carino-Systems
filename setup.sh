@@ -683,6 +683,7 @@ finalTweaks ()
 updateSystem ()
 {
   sudo $pkgm $argUpdate -y
+  installproton
   success "System has been updated"
 }
 systemReview ()
