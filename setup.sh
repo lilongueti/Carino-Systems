@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230121
+version=1.20230129
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -22,7 +22,8 @@ case $os_id in
 *fedora*)
   if [ "$os_version" -ge "36" ]; then
     pkgm=dnf
-    argument=install
+    argInstall=install
+    argUpdate=update
     preFlags=""
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
@@ -58,7 +59,8 @@ case $os_id in
 *nobara*|*risi*|*ultramarine*)
       if [ "$os_version" -ge "36" ]; then
     pkgm=dnf
-    argument=install
+    argInstall=install
+    argUpdate=update
     preFlags=""
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
@@ -93,7 +95,8 @@ case $os_id in
   ;;
 *arch*|*endeavouros*)
     pkgm=pacman
-    argument=-S
+    argInstall=-S
+    argUpdate=-Syu
     preFlags=""
     postFlags=""
     addMicrosoft="git clone https://aur.archlinux.org/microsoft-edge-stable-bin.git && cd microsoft-edge-stable-bin/ && makepkg -si && cd .. && sudo rm -rf *microsoft* && git clone https://aur.archlinux.org/visual-studio-code-bin.git && mkpkg -si && cd .. && sudo rm -rf *visual*"
@@ -127,7 +130,8 @@ rhel)
   case $os_version in
   8)
     pkgm=dnf
-    argument=install
+    argInstall=install
+    argUpdate=update
     preFlags=""
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
@@ -158,7 +162,8 @@ rhel)
   ;;
   9)
     pkgm=dnf
-    argument=install
+    argInstall=install
+    argUpdate=update
     preFlags=""
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
@@ -195,7 +200,8 @@ rhel)
 ;;
 *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
   pkgm=apt
-  argument=install
+  argInstall=install
+  argUpdate=update
   preFlags="-f"
   postFlags="-y"
   if [ "$os_id" == "debian" ]; then
@@ -241,7 +247,7 @@ dnfDistro ()
   case $optionmenu in
     1)
       success "Workstation"
-      argument=install
+      argInstall=install
       if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
           echo ""
@@ -251,7 +257,7 @@ dnfDistro ()
       fi 
     sudo systemctl disable NetworkManager-wait-online.service
     if [ "$os_id" == "fedora" ]; then
-      sudo $pkgm $argument https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+      sudo $pkgm $argInstall https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     else
       sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     fi
@@ -265,8 +271,11 @@ dnfDistro ()
     sudo journalctl --vacuum-size=2G --vacuum-time=35d
     systemReview
     ;;
-    2)
-      success "Server"
+    3)
+      success "Updating system..."
+    ;;
+    4)
+      graphicDrivers
     ;;
     *)
       success "Bye"
@@ -318,7 +327,7 @@ success ()
 }
 firstMenu ()
 {
-  echo -e "${GREEN}"$os_id $os_version" Setup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Exit${ENDCOLOR}"
+  echo -e "${GREEN}"$os_id $os_version" Setup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers5.Exit${ENDCOLOR}"
   read optionmenu
 }
 profileMenu ()
@@ -327,36 +336,36 @@ profileMenu ()
   read optionmenu
   case $optionmenu in
     1)
-      sudo $pkgm $argument $preFlags $basicPackages $googlePackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $postFlags
     ;;
     2)
-      sudo $pkgm $argument $preFlags $basicPackages $googlePackages $gamingPackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $gamingPackages $postFlags
       timeout 180s steam
     ;;
     3)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argument $preFlags $basicPackages $microsoftPackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $postFlags
       #onedrive pending
       sharedFolder
     ;;
     4)
-      sudo $pkgm $argument $preFlags $basicPackages $googlePackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $postFlags
       #google cloud pending
     ;;
     5)
-      sudo $pkgm $argument $preFlags $basicPackages $googlePackages $ciscoPackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $ciscoPackages $postFlags
     ;;
     6)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argument $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $corporateGeneric $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $corporateGeneric $postFlags
       sharedFolder
     ;;
     0)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argument $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages $postFlags
       timeout 180s steam
       installSVP
       installDistrobox
@@ -385,45 +394,45 @@ desktopenvironmentMenu ()
   read option
   case $option in
     1)
-        sudo $pkgm $argument $gnomePackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $gnomePackages -y && sudo systemctl set-default graphical.target
         success "You have GNOME installed, moving on"
         ;;
     2)
-        sudo $pkgm $argument $xfcePackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $xfcePackages -y && sudo systemctl set-default graphical.target
         success "You have XFCE installed, moving on"
         ;;
     3)
-        sudo $pkgm $argument $kdePackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $kdePackages -y && sudo systemctl set-default graphical.target
         success "You have KDE installed, moving on"
         ;;
     4)
-        sudo $pkgm $argument $lxqtPackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $lxqtPackages -y && sudo systemctl set-default graphical.target
         success "You have LXQT installed, moving on"
         ;;
     5)
-        sudo $pkgm $argument $cinnamonPackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $cinnamonPackages -y && sudo systemctl set-default graphical.target
         success "You have CINNAMON installed, moving on"
         ;;
     6)
-        sudo $pkgm $argument $matePackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $matePackages -y && sudo systemctl set-default graphical.target
         success "You have MATE installed, moving on"
         ;;
     7)
-        sudo $pkgm $argument $i3Packages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $i3Packages -y && sudo systemctl set-default graphical.target
         success "You have i3 installed, moving on"
         ;;
     8)
-        sudo $pkgm $argument $openboxPackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $openboxPackages -y && sudo systemctl set-default graphical.target
         success "You have OPENBOX installed, moving on"
         ;;
     9)
         info "Desktop Environment will be added on Fedora 38"
-        #sudo $pkgm $argument $budgiePackages -y && sudo systemctl set-default graphical.target
+        #sudo $pkgm $argInstall $budgiePackages -y && sudo systemctl set-default graphical.target
         #success "You have BUDGIE installed, moving on"
         ;;
     10)
         info "Desktop Environment will be added on Fedora 38"
-        #sudo $pkgm $argument $swayPackages -y && sudo systemctl set-default graphical.target
+        #sudo $pkgm $argInstall $swayPackages -y && sudo systemctl set-default graphical.target
         #success "You have SWAY installed, moving on"
         ;;
     11)
@@ -447,14 +456,14 @@ graphicDrivers ()
         read option
         if [ $option == y ]
         then
-          sudo $pkgm $argument $nvidiaPackages $amdPackages -y
+          sudo $pkgm $argInstall $nvidiaPackages $amdPackages -y
         else
           caution "Nvidia packages will not be installed."
-          sudo $pkgm $argument $amdPackages -y
+          sudo $pkgm $argInstall $amdPackages -y
         fi
     fi
   else
-    sudo $pkgm $argument $amdPackages -y
+    sudo $pkgm $argInstall $amdPackages -y
   fi
   info "For Intel Arc drivers, please refer to https://www.intel.com/content/www/us/en/download/747008/intel-arc-graphics-driver-ubuntu.html"
 }
@@ -652,6 +661,11 @@ finalTweaks ()
   else
       echo ""
   fi
+}
+updateSystem ()
+{
+  sudo $pkgm update -y
+  success "System has been updated"
 }
 systemReview ()
 {
