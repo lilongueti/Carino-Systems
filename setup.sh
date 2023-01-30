@@ -18,10 +18,12 @@ identifyDistro ()
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
 # get distro version data from /etc/os-release
 os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
+arch_type=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
 case $os_id in
 *fedora*)
   if [ "$os_version" -ge "36" ]; then
     pkgm=dnf
+    pkgext=rpm
     argInstall=install
     argUpdate=update
     preFlags=""
@@ -59,6 +61,7 @@ case $os_id in
 *nobara*|*risi*|*ultramarine*)
       if [ "$os_version" -ge "36" ]; then
     pkgm=dnf
+    pkgext=rpm
     argInstall=install
     argUpdate=update
     preFlags=""
@@ -130,6 +133,7 @@ rhel)
   case $os_version in
   8)
     pkgm=dnf
+    pkgext=rpm
     argInstall=install
     argUpdate=update
     preFlags=""
@@ -162,6 +166,7 @@ rhel)
   ;;
   9)
     pkgm=dnf
+    pkgext=rpm
     argInstall=install
     argUpdate=update
     preFlags=""
@@ -200,6 +205,7 @@ rhel)
 ;;
 *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
   pkgm=apt
+  pkgext=deb
   argInstall=install
   argUpdate=update
   preFlags="-f"
@@ -542,30 +548,34 @@ installcrowtranslator ()
 {
   if [ $(crow) ]
   then
-      CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
+      CURRENTVERSION=$(crow -v | awk '{print $NF}')
       for I in 3 2
        do
-           if [[ $CURRENTVERSION -eq $I ]]
-           then
-               echo -e "${GREEN}You already have the latest ProtonGE $I version.${ENDCOLOR}"
-           else
-               PROTONVERSION=$I
-               wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton7-$PROTONVERSION/GE-Proton7-$PROTONVERSION.tar.gz &> /dev/null
-               if [ $? -eq 0 ]
-               then
-                   echo -e "Installing version $PROTONVERSION..."
-                   sudo tar -xf GE-Proton7-$PROTONVERSION.tar.gz -C ~/.steam/root/compatibilitytools.d && rm GE-Proton7-$PROTONVERSION.tar.gz
-                   echo -e "${GREEN}ProtonGE $PROTONVERSION has been installed.${ENDCOLOR}"
-                   break
-               else
-                   echo -e "${RED}Version $PROTONVERSION not found (yet).${ENDCOLOR}" &> /dev/null
-               fi
-           fi
-       done
+        for J in 11 10
+          do
+            for K in 12 11 10 9 8 7 6 5 4 3
+              do
+                if [[ $CURRENTVERSION -eq $I.$J.$K ]]
+                  success "You already have the latest ProtonGE $I version."
+                else
+                  CROWVERSION=$I.$J.$K
+                  info "Installing version $CROWVERSION"
+                  wget https://github.com/crow-translate/crow-translate/releases/download/$CROWVERSION/crow-translate-$CROWVERSION-1.$arch_type.$pkgext &> /dev/null
+                  if [ $? -eq 0 ]
+                  then
+                    sudo $pkgm $argInstall crow-translate-$CROWVERSION-1.$arch_type.$pkgext -y
+                    success "Crow translator has been installed."
+                    break
+                  else
+                    caution "Crow translator $CROWVERSION has not been found."
+                  fi
+                fi
+            done
+        done
+           
+      done
   else
-      sudo mkdir ~/.steam/ &> /dev/null
-      sudo mkdir ~/.steam/root/ &> /dev/null
-      sudo mkdir ~/.steam/root/compatibilitytools.d
+      info "Crow is not installed."
       installproton
   fi
 }
@@ -663,7 +673,7 @@ finalTweaks ()
   if [ $XDG_SESSION_DESKTOP = "gnome" ] || [ $XDG_SESSION_DESKTOP = "xfce" ]
   then
       gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-      gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+      gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true  
       gsettings set org.gnome.desktop.session idle-delay 0
       xdg-mime default thunar.desktop inode/directory
   else
@@ -672,7 +682,7 @@ finalTweaks ()
 }
 updateSystem ()
 {
-  sudo $pkgm update -y
+  sudo $pkgm $argUpdate -y
   success "System has been updated"
 }
 systemReview ()
