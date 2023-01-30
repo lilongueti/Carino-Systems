@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230129
+version=1.20230130
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -12,7 +12,7 @@ YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
 #Declaring Functions
 #Distro related
-identifyDistro ()
+  identifyDistro ()
 {
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
@@ -381,6 +381,7 @@ profileMenu ()
       $enableMicrosoft
       sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages $postFlags
       timeout 180s steam
+      curl -s https://raw.githubusercontent.com/sukhmeetbawa/OpenCL-AMD-Fedora/master/opencl-amd.sh > opencl-amd.sh && chmod +x opencl-amd.sh && sudo ./opencl-amd.sh && rm opencl-amd.sh
       installSVP
       installDistrobox
       installproton
@@ -395,6 +396,7 @@ profileMenu ()
       sudo chcon --type=bin_t /usr/sbin/xrdp
       sudo chcon --type=bin_t /usr/sbin/xrdp-sesman 
       xdg-settings set default-web-browser microsoft-edge.desktop
+      xfconf-query -c xsettings -p /Net/ThemeName -s "Chicago95"
     ;;
     *)
       error "Invalid option"
@@ -460,6 +462,7 @@ desktopenvironmentMenu ()
 }
 graphicDrivers ()
 {
+info "Installing GPU drivers"
   if lspci | grep 'NVIDIA' > /dev/null;
   then
     if nvidia-smi
@@ -470,13 +473,15 @@ graphicDrivers ()
         read option
         if [ $option == y ]
         then
+          info "Installing \e[32mNVIDIA\e[0m drivers"
           sudo $pkgm $argInstall $nvidiaPackages $amdPackages -y
         else
-          caution "Nvidia packages will not be installed."
+          caution "Nvidia packages will not be installed. Installing Radeon packages instead"
           sudo $pkgm $argInstall $amdPackages -y
         fi
     fi
   else
+    info "NVIDIA gpu not found, installing AMD packages instead"
     sudo $pkgm $argInstall $amdPackages -y
   fi
   info "For Intel Arc drivers, please refer to https://www.intel.com/content/www/us/en/download/747008/intel-arc-graphics-driver-ubuntu.html"
@@ -512,6 +517,7 @@ installmpv ()
         #  echo "Mpv is already installed"
         #else
         #  sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
+        #######sudo ./waf configure --disable-lgpl --enable-libmpv-shared --disable-libmpv-static --disable-static-build --disable-build-date --disable-debug-build --enable-manpage-build --disable-html-build --disable-pdf-build --enable-cplugins --disable-clang-database --disable-android --disable-tvos --disable-egl-android --disable-swift --disable-uwp --disable-win32-internal-pthreads --enable-iconv --enable-javascript --enable-zlib --enable-libbluray --enable-dvdnav --enable-cdda --enable-uchardet --enable-rubberband --enable-zimg --enable-lcms2 --enable-vapoursynth --enable-libarchive --enable-dvbin --enable-sdl2 --enable-sdl2-gamepad --enable-libavdevice --enable-sdl2-audio --disable-oss-audio --enable-pipewire --enable-pulse --enable-jack --disable-opensles --enable-alsa --disable-coreaudio --disable-audiounit --disable-wasapi --enable-sdl2-video --disable-cocoa --enable-drm --enable-gbm --enable-wayland --enable-x11 --enable-xv --disable-gl-cocoa --enable-gl-x11 --enable-egl --enable-egl-x11 --enable-egl-drm --enable-gl-wayland --disable-gl-win32 --disable-gl-dxinterop --disable-egl-angle --disable-egl-angle-lib --disable-egl-angle-win32 --enable-vdpau --enable-vdpau-gl-x11 --enable-vaapi --enable-vaapi-x11 --enable-vaapi-wayland --enable-vaapi-drm --enable-vaapi-x-egl --enable-caca --enable-jpeg --disable-direct3d --enable-shaderc --disable-d3d11 --disable-rpi --disable-ios-gl --enable-plain-gl --enable-gl --enable-libplacebo --enable-vulkan --disable-videotoolbox-gl --disable-d3d-hwaccel --disable-d3d9-hwaccel --disable-gl-dxinterop-d3d9 --enable-cuda-hwaccel --enable-cuda-interop --disable-rpi-mmal && sudo ./waf && sudo ./waf install
         #fi
 }
 installproton ()
