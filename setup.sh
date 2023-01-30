@@ -273,6 +273,7 @@ dnfDistro ()
     ;;
     3)
       success "Updating system..."
+      updateSystem
     ;;
     4)
       graphicDrivers
@@ -301,6 +302,13 @@ aptDistro ()
     ;;
     2)
       success "Server"
+    ;;
+    3)
+      success "Updating system..."
+      updateSystem
+    ;;
+    4)
+      graphicDrivers
     ;;
     *)
       success "Bye"
@@ -505,7 +513,7 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 55 54 53 52 51 50 49 48 47
+      for I in 55 54 53 52 51 50 49 48
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
@@ -535,7 +543,7 @@ installcrowtranslator ()
   if [ $(crow) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 55 54 53 52 51 50 49 48 47
+      for I in 3 2
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
