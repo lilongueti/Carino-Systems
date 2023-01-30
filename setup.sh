@@ -341,7 +341,7 @@ success ()
 }
 firstMenu ()
 {
-  echo -e "${GREEN}"$os_id $os_version" Setup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers5.Exit${ENDCOLOR}"
+  echo -e "${GREEN}"$os_id $os_version" Setup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers\n5.Exit${ENDCOLOR}"
   read optionmenu
 }
 profileMenu ()
@@ -549,6 +549,7 @@ installcrowtranslator ()
   if [ $(crow) ]
   then
       CURRENTVERSION=$(crow -v | awk '{print $NF}')
+      echo CURRENTVERSION
       for I in 3 2
        do
         for J in 11 10
@@ -556,27 +557,26 @@ installcrowtranslator ()
             for K in 12 11 10 9 8 7 6 5 4 3
               do
                 if [[ $CURRENTVERSION -eq $I.$J.$K ]]
+                then
                   success "You already have the latest ProtonGE $I version."
                 else
                   CROWVERSION=$I.$J.$K
                   info "Installing version $CROWVERSION"
                   wget https://github.com/crow-translate/crow-translate/releases/download/$CROWVERSION/crow-translate-$CROWVERSION-1.$arch_type.$pkgext &> /dev/null
-                  if [ $? -eq 0 ]
-                  then
-                    sudo $pkgm $argInstall crow-translate-$CROWVERSION-1.$arch_type.$pkgext -y
-                    success "Crow translator has been installed."
-                    break
-                  else
-                    caution "Crow translator $CROWVERSION has not been found."
-                  fi
+                    if [ $? -eq 0 ]
+                    then
+                      sudo $pkgm $argInstall crow-translate-$CROWVERSION-1.$arch_type.$pkgext -y
+                      success "Crow translator has been installed."
+                      break
+                    else
+                      caution "Crow translator $CROWVERSION has not been found."
+                    fi
                 fi
-            done
+              done
         done
-           
       done
   else
       info "Crow is not installed."
-      installproton
   fi
 }
 installgstreamerobs ()
