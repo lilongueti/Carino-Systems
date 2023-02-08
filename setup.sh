@@ -379,7 +379,7 @@ profileMenu ()
     0)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $  argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages $postFlags
       timeout 180s steam
       #curl -s https://raw.githubusercontent.com/sukhmeetbawa/OpenCL-AMD-Fedora/master/opencl-amd.sh > opencl-amd.sh && chmod +x opencl-amd.sh && sudo ./opencl-amd.sh && rm opencl-amd.sh
       installSVP
