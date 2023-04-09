@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230207
+version=1.20230409
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -525,7 +525,7 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 55 54 53 52 51 50 49
+      for I in 64 63 62 61 60 59 58 57 56 55 54
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
