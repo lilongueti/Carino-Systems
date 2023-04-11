@@ -30,7 +30,7 @@ case $os_id in
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
     enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-    essentialPackages="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
+    essentialPackages="mesa-va-drivers mesa-vdpau-drivers wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
     xfcePackages="@xfce-desktop-environment chicago95-theme-all thunar-archive-plugin file-roller"
     gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
     kdePackages="@kde-desktop-environment"
