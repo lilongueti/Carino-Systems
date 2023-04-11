@@ -49,7 +49,7 @@ case $os_id in
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang gscan2pdf"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
     supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
-    microsoftPackages="microsoft-edge-stable code powershell https://go.skype.com/skypeforlinux-64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.23861-1.x86_64.rpm"
+    microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
@@ -87,7 +87,7 @@ case $os_id in
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
     supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
-    microsoftPackages="microsoft-edge-stable code powershell https://go.skype.com/skypeforlinux-64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.23861-1.x86_64.rpm"
+    microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
@@ -159,7 +159,7 @@ rhel)
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
     supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
-    microsoftPackages="microsoft-edge-stable code powershell https://go.skype.com/skypeforlinux-64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.23861-1.x86_64.rpm"
+    microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
@@ -192,7 +192,7 @@ rhel)
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
     supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
-    microsoftPackages="microsoft-edge-stable code powershell https://go.skype.com/skypeforlinux-64.rpm https://packages.microsoft.com/yumrepos/ms-teams/teams-1.5.00.23861-1.x86_64.rpm"
+    microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
@@ -235,7 +235,7 @@ rhel)
   multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
   virtconPackages="podman qemu qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon python3 python3-pip virt-manager wine"
   supportPackages="stacer bleachbit deluge remmina filezilla barrier keepassxc"#https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
-  microsoftPackages="microsoft-edge-stable code powershell"#https://repo.skype.com/latest/skypeforlinux-64.deb https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.5.00.23861_amd64.deb
+  microsoftPackages="microsoft-edge-stable code powershell"
   corporateGeneric=""#https://zoom.us/client/latest/zoom_amd64.deb
   googlePackages=""#https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   ciscoPackages="vpnc"#https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb
@@ -525,7 +525,7 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 64 63 62 61 60 59 58 57 56 55 54
+      for I in 65 64 63 62 61 60 59 58 57 56 55
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
@@ -622,8 +622,8 @@ installSVP ()
         then
           echo "SVP is already installed"
         else
-            wget https://www.svp-team.com/files/svp4-linux.4.5.210-1.tar.bz2
-            tar -xf svp4-linux.4.5.210-1.tar.bz2
+            wget https://www.svp-team.com/files/svp4-linux.4.5.210-2.tar.bz2
+            tar -xf svp4-linux.4.5.210-2.tar.bz2
             sudo chmod +x svp4-linux-64.run
             sudo -u $(whoami) ./svp4-linux-64.run && rm svp4-latest* svp4-linux-64.run 
         fi
