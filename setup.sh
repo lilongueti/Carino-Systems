@@ -217,7 +217,7 @@ rhel)
   fi
   enableMicrosoft="sudo apt-add-repository https://packages.microsoft.com/$os_id/$os_version/prod"
   essentialPackages="build-essential manpages-dev linux-headers-amd64 linux-image-amd64 wget nano curl gedit figlet network-manager isc-dhcp-server elinks cmake nasm libncurses5-dev libncursesw5-dev git htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm-sensors x11-utils rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-standalone-server tigervnc-common xrdp cargo libgl1-mesa-dev"
-  serverPackages="netcat-traditional npm neofetch"
+  serverPackages="netcat-traditional npm neofetch libgtkglext1 xserver-xorg-video-dummy openssh-server"
   xfcePackages="task-xfce-desktop"
   gnomePackages="task-gnome-desktop"
   kdePackages="task-kde-desktop"
