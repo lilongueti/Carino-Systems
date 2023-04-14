@@ -93,8 +93,8 @@ switch ($b)
     #"Mozilla.Thunderbird",
     "AnyDeskSoftwareGmbH.AnyDesk",
     #"Telegram.TelegramDesktop",
-    #"ONLYOFFICE.DesktopEditors",
-    "Spotify.Spotify"
+    "ONLYOFFICE.DesktopEditors",
+    #"Spotify.Spotify"
 ) | foreach {winget install $_}
    } 
    "2" {#Probably can execute basic case then gaming to avoid repeating so many packages
@@ -116,7 +116,6 @@ switch ($b)
    "3" {
     Write-Host "Installing packages..."
 (
-    "Mozilla.Firefox",
     "Cisco.WebexTeams",
     "Cisco.Jabber",
     "Google.Chrome",
@@ -128,9 +127,7 @@ switch ($b)
     "Mozilla.Thunderbird",
     "AnyDeskSoftwareGmbH.AnyDesk",
     "Telegram.TelegramDesktop",
-    "Zoom.Zoom",
-    "Microsoft.Skype",
-    "TeamViewer.TeamViewer"
+    "ONLYOFFICE.DesktopEditors"
 ) | foreach {winget install $_}
    }
    "4" {
