@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230418
+version=1.20230419
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -21,7 +21,7 @@ os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
 arch_type=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
 case $os_id in
 *fedora*)
-  if [ "$os_version" -ge "37" ]; then
+  if [ "$os_version" -ge "38" ]; then
     pkgm=dnf
     pkgext=rpm
     argInstall=install
