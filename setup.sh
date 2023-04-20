@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230409
+version=1.20230418
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -21,7 +21,7 @@ os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
 arch_type=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
 case $os_id in
 *fedora*)
-  if [ "$os_version" -ge "36" ]; then
+  if [ "$os_version" -ge "37" ]; then
     pkgm=dnf
     pkgext=rpm
     argInstall=install
@@ -55,11 +55,11 @@ case $os_id in
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
     dnfDistro
   else
-    error "This script is only for "$os_id" 36 or newer."
+    error "This script is only for "$os_id" 37 or newer."
   fi
   ;;
 *nobara*|*risi*|*ultramarine*)
-      if [ "$os_version" -ge "36" ]; then
+      if [ "$os_version" -ge "37" ]; then
     pkgm=dnf
     pkgext=rpm
     argInstall=install
@@ -93,7 +93,7 @@ case $os_id in
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
     dnfDistro
   else
-    error "This script is only for "$os_id" 36 or newer."
+    error "This script is only for "$os_id" 37 or newer."
   fi
   ;;
 *arch*|*endeavouros*)
