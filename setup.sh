@@ -21,7 +21,7 @@ os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
 arch_type=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
 case $os_id in
 *fedora*)
-  if [ "$os_version" -ge "38" ]; then
+  if [ "$os_version" -ge "37" ]; then
     pkgm=dnf
     pkgext=rpm
     argInstall=install
