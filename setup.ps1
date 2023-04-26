@@ -79,7 +79,7 @@ switch ($a)
 }
  Default {'Nothing executed'}
 }
-$b=Read-Host -Prompt "Now you must choose for a use case profile`nPlease select an option:`n1. Basic profile. For the most basic use cases like media playback, internet browsing, office suite, file manipulation, communication and remote assistance. `n2. Gaming profile. Is Basic profile plus popular gaming platforms and utilities, like Steam. `n3. Corporate profile. Delivers the most packages for office work, videocalls, including applications for specific working ecosystems like Microsoft's, Google's and Cisco's.`n4. FOSS profile. Includes ONLY open source alternatives for general use cases. Still on the works.`n5. Nakadashi profile. A collection of applications for those who enjoy Asian culture and language. Still on the works.`n6. Exit`n"
+$b=Read-Host -Prompt "Now you must choose for a use case profile`nPlease select an option:`n1. Basic profile. For the most basic use cases like media playback, internet browsing, office suite, file manipulation, communication and remote assistance. `n2. Gaming profile. Is Basic profile plus popular gaming platforms and utilities, like Steam. `n3. Corporate profile. Delivers the most packages for office work, videocalls, including applications for specific working ecosystems like Microsoft's, Google's and Cisco's.`n4. FOSS profile. Includes ONLY open source alternatives for general use cases. Still on the works.`n6. Exit`n"
 #Installing packages
 switch ($b)
 {
@@ -93,7 +93,7 @@ switch ($b)
     #"Mozilla.Thunderbird",
     "AnyDeskSoftwareGmbH.AnyDesk",
     #"Telegram.TelegramDesktop",
-    "ONLYOFFICE.DesktopEditors",
+    "ONLYOFFICE.DesktopEditors"
     #"Spotify.Spotify"
 ) | foreach {winget install $_}
    } 
