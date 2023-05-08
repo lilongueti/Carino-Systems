@@ -539,11 +539,11 @@ installproton ()
                echo -e "${GREEN}You already have the latest ProtonGE $I version.${ENDCOLOR}"
            else
                PROTONVERSION=$I
-               wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton8-$PROTONVERSION/GE-Proton7-$PROTONVERSION.tar.gz &> /dev/null
+               wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton8-$PROTONVERSION/GE-Proton8-$PROTONVERSION.tar.gz &> /dev/null
                if [ $? -eq 0 ]
                then
                    echo -e "Installing version $PROTONVERSION..."
-                   sudo tar -xf GE-Proton7-$PROTONVERSION.tar.gz -C ~/.steam/root/compatibilitytools.d && rm GE-Proton7-$PROTONVERSION.tar.gz
+                   sudo tar -xf GE-Proton8-$PROTONVERSION.tar.gz -C ~/.steam/root/compatibilitytools.d && rm GE-Proton8-$PROTONVERSION.tar.gz
                    echo -e "${GREEN}ProtonGE $PROTONVERSION has been installed.${ENDCOLOR}"
                    break
                else
