@@ -45,10 +45,10 @@ case $os_id in
     intelPackages=""
 		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
     amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel"
-    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
+    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang gscan2pdf"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
     supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
@@ -84,10 +84,10 @@ case $os_id in
     intelPackages=""
 		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
     amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
-    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
+    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
     supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
@@ -157,10 +157,10 @@ rhel)
     intelPackages=""
 		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
     amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
-    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
+    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
     supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
@@ -191,10 +191,10 @@ rhel)
     intelPackages=""
 		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
     amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
-    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm lpf-spotify-client"
+    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
     supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
@@ -650,12 +650,12 @@ installDistrobox ()
           curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
           distrobox-create --name fedora --image quay.io/fedora/fedora:38 -Y
           #distrobox-create --name tumbleweed --image registry.opensuse.org/opensuse/tumbleweed:latest -Y
-          distrobox-create --name ubuntu18 --image docker.io/library/ubuntu:18.04 -Y
+          #distrobox-create --name ubuntu18 --image docker.io/library/ubuntu:18.04 -Y
           #distrobox-create --name ubuntu20 --image docker.io/library/ubuntu:20.04 -Y
           distrobox-create --name ubuntu22 --image docker.io/library/ubuntu:22.04 -Y
           #distrobox-create --name rhel8 --image registry.access.redhat.com/ubi8/ubi -Y
           distrobox-create --name rhel9 --image registry.access.redhat.com/ubi9/ubi -Y
-          distrobox-create --name arch --image docker.io/library/archlinux:latest -Y
+          #distrobox-create --name arch --image docker.io/library/archlinux:latest -Y
         fi
 }
 sharedFolder ()
