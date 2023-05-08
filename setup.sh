@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230419
+version=1.202305
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -48,10 +48,10 @@ case $os_id in
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang gscan2pdf"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
-    googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+    googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
     dnfDistro
   else
@@ -86,10 +86,10 @@ case $os_id in
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
-    googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+    googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
     dnfDistro
   else
@@ -158,10 +158,10 @@ rhel)
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
-    googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+    googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
   ;;
   9)
@@ -191,10 +191,10 @@ rhel)
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine bottles"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
-    googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+    googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
   ;;
   *)
@@ -385,19 +385,20 @@ profileMenu ()
     0)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages $postFlags
       timeout 180s steam
       #curl -s https://raw.githubusercontent.com/sukhmeetbawa/OpenCL-AMD-Fedora/master/opencl-amd.sh > opencl-amd.sh && chmod +x opencl-amd.sh && sudo ./opencl-amd.sh && rm opencl-amd.sh
       installSVP
       installDistrobox
       installproton
       #installamdgpupro
-      installgstreamerobs
+      #installgstreamerobs
       sudo dnf install plymouth-theme-spinfinity -y
       sudo plymouth-set-default-theme spinfinity -R
       sudo usermod -aG libvirt $(whoami)
       sudo systemctl enable xrdp && sudo systemctl start xrdp
       sudo firewall-cmd --permanent --add-port=3389/tcp
+      sudo firewall-cmd --permanent --add-port=24800/tcp #barrier
       sudo firewall-cmd --reload
       sudo chcon --type=bin_t /usr/sbin/xrdp
       sudo chcon --type=bin_t /usr/sbin/xrdp-sesman 
@@ -531,14 +532,14 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 65 64 63 62 61 60 59 58 57 56 55
+      for I in 12 11 10 9 8 7 6 5 4 3 2
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
                echo -e "${GREEN}You already have the latest ProtonGE $I version.${ENDCOLOR}"
            else
                PROTONVERSION=$I
-               wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton7-$PROTONVERSION/GE-Proton7-$PROTONVERSION.tar.gz &> /dev/null
+               wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton8-$PROTONVERSION/GE-Proton7-$PROTONVERSION.tar.gz &> /dev/null
                if [ $? -eq 0 ]
                then
                    echo -e "Installing version $PROTONVERSION..."
@@ -673,7 +674,7 @@ sharedFolder ()
 finalTweaks ()
 {
   #Hostname
-  if [[ $(hostname) == 'fedora' ]];
+  if [[ $(hostname) == 'workstation' ]];
   then
       echo "Please provide a hostname for the computer"
       read hostname
