@@ -91,9 +91,10 @@ switch ($b)
     "7zip.7zip",
     "Oracle.JavaRuntimeEnvironment",
     #"Mozilla.Thunderbird",
-    "AnyDeskSoftwareGmbH.AnyDesk",
+    #"AnyDeskSoftwareGmbH.AnyDesk",
+    "RustDesk.RustDesk",
     #"Telegram.TelegramDesktop",
-    "ONLYOFFICE.DesktopEditors"
+    "TheDocumentFoundation.LibreOffice"
     #"Spotify.Spotify"
 ) | foreach {winget install $_}
    } 
@@ -101,13 +102,14 @@ switch ($b)
     Write-Host "Installing packages..."
 (
     "CodecGuide.K-LiteCodecPack.Mega",
+    "Spotify.Spotify",
     "AdrienAllard.FileConverter",
     "7zip.7zip",
     "Oracle.JavaRuntimeEnvironment",
-    "Mozilla.Thunderbird",
-    "AnyDeskSoftwareGmbH.AnyDesk",
-    "Telegram.TelegramDesktop",
-    "ONLYOFFICE.DesktopEditors",
+    #"Mozilla.Thunderbird",
+    "RustDesk.RustDesk",
+    #"Telegram.TelegramDesktop",
+    "TheDocumentFoundation.LibreOffice",
     "Valve.Steam",
     "OBSProject.OBSStudio",
     "Mumble.Mumble.Client"
@@ -119,45 +121,47 @@ switch ($b)
     "Cisco.WebexTeams",
     "Cisco.Jabber",
     "Google.Chrome",
+    "Google.Drive",
     "CodecGuide.K-LiteCodecPack.Mega",
     "AdrienAllard.FileConverter",
     "7zip.7zip",
     "OBSProject.OBSStudio",
     "Oracle.JavaRuntimeEnvironment",
-    "Mozilla.Thunderbird",
+    #"Mozilla.Thunderbird",
     "AnyDeskSoftwareGmbH.AnyDesk",
-    "Telegram.TelegramDesktop",
-    "ONLYOFFICE.DesktopEditors"
+    "RustDesk.RustDesk",
+    #"Telegram.TelegramDesktop",
+    "TheDocumentFoundation.LibreOffice",
+    "KeePassXCTeam.KeePassXC",
+    "Git.Git"
+    #"ONLYOFFICE.DesktopEditors"
 ) | foreach {winget install $_}
    }
    "4" {
-     Write-Host "Installing packages..."
-(
-    "Mozilla.Firefox",
-    "OBSProject.OBSStudio",
-    "KeePassXCTeam.KeePassXC",
-    "Mozilla.Thunderbird",
-    "RustDesk.RustDesk",
-    "VSCodium.VSCodium"
-) | foreach {winget install $_}
-   }
-   "5" {
     Write-Host "Installing packages..."
 (
     "CodecGuide.K-LiteCodecPack.Mega",
+    "Spotify.Spotify",
     "AdrienAllard.FileConverter",
     "7zip.7zip",
+    "OBSProject.OBSStudio",
     "Oracle.JavaRuntimeEnvironment",
-    "Mozilla.Thunderbird",
-    "AnyDeskSoftwareGmbH.AnyDesk",
+    #"Mozilla.Thunderbird",
+    "RustDesk.RustDesk",
     "Telegram.TelegramDesktop",
-    "ONLYOFFICE.DesktopEditors",
-    "Spotify.Spotify",
-    "Ripose.Memento"
+    "TheDocumentFoundation.LibreOffice",
+    "Valve.Steam",
+    "Mumble.Mumble.Client",
+    "Microsoft.VisualStudioCode",
+    "KeePassXCTeam.KeePassXC",
+    "SleuthKit.Autopsy",
+    "StrawberryPerl.StrawberryPerl",
+    "mRemoteNG.mRemoteNG",
+    "DebaucheeOpenSourceGroup",
+    "Git.Git",
+    "Python.Python.3.11"
+
 ) | foreach {winget install $_}
-   }
-   "6" {
-    exit
    }
    "0" {
     exit
