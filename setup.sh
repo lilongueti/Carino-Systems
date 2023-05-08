@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.202305
+version=1.20230508
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -26,6 +26,7 @@ case $os_id in
     pkgext=rpm
     argInstall=install
     argUpdate=update
+    hostnamegiven=fedora
     preFlags=""
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
@@ -64,6 +65,7 @@ case $os_id in
     pkgext=rpm
     argInstall=install
     argUpdate=update
+    hostnamegiven=fedora
     preFlags=""
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
@@ -136,6 +138,7 @@ rhel)
     pkgext=rpm
     argInstall=install
     argUpdate=update
+    hostnamegiven=rhel
     preFlags=""
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
@@ -169,6 +172,7 @@ rhel)
     pkgext=rpm
     argInstall=install
     argUpdate=update
+    hostnamegiven=fedora
     preFlags=""
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
@@ -208,6 +212,7 @@ rhel)
   pkgext=deb
   argInstall=install
   argUpdate=update
+  hostnamegiven=fedora
   preFlags="-f"
   postFlags="-y"
   if [ "$os_id" == "debian" ]; then
@@ -674,7 +679,7 @@ sharedFolder ()
 finalTweaks ()
 {
   #Hostname
-  if [[ $(hostname) == 'workstation' ]];
+  if [[ $(hostname) == $hostnamegiven ]];
   then
       echo "Please provide a hostname for the computer"
       read hostname
