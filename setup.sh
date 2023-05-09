@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230508
+version=1.20230509
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -49,7 +49,7 @@ case $os_id in
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang gscan2pdf"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
@@ -88,7 +88,7 @@ case $os_id in
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
@@ -161,7 +161,7 @@ rhel)
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
@@ -195,7 +195,7 @@ rhel)
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
     virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit deluge remmina filezilla barrier keepassxc bless"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
@@ -240,7 +240,7 @@ rhel)
   gamingPackages="steam goverlay lutris mumble"
   multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
   virtconPackages="podman qemu qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon python3 python3-pip virt-manager wine"
-  supportPackages="stacer bleachbit deluge remmina filezilla barrier keepassxc"#https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
+  supportPackages="stacer bleachbit qbittorrent remmina filezilla barrier keepassxc"#https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
   microsoftPackages="microsoft-edge-stable code powershell"
   corporateGeneric=""#https://zoom.us/client/latest/zoom_amd64.deb
   googlePackages=""#https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -317,7 +317,6 @@ aptDistro ()
       sudo $pkgm update -y && sudo $pkgm upgrade -y
       sudo $pkgm install $serverPackages -y
       desktopenvironmentMenu
-      graphicDrivers
       askReboot
     ;;
     3)
