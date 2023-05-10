@@ -159,7 +159,8 @@ switch ($b)
     "mRemoteNG.mRemoteNG",
     "DebaucheeOpenSourceGroup",
     "Git.Git",
-    "Python.Python.3.11"
+    "Python.Python.3.11",
+    "Bittorrent.qBittorrent"
 
 ) | foreach {winget install $_}
    }
