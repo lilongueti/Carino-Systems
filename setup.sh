@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230509
+version=1.20230511
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -26,7 +26,7 @@ case $os_id in
     pkgext=rpm
     argInstall=install
     argUpdate=update
-    hostnamegiven=fedora
+    hostnamegiven=workstation
     preFlags=""
     postFlags="--skip-broken -y"
     addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
