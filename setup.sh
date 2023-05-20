@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230516
+version=1.20230519
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -395,7 +395,7 @@ profileMenu ()
       timeout 180s steam
       #curl -s https://raw.githubusercontent.com/sukhmeetbawa/OpenCL-AMD-Fedora/master/opencl-amd.sh > opencl-amd.sh && chmod +x opencl-amd.sh && sudo ./opencl-amd.sh && rm opencl-amd.sh
       installSVP
-      installDistrobox
+      #installDistrobox
       installproton
       #installamdgpupro
       #installgstreamerobs
@@ -409,6 +409,8 @@ profileMenu ()
       sudo chcon --type=bin_t /usr/sbin/xrdp
       sudo chcon --type=bin_t /usr/sbin/xrdp-sesman 
       xdg-settings set default-web-browser microsoft-edge.desktop
+      
+
       xfconf-query -c xsettings -p /Net/ThemeName -s "Chicago95"
     ;;
     *)
