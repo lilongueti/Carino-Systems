@@ -362,30 +362,30 @@ profileMenu ()
   read optionmenu
   case $optionmenu in
     1)
-      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $supportPackages $postFlags
     ;;
     2)
-      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $gamingPackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $gamingPackages $supportPackages $postFlags
       timeout 180s steam
     ;;
     3)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $supportPackages $postFlags
       #onedrive pending
       sharedFolder
     ;;
     4)
-      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $supportPackages $postFlags
       #google cloud pending
     ;;
     5)
-      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $ciscoPackages $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $ciscoPackages $supportPackages $postFlags
     ;;
     6)
       $addMicrosoft
       $enableMicrosoft
-      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $corporateGeneric $postFlags
+      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $corporateGeneric $supportPackages $postFlags
       sharedFolder
     ;;
     0)
