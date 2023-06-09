@@ -403,7 +403,7 @@ profileMenu ()
       sudo plymouth-set-default-theme spinfinity -R
       sudo usermod -aG libvirt $(whoami)
       sudo systemctl enable xrdp && sudo systemctl start xrdp
-      sudo firewall-cmd --permanent --add-port=3389/tcp
+      sudo firewall-cmd --permanent --add-port=24070/tcp
       sudo firewall-cmd --permanent --add-port=24800/tcp #barrier
       sudo firewall-cmd --reload
       sudo chcon --type=bin_t /usr/sbin/xrdp
