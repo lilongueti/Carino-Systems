@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230604
+version=1.20230610
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -40,7 +40,7 @@ case $os_id in
     matePackages="@mate-desktop-environment"
     i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
     openboxPackages="@basic-desktop-environment"
-    budgiePackages=""
+    budgiePackages=""x
     swayPackages=""
     intelPackages=""
 		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
