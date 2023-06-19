@@ -48,7 +48,7 @@ case $os_id in
     basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client libreoffice"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang gscan2pdf"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine distrobox"
     supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
@@ -654,7 +654,7 @@ installDistrobox ()
         then
           echo ""
         else
-          curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
+          #curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
           distrobox-create --name fedora --image quay.io/fedora/fedora:38 -Y
           #distrobox-create --name tumbleweed --image registry.opensuse.org/opensuse/tumbleweed:latest -Y
           #distrobox-create --name ubuntu18 --image docker.io/library/ubuntu:18.04 -Y
