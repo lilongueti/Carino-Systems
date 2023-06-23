@@ -91,8 +91,10 @@ switch ($b)
     "7zip.7zip",
     "Oracle.JavaRuntimeEnvironment",
     #"Mozilla.Thunderbird",
-    #"AnyDeskSoftwareGmbH.AnyDesk",
+    "AnyDeskSoftwareGmbH.AnyDesk",
     "RustDesk.RustDesk",
+    "OBSProject.OBSStudio",
+    "Google.Chrome",
     #"Telegram.TelegramDesktop",
     "TheDocumentFoundation.LibreOffice"
     #"Spotify.Spotify"
