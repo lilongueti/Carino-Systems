@@ -4,7 +4,7 @@
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining values in variables
-version=1.20230610
+version=1.20230713
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
@@ -44,12 +44,12 @@ case $os_id in
     swayPackages=""
     intelPackages=""
 		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel"
+    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel rocm*"
     basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client libreoffice"
     gamingPackages="steam goverlay lutris mumble"
     multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang gscan2pdf"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine distrobox"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 Apython3-pip virt-manager wine distrobox"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.2.1/rustdesk-1.2.1-0.x86_64-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
     microsoftPackages="microsoft-edge-stable code powershell"
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
