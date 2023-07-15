@@ -19,7 +19,8 @@ ENDCOLOR="\e[0m"
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
 # get distro version data from /etc/os-release
-os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g')
+os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g' -e 's/"//g')
+#if [ "$os_version" -ge "9" ]; then
 arch_type=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
 case $os_id in
 *fedora*)
