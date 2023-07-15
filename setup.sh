@@ -138,7 +138,7 @@ case $os_id in
     archDistro
   ;;
 *rhel*)
-  if [ "$os_version" -ge "9" ]; then
+  if [ "$os_version" -ge "9.0" ]; then
     pkgm=dnf
     pkgext=rpm
     argInstall=install
@@ -356,7 +356,9 @@ success ()
 }
 firstMenu ()
 {
-  echo -e "${GREEN}"$os_id $os_version" \nLatest commit: $latest_commit \nSetup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers\n5.Exit${ENDCOLOR}"
+  echo -e "${GREEN}"$os_id $os_version"
+  echo -e "${YELLOW}"Latest commit: $latest_commit"
+  echo -e "Setup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers\n5.Exit${ENDCOLOR}"
   read optionmenu
 }
 profileMenu ()
