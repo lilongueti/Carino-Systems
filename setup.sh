@@ -356,7 +356,7 @@ success ()
 }
 firstMenu ()
 {
-  echo -e "${GREEN}"$os_id $os_version \nLatest commit: ${BLUE}$latest_commit" \nSetup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers\n5.Exit${ENDCOLOR}"
+  echo -e "${GREEN}"$os_id $os_version" \nLatest commit: $latest_commit \nSetup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers\n5.Exit${ENDCOLOR}"
   read optionmenu
 }
 profileMenu ()
