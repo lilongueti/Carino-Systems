@@ -13,11 +13,15 @@ ENDCOLOR="\e[0m"
 
 
 #Declaring Functions
-#Distro related
+# Fetching the latest commit
+USERNAME="MiguelCarino"
+REPO="Carino-Systems"
+commit_info=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1")
+latest_commit=$(echo "$commit_info" | jq -r '.[0].commit.message')
   identifyDistro ()
 {
 # get distro data from /etc/os-release
-os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g')
+os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g' -e 's/"//g')
 # get distro version data from /etc/os-release
 os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g' -e 's/"//g')
 #if [ "$os_version" -ge "9" ]; then
@@ -353,7 +357,7 @@ success ()
 }
 firstMenu ()
 {
-  echo -e "${GREEN}"$os_id $os_version" Setup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers\n5.Exit${ENDCOLOR}"
+  echo -e "${GREEN}"$os_id $os_version \n$latest_commit" Setup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers\n5.Exit${ENDCOLOR}"
   read optionmenu
 }
 profileMenu ()
