@@ -167,49 +167,45 @@ case $os_id in
     corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
     googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
-    elif [ "$os_version" -eq 8]; then
-      pkgm=dnf
-      pkgext=rpm
-      argInstall=install
-      argUpdate=update
-      hostnamegiven=rhel
-      preFlags=""
-      postFlags="--skip-broken -y"
-      addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-      enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-      essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
-      xfcePackages="@xfce-desktop-environment thunar-archive-plugin file-roller"
-      gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
-      kdePackages="@kde-desktop-environment"
-      lxqtPackages="@lxqt-desktop-environment"
-      cinnamonPackages="@cinnamon-desktop-environment"
-      matePackages="@mate-desktop-environment"
-      i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
-      openboxPackages="@basic-desktop-environment"
-      budgiePackages=""
-      swayPackages=""
-      intelPackages=""
-		  nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-      amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
-      basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client libreoffice"
-      gamingPackages="steam goverlay lutris mumble"
-      multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
-      virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
-      supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
-      microsoftPackages="microsoft-edge-stable code powershell"
-      corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
-      googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
-      ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
-    else
-      error "This script is only for "$os_id" 8 or newer."
-    fi
-    ;;
+  else
+    pkgm=dnf
+    pkgext=rpm
+    argInstall=install
+    argUpdate=update
+    hostnamegiven=rhel
+    preFlags=""
+    postFlags="--skip-broken -y"
+    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
+    xfcePackages="@xfce-desktop-environment thunar-archive-plugin file-roller"
+    gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
+    kdePackages="@kde-desktop-environment"
+    lxqtPackages="@lxqt-desktop-environment"
+    cinnamonPackages="@cinnamon-desktop-environment"
+    matePackages="@mate-desktop-environment"
+    i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
+    openboxPackages="@basic-desktop-environment"
+    budgiePackages=""
+    swayPackages=""
+    intelPackages=""
+		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
+    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
+    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client libreoffice"
+    gamingPackages="steam goverlay lutris mumble"
+    multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
+    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
+    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
+    microsoftPackages="microsoft-edge-stable code powershell"
+    corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
+    googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
+    ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
+  fi
+  ;;
   *)
     info $os_id
     error "Another distro, unable to run the script"
   ;;
-  esac
-;;
 *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
   pkgm=apt
   pkgext=deb
