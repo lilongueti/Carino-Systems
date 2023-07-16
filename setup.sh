@@ -180,9 +180,9 @@ case $os_id in
   hostnamegiven=fedora
   preFlags="-f"
   postFlags="-y"
-  if [[ "$os_id" == "debian" && "os_version" -ge 11 ]]; then
+  if [ "$os_id" == "debian"] && ["os_version" -ge 11 ]; then
       addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
-    elif [[ "$os_id" == "ubuntu" && "os_version" -ge 2204 ]]; then
+    elif [ "$os_id" == "ubuntu"] && ["os_version" -ge 2204 ]; then
       addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
     else
       error "This version of $os_id is not supported"
