@@ -4,13 +4,12 @@
 currentDate=$(date +%Y%M%D)
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
-#Defining Agnostic Variables
+#Defining Global Variables
 RED="\e[31m"
 BLUE="\e[94m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
-#Declaring Specific Variables
 USERNAME="MiguelCarino"
 REPO="Carino-Systems"
 latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message')
@@ -19,7 +18,7 @@ latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[
 hardwareAcceleration=$(glxinfo | grep "direct rendering")
 hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}')
 archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
-#Declaring Agnostic Functions
+#Declaring Global Functions
 info ()
 {
   echo -e "${BLUE}$1${ENDCOLOR}"
@@ -91,6 +90,7 @@ displayMenu ()
   case $optionmenu in
     1)
         caution "Tech Setup Runs"
+        techSetup
         ;;
     2)
         caution "Purpose Setup Runs"
@@ -106,7 +106,6 @@ displayMenu ()
         error "Bad input"
         ;;
     esac
-
 }
 purposeMenu ()
 {
@@ -128,7 +127,6 @@ purposeMenu ()
   echo "10. Robotics"
   echo "11. Scientific"
   echo "12. Offline"
-
   read optionmenu
   case $optionmenu in
     1)
@@ -172,5 +170,76 @@ purposeMenu ()
         ;;
     esac
 }
+techSetup ()
+{
+    case $NAME in
+    *fedora*|*nobara*|*risi*|*ultramarine*)
+    caution "FEDORA"
+    ;;
+    *rhel*)
+    caution "RHEL"
+    ;;
+    *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
+    echo "DEBIAN"
+    ;;
+    *gentoo*)
+    echo "2"
+    ;;
+    *slackware*)
+    echo "2"
+    ;;
+    *arch*)
+    echo "2"
+    ;;
+    *opensuse*)
+    echo "2"
+    ;;
+    *)
+    echo "2"
+    ;;
+    esac
+}
+
+#Declaring Packages
+#Generic GNU/Linux Packages
+essentialPackages="wget nano curl jq mesa-va-drivers mesa-vdpau-drivers wget figlet elinks cmake nasm ncurses-dev* git gcc htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm*sensors rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils xrdp cargo cowsay npm python3-pip *gtkglext* libxdo-*" #gcc-c++ lm_sensors.x86_64
+serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server"
+basicPackages="gedit firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine"
+gamingPackages="steam goverlay lutris mumble"
+multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* nodejs golang gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
+virtconPackages="podman distrobox"
+supportPackages="stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
+amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
+nvidiaPackages="vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig" #kernel-headers kernel-devel xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
+xfcePackages="task-xfce-desktop @xfce-desktop-environment"
+gnomePackages="task-gnome-desktop @workstation-product-environment"
+kdePackages="task-kde-desktop @kde-desktop-environment"
+lxqtPackages="task-lxqt-desktop @lxqt-desktop-environment"
+cinnamonPackages="task-cinnamon-desktop @cinnamon-desktop-environment"
+matePackages="task-mate-desktop @mate-desktop-environment"
+i3Packages="i3 @i3-desktop-environment"
+openboxPackages="openbox @basic-desktop-environment"
+budgiePackages="budgie-desktop"
+swayPackages="sway"
+#Specific GNU/Linux Packages
+intelPackages="intel-media-*driver"
+essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
+essentialPackagesDebian="software-properties-common build-essential manpages-dev linux-headers-amd64 linux-image-amd64 net-tools x11-utils tigervnc-standalone-server tigervnc-common tightvncserver isc-dhcp-server" #libncurses5-dev libncursesw5-dev libgtkglext1
+virtconPackagesRPM="@virtualization libvirt libvirt-devel virt-install qemu-kvm qemu-img virt-manager"
+virtconPackagesDebian="libvirt-daemon-system libvirt-clients"
+amdPackagesRPM="xorg-x11-drv-amdgpu systemd-devel"
+amdPackagesDebian="xserver-xorg-video-amdgpu libsystemd-dev"
+nvidiaPackagesRPM="akmod-nvidia"
+nvidiaPackagesDebian="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
+nvidiaPackagesUbuntu="nvidia-driver-535"
+#Corporate Packages
+anydesk="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb"
+rustdesk="https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9.deb"
+microsoftPackages="microsoft-edge-stable code powershell"
+zoom="https://zoom.us/client/latest/zoom_x86_64.rpm"
+googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
+ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
+#CustomPackages
+carinoPackages="lpf-spotify-client"
 identifyDistro
 displayMenu

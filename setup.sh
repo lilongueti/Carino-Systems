@@ -45,7 +45,7 @@ case $os_id in
     matePackages="@mate-desktop-environment"
     i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
     openboxPackages="@basic-desktop-environment"
-    budgiePackages=""x
+    budgiePackages=""
     swayPackages=""
     intelPackages=""
 		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
