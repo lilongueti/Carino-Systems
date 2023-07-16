@@ -79,9 +79,6 @@ if [[ -f /etc/os-release ]]; then
     argUpdate=update
     preFlags="-f"
     postFlags="-y"
-    sudo $pkgm update -y && sudo $pkgm upgrade -y
-    sudo $pkgm install $essentialPackages $essentialPackagesDebian -y
-    gnomePackages=$(echo "$gnomePackages" | awk '{print $1}')
     desktopOption=1
     ;;
     *Gentoo*)
