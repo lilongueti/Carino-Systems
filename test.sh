@@ -80,7 +80,7 @@ if [[ -f /etc/os-release ]]; then
     argInstall=install
     argUpdate=update
     preFlags="-f"
-    postFlags="-y"
+    postFlags="-y -m"
     essentialPackages="$essentialPackages $essentialPackagesDebian"
     amdPackages="$amdPackages $amdPackagesDebian"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesDebian"
