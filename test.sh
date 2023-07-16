@@ -96,27 +96,24 @@ displayMenu ()
   echo "1. Technical Setup"
   echo "2. Purpose Setup"
   echo "3. Server Setup"
-  echo "4. Troubleshooting"
-  echo "5. Exit"
+  echo "4. Exit"
   read optionmenu
   case $variable in
     1)
-        # Code to execute when $variable matches value1
+        caution "Tech Setup Runs"
         ;;
     2)
-        # Code to execute when $variable matches value2
+        caution "Purpose Setup Runs"
+        purposeMenu
         ;;
     3)
-        # Code to execute when $variable matches value3
+        caution "Server Setup Runs"
         ;;
     4)
-        # Code to execute when $variable matches value3
-        ;;
-    5)
-        # Code to execute when $variable matches value3
+        caution "Exit"
         ;;
     *)
-        # Code to execute when $variable doesn't match any of the specified values
+        error "Bad input"
         ;;
     esac
 
@@ -145,56 +142,7 @@ purposeMenu ()
   echo "1. Technical Setup"
   echo "2. Purpose Setup"
   echo "3. Server Setup"
-  echo "4. Troubleshooting"
-  echo "5. Exit"
-  read optionmenu
-  case $variable in
-    1)
-        # Code to execute when $variable matches value1
-        ;;
-    2)
-        # Code to execute when $variable matches value2
-        ;;
-    3)
-        # Code to execute when $variable matches value3
-        ;;
-    4)
-        # Code to execute when $variable matches value3
-        ;;
-    5)
-        # Code to execute when $variable matches value3
-        ;;
-    *)
-        # Code to execute when $variable doesn't match any of the specified values
-        ;;
-    esac
-}
-troubleMenu ()
-{
-  clear
-  success "-------------------------------------"
-  success " $NAME $VERSION_ID Setup Script"
-  success "-------------------------------------"
-  echo "Version: 1.1"
-  info "Detected Distribution: $DISTRIBUTION"
-  info "Latest GitHub Commit: $latest_commit"
-  info "Latest Linux Kernel Version: $latest_kernel"
-  info "Your Kernel Version: $(uname -r)"
-  info "CPU Architecture: $archType"
-  if [[ $hardwareAcceleration == "No" ]]; then
-    error "Hardware acceleration enabled: $hardwareAcceleration"
-    error "Hardware renderer: $hardwareRenderer"
-    else
-    info "Hardware acceleration enabled: $hardwareAcceleration"
-    info "Hardware renderer: $hardwareRenderer"
-  fi
-  info "-------------------------------------"
-  echo "Please select an option:"
-  echo "1. Technical Setup"
-  echo "2. Purpose Setup"
-  echo "3. Server Setup"
-  echo "4. Troubleshooting"
-  echo "5. Exit"
+  echo "4. Exit"
   read optionmenu
   case $variable in
     1)
