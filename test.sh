@@ -110,9 +110,9 @@ displayMenu ()
 desktopenvironment ()
 {
     if [-n $XDG_CURRENT_DESKTOP]; then
-        echo "sup"
+        desktopenvironmentMenu
     else
-        echo "nope"
+        purposeMenu
     fi
 }
 desktopenvironmentMenu ()
@@ -357,8 +357,8 @@ cinnamonPackages="task-cinnamon-desktop @cinnamon-desktop-environment"
 matePackages="task-mate-desktop @mate-desktop-environment"
 i3Packages="i3 @i3-desktop-environment"
 openboxPackages="openbox @basic-desktop-environment"
-budgiePackages="budgie-desktop"
-swayPackages="sway"
+budgiePackages="budgie-desktop budgie-desktop"
+swayPackages="sway sway"
 #Specific GNU/Linux Packages
 intelPackages="intel-media-*driver"
 essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
