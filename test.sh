@@ -172,27 +172,28 @@ purposeMenu ()
 }
 techSetup ()
 {
+    error $NAME
     case $NAME in
     *fedora*|*nobara*|*risi*|*ultramarine*)
-    caution "FEDORA"
+    caution "Fedora"
     ;;
     *rhel*)
     caution "RHEL"
     ;;
     *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
-    echo "DEBIAN"
+    caution "Debian"
     ;;
     *gentoo*)
-    echo "2"
+    caution "Gentoo"
     ;;
     *slackware*)
-    echo "2"
+    caution "Slackware"
     ;;
     *arch*)
-    echo "2"
+    caution "Arch"
     ;;
     *opensuse*)
-    echo "2"
+    caution "openSUSE"
     ;;
     *)
     echo "2"
@@ -232,6 +233,7 @@ amdPackagesDebian="xserver-xorg-video-amdgpu libsystemd-dev"
 nvidiaPackagesRPM="akmod-nvidia"
 nvidiaPackagesDebian="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
 nvidiaPackagesUbuntu="nvidia-driver-535"
+nvidiaPackagesArch="nvidia-open"
 #Corporate Packages
 anydesk="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb"
 rustdesk="https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9.deb"
