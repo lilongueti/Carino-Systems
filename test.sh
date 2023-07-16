@@ -170,6 +170,7 @@ desktopenvironmentMenu ()
         exit
         ;;
     esac
+    graphicDrivers
 }
 graphicDrivers ()
 {
@@ -196,6 +197,7 @@ info "Installing GPU drivers"
     sudo $pkgm $argInstall $amdPackages -y
   fi
   info "For Intel Arc drivers, please refer to https://www.intel.com/content/www/us/en/download/747008/intel-arc-graphics-driver-ubuntu.html"
+  nvtopInstall
 }
 nvtopInstall ()
 {
@@ -205,6 +207,19 @@ nvtopInstall ()
         success ""
     else
         git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
+    fi
+    askReboot
+}
+askReboot ()
+{
+  caution "Would you like to reboot? (Recommended) [y/N]"
+  read option
+    if [ $option == y ]
+    then
+        sudo reboot
+    else
+        caution "No reboot was requested."
+        purposeMenu
     fi
 }
 purposeMenu ()
