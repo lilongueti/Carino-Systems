@@ -16,7 +16,7 @@ USERNAME="MiguelCarino"
 REPO="Carino-Systems"
 commit_info=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1")
 latest_commit=$(echo "$commit_info" | jq -r '.[0].commit.message')
-  identifyDistro ()
+identifyDistro ()
 {
 # get distro data from /etc/os-release
 os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g' -e 's/"//g')
