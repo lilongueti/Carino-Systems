@@ -321,7 +321,7 @@ success ()
 }
 firstMenu ()
 {
-  echo -e "${GREEN} $os_id $os_version" \n
+  echo -e "${GREEN}"$os_id $os_version"
   echo -e "${YELLOW}"Latest commit: $latest_commit"
   echo -e "Setup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers\n5.Exit${ENDCOLOR}"
   read optionmenu
