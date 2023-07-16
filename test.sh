@@ -323,8 +323,8 @@ purposeMenu ()
             fi
         ;;
         esac
-        addMicrosoft
-        enableMicrosoft
+        $addMicrosoft
+        $enableMicrosoft
         sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $microsoftPackages $postFlags
         ;;
     4)
