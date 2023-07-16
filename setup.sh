@@ -10,7 +10,6 @@ BLUE="\e[94m"
 GREEN="\e[32m"
 YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
-
 #Declaring Functions
 # Fetching the latest commit
 USERNAME="MiguelCarino"
@@ -104,7 +103,7 @@ case $os_id in
     error "This script is only for "$os_id" 37 or newer."
   fi
   ;;
-*rhel*)
+rhel)
   if [ "$os_version" -ge "90" ]; then
     pkgm=dnf
     pkgext=rpm
