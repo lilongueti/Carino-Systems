@@ -112,7 +112,7 @@ desktopenvironment ()
     if [-n $XDG_CURRENT_DESKTOP]; then
         desktopenvironmentMenu
     else
-        purposeMenu
+        graphicDrivers
     fi
 }
 desktopenvironmentMenu ()
