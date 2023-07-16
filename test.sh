@@ -124,41 +124,57 @@ purposeMenu ()
   success "-------------------------------------"
   success " $NAME $VERSION_ID Setup Script"
   success "-------------------------------------"
-  echo "Version: 1.1"
-  info "Detected Distribution: $DISTRIBUTION"
-  info "Latest GitHub Commit: $latest_commit"
-  info "Latest Linux Kernel Version: $latest_kernel"
-  info "Your Kernel Version: $(uname -r)"
-  info "CPU Architecture: $archType"
-  if [[ $hardwareAcceleration == "No" ]]; then
-    error "Hardware acceleration enabled: $hardwareAcceleration"
-    error "Hardware renderer: $hardwareRenderer"
-    else
-    info "Hardware acceleration enabled: $hardwareAcceleration"
-    info "Hardware renderer: $hardwareRenderer"
-  fi
+  info "Please select a purpose for your distro"
   info "-------------------------------------"
-  echo "Please select an option:"
-  echo "1. Technical Setup"
-  echo "2. Purpose Setup"
-  echo "3. Server Setup"
-  echo "4. Exit"
+  echo " 1. Basic"
+  echo " 2. Gaming"
+  echo " 3. Corporate"
+  echo " 4. Development"
+  echo " 5. Astronomy"
+  echo " 6. Comp-Neuro"
+  echo " 7. Desing"
+  echo " 8. Jam"
+  echo " 9. Security Lab"
+  echo "10. Robotics"
+  echo "11. Scientific"
+
   read optionmenu
   case $variable in
     1)
-        # Code to execute when $variable matches value1
+        caution $1
         ;;
     2)
-        # Code to execute when $variable matches value2
+        caution $1
         ;;
     3)
-        # Code to execute when $variable matches value3
+        caution $1
         ;;
     4)
-        # Code to execute when $variable matches value3
+        caution $1
         ;;
     5)
-        # Code to execute when $variable matches value3
+        caution $1
+        ;;
+    6)
+        caution $1
+        ;;
+    7)
+        caution $1
+        ;;
+    8)
+        caution $1
+        ;;
+    9)
+        caution $1
+        ;;
+    10)
+        caution $1
+        ;;
+    11)
+        caution $1
+        ;;
+    0)
+        caution $1
         ;;
     *)
         # Code to execute when $variable doesn't match any of the specified values
