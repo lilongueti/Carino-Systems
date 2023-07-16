@@ -18,6 +18,7 @@ latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commi
 latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version')
 hardwareAcceleration=$(glxinfo | grep "direct rendering")
 hardwareRenderer=$(glxinfo | grep "OpenGL renderer")
+archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
 #Declaring Agnostic Functions
 info ()
 {
@@ -83,6 +84,7 @@ displayMenu ()
   info "Latest GitHub Commit: $latest_commit"
   info "Latest Linux Kernel Version: $latest_kernel"
   info "Your Kernel Version: $(uname -r)"
+  info "Hardware renderer: $archType"
   info "Hardware acceleration enabled: $hardwareAcceleration"
   info "Hardware renderer: $hardwareRenderer"
   info "-------------------------------------"
