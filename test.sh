@@ -85,9 +85,13 @@ displayMenu ()
   info "Latest Linux Kernel Version: $latest_kernel"
   info "Your Kernel Version: $(uname -r)"
   info "CPU Architecture: $archType"
-  if [$hardwareAcceleration == ""]; then
+  if [$hardwareAcceleration == "No"]; then
+    error "Hardware acceleration enabled: $hardwareAcceleration"
+    error "Hardware renderer: $hardwareRenderer"
+    else
     info "Hardware acceleration enabled: $hardwareAcceleration"
-  info "Hardware renderer: $hardwareRenderer"
+    info "Hardware renderer: $hardwareRenderer"
+    fi
   info "-------------------------------------"
   echo "Please select an option:"
   echo "1. Technical Setup"
