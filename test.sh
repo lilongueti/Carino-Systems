@@ -183,6 +183,19 @@ techSetup ()
     preFlags=""
     postFlags="--skip-broken -y"
     sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+    if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
+      then
+          break
+      else
+          sudo sh -c 'echo fastestmirror=true >> /etc/dnf/dnf.conf'
+          sudo sh -c 'echo max_parallel_downloads=10 >> /etc/dnf/dnf.conf'
+      fi 
+    sudo systemctl disable NetworkManager-wait-online.service
+    if [ "$os_id" == "Fedora" ]; then
+        sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y #&& sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+    else
+        sudo $pkgm update -y #&& sudo $pkgm install $essentialPackages -y
+    fi
     ;;
     *Red*)
     caution "RHEL"

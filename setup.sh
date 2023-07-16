@@ -231,7 +231,7 @@ dnfDistro ()
       argInstall=install
       if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
-          echo ""
+          break
       else
           sudo sh -c 'echo fastestmirror=true >> /etc/dnf/dnf.conf'
           sudo sh -c 'echo max_parallel_downloads=10 >> /etc/dnf/dnf.conf'
