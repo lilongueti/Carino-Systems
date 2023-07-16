@@ -113,7 +113,7 @@ desktopenvironmentMenu ()
   read option
   case $option in
     1)
-        sudo $pkgm $argInstall $gnomePackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $gnomePackages  && sudo systemctl set-default graphical.target
         success "You have GNOME installed, moving on"
         ;;
     2)
