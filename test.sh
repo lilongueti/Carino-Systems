@@ -16,6 +16,8 @@ REPO="Carino-Systems"
 latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message')
 latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}')
 latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version')
+hardwareAcceleration=$(glxinfo | grep "direct rendering")
+hardwareRenderer=$(glxinfo | grep "OpenGL renderer")
 #Declaring Agnostic Functions
 info ()
 {
@@ -62,6 +64,32 @@ if [[ -f /etc/os-release ]]; then
     fi
     arch_type=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
 }
+identifyDistro ()
+{
+if [[ -f /etc/os-release ]]; then
+        source /etc/os-release
+        if [[ -n "$NAME" ]]; then
+            DISTRIBUTION=$NAME
+            VERSION=$VERSION_ID
+        fi
+    elif [[ -f /etc/lsb-release ]]; then
+        source /etc/lsb-release
+        if [[ -n "$DISTRIB_ID" ]]; then
+            DISTRIBUTION=$DISTRIB_ID
+            VERSION=$DISTRIB_RELEASE
+        fi
+    elif [[ -f /etc/debian_version ]]; then
+        DISTRIBUTION="Debian"
+        VERSION=$(cat /etc/debian_version)
+    elif [[ -f /etc/centos-release ]]; then
+        DISTRIBUTION=$(cat /etc/centos-release | awk '{print $1}')
+        VERSION=$(cat /etc/centos-release | awk '{print $4}' | cut -d'.' -f1)
+    else
+        DISTRIBUTION="Unknown"
+        VERSION="Unknown"
+    fi
+    arch_type=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
+}
 checksetup ()
 {
 #Check if script has been run before
@@ -73,18 +101,20 @@ else
 fi
 }
 
-firstMenu ()
+displayMenu ()
 {
   clear
-  echo "-------------------------------------"
-  echo "  $NAME $VERSION_ID Setup Script"
-  echo "-------------------------------------"
+  success "-------------------------------------"
+  success " $NAME $VERSION_ID Setup Script"
+  success "-------------------------------------"
   echo "Version: 1.1"
-  echo "Detected Distribution: $distribution"
-  echo "Latest GitHub Commit: latest_commit"
-  echo "Latest Linux Kernel Version: $latest_kernel"
-  echo "Your Kernel Version: $(uname -r)"
-  echo "-------------------------------------"
+  info "Detected Distribution: $DISTRIBUTION"
+  info "Latest GitHub Commit: $latest_commit"
+  info "Latest Linux Kernel Version: $latest_kernel"
+  info "Your Kernel Version: $(uname -r)"
+  info "Hardware acceleration enabled: $hardwareAcceleration"
+  info "Hardware renderer: $hardwareRenderer"
+  info "-------------------------------------"
   echo "Please select an option:"
   echo "1. Install Packages"
   echo "2. Run Custom Scripts"
@@ -92,4 +122,5 @@ firstMenu ()
   echo "4. Exit"
   read optionmenu
 }
-firstMenu
+identifyDistro
+displayMenu
