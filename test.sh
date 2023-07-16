@@ -107,6 +107,98 @@ displayMenu ()
         ;;
     esac
 }
+desktopenvironmentMenu ()
+{
+  caution "What Desktop Environment you want?\n1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. BUDGIE\n10. SWAY\n11. NONE"
+  read option
+  case $option in
+    1)
+        sudo $pkgm $argInstall $gnomePackages -y && sudo systemctl set-default graphical.target
+        success "You have GNOME installed, moving on"
+        ;;
+    2)
+        sudo $pkgm $argInstall $xfcePackages -y && sudo systemctl set-default graphical.target
+        success "You have XFCE installed, moving on"
+        ;;
+    3)
+        sudo $pkgm $argInstall $kdePackages -y && sudo systemctl set-default graphical.target
+        success "You have KDE installed, moving on"
+        ;;
+    4)
+        sudo $pkgm $argInstall $lxqtPackages -y && sudo systemctl set-default graphical.target
+        success "You have LXQT installed, moving on"
+        ;;
+    5)
+        sudo $pkgm $argInstall $cinnamonPackages -y && sudo systemctl set-default graphical.target
+        success "You have CINNAMON installed, moving on"
+        ;;
+    6)
+        sudo $pkgm $argInstall $matePackages -y && sudo systemctl set-default graphical.target
+        success "You have MATE installed, moving on"
+        ;;
+    7)
+        sudo $pkgm $argInstall $i3Packages -y && sudo systemctl set-default graphical.target
+        success "You have i3 installed, moving on"
+        ;;
+    8)
+        sudo $pkgm $argInstall $openboxPackages -y && sudo systemctl set-default graphical.target
+        success "You have OPENBOX installed, moving on"
+        ;;
+    9)
+        info "Desktop Environment will be added on Fedora 38"
+        #sudo $pkgm $argInstall $budgiePackages -y && sudo systemctl set-default graphical.target
+        #success "You have BUDGIE installed, moving on"
+        ;;
+    10)
+        info "Desktop Environment will be added on Fedora 38"
+        #sudo $pkgm $argInstall $swayPackages -y && sudo systemctl set-default graphical.target
+        #success "You have SWAY installed, moving on"
+        ;;
+    11)
+        caution "No Desktop Environment will be installed"
+        ;;
+    *)
+        error "Wrong choice. Exiting script."
+        exit
+        ;;
+    esac
+}
+graphicDrivers ()
+{
+info "Installing GPU drivers"
+  if lspci | grep 'NVIDIA' > /dev/null;
+  then
+    if nvidia-smi
+    then
+        success "NVIDIA drivers are installed already."
+    else
+        caution "Nvidia card detected. Would you like to install NVIDIA packages?"
+        read option
+        if [ $option == y ]
+        then
+          info "Installing \e[32mNVIDIA\e[0m drivers"
+          sudo $pkgm $argInstall $nvidiaPackages $amdPackages -y
+        else
+          caution "Nvidia packages will not be installed. Installing Radeon packages instead"
+          sudo $pkgm $argInstall $amdPackages -y
+        fi
+    fi
+  else
+    info "NVIDIA gpu not found, installing AMD packages instead"
+    sudo $pkgm $argInstall $amdPackages -y
+  fi
+  info "For Intel Arc drivers, please refer to https://www.intel.com/content/www/us/en/download/747008/intel-arc-graphics-driver-ubuntu.html"
+}
+nvtopInstall ()
+{
+  which nvtop > /dev/null 2>&1
+    if [ $? == 0 ]
+    then
+        success ""
+    else
+        git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
+    fi
+}
 purposeMenu ()
 {
   clear
@@ -182,7 +274,8 @@ techSetup ()
     argUpdate=update
     preFlags=""
     postFlags="--skip-broken -y"
-    sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+    gnomePackages=$(echo "$gnomePackages" | awk '{print $2}')
+    echo $gnomePackages
     if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
           break
@@ -194,8 +287,11 @@ techSetup ()
     if [ "$os_id" == "Fedora" ]; then
         sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y #&& sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     else
-        sudo $pkgm update -y #&& sudo $pkgm install $essentialPackages -y
+        sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     fi
+    #desktopenvironmentMenu
+    #graphicDrivers
+    #nvtopInstall
     ;;
     *Red*)
     caution "RHEL"
@@ -209,6 +305,7 @@ techSetup ()
     preFlags="-f"
     postFlags="-y"
     sudo $pkgm update -y && sudo $pkgm upgrade -y
+    sudo $pkgm install $essentialPackages -y
     ;;
     *Gentoo*)
     caution "Gentoo"
