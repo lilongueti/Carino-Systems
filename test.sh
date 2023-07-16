@@ -36,34 +36,6 @@ success ()
   echo -e "${GREEN}$1${ENDCOLOR}"
 }
 #Declaring Specific Functions
-# Fetching the latest commit
-
-display_menu ()
-{
-if [[ -f /etc/os-release ]]; then
-        source /etc/os-release
-        if [[ -n "$NAME" ]]; then
-            DISTRIBUTION=$NAME
-            VERSION=$VERSION_ID
-        fi
-    elif [[ -f /etc/lsb-release ]]; then
-        source /etc/lsb-release
-        if [[ -n "$DISTRIB_ID" ]]; then
-            DISTRIBUTION=$DISTRIB_ID
-            VERSION=$DISTRIB_RELEASE
-        fi
-    elif [[ -f /etc/debian_version ]]; then
-        DISTRIBUTION="Debian"
-        VERSION=$(cat /etc/debian_version)
-    elif [[ -f /etc/centos-release ]]; then
-        DISTRIBUTION=$(cat /etc/centos-release | awk '{print $1}')
-        VERSION=$(cat /etc/centos-release | awk '{print $4}' | cut -d'.' -f1)
-    else
-        DISTRIBUTION="Unknown"
-        VERSION="Unknown"
-    fi
-    arch_type=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
-}
 identifyDistro ()
 {
 if [[ -f /etc/os-release ]]; then
@@ -100,7 +72,6 @@ else
     touch ~/.linux_setup_completed
 fi
 }
-
 displayMenu ()
 {
   clear
@@ -116,10 +87,11 @@ displayMenu ()
   info "Hardware renderer: $hardwareRenderer"
   info "-------------------------------------"
   echo "Please select an option:"
-  echo "1. Install Packages"
-  echo "2. Run Custom Scripts"
-  echo "3. Configure Purpose-Driven Settings"
-  echo "4. Exit"
+  echo "1. Technical Setup"
+  echo "2. Purpose Setup"
+  echo "3. Server Setup"
+  echo "4. Troubleshooting"
+  echo "5. Exit"
   read optionmenu
 }
 identifyDistro
