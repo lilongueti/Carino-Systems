@@ -84,7 +84,7 @@ displayMenu ()
   info "Latest GitHub Commit: $latest_commit"
   info "Latest Linux Kernel Version: $latest_kernel"
   info "Your Kernel Version: $(uname -r)"
-  info "Hardware renderer: $archType"
+  info "CPU Architecture: $archType"
   info "Hardware acceleration enabled: $hardwareAcceleration"
   info "Hardware renderer: $hardwareRenderer"
   info "-------------------------------------"
