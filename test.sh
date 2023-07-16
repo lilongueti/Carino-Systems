@@ -176,12 +176,26 @@ techSetup ()
     case $NAME in
     *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
     caution "Fedora"
+    pkgm=dnf
+    pkgext=rpm
+    argInstall=install
+    argUpdate=update
+    preFlags=""
+    postFlags="--skip-broken -y"
+    sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     ;;
     *Red*)
     caution "RHEL"
     ;;
     *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
     caution "Debian"
+    pkgm=apt
+    pkgext=deb
+    argInstall=install
+    argUpdate=update
+    preFlags="-f"
+    postFlags="-y"
+    sudo $pkgm update -y && sudo $pkgm upgrade -y
     ;;
     *Gentoo*)
     caution "Gentoo"
