@@ -180,10 +180,12 @@ case $os_id in
   hostnamegiven=fedora
   preFlags="-f"
   postFlags="-y"
-  if [ "$os_id" == "debian" ]; then
+  if [ "$os_id" == "debian" && "os_version" -ge 11 ]; then
       addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
-    else
+    elif [ "$os_id" == "ubuntu" && "os_version" -ge 2204 ]; then
       addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
+    else
+      error "This version of $os_id is not supported"
   fi
   enableMicrosoft="sudo apt-add-repository https://packages.microsoft.com/$os_id/$os_version/prod"
   essentialPackages="build-essential manpages-dev linux-headers-amd64 linux-image-amd64 wget nano curl gedit figlet network-manager isc-dhcp-server elinks cmake nasm libncurses5-dev libncursesw5-dev git htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm-sensors x11-utils rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-standalone-server tigervnc-common xrdp cargo libgl1-mesa-dev"
