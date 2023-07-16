@@ -56,6 +56,8 @@ if [[ -f /etc/os-release ]]; then
     amdPackages="$amdPackages $amdPackagesRPM"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
     virtconPackage="$virtconPackages $virtconPackagesRPM"
+    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
     desktopOption=2
     ;;
     *Red*)
@@ -269,8 +271,8 @@ askReboot ()
         sudo reboot
     else
         caution "No reboot was requested."
-        purposeMenu
     fi
+    purposeMenu
 }
 purposeMenu ()
 {
@@ -300,11 +302,28 @@ purposeMenu ()
         ;;
     2)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $gamingPackages $postFlags
         ;;
     3)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        case $NAME in
+        *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+            addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+            enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+        ;;
+        *Red*)
+            addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+            enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+        ;;
+        *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
+            if [[ "$NAME" == "Debian" ]]; then
+            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
+            else
+            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
+            fi
+        ;;
+        esac
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $microsoftPackages $postFlags
         ;;
     4)
         caution $1
