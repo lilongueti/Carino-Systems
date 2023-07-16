@@ -274,8 +274,9 @@ techSetup ()
     argUpdate=update
     preFlags=""
     postFlags="--skip-broken -y"
+    error $gnomePackages
     gnomePackages=$(echo "$gnomePackages" | awk '{print $2}')
-    echo $gnomePackages
+    error $gnomePackages
     if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
           break
