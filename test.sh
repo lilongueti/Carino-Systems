@@ -174,25 +174,25 @@ techSetup ()
 {
     error $NAME
     case $NAME in
-    *fedora*|*nobara*|*risi*|*ultramarine*)
+    *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
     caution "Fedora"
     ;;
-    *rhel*)
+    *Red*)
     caution "RHEL"
     ;;
-    *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
+    *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
     caution "Debian"
     ;;
-    *gentoo*)
+    *Gentoo*)
     caution "Gentoo"
     ;;
-    *slackware*)
+    *Slackware*)
     caution "Slackware"
     ;;
-    *arch*)
+    *Arch*)
     caution "Arch"
     ;;
-    *opensuse*)
+    *Opensuse*)
     caution "openSUSE"
     ;;
     *)
