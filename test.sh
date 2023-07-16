@@ -62,16 +62,6 @@ if [[ -f /etc/os-release ]]; then
         VERSION="Unknown"
     fi
 }
-checksetup ()
-{
-#Check if script has been run before
-if [[ -f ~/.linux_setup_completed ]]; then
-    display_menu
-else
-    detect_distribution
-    touch ~/.linux_setup_completed
-fi
-}
 displayMenu ()
 {
   clear
@@ -98,7 +88,7 @@ displayMenu ()
   echo "3. Server Setup"
   echo "4. Exit"
   read optionmenu
-  case $variable in
+  case $optionmenu in
     1)
         caution "Tech Setup Runs"
         ;;
@@ -137,9 +127,10 @@ purposeMenu ()
   echo " 9. Security Lab"
   echo "10. Robotics"
   echo "11. Scientific"
+  echo "12. Offline"
 
   read optionmenu
-  case $variable in
+  case $optionmenu in
     1)
         caution $1
         ;;
