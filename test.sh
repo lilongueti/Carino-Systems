@@ -290,7 +290,7 @@ techSetup ()
     else
         sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     fi
-    #desktopenvironmentMenu
+    desktopenvironmentMenu
     #graphicDrivers
     #nvtopInstall
     ;;
