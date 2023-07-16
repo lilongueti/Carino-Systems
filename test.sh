@@ -85,7 +85,7 @@ displayMenu ()
   info "Latest Linux Kernel Version: $latest_kernel"
   info "Your Kernel Version: $(uname -r)"
   info "CPU Architecture: $archType"
-  if [ $hardwareAcceleration == No ]; then
+  if [[ $hardwareAcceleration == "No" ]]; then
     error "Hardware acceleration enabled: $hardwareAcceleration"
     error "Hardware renderer: $hardwareRenderer"
     else
