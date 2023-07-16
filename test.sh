@@ -51,7 +51,7 @@ if [[ -f /etc/os-release ]]; then
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
     virtconPackage="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
-    gnomePackages=$(echo "$gnomePackages" | awk '{print $2}')
+    #gnomePackages=$(echo "$gnomePackages" | awk '{print $2}')
     ;;
     *Red*)
     caution "RHEL"
@@ -147,16 +147,20 @@ desktopenvironmentMenu ()
   case $option in
     1)
         gnomePackages="$(echo "$gnomePackages" | awk '{print $desktopOption}')"
-        error $desktopOption
+        error $gnomePackages
         #sudo $pkgm $argInstall $gnomePackages  && sudo systemctl set-default graphical.target
         success "You have GNOME installed, moving on"
         ;;
     2)
-        sudo $pkgm $argInstall $xfcePackages -y && sudo systemctl set-default graphical.target
+        xfcePackages="$(echo "$xfcePackages" | awk '{print $desktopOption}')"
+        error $xfcePackages
+        #sudo $pkgm $argInstall $xfcePackages -y && sudo systemctl set-default graphical.target
         success "You have XFCE installed, moving on"
         ;;
     3)
-        sudo $pkgm $argInstall $kdePackages -y && sudo systemctl set-default graphical.target
+        kdePackages="$(echo "$kdePackages" | awk '{print $desktopOption}')"
+        error $kdePackages
+        #sudo $pkgm $argInstall $kdePackages -y && sudo systemctl set-default graphical.target
         success "You have KDE installed, moving on"
         ;;
     4)
