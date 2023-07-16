@@ -150,7 +150,7 @@ desktopenvironment ()
     if [-n $XDG_CURRENT_DESKTOP]; then
         desktopenvironmentMenu
     else
-        desktopenvironmentMenu
+        graphicDrivers
     fi
 }
 desktopenvironmentMenu ()
@@ -160,51 +160,51 @@ desktopenvironmentMenu ()
   case $option in
     1)
         gnomePackages="$(echo "$gnomePackages" | awk '{print $desktopOption}')"
-        error $gnomePackages
-        #sudo $pkgm $argInstall $gnomePackages  && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $gnomePackages  && sudo systemctl set-default graphical.target
         success "You have GNOME installed, moving on"
         ;;
     2)
         xfcePackages="$(echo "$xfcePackages" | awk '{print $desktopOption}')"
-        error $xfcePackages
-        #sudo $pkgm $argInstall $xfcePackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $xfcePackages -y && sudo systemctl set-default graphical.target
         success "You have XFCE installed, moving on"
         ;;
     3)
         kdePackages="$(echo "$kdePackages" | awk '{print $desktopOption}')"
-        error $kdePackages
-        #sudo $pkgm $argInstall $kdePackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $kdePackages -y && sudo systemctl set-default graphical.target
         success "You have KDE installed, moving on"
         ;;
     4)
         lxqtPackages="$(echo "$lxqtPackages" | awk '{print $desktopOption}')"
-        error $lxqtPackages
-        #sudo $pkgm $argInstall $lxqtPackages -y && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $lxqtPackages -y && sudo systemctl set-default graphical.target
         success "You have LXQT installed, moving on"
         ;;
     5)
+        cinnamonPackages="$(echo "$cinnamonPackages" | awk '{print $desktopOption}')"
         sudo $pkgm $argInstall $cinnamonPackages -y && sudo systemctl set-default graphical.target
         success "You have CINNAMON installed, moving on"
         ;;
     6)
+        matePackages="$(echo "$matePackages" | awk '{print $desktopOption}')"
         sudo $pkgm $argInstall $matePackages -y && sudo systemctl set-default graphical.target
         success "You have MATE installed, moving on"
         ;;
     7)
+        i3Packages="$(echo "$i3Packages" | awk '{print $desktopOption}')"
         sudo $pkgm $argInstall $i3Packages -y && sudo systemctl set-default graphical.target
         success "You have i3 installed, moving on"
         ;;
     8)
+        openboxPackages="$(echo "$openboxPackages" | awk '{print $desktopOption}')"
         sudo $pkgm $argInstall $openboxPackages -y && sudo systemctl set-default graphical.target
         success "You have OPENBOX installed, moving on"
         ;;
     9)
-        info "Desktop Environment will be added on Fedora 38"
+        budgiePackages="$(echo "$budgiePackages" | awk '{print $desktopOption}')"
         sudo $pkgm $argInstall $budgiePackages -y && sudo systemctl set-default graphical.target
         success "You have BUDGIE installed, moving on"
         ;;
     10)
-        info "Desktop Environment will be added on Fedora 38"
+        swayPackages="$(echo "$swayPackages" | awk '{print $desktopOption}')"
         sudo $pkgm $argInstall $swayPackages -y && sudo systemctl set-default graphical.target
         success "You have SWAY installed, moving on"
         ;;
