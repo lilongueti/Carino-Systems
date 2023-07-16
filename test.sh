@@ -307,6 +307,10 @@ techSetup ()
     postFlags="-y"
     sudo $pkgm update -y && sudo $pkgm upgrade -y
     sudo $pkgm install $essentialPackages -y
+    error $gnomePackages
+    gnomePackages=$(echo "$gnomePackages" | awk '{print $1}')
+    error $gnomePackages
+    desktopenvironmentMenu
     ;;
     *Gentoo*)
     caution "Gentoo"
