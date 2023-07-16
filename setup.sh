@@ -103,7 +103,7 @@ case $os_id in
     error "This script is only for "$os_id" 37 or newer."
   fi
   ;;
-rhel)
+*rhel*)
   if [ "$os_version" -ge "90" ]; then
     pkgm=dnf
     pkgext=rpm
@@ -171,10 +171,6 @@ rhel)
     googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
     ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
   fi
-  ;;
-  *)
-    info $os_id
-    error "Another distro, unable to run the script"
   ;;
 *debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
   pkgm=apt
