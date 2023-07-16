@@ -107,6 +107,14 @@ displayMenu ()
         ;;
     esac
 }
+desktopenvironment ()
+{
+    if [-n $XDG_CURRENT_DESKTOP]; then
+        echo "sup"
+    else
+        echo "nope"
+    fi
+}
 desktopenvironmentMenu ()
 {
   caution "What Desktop Environment you want?\n1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. BUDGIE\n10. SWAY\n11. NONE"
@@ -146,13 +154,13 @@ desktopenvironmentMenu ()
         ;;
     9)
         info "Desktop Environment will be added on Fedora 38"
-        #sudo $pkgm $argInstall $budgiePackages -y && sudo systemctl set-default graphical.target
-        #success "You have BUDGIE installed, moving on"
+        sudo $pkgm $argInstall $budgiePackages -y && sudo systemctl set-default graphical.target
+        success "You have BUDGIE installed, moving on"
         ;;
     10)
         info "Desktop Environment will be added on Fedora 38"
-        #sudo $pkgm $argInstall $swayPackages -y && sudo systemctl set-default graphical.target
-        #success "You have SWAY installed, moving on"
+        sudo $pkgm $argInstall $swayPackages -y && sudo systemctl set-default graphical.target
+        success "You have SWAY installed, moving on"
         ;;
     11)
         caution "No Desktop Environment will be installed"
@@ -290,7 +298,7 @@ techSetup ()
     else
         sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     fi
-    desktopenvironmentMenu
+    desktopenvironment
     #graphicDrivers
     #nvtopInstall
     ;;
@@ -310,7 +318,7 @@ techSetup ()
     error $gnomePackages
     gnomePackages=$(echo "$gnomePackages" | awk '{print $1}')
     error $gnomePackages
-    desktopenvironmentMenu
+    desktopenvironment
     ;;
     *Gentoo*)
     caution "Gentoo"
@@ -332,9 +340,9 @@ techSetup ()
 
 #Declaring Packages
 #Generic GNU/Linux Packages
-essentialPackages="wget nano curl jq mesa-va-drivers mesa-vdpau-drivers wget figlet elinks cmake nasm ncurses-dev* git gcc htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm*sensors rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils xrdp cargo cowsay npm python3-pip *gtkglext* libxdo-*" #gcc-c++ lm_sensors.x86_64
-serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server"
-basicPackages="gedit firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine"
+essentialPackages="wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks cmake nasm ncurses-dev* git gcc ncdu sshpass ftp vsftpd lshw lm*sensors rsync rclone mediainfo bridge-utils cifs-utils cargo npm python3-pip *gtkglext* libxdo-*" #gcc-c++ lm_sensors.x86_64
+serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit"
+basicPackages="gedit yt-dlp firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet"
 gamingPackages="steam goverlay lutris mumble"
 multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* nodejs golang gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
 virtconPackages="podman distrobox"
