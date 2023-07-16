@@ -5,34 +5,18 @@ currentDate=$(date +%Y%M%D)
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 #Defining Global Variables
-RED="\e[31m"
-BLUE="\e[94m"
-GREEN="\e[32m"
-YELLOW="\e[33m"
-ENDCOLOR="\e[0m"
-USERNAME="MiguelCarino"
-REPO="Carino-Systems"
-latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message')
-latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}')
-latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version')
-hardwareAcceleration=$(glxinfo | grep "direct rendering")
-hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}')
-archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
+RED="\e[31m"; BLUE="\e[94m"; GREEN="\e[32m"; YELLOW="\e[33m"; ENDCOLOR="\e[0m";USERNAME="MiguelCarino"; REPO="Carino-Systems"; latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message');latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}');latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version');hardwareAcceleration=$(glxinfo | grep "direct rendering");hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}');archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
 #Declaring Global Functions
-info ()
-{
+info (){
   echo -e "${BLUE}$1${ENDCOLOR}"
 }
-error ()
-{
+error (){
   echo -e "${RED}$1${ENDCOLOR}"
 }
-caution ()
-{
+caution (){
   echo -e "${YELLOW}$1${ENDCOLOR}"
 }
-success ()
-{
+success (){
   echo -e "${GREEN}$1${ENDCOLOR}"
 }
 #Declaring Specific Functions
@@ -60,6 +44,47 @@ if [[ -f /etc/os-release ]]; then
         DISTRIBUTION="Unknown"
         VERSION="Unknown"
     fi
+    case $NAME in
+    *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+    essentialPackages="$essentialPackages $essentialPackagesRPM"
+    amdPackages="$amdPackages $amdPackagesRPM"
+    nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
+    virtconPackage="$virtconPackages $virtconPackagesRPM"
+    desktopOption=2
+    gnomePackages=$(echo "$gnomePackages" | awk '{print $2}')
+    ;;
+    *Red*)
+    caution "RHEL"
+    ;;
+    *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
+    caution "Debian"
+    pkgm=apt
+    pkgext=deb
+    argInstall=install
+    argUpdate=update
+    preFlags="-f"
+    postFlags="-y"
+    sudo $pkgm update -y && sudo $pkgm upgrade -y
+    sudo $pkgm install $essentialPackages $essentialPackagesDebian -y
+    gnomePackages=$(echo "$gnomePackages" | awk '{print $1}')
+    desktopenvironment
+    ;;
+    *Gentoo*)
+    caution "Gentoo"
+    ;;
+    *Slackware*)
+    caution "Slackware"
+    ;;
+    *Arch*)
+    caution "Arch"
+    ;;
+    *Opensuse*)
+    caution "openSUSE"
+    ;;
+    *)
+    echo "2"
+    ;;
+    esac
 }
 displayMenu ()
 {
@@ -112,7 +137,7 @@ desktopenvironment ()
     if [-n $XDG_CURRENT_DESKTOP]; then
         desktopenvironmentMenu
     else
-        graphicDrivers
+        desktopenvironmentMenu
     fi
 }
 desktopenvironmentMenu ()
@@ -121,7 +146,9 @@ desktopenvironmentMenu ()
   read option
   case $option in
     1)
-        sudo $pkgm $argInstall $gnomePackages  && sudo systemctl set-default graphical.target
+        gnomePackages="$(echo "$gnomePackages" | awk '{print $desktopOption}')"
+        error $desktopOption
+        #sudo $pkgm $argInstall $gnomePackages  && sudo systemctl set-default graphical.target
         success "You have GNOME installed, moving on"
         ;;
     2)
@@ -204,7 +231,7 @@ nvtopInstall ()
   which nvtop > /dev/null 2>&1
     if [ $? == 0 ]
     then
-        success ""
+        askReboot
     else
         git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
     fi
@@ -246,12 +273,15 @@ purposeMenu ()
   case $optionmenu in
     1)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     2)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     3)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     4)
         caution $1
@@ -297,21 +327,19 @@ techSetup ()
     argUpdate=update
     preFlags=""
     postFlags="--skip-broken -y"
-    error $gnomePackages
     gnomePackages=$(echo "$gnomePackages" | awk '{print $2}')
-    error $gnomePackages
     if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
-          break
+          exit
       else
           sudo sh -c 'echo fastestmirror=true >> /etc/dnf/dnf.conf'
           sudo sh -c 'echo max_parallel_downloads=10 >> /etc/dnf/dnf.conf'
       fi 
     sudo systemctl disable NetworkManager-wait-online.service
     if [ "$os_id" == "Fedora" ]; then
-        sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y #&& sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+        sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     else
-        sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+        sudo $pkgm update -y && sudo $pkgm install $essentialPackages $essentialPackagesRPM -y
     fi
     desktopenvironment
     #graphicDrivers
@@ -329,10 +357,8 @@ techSetup ()
     preFlags="-f"
     postFlags="-y"
     sudo $pkgm update -y && sudo $pkgm upgrade -y
-    sudo $pkgm install $essentialPackages -y
-    error $gnomePackages
+    sudo $pkgm install $essentialPackages $essentialPackagesDebian -y
     gnomePackages=$(echo "$gnomePackages" | awk '{print $1}')
-    error $gnomePackages
     desktopenvironment
     ;;
     *Gentoo*)
@@ -352,14 +378,54 @@ techSetup ()
     ;;
     esac
 }
-
+installSVP ()
+{
+  pkgs="/home/$(whoami)/SVP\ 4/SVPManager"
+        which $pkgs > /dev/null 2>&1
+        if [ $? == 0 ]
+        then
+          echo "SVP is already installed"
+        else
+            wget https://www.svp-team.com/files/svp4-linux.4.5.210-2.tar.bz2
+            tar -xf svp4-linux.4.5.210-2.tar.bz2
+            sudo chmod +x svp4-linux-64.run
+            sudo -u $(whoami) ./svp4-linux-64.run && rm svp4-latest* svp4-linux-64.run 
+        fi
+}
+finalTweaks ()
+{
+  #Hostname
+  if [[ $(hostname) == $hostnamegiven ]];
+  then
+      echo "Please provide a hostname for the computer"
+      read hostname
+      sudo hostnamectl set-hostname --static $hostname
+  else
+      echo 'hostname was not changed'
+  fi
+  #Desktop Environment tweaks
+  if [ $XDG_SESSION_DESKTOP = "gnome" ] || [ $XDG_SESSION_DESKTOP = "xfce" ]
+  then
+      gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+      gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true  
+      gsettings set org.gnome.desktop.session idle-delay 0
+      xdg-mime default thunar.desktop inode/directory
+  else
+      echo ""
+  fi
+}
+updateSystem ()
+{
+  sudo $pkgm $argUpdate -y
+  success "Your system has been updated"
+}
 #Declaring Packages
 #Generic GNU/Linux Packages
 essentialPackages="wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks cmake nasm ncurses-dev* git gcc ncdu sshpass ftp vsftpd lshw lm*sensors rsync rclone mediainfo bridge-utils cifs-utils cargo npm python3-pip *gtkglext* libxdo-*" #gcc-c++ lm_sensors.x86_64
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit"
-basicPackages="gedit yt-dlp firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet"
+basicPackages="gedit yt-dlp firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet obs-studio"
 gamingPackages="steam goverlay lutris mumble"
-multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* nodejs golang gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
+multimediaPackages="gimp krita blender kdenlive gstreamer* nodejs golang gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
 virtconPackages="podman distrobox"
 supportPackages="stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
 amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
@@ -396,4 +462,3 @@ ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/W
 #CustomPackages
 carinoPackages="lpf-spotify-client"
 identifyDistro
-displayMenu
