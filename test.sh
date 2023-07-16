@@ -46,18 +46,33 @@ if [[ -f /etc/os-release ]]; then
     fi
     case $NAME in
     *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+    pkgm=dnf
+    pkgext=rpm
+    argInstall=install
+    argUpdate=update
+    preFlags=""
+    postFlags="--skip-broken -y"
     essentialPackages="$essentialPackages $essentialPackagesRPM"
     amdPackages="$amdPackages $amdPackagesRPM"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
     virtconPackage="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
-    #gnomePackages=$(echo "$gnomePackages" | awk '{print $2}')
     ;;
     *Red*)
     caution "RHEL"
+    pkgm=dnf
+    pkgext=rpm
+    argInstall=install
+    argUpdate=update
+    preFlags=""
+    postFlags="--skip-broken -y"
+    essentialPackages="$essentialPackages $essentialPackagesRPM"
+    amdPackages="$amdPackages $amdPackagesRPM"
+    nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
+    virtconPackage="$virtconPackages $virtconPackagesRPM"
+    desktopOption=2
     ;;
     *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
-    caution "Debian"
     pkgm=apt
     pkgext=deb
     argInstall=install
@@ -67,7 +82,7 @@ if [[ -f /etc/os-release ]]; then
     sudo $pkgm update -y && sudo $pkgm upgrade -y
     sudo $pkgm install $essentialPackages $essentialPackagesDebian -y
     gnomePackages=$(echo "$gnomePackages" | awk '{print $1}')
-    desktopenvironment
+    desktopOption=1
     ;;
     *Gentoo*)
     caution "Gentoo"
@@ -85,6 +100,7 @@ if [[ -f /etc/os-release ]]; then
     echo "2"
     ;;
     esac
+    displayMenu
 }
 displayMenu ()
 {
@@ -164,7 +180,9 @@ desktopenvironmentMenu ()
         success "You have KDE installed, moving on"
         ;;
     4)
-        sudo $pkgm $argInstall $lxqtPackages -y && sudo systemctl set-default graphical.target
+        lxqtPackages="$(echo "$lxqtPackages" | awk '{print $desktopOption}')"
+        error $lxqtPackages
+        #sudo $pkgm $argInstall $lxqtPackages -y && sudo systemctl set-default graphical.target
         success "You have LXQT installed, moving on"
         ;;
     5)
@@ -325,13 +343,6 @@ techSetup ()
     case $NAME in
     *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
     caution "Fedora"
-    pkgm=dnf
-    pkgext=rpm
-    argInstall=install
-    argUpdate=update
-    preFlags=""
-    postFlags="--skip-broken -y"
-    gnomePackages=$(echo "$gnomePackages" | awk '{print $2}')
     if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
           exit
@@ -343,25 +354,17 @@ techSetup ()
     if [ "$os_id" == "Fedora" ]; then
         sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     else
-        sudo $pkgm update -y && sudo $pkgm install $essentialPackages $essentialPackagesRPM -y
+        sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     fi
     desktopenvironment
-    #graphicDrivers
-    #nvtopInstall
     ;;
     *Red*)
     caution "RHEL"
     ;;
     *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
     caution "Debian"
-    pkgm=apt
-    pkgext=deb
-    argInstall=install
-    argUpdate=update
-    preFlags="-f"
-    postFlags="-y"
     sudo $pkgm update -y && sudo $pkgm upgrade -y
-    sudo $pkgm install $essentialPackages $essentialPackagesDebian -y
+    sudo $pkgm install $essentialPackages -y
     gnomePackages=$(echo "$gnomePackages" | awk '{print $1}')
     desktopenvironment
     ;;
