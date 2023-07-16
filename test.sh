@@ -17,7 +17,7 @@ latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?pe
 latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}')
 latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version')
 hardwareAcceleration=$(glxinfo | grep "direct rendering")
-hardwareRenderer=$(glxinfo | grep "OpenGL renderer")
+hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}')
 archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
 #Declaring Agnostic Functions
 info ()
@@ -85,7 +85,8 @@ displayMenu ()
   info "Latest Linux Kernel Version: $latest_kernel"
   info "Your Kernel Version: $(uname -r)"
   info "CPU Architecture: $archType"
-  info "Hardware acceleration enabled: $hardwareAcceleration"
+  if [$hardwareAcceleration == ""]; then
+    info "Hardware acceleration enabled: $hardwareAcceleration"
   info "Hardware renderer: $hardwareRenderer"
   info "-------------------------------------"
   echo "Please select an option:"
