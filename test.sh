@@ -79,6 +79,10 @@ if [[ -f /etc/os-release ]]; then
     argUpdate=update
     preFlags="-f"
     postFlags="-y"
+    essentialPackages="$essentialPackages $essentialPackagesDebian"
+    amdPackages="$amdPackages $amdPackagesDebian"
+    nvidiaPackages="$nvidiaPackages $nvidiaPackagesDebian"
+    virtconPackage="$virtconPackages $virtconPackagesDebian"
     desktopOption=1
     ;;
     *Gentoo*)
