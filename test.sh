@@ -11,6 +11,11 @@ tech_setup_en_US="-------------------------------------\n $NAME $VERSION_ID Setu
 tech_setup_ja_JP="-------------------------------------\n $NAME $VERSION_ID セットアップ スクリプト\n-------------------------------------\nバージョン: 1.1\nDetected 検出されたディストリビューション： $DISTRIBUTION $VERSION_ID\n最新のGitHubコミット： $latest_commit\n最新のLinuxカーネルバージョン： $latest_kernel\nあなたのカーネルバージョン： $(uname -r)\nCPUアーキテクチャ： $archType\nハードウェアアクセラレーションが有効： $hardwareAcceleration\nハードウェアレンダラー： $hardwareRenderer\n-------------------------------------\nオプションを選択してください：\n1. 技術的なセットアップ\n2. 目的のセットアップ\n3. 3. サーバーセットアップ\n4. 終了"
 tech_setup_ru_RU="-------------------------------------\n $NAME $VERSION_ID Скрипт установки\n-------------------------------------\nВерсия: 1.1\nОбнаруженное распространение: $DISTRIBUTION $VERSION_ID\nПоследний коммит в GitHub: $latest_commit\nПоследняя версия ядра Linux: $latest_kernel\nВаша версия ядра: $(uname -r)\nАрхитектура ЦП: $archType\nАппаратное ускорение отключено: $hardwareAcceleration\nАппаратный рендерер: $hardwareRenderer\n-------------------------------------\nПожалуйста, выберите опцию:\n1. Техническая настройка\n2. 2. Назначение настройки\n3. Настройка сервера\n4. Выход"
 tech_setup_es_ES="-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDistribución Detectada: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nAceleración de Hardware habilitada: $hardwareAcceleration\nRenderizador de Hardware: $hardwareRenderer\n-------------------------------------\nPor favor, seleccione una opción:\n1. Configuración Técnica\n2. Configuración para propósito de uso\n3. Configuración como servidor\n4. Salir"
+purpuse_setup_en_US="\n\n\-------------------------------------nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpuse_setup_en_US="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpuse_setup_ja_JP="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpuse_setup_ru_RU="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpuse_setup_es_ES="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
 
 #Declaring Global Functions
 info (){
@@ -289,23 +294,7 @@ purposeMenu ()
 {
   phase=purpose_setup
   clear
-  success "-------------------------------------"
-  success " $NAME $VERSION_ID Setup Script"
-  success "-------------------------------------"
-  info "Please select a purpose for your distro"
-  info "-------------------------------------"
-  echo " 1. Basic"
-  echo " 2. Gaming"
-  echo " 3. Corporate"
-  echo " 4. Development"
-  echo " 5. Astronomy"
-  echo " 6. Comp-Neuro"
-  echo " 7. Desing"
-  echo " 8. Jam"
-  echo " 9. Security Lab"
-  echo "10. Robotics"
-  echo "11. Scientific"
-  echo "12. Offline"
+  load_dictionary
   read optionmenu
   case $optionmenu in
     1)
