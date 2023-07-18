@@ -150,11 +150,11 @@ displayMenu ()
   read optionmenu
   case $optionmenu in
     1)
-        caution "Tech Setup Runs"
+        clear
+        caution "Tech Setup is starting..."
         techSetup
         ;;
     2)
-        caution "Purpose Setup Runs"
         purposeMenu
         ;;
     3)
@@ -364,10 +364,8 @@ purposeMenu ()
 }
 techSetup ()
 {
-    error $NAME
     case $NAME in
     *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
-    caution "Fedora"
     if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
           echo ""
@@ -386,7 +384,6 @@ techSetup ()
     caution "RHEL"
     ;;
     *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
-    caution "Debian"
     sudo $pkgm update -y && sudo $pkgm upgrade -y
     sudo $pkgm install $essentialPackages -y
     gnomePackages=$(echo "$gnomePackages" | awk '{print $1}')
