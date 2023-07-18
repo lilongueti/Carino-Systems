@@ -375,7 +375,8 @@ techSetup ()
       fi 
     sudo systemctl disable NetworkManager-wait-online.service
     if [ "$os_id" == "Fedora" ]; then
-        sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+        sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages $fedoraPackages -y
+        swapCodecsFedora
     else
         sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     fi
@@ -409,6 +410,15 @@ techSetup ()
     nvtopInstall
     askReboot
     displayMenu
+}
+swapCodecsFedora ()
+{
+    pkg1=$(echo $essentialPackages | awk '{print $5}')
+    pkg2=$(echo $fedoraPackages | awk '{print $1}')
+    sudo $pkgm swap $preFlags $pkg1 $pkg2 $postFlags
+    pkg1=$(echo $essentialPackages | awk '{print $6}')
+    pkg2=$(echo $fedoraPackages | awk '{print $2}')
+    sudo $pkgm swap $preFlags $pkg1 $pkg2 $postFlags
 }
 installSVP ()
 {
@@ -479,7 +489,7 @@ essentialPackagesDebian="software-properties-common build-essential manpages-dev
 virtconPackagesRPM="@virtualization libvirt libvirt-devel virt-install qemu-kvm qemu-img virt-manager"
 virtconPackagesDebian="libvirt-daemon-system libvirt-clients"
 amdPackagesRPM="xorg-x11-drv-amdgpu systemd-devel"
-amdPackagesRPMFusion="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld"
+fedoraPackages="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld dnf-plugins-core"
 amdPackagesDebian="xserver-xorg-video-amdgpu libsystemd-dev"
 nvidiaPackagesRPM="akmod-nvidia"
 nvidiaPackagesDebian="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
