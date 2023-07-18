@@ -116,7 +116,7 @@ load_dictionary() {
         *en_US* | *en* | *en_*)
             echo "BULLSHIT"
             printingDisplay="${phase}_en_US"
-            echo $printingDisplay
+            echo printingDisplay
             ;;
         *es_ES* | *es_ES* | es | es_)
             printingDisplay="${phase}_es_ES"
