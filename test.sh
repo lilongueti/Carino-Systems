@@ -12,7 +12,7 @@ tech_setup_ja_JP="-------------------------------------\n $NAME $VERSION_ID セ�
 tech_setup_ru_RU="-------------------------------------\n $NAME $VERSION_ID Скрипт установки\n-------------------------------------\nВерсия: 1.1\nОбнаруженное распространение: $DISTRIBUTION $VERSION_ID\nПоследний коммит в GitHub: $latest_commit\nПоследняя версия ядра Linux: $latest_kernel\nВаша версия ядра: $(uname -r)\nАрхитектура ЦП: $archType\nАппаратное ускорение отключено: $hardwareAcceleration\nАппаратный рендерер: $hardwareRenderer\n-------------------------------------\nПожалуйста, выберите опцию:\n1. Техническая настройка\n2. 2. Назначение настройки\n3. Настройка сервера\n4. Выход"
 tech_setup_es_ES="-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDistribución Detectada: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nAceleración de Hardware habilitada: $hardwareAcceleration\nRenderizador de Hardware: $hardwareRenderer\n-------------------------------------\nPor favor, seleccione una opción:\n1. Configuración Técnica\n2. Configuración para propósito de uso\n3. Configuración como servidor\n4. Salir"
 purpose_setup_en_US="\n\n\-------------------------------------nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
-purpose_setup_en_US="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic. Most common non-commercial software for basic needs.\n 2. Gaming. Most popular gaming and basic software.\n 3. Corporate. \n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpose_setup_en_US="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic. Most common non-commercial software for basic needs.\n 2. Gaming. Most popular gaming and basic software.\n 3. Corporate. Get Microsoft, Google and Cisco software. \n 4. Development. All your Python, JS, npm, and other stuff for coding.\n 5. Astronomy. Complete open source toolchain to both amateur and professional astronomers.\n 6. Comp-Neuro. A plethora of Free/Open source computational modelling tools for Neuroscience.\n 7. Desing. Visual design, multimedia production, and publishing suite \n 8. Jam. For audio enthusiasts and musicians who want to create, edit and produce audio and music.\n 9. Security Lab. A safe test environment to work on security auditing, forensics, system rescue and teaching security testing methodologies.\n10. Robotics. A wide variety of free and open robotics software packages for beginners and experts in robotics.\n11. Scientific. A bundle of open source scientific and numerical tools used in research.\n12. Offline. A collection of software, models and content for those who expect being offline due to various reasons."
 purpose_setup_ja_JP="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
 purpose_setup_ru_RU="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
 purpose_setup_es_ES="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
@@ -119,7 +119,6 @@ if [[ -f /etc/os-release ]]; then
 load_dictionary() {
     case "$locale_language" in
         *en_US* | *en* | *en_*)
-            echo "BULLSHIT"
             printingDisplay="${phase}_en_US"
             info "${!printingDisplay}"
             ;;
@@ -350,6 +349,9 @@ purposeMenu ()
         ;;
     11)
         caution $1
+        ;;
+    13)
+        displayMenu
         ;;
     0)
         caution $1
