@@ -115,16 +115,20 @@ load_dictionary() {
     case "$localeLanguage" in
         *en_US* | *en* | *en_*)
             echo "BULLSHIT"
-            echo $displayMenu$phase'_en_US'
+            printingDisplay="${displayMenu}${phase}_en_US"
+            echo $printingDisplay
             ;;
         *es_ES* | *es_ES* | es | es_)
-            echo "$displayMenu$phase+'_es_ES'"
+            printingDisplay="${displayMenu}${phase}_es_ES"
+            echo $printingDisplay
             ;;
 	    *ru_RU* | *ru_RU* | ru | ru_)
-            echo "$displayMenu$phase+'_ru_RU'"
+            printingDisplay="${displayMenu}${phase}_ru_RU"
+            echo $printingDisplay
             ;;
 	    *ja_JP* | *ja_JP* | *ja* | *ja_*)
-            echo "$displayMenu$phase+'_ja_JP'"
+            printingDisplay="${displayMenu}${phase}_ja_JP"
+            echo $printingDisplay
             ;;
 	    *)
             echo "Locale not supported. Using default English (en) dictionary."
