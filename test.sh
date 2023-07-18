@@ -12,10 +12,10 @@ tech_setup_ja_JP="-------------------------------------\n $NAME $VERSION_ID セ�
 tech_setup_ru_RU="-------------------------------------\n $NAME $VERSION_ID Скрипт установки\n-------------------------------------\nВерсия: 1.1\nОбнаруженное распространение: $DISTRIBUTION $VERSION_ID\nПоследний коммит в GitHub: $latest_commit\nПоследняя версия ядра Linux: $latest_kernel\nВаша версия ядра: $(uname -r)\nАрхитектура ЦП: $archType\nАппаратное ускорение отключено: $hardwareAcceleration\nАппаратный рендерер: $hardwareRenderer\n-------------------------------------\nПожалуйста, выберите опцию:\n1. Техническая настройка\n2. 2. Назначение настройки\n3. Настройка сервера\n4. Выход"
 tech_setup_es_ES="-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDistribución Detectada: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nAceleración de Hardware habilitada: $hardwareAcceleration\nRenderizador de Hardware: $hardwareRenderer\n-------------------------------------\nPor favor, seleccione una opción:\n1. Configuración Técnica\n2. Configuración para propósito de uso\n3. Configuración como servidor\n4. Salir"
 purpose_setup_en_US="\n\n\-------------------------------------nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
-purpose_setup_en_US="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
-purpose_setup_ja_JP="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
-purpose_setup_ru_RU="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
-purpose_setup_es_ES="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpose_setup_en_US="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpose_setup_ja_JP="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpose_setup_ru_RU="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpose_setup_es_ES="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
 
 #Declaring Global Functions
 info (){
@@ -174,7 +174,7 @@ desktopenvironment ()
     if [-n $XDG_CURRENT_DESKTOP]; then
         desktopenvironmentMenu
     else
-        graphicDrivers
+        success "You have $XDG_CURRENT_DESKTOP installed, moving on"
     fi
 }
 desktopenvironmentMenu ()
@@ -405,8 +405,6 @@ techSetup ()
     echo "2"
     ;;
     esac
-    desktopenvironment
-    purposeMenu
 }
 installSVP ()
 {
@@ -492,3 +490,6 @@ ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/W
 # CustomPackages
 carinoPackages="lpf-spotify-client"
 identifyDistro
+desktopenvironment
+graphicDrivers
+purposeMenu
