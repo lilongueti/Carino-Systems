@@ -405,6 +405,8 @@ techSetup ()
     echo "2"
     ;;
     esac
+    desktopenvironment
+    graphicDrivers
 }
 installSVP ()
 {
@@ -490,6 +492,3 @@ ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/W
 # CustomPackages
 carinoPackages="lpf-spotify-client"
 identifyDistro
-desktopenvironment
-graphicDrivers
-purposeMenu
