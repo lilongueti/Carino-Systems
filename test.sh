@@ -463,11 +463,12 @@ updateSystem ()
 }
 # Declaring Packages
 # Generic GNU/Linux Packages
-essentialPackages="wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks cmake nasm ncurses-dev* git gcc ncdu sshpass ftp vsftpd lshw lm*sensors rsync rclone mediainfo bridge-utils cifs-utils cargo npm python3-pip *gtkglext* libxdo-*" #gcc-c++ lm_sensors.x86_64
-serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit"
-basicPackages="gedit yt-dlp firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet obs-studio"
+essentialPackages="wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo bridge-utils cifs-utils" #gcc-c++ lm_sensors.x86_64
+serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
+basicPackages="gedit yt-dlp firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet obs-studio *gtkglext* libxdo-* ncdu"
 gamingPackages="steam goverlay lutris mumble"
 multimediaPackages="gimp krita blender kdenlive gstreamer* nodejs golang gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
+developmentPackages="git gcc cargo npm python3-pip cmake"
 virtconPackages="podman distrobox"
 supportPackages="stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
 amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
