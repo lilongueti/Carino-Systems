@@ -116,24 +116,24 @@ load_dictionary() {
         *en_US* | *en* | *en_*)
             echo "BULLSHIT"
             printingDisplay="${phase}_en_US"
-            echo -e "${!printingDisplay}"
+            info "${!printingDisplay}"
             ;;
         *es_ES* | *es_ES* | es | es_)
             printingDisplay="${phase}_es_ES"
-            echo -e "${!printingDisplay}"
+            info "${!printingDisplay}"
             ;;
 	    *ru_RU* | *ru_RU* | ru | ru_)
             printingDisplay="${phase}_ru_RU"
-            echo -e "${!printingDisplay}"
+            info "${!printingDisplay}"
             ;;
 	    *ja_JP* | *ja_JP* | *ja* | *ja_*)
             printingDisplay="${phase}_ja_JP"
-            echo -e "${!printingDisplay}"
+            info "${!printingDisplay}"
             ;;
 	    *)
-            echo "Locale not supported. Using default English (en) dictionary."
+            error "Locale not supported. Using default English (en) dictionary."
             printingDisplay="${phase}_en_US"
-            echo -e "${!printingDisplay}"
+            info "${!printingDisplay}"
             ;;
     esac
 }
