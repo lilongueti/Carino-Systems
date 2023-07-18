@@ -1,11 +1,18 @@
 #!/bin/bash
-#Setup script
+# Setup script
 # Log all output to file
 currentDate=$(date +%Y%M%D)
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
-#Defining Global Variables
-RED="\e[31m"; BLUE="\e[94m"; GREEN="\e[32m"; YELLOW="\e[33m"; ENDCOLOR="\e[0m";USERNAME="MiguelCarino"; REPO="Carino-Systems"; latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message');latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}');latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version');hardwareAcceleration=$(glxinfo | grep "direct rendering");hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}');archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
+# Defining Global Variables
+RED="\e[31m"; BLUE="\e[94m"; GREEN="\e[32m"; YELLOW="\e[33m"; ENDCOLOR="\e[0m";USERNAME="MiguelCarino"; REPO="Carino-Systems"; latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message');latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}');latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version');hardwareAcceleration=$(glxinfo | grep "direct rendering");hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}');archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}'); localeLanguage=$(locale | grep "LANG=" | cut -d'=' -f2)
+
+# English messages
+messages["en"]="Hello! Welcome to the script."
+
+# Spanish messages
+messages["es"]="¡Hola! Bienvenido al script."
+
 #Declaring Global Functions
 info (){
   echo -e "${BLUE}$1${ENDCOLOR}"
@@ -19,7 +26,7 @@ caution (){
 success (){
   echo -e "${GREEN}$1${ENDCOLOR}"
 }
-#Declaring Specific Functions
+# Declaring Specific Functions
 identifyDistro ()
 {
 if [[ -f /etc/os-release ]]; then
@@ -108,28 +115,8 @@ if [[ -f /etc/os-release ]]; then
 displayMenu ()
 {
   clear
-  success "-------------------------------------"
-  success " $NAME $VERSION_ID Setup Script"
-  success "-------------------------------------"
-  echo "Version: 1.1"
-  info "Detected Distribution: $DISTRIBUTION $VERSION_ID"
-  info "Latest GitHub Commit: $latest_commit"
-  info "Latest Linux Kernel Version: $latest_kernel"
-  info "Your Kernel Version: $(uname -r)"
-  info "CPU Architecture: $archType"
-  if [[ $hardwareAcceleration == "No" ]]; then
-    error "Hardware acceleration enabled: $hardwareAcceleration"
-    error "Hardware renderer: $hardwareRenderer"
-    else
-    info "Hardware acceleration enabled: $hardwareAcceleration"
-    info "Hardware renderer: $hardwareRenderer"
-  fi
-  info "-------------------------------------"
-  echo "Please select an option:"
-  echo "1. Technical Setup"
-  echo "2. Purpose Setup"
-  echo "3. Server Setup"
-  echo "4. Exit"
+  success "-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDetected Distribution: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType";if [[ $hardwareAcceleration == "No" ]]; then error "Hardware acceleration enabled: $hardwareAcceleration"; error "Hardware renderer: $hardwareRenderer"; else info "Hardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer"; fi;info "-------------------------------------\nPlease select an option:\n1. Technical Setup\n2. Purpose Setup\n3. Server Setup\n4. Exit"
+
   read optionmenu
   case $optionmenu in
     1)
@@ -448,8 +435,8 @@ updateSystem ()
   sudo $pkgm $argUpdate -y
   success "Your system has been updated"
 }
-#Declaring Packages
-#Generic GNU/Linux Packages
+# Declaring Packages
+# Generic GNU/Linux Packages
 essentialPackages="wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks cmake nasm ncurses-dev* git gcc ncdu sshpass ftp vsftpd lshw lm*sensors rsync rclone mediainfo bridge-utils cifs-utils cargo npm python3-pip *gtkglext* libxdo-*" #gcc-c++ lm_sensors.x86_64
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit"
 basicPackages="gedit yt-dlp firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet obs-studio"
@@ -469,7 +456,7 @@ i3Packages="i3 @i3-desktop-environment"
 openboxPackages="openbox @basic-desktop-environment"
 budgiePackages="budgie-desktop budgie-desktop"
 swayPackages="sway sway"
-#Specific GNU/Linux Packages
+# Specific GNU/Linux Packages
 intelPackages="intel-media-*driver"
 essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
 essentialPackagesDebian="software-properties-common build-essential manpages-dev linux-headers-amd64 linux-image-amd64 net-tools x11-utils tigervnc-standalone-server tigervnc-common tightvncserver isc-dhcp-server" #libncurses5-dev libncursesw5-dev libgtkglext1
@@ -481,13 +468,13 @@ nvidiaPackagesRPM="akmod-nvidia"
 nvidiaPackagesDebian="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
 nvidiaPackagesUbuntu="nvidia-driver-535"
 nvidiaPackagesArch="nvidia-open"
-#Corporate Packages
+# Corporate Packages
 anydesk="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb"
 rustdesk="https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9.deb"
 microsoftPackages="microsoft-edge-stable code powershell"
 zoom="https://zoom.us/client/latest/zoom_x86_64.rpm"
 googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
 ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
-#CustomPackages
+# CustomPackages
 carinoPackages="lpf-spotify-client"
 identifyDistro
