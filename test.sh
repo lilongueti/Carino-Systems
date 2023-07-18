@@ -115,7 +115,7 @@ if [[ -f /etc/os-release ]]; then
 displayMenu ()
 {
   clear
-  success "-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDetected Distribution: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType";if [[ $hardwareAcceleration == "No" ]]; then error "Hardware acceleration enabled: $hardwareAcceleration"; error "Hardware renderer: $hardwareRenderer"; else info "Hardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer"; fi;info "-------------------------------------\nPlease select an option:\n1. Technical Setup\n2. Purpose Setup\n3. Server Setup\n4. Exit"
+  success "-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDetected Distribution: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\n-------------------------------------\nPlease select an option:\n1. Technical Setup\n2. Purpose Setup\n3. Server Setup\n4. Exit"
 
   read optionmenu
   case $optionmenu in
