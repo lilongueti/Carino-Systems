@@ -5,12 +5,12 @@ currentDate=$(date +%Y%M%D)
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 # Defining Global Variables
-RED="\e[31m"; BLUE="\e[94m"; GREEN="\e[32m"; YELLOW="\e[33m"; ENDCOLOR="\e[0m";USERNAME="MiguelCarino"; REPO="Carino-Systems"; latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message');latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}');latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version');hardwareAcceleration=$(glxinfo | grep "direct rendering");hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}');archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}'); localeLanguage=$(locale | grep "LANG=" | cut -d'=' -f2)
+RED="\e[31m"; BLUE="\e[94m"; GREEN="\e[32m"; YELLOW="\e[33m"; ENDCOLOR="\e[0m";USERNAME="MiguelCarino"; REPO="Carino-Systems"; latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message');latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}');latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version');hardwareAcceleration=$(glxinfo | grep "direct rendering");hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}');archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}'); locale_language=$(locale | grep "LANG=" | cut -d'=' -f2)
 # Localized Display Menus
-displayMenu1_en_US="-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDetected Distribution: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\n-------------------------------------\nPlease select an option:\n1. Technical Setup\n2. Purpose Setup\n3. Server Setup\n4. Exit"
-displayMenu1_en_US="-------------------------------------\n $NAME $VERSION_ID セットアップ スクリプト\n-------------------------------------\nバージョン: 1.1\nDetected 検出されたディストリビューション： $DISTRIBUTION $VERSION_ID\n最新のGitHubコミット： $latest_commit\n最新のLinuxカーネルバージョン： $latest_kernel\nあなたのカーネルバージョン： $(uname -r)\nCPUアーキテクチャ： $archType\nハードウェアアクセラレーションが有効： $hardwareAcceleration\nハードウェアレンダラー： $hardwareRenderer\n-------------------------------------\nオプションを選択してください：\n1. 技術的なセットアップ\n2. 目的のセットアップ\n3. 3. サーバーセットアップ\n4. 終了"
-displayMenu1_ru_RU="-------------------------------------\n $NAME $VERSION_ID Скрипт установки\n-------------------------------------\nВерсия: 1.1\nОбнаруженное распространение: $DISTRIBUTION $VERSION_ID\nПоследний коммит в GitHub: $latest_commit\nПоследняя версия ядра Linux: $latest_kernel\nВаша версия ядра: $(uname -r)\nАрхитектура ЦП: $archType\nАппаратное ускорение отключено: $hardwareAcceleration\nАппаратный рендерер: $hardwareRenderer\n-------------------------------------\nПожалуйста, выберите опцию:\n1. Техническая настройка\n2. 2. Назначение настройки\n3. Настройка сервера\n4. Выход"
-displayMenu1_es_ES="-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDistribución Detectada: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nAceleración de Hardware habilitada: $hardwareAcceleration\nRenderizador de Hardware: $hardwareRenderer\n-------------------------------------\nPor favor, seleccione una opción:\n1. Configuración Técnica\n2. Configuración para propósito de uso\n3. Configuración como servidor\n4. Salir"
+tech_setup_en_US="-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDetected Distribution: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\n-------------------------------------\nPlease select an option:\n1. Technical Setup\n2. Purpose Setup\n3. Server Setup\n4. Exit"
+tech_setup_en_US="-------------------------------------\n $NAME $VERSION_ID セットアップ スクリプト\n-------------------------------------\nバージョン: 1.1\nDetected 検出されたディストリビューション： $DISTRIBUTION $VERSION_ID\n最新のGitHubコミット： $latest_commit\n最新のLinuxカーネルバージョン： $latest_kernel\nあなたのカーネルバージョン： $(uname -r)\nCPUアーキテクチャ： $archType\nハードウェアアクセラレーションが有効： $hardwareAcceleration\nハードウェアレンダラー： $hardwareRenderer\n-------------------------------------\nオプションを選択してください：\n1. 技術的なセットアップ\n2. 目的のセットアップ\n3. 3. サーバーセットアップ\n4. 終了"
+tech_setup_ru_RU="-------------------------------------\n $NAME $VERSION_ID Скрипт установки\n-------------------------------------\nВерсия: 1.1\nОбнаруженное распространение: $DISTRIBUTION $VERSION_ID\nПоследний коммит в GitHub: $latest_commit\nПоследняя версия ядра Linux: $latest_kernel\nВаша версия ядра: $(uname -r)\nАрхитектура ЦП: $archType\nАппаратное ускорение отключено: $hardwareAcceleration\nАппаратный рендерер: $hardwareRenderer\n-------------------------------------\nПожалуйста, выберите опцию:\n1. Техническая настройка\n2. 2. Назначение настройки\n3. Настройка сервера\n4. Выход"
+tech_setup_es_ES="-------------------------------------\n $NAME $VERSION_ID Setup Script\n-------------------------------------\nVersion: 1.1\nDistribución Detectada: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nAceleración de Hardware habilitada: $hardwareAcceleration\nRenderizador de Hardware: $hardwareRenderer\n-------------------------------------\nPor favor, seleccione una opción:\n1. Configuración Técnica\n2. Configuración para propósito de uso\n3. Configuración como servidor\n4. Salir"
 
 #Declaring Global Functions
 info (){
@@ -112,22 +112,22 @@ if [[ -f /etc/os-release ]]; then
     displayMenu
 }
 load_dictionary() {
-    case "$localeLanguage" in
+    case "$locale_language" in
         *en_US* | *en* | *en_*)
             echo "BULLSHIT"
-            printingDisplay="${displayMenu}${phase}_en_US"
+            printingDisplay="${phase}_en_US"
             echo $printingDisplay
             ;;
         *es_ES* | *es_ES* | es | es_)
-            printingDisplay="${displayMenu}${phase}_es_ES"
+            printingDisplay="${phase}_es_ES"
             echo $printingDisplay
             ;;
 	    *ru_RU* | *ru_RU* | ru | ru_)
-            printingDisplay="${displayMenu}${phase}_ru_RU"
+            printingDisplay="${phase}_ru_RU"
             echo $printingDisplay
             ;;
 	    *ja_JP* | *ja_JP* | *ja* | *ja_*)
-            printingDisplay="${displayMenu}${phase}_ja_JP"
+            printingDisplay="${phase}_ja_JP"
             echo $printingDisplay
             ;;
 	    *)
@@ -140,7 +140,7 @@ load_dictionary() {
 displayMenu ()
 {
   clear
-  phase=1
+  phase=tech_setup
   load_dictionary
   read optionmenu
   case $optionmenu in
@@ -286,6 +286,7 @@ askReboot ()
 }
 purposeMenu ()
 {
+  phase=purpose_setup
   clear
   success "-------------------------------------"
   success " $NAME $VERSION_ID Setup Script"
