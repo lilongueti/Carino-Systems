@@ -115,7 +115,7 @@ load_dictionary() {
     case "$localeLanguage" in
         *en_US* | *en* | *en_*)
             echo "BULLSHIT"
-            #echo "$displayMenu$phase+'_en_US'"
+            echo "$displayMenu$phase+'_en_US'"
             ;;
         *es_ES* | *es_ES* | es | es_)
             echo "$displayMenu$phase+'_en_US'"
