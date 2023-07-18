@@ -408,6 +408,7 @@ techSetup ()
     graphicDrivers
     nvtopInstall
     askReboot
+    displayMenu
 }
 installSVP ()
 {
