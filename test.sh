@@ -479,6 +479,7 @@ essentialPackagesDebian="software-properties-common build-essential manpages-dev
 virtconPackagesRPM="@virtualization libvirt libvirt-devel virt-install qemu-kvm qemu-img virt-manager"
 virtconPackagesDebian="libvirt-daemon-system libvirt-clients"
 amdPackagesRPM="xorg-x11-drv-amdgpu systemd-devel"
+amdPackagesRPMFusion="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld"
 amdPackagesDebian="xserver-xorg-video-amdgpu libsystemd-dev"
 nvidiaPackagesRPM="akmod-nvidia"
 nvidiaPackagesDebian="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
