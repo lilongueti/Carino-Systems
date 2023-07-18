@@ -360,6 +360,7 @@ purposeMenu ()
         # Code to execute when $variable doesn't match any of the specified values
         ;;
     esac
+    displayMenu
 }
 techSetup ()
 {
