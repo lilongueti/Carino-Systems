@@ -524,7 +524,9 @@ kill_processes_by_port() {
 kill_processes_by_port "$port1"
 kill_processes_by_port "$port2"" > bin/MataProcesoPuerto.sh
 
-curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/MainSFTP.sh > bin/MainSFTP.sh
+#curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/MainSFTP.sh > bin/MainSFTP.sh
+curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/EnvioCDRmonitoreo.pl > EnvioCDRmonitoreo.pl
+curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/EnvioCDRprocesado.pl > bin/EnvioCDRprocesado.pl
 
 info "TESTING DONE"
 chmod +x bin/*
