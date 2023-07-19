@@ -365,8 +365,9 @@ purposeMenu ()
 }
 serverSetup ()
 {
-    sudo $pkgm update -y && sudo $pkgm upgrade -y
-    sudo $pkgm $argInstall $preFlags $essentialPackages $basicPackages $serverPackages $supportPackages $developmentPackages $postFlags
+    mkdir -p Sitios/Benavides/gz Sitios/Benavides/gzraw Sitios/Benavides/rawdata bin/
+    #sudo $pkgm update -y && sudo $pkgm upgrade -y
+    #sudo $pkgm $argInstall $preFlags $essentialPackages $basicPackages $serverPackages $supportPackages $developmentPackages $postFlags
 }
 techSetup ()
 {
