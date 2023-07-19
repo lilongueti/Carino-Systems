@@ -521,7 +521,7 @@ kill_processes_by_port() {
 # Kill processes using the specified ports
 kill_processes_by_port "$port1"
 kill_processes_by_port "$port2"" > bin/MataProcesoPuerto.sh
-echo "#!/bin/bash
+echo -e "#!/bin/bash
 
 # SFTP connection details
 HOST="148.243.159.248"
