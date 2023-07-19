@@ -1,0 +1,138 @@
+set first_time 1
+set timeout 10000
+
+if $argc>0 {
+        ######################
+        # Save the arguments #
+        ######################
+        set hostname [lindex $argv 0]
+        set lusername [lindex $argv 1]
+        set rusername [lindex $argv 2]
+        set password [lindex $argv 3]
+        set ofilename [lindex $argv 4]
+        set path [lindex $argv 5]
+        set rfilename [lindex $argv 6]
+        set rpath [lindex $argv 7]
+
+        ########################
+        # Define the filenames #
+        ########################
+        set hh [exec date +%H]
+        set mm [exec date +%M]
+        set ss [exec date +%S]
+        set log /home/sittel/logs/ftp
+        set filename $ofilename
+        set failfile $log/$filename.fail
+        set logfile  $log/$filename.log
+        set donefile $log/$filename.done
+
+        ###############################
+        # Rename the original file    #
+        ###############################
+
+#        exec mv $path/$ofilename $path/$filename
+
+        ########################
+        # Create a session log #
+        ########################
+        log_file -a $logfile
+
+        ###################
+        # Turn off stdout #
+        ###################
+        log_user 0
+
+        ############################
+        # Send a message to syslog #
+        ############################
+        spawn logger "sndFtp - sending $filename\n"
+
+        ###############################
+        # Start session with ftp host #
+        ###############################
+        spawn ftp $hostname
+
+        ################################
+        # Supply the username/password #
+        ################################
+        set timeout 30
+        expect "Name ($hostname:*):" {
+        } timeout {
+          expect "ftp>"
+          send "!logger sndFtp: Timeout during connect to remote host\n"
+          expect "ftp>"
+          send "!touch $failfile\n"
+          expect "ftp>"
+          send "quit\r"
+          exit
+        }
+        send "$rusername\r"
+        expect "Password:" {
+        } timeout {
+          expect "ftp>"
+          send "!logger sndFtp: Timeout during login to remote host\n"
+          expect "ftp>"
+          send "!touch $failfile\n"
+          expect "ftp>"
+          send "quit\r"
+          exit
+        }
+        send $password
+        send "\r"
+        expect "530*" {
+          expect "ftp>"
+          send "!logger sndFtp: Failed to login for $rusername\n"
+          expect "ftp>"
+          send "!touch $failfile\n"
+          expect "ftp>"
+          send "quit\r"
+          exit
+        } timeout {
+          expect "ftp>"
+          send "!logger sndFtp: Timeout during login to remote host\n"
+          expect "ftp>"
+          send "!touch $failfile\n"
+          expect "ftp>"
+          send "quit\r"
+          exit
+        } -re "230.*ftp>.*"
+
+        #################
+        # Send the file #
+        #################
+        set timeout 10000
+        send "lcd $path\r"
+        expect "ftp>"
+#       send "site pri=5 sec=5 cy\r"
+#       expect "200*ftp*>"
+#        send "site rec=f lr=2083 blocksi=2083\r"
+#        expect "200*ftp>*"
+        send "binary\r"
+        expect "ftp>"
+        send "cd $rpath\r"
+        expect "ftp>"
+        send "put $filename \"$rfilename\"\r"
+        expect "ftp>*" {
+            send "!touch $donefile\n"
+            expect "*ftp>*"
+            send "!logger sndFtp: Finished sending $filename\n"
+            expect "ftp>"
+            send "quit\r"
+            expect "221 *"
+            exit
+        } timeout {
+          send "!logger sndFtp: Timeout during sending of $filename\n"
+          expect "ftp>"
+          send "quit\r"
+          exit
+        } -re "ftp>"
+        send "!logger sndFtp: Failed to send file $filename\n"
+        expect "ftp>"
+        send "!touch $failfile\n"
+        expect "ftp>"
+        send "quit\r"
+        exit
+}
+log_user 0
+spawn logger "sndFtp - No arguments\n"
+expect eof
