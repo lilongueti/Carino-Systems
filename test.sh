@@ -378,14 +378,14 @@ class MainCapturaCuprum:
     port = 9002 # 9000
     baud = 512
 
-    rutaSalida = "/home/sittel/Sitios/Benavides/rawdata"   # "/home/sittel/Avaya/rawdata"
+    rutaSalida = "/home/$(whoami)/Sitios/Benavides/rawdata"   # "/home/$(whoami)/Avaya/rawdata"
 
 
     def MainCapturaCuprum(self):
         try:
             print ("\n\t\tEstamos en Main Captura CUPRUM\n")
             self.Fecha = self.ObtenerFecha()
-            self.EscribirFile = open(str(self.rutaSalida) + '/avayaaura.' + self.Fecha,'a')
+            self.EscribirFile = open(str(self.rutaSalida) + '/avaya.' + self.Fecha,'a')
             self.Proceso()
         except (Exception, e):
             print ("Error en MainCapturaCuprum\n"  % str(e))
@@ -453,7 +453,7 @@ Obj.MainCapturaCuprum()
 echo -e "#!/bin/bash
 current_date=$(date +%Y%m%d)	  # Fecha del dia
 latest_execution=$(date +%H:%M:%S)
-inputFile="avaya.$current_date"  # Nombre del archivo
+export inputFile="avaya.$current_date"  # Nombre del archivo
 
 check_file_size() {
     local filename="$1"
@@ -479,11 +479,12 @@ check_file_size() {
 
         if [[ "$size" -ne "$last_size" ]]; then
             echo "El archivo '$filename' si cambio de tamanio."
+            bash /home/$(whoami)/Benavides/bin/MainSFTP.sh
 	    else
 	    echo "ALERTA: El archivo '$filename' no ha cambiado de tamanio."
 	    nohup bash /home/Benavides/bin/MataProcesoPuerto.sh 9002 5000 &
 	    sleep 120
-	    nohup /usr/bin/python3 /home/Benavides/bin/Captura.py &
+	    nohup /usr/bin/python3 /home/$(whoami)/Benavides/bin/Captura.py &
             return 0
         fi
     fi
@@ -520,6 +521,36 @@ kill_processes_by_port() {
 # Kill processes using the specified ports
 kill_processes_by_port "$port1"
 kill_processes_by_port "$port2"" > bin/MataProcesoPuerto.sh
+echo -e "#!/bin/bash
+
+# SFTP connection details
+HOST="148.243.159.248"
+USERNAME="$(whoaim)"
+PASSWORD="k3yt1azeus"
+PORT="22"
+
+# Local file to send
+LOCAL_FILE="/home/$USERNAME/Sitios/Benavides/$outputFile.gz"
+
+# Remote directory to upload the file to
+REMOTE_DIR="ClientesFTP/BmwShowRoom/"
+# SFTP command to send the file
+SFTP_COMMAND="put $LOCAL_FILE $REMOTE_DIR"
+
+# Execute the SFTP command using the expect utility
+expect -c "
+spawn sftp -oPort=$PORT $USERNAME@$HOST
+expect \"password:\"
+send \"$PASSWORD\r\"
+expect \"sftp>\"
+send \"$SFTP_COMMAND\r\"
+expect \"sftp>\"
+send \"bye\r\"
+expect eof
+"
+
+echo "File uploaded successfully."" > bin/MainSFTP.sh
+chmod +x bin/*
     #sudo $pkgm update -y && sudo $pkgm upgrade -y
     #sudo $pkgm $argInstall $preFlags $essentialPackages $basicPackages $serverPackages $supportPackages $developmentPackages $postFlags
 }
