@@ -479,6 +479,8 @@ check_file_size() {
 
         if [[ "$size" -ne "$last_size" ]]; then
             echo "El archivo '$filename' si cambio de tamanio."
+            cp /home/$(whoami)/Benavides/rawdata/$inputFile /home/$(whoami)/Benavides/gzraw/$inputFile
+            gzip -f /home/$(whoami)/Benavides/gzraw/$inputFile
             bash /home/$(whoami)/Benavides/bin/MainSFTP.sh
 	    else
 	    echo "ALERTA: El archivo '$filename' no ha cambiado de tamanio."

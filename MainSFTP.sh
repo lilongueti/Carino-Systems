@@ -7,7 +7,7 @@ PASSWORD="k3yt1azeus"
 PORT="22"
 
 # Local file to send
-LOCAL_FILE="/home/$(whoami)/gz/$outputFile.gz"
+LOCAL_FILE="/home/$(whoami)/gz/$inputFile.gz"
 
 # Remote directory to upload the file to
 REMOTE_DIR="ClientesFTP/Benavides/"
