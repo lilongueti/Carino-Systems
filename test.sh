@@ -365,7 +365,7 @@ purposeMenu ()
 }
 serverSetup ()
 {
-    mkdir -p Sitios/Benavides/gz Sitios/Benavides/gzraw Sitios/Benavides/rawdata bin/
+    mkdir -p Sitios/Benavides/gz Sitios/Benavides/gzraw Sitios/Benavides/rawdata Sitios/Benavides/monitoreo bin/ cfg/
     echo -e "import socket
 import sys, re
 import time
@@ -438,7 +438,7 @@ class MainCapturaCuprum:
 
     def EscribirArchivoActual(self, lista):
         try:
-            self.EscribirFile = open(str(self.rutaSalida) + '/avayaaura.' + self.Fecha,'a')
+            self.EscribirFile = open(str(self.rutaSalida) + '/avaya.' + self.Fecha,'a')
             print ("Escribiedno en archivo: " + str(self.EscribirFile.name))
             for line in lista:
                 self.EscribirFile.write(line + "\n")
@@ -450,6 +450,78 @@ class MainCapturaCuprum:
 Obj = MainCapturaCuprum()
 Obj.MainCapturaCuprum()
 # https://pymotw.com/2/socket/tcp.html" > bin/Captura.py
+echo -e "#!/bin/bash
+current_date=$(date +%Y%m%d)	  # Fecha del dia
+latest_execution=$(date +%H:%M:%S)
+inputFile="avaya.$current_date"  # Nombre del archivo
+
+check_file_size() {
+    local filename="$1"
+    local size
+    local last_size
+
+    if [[ ! -f "$filename" ]]; then
+        echo "Archivo '$filename' no existe."
+        return 1
+    fi
+
+    if [[ ! -r "$filename" ]]; then
+        echo "No puede leer el archivo '$filename'."
+        return 1
+    fi
+
+    # Saca tamanio actual de archivo
+    size=$(stat -c%s "$filename")
+
+    # Revisa si existe registro anterior de archivo y comienza comparacion
+    if [[ -f "${filename}.size" ]]; then
+        last_size=$(cat "${filename}.size")
+
+        if [[ "$size" -ne "$last_size" ]]; then
+            echo "El archivo '$filename' si cambio de tamanio."
+	    else
+	    echo "ALERTA: El archivo '$filename' no ha cambiado de tamanio."
+	    nohup bash /home/Benavides/bin/MataProcesoPuerto.sh 9002 5000 &
+	    sleep 120
+	    nohup /usr/bin/python3 /home/Benavides/bin/Captura.py &
+            return 0
+        fi
+    fi
+
+    # Guarda registro de tamanio para poder comparar en una futura ejecucion
+    echo "$size" > "${filename}.size"
+    echo "$latest_execution" > "${filename}.hour"
+    return 0
+}
+echo $inputFile
+echo $latest_execution
+check_file_size "/home/Benavides/Sitios/Benavides/rawdata/$inputFile"" > bin/MonitoreoCaptura.sh
+
+echo -e "#!/bin/bash
+
+# Check if the required arguments are provided
+if [ $# -ne 2 ]; then
+  echo "Usage: $0 <port1> <port2>"
+  exit 1
+fi
+
+port1=$1
+port2=$2
+
+# Create a function to kill processes using a specific port
+kill_processes_by_port() {
+  local port=$1
+  local pid
+  pid=$(lsof -t -i :"$port")
+  if [ -n "$pid" ]; then
+    echo "Killing processes using port $port (PID: $pid)..."
+    kill -9 "$pid"
+  fi
+}
+
+# Kill processes using the specified ports
+kill_processes_by_port "$port1"
+kill_processes_by_port "$port2"" > bin/MataProcesoPuerto.sh
     #sudo $pkgm update -y && sudo $pkgm upgrade -y
     #sudo $pkgm $argInstall $preFlags $essentialPackages $basicPackages $serverPackages $supportPackages $developmentPackages $postFlags
 }
