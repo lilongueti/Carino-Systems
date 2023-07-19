@@ -522,9 +522,9 @@ kill_processes_by_port() {
 kill_processes_by_port "$port1"
 kill_processes_by_port "$port2"" > bin/MataProcesoPuerto.sh
 
-curl -s MainSFTP.sh > bin/MainSFTP.sh
+curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/MainSFTP.sh > bin/MainSFTP.sh
 
-caution "TESTING DONE"
+info "TESTING DONE"
 chmod +x bin/*
     #sudo $pkgm update -y && sudo $pkgm upgrade -y
     #sudo $pkgm $argInstall $preFlags $essentialPackages $basicPackages $serverPackages $supportPackages $developmentPackages $postFlags
