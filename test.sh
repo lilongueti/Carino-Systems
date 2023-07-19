@@ -533,7 +533,7 @@ PORT="22"
 LOCAL_FILE="/home/$(whoami)/gz/$outputFile.gz"
 
 # Remote directory to upload the file to
-REMOTE_DIR="ClientesFTP/BmwShowRoom/"
+REMOTE_DIR="ClientesFTP/Benavides/"
 # SFTP command to send the file
 SFTP_COMMAND="put $LOCAL_FILE $REMOTE_DIR"
 
