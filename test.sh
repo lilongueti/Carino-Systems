@@ -546,8 +546,7 @@ expect \"sftp>\"
 send \"$SFTP_COMMAND\r\"
 expect \"sftp>\"
 send \"bye\r\"
-expect eof
-"" > bin/MainSFTP.sh
+expect eof "" > bin/MainSFTP.sh
 chmod +x bin/*
     #sudo $pkgm update -y && sudo $pkgm upgrade -y
     #sudo $pkgm $argInstall $preFlags $essentialPackages $basicPackages $serverPackages $supportPackages $developmentPackages $postFlags
