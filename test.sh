@@ -525,12 +525,12 @@ echo -e "#!/bin/bash
 
 # SFTP connection details
 HOST="148.243.159.248"
-USERNAME="sittel"
+USERNAME="$(whoami)"
 PASSWORD="k3yt1azeus"
 PORT="22"
 
 # Local file to send
-LOCAL_FILE="/home/sittel/gz/$outputFile.gz"
+LOCAL_FILE="/home/$(whoami)/gz/$outputFile.gz"
 
 # Remote directory to upload the file to
 REMOTE_DIR="ClientesFTP/BmwShowRoom/"
