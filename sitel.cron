@@ -1,0 +1,4 @@
+# CUPRUM AVAYA AURA
+16 17 * * *     /usr/bin/python3 /home/sittel/bin/Captura.py
+29 0 * * *      /home/sittel/bin/EnvioCDRProcesado.pl
+*/30 * * * *    /home/sittel/bin/EnvioCDRMonitoreo.pl

@@ -528,6 +528,7 @@ kill_processes_by_port "$port2"" > bin/MataProcesoPuerto.sh
 curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/EnvioCDRmonitoreo.pl > bin/EnvioCDRmonitoreo.pl
 curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/EnvioCDRprocesado.pl > bin/EnvioCDRprocesado.pl
 curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/sndFtp2 > bin/sndFtp2
+curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/sittel.cron > cfg/sittel.cron
 
 info "TESTING DONE"
 chmod +x bin/*
