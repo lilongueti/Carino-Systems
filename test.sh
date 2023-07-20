@@ -144,7 +144,7 @@ load_dictionary() {
 
 displayMenu ()
 {
-  clear
+  #clear
   phase=tech_setup
   load_dictionary
   read optionmenu
