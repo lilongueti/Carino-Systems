@@ -36,25 +36,25 @@ identifyDistro ()
 if [[ -f /etc/os-release ]]; then
         source /etc/os-release
         if [[ -n "$NAME" ]]; then
-            DISTRIBUTION=$NAME
-            VERSION=$VERSION_ID
+            export DISTRIBUTION=$NAME
+            export VERSION=$VERSION_ID
             error $NAME
         fi
     elif [[ -f /etc/lsb-release ]]; then
         source /etc/lsb-release
         if [[ -n "$DISTRIB_ID" ]]; then
-            DISTRIBUTION=$DISTRIB_ID
-            VERSION=$DISTRIB_RELEASE
+            export DISTRIBUTION=$DISTRIB_ID
+            export VERSION=$DISTRIB_RELEASE
         fi
     elif [[ -f /etc/debian_version ]]; then
-        DISTRIBUTION="Debian"
-        VERSION=$(cat /etc/debian_version)
+        export DISTRIBUTION="Debian"
+        export VERSION=$(cat /etc/debian_version)
     elif [[ -f /etc/centos-release ]]; then
-        DISTRIBUTION=$(cat /etc/centos-release | awk '{print $1}')
-        VERSION=$(cat /etc/centos-release | awk '{print $4}' | cut -d'.' -f1)
+        export DISTRIBUTION=$(cat /etc/centos-release | awk '{print $1}')
+        export VERSION=$(cat /etc/centos-release | awk '{print $4}' | cut -d'.' -f1)
     else
-        DISTRIBUTION="Unknown"
-        VERSION="Unknown"
+        export DISTRIBUTION="Unknown"
+        export VERSION="Unknown"
     fi
     case $NAME in
     *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
