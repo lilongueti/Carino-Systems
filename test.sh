@@ -38,11 +38,13 @@ if [[ -f /etc/os-release ]]; then
         if [[ -n "$NAME" ]]; then
             DISTRIBUTION=$NAME
             VERSION=$VERSION_ID
+            echo $NAME
         fi
     elif [[ -f /etc/lsb-release ]]; then
         source /etc/lsb-release
         if [[ -n "$DISTRIB_ID" ]]; then
             DISTRIBUTION=$DISTRIB_ID
+            echo $DISTRIB_ID
             VERSION=$DISTRIB_RELEASE
         fi
     elif [[ -f /etc/debian_version ]]; then
