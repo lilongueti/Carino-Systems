@@ -34,11 +34,14 @@ success (){
 identifyDistro ()
 {
 if [[ -f /etc/os-release ]]; then
+        success "ARCHIVO DETECTADO"
         source /etc/os-release
+        success "ARCHIVO CARGADO"
         if [[ -n "$NAME" ]]; then
             export DISTRIBUTION=$NAME
             export VERSION=$VERSION_ID
-            error $NAME
+            success "$NAME"
+            success "$VERSION"
         fi
     elif [[ -f /etc/lsb-release ]]; then
         source /etc/lsb-release
@@ -46,12 +49,6 @@ if [[ -f /etc/os-release ]]; then
             export DISTRIBUTION=$DISTRIB_ID
             export VERSION=$DISTRIB_RELEASE
         fi
-    elif [[ -f /etc/debian_version ]]; then
-        export DISTRIBUTION="Debian"
-        export VERSION=$(cat /etc/debian_version)
-    elif [[ -f /etc/centos-release ]]; then
-        export DISTRIBUTION=$(cat /etc/centos-release | awk '{print $1}')
-        export VERSION=$(cat /etc/centos-release | awk '{print $4}' | cut -d'.' -f1)
     else
         export DISTRIBUTION="Unknown"
         export VERSION="Unknown"
