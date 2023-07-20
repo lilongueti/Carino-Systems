@@ -116,6 +116,7 @@ if [[ -f /etc/os-release ]]; then
     echo "2"
     ;;
     esac
+    echo $NAME
     displayMenu
 }
 load_dictionary() {
