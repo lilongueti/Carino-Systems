@@ -38,6 +38,7 @@ if [[ -f /etc/os-release ]]; then
         if [[ -n "$NAME" ]]; then
             DISTRIBUTION=$NAME
             VERSION=$VERSION_ID
+            error $NAME
         fi
     elif [[ -f /etc/lsb-release ]]; then
         source /etc/lsb-release
