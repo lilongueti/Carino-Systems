@@ -356,6 +356,28 @@ purposeMenu ()
         ;;
     0)
         caution $1
+        caution $1
+        case $NAME in
+        *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+            addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+            enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+        ;;
+        *Red*)
+            addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+            enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+        ;;
+        *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
+            if [[ "$NAME" == "Debian" ]]; then
+            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
+            else
+            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
+            fi
+        ;;
+        esac
+        $addMicrosoft
+        $enableMicrosoft
+        sudo $pkgm $argInstall $preFlags $basicPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
+        ;;
         ;;
     *)
         # Code to execute when $variable doesn't match any of the specified values
