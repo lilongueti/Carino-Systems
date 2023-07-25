@@ -55,7 +55,6 @@ if [[ -f /etc/os-release ]]; then
     fi
     case $NAME in
     *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
-    echo "AASFDASDFSD"
     pkgm=dnf
     pkgext=rpm
     argInstall=install
@@ -469,13 +468,13 @@ updateSystem ()
 }
 # Declaring Packages
 # Generic GNU/Linux Packages
-essentialPackages="wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo bridge-utils cifs-utils" #gcc-c++ lm_sensors.x86_64
+essentialPackages="git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils" #gcc-c++ lm_sensors.x86_64
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
-basicPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet obs-studio *gtkglext* libxdo-* ncdu"
+basicPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet obs-studio *gtkglext* libxdo-* ncdu scrot xclip thunar thunar-archive-plugin file-roller"
 gamingPackages="steam goverlay lutris mumble"
 multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
 developmentPackages="git gcc cargo npm python3-pip cmake nodejs golang"
-virtconPackages="podman distrobox"
+virtconPackages="podman distrobox bridge-utils"
 supportPackages="stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
 amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
 nvidiaPackages="vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig" #kernel-headers kernel-devel xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
