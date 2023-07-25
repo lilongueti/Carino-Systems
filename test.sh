@@ -54,7 +54,7 @@ if [[ -f /etc/os-release ]]; then
         export VERSION="Unknown"
     fi
     case $NAME in
-    *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+    $FedoraDistros)
     pkgm=dnf
     pkgext=rpm
     argInstall=install
@@ -65,9 +65,8 @@ if [[ -f /etc/os-release ]]; then
     amdPackages="$amdPackages $amdPackagesRPM"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
     virtconPackage="$virtconPackages $virtconPackagesRPM"
-    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
     desktopOption=2
+    microsoftRepo
     ;;
     *Red*)
     caution "RHEL"
@@ -82,8 +81,9 @@ if [[ -f /etc/os-release ]]; then
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
     virtconPackage="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
+    microsoftRepo
     ;;
-    *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
+    $debianDistros)
     pkgm=apt
     pkgext=deb
     argInstall=install
@@ -95,6 +95,7 @@ if [[ -f /etc/os-release ]]; then
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesDebian"
     virtconPackage="$virtconPackages $virtconPackagesDebian"
     desktopOption=1
+    microsoftRepo
     ;;
     *Gentoo*)
     caution "Gentoo"
@@ -170,7 +171,7 @@ displayMenu ()
 }
 desktopenvironment ()
 {
-    if [-n $XDG_CURRENT_DESKTOP]; then
+    if [[ -n $XDG_CURRENT_DESKTOP ]]; then
         desktopenvironmentMenu
     else
         success "You have $XDG_CURRENT_DESKTOP installed, moving on"
@@ -178,7 +179,7 @@ desktopenvironment ()
 }
 desktopenvironmentMenu ()
 {
-  caution "What Desktop Environment you want?\n1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. BUDGIE\n10. SWAY\n11. NONE"
+  caution "What Desktop Environment you want?\n1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. BUDGIE\n10. SWAY\n11. HYPRLAND\n12.NONE"
   read option
   case $option in
     1)
@@ -232,6 +233,12 @@ desktopenvironmentMenu ()
         success "You have SWAY installed, moving on"
         ;;
     11)
+        info "Still on the works, won't be added"
+        #hyprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
+        #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
+        #success "You have HYPRLAND installed, moving on"
+        ;;
+    12)
         caution "No Desktop Environment will be installed"
         ;;
     *)
@@ -277,6 +284,38 @@ nvtopInstall ()
         success "nvtop has been successfully installed."
     fi
 }
+installSVP ()
+{
+  pkgs="/home/$(whoami)/SVP\ 4/SVPManager"
+        which $pkgs > /dev/null 2>&1
+        if [ $? == 0 ]
+        then
+          echo "SVP is already installed"
+        else
+            wget https://www.svp-team.com/files/svp4-linux.4.5.210-2.tar.bz2
+            tar -xf svp4-linux.4.5.210-2.tar.bz2
+            sudo chmod +x svp4-linux-64.run
+            sudo -u $(whoami) ./svp4-linux-64.run && rm svp4-latest* svp4-linux-64.run 
+        fi
+}
+microsoftRepo ()
+{
+    case $NAME in 
+    $FedoraDistros)
+    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+    $addMicrosoft && $enableMicrosoft
+    ;;
+    $debianDistros)
+    if [[ "$NAME" == "Debian" ]]; then
+            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
+            else
+            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
+            fi
+    $addMicrosoft
+    ;;
+    esac
+}
 askReboot ()
 {
   caution "Would you like to reboot? (Recommended) [y/N]"
@@ -287,6 +326,19 @@ askReboot ()
     else
         caution "No reboot was requested."
     fi
+}
+distroboxContainers ()
+{
+    distrobox-create --name fedora --image quay.io/fedora/fedora:38 -Y
+    distrobox-create --name ubuntu --image docker.io/library/ubuntu:22.04 -Y
+    distrobox-create --name rhel --image registry.access.redhat.com/ubi9/ubi -Y
+    distrobox-create --name debian --image docker.io/library/debian:12 -Y
+    #distrobox-create --name clearlinux --image docker.io/library/clearlinux:latest -Y
+    distrobox-create --name centos --image quay.io/centos/centos:stream9 -Y
+    distrobox-create --name arch --image docker.io/library/archlinux:latest -Y
+    #distrobox-create --name opensusel --image registry.opensuse.org/opensuse/leap:latest -Y
+    #distrobox-create --name opensuset --image registry.opensuse.org/opensuse/tumbleweed:latest  -Y
+    #distrobox-create --name gentoo --image docker.io/gentoo/stage3:latest -Y
 }
 purposeMenu ()
 {
@@ -305,78 +357,53 @@ purposeMenu ()
         ;;
     3)
         caution $1
-        case $NAME in
-        *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
-            addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-            enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-        ;;
-        *Red*)
-            addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-            enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-        ;;
-        *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
-            if [[ "$NAME" == "Debian" ]]; then
-            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
-            else
-            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
-            fi
-        ;;
-        esac
-        $addMicrosoft
-        $enableMicrosoft
         sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $microsoftPackages $postFlags
         ;;
     4)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $developmentPackages $postFlags
         ;;
     5)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     6)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     7)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     8)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     9)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     10)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     11)
         caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        ;;
+    12)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
         ;;
     13)
         displayMenu
         ;;
     0)
         caution $1
-        caution $1
-        case $NAME in
-        *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
-            addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-            enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-        ;;
-        *Red*)
-            addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-            enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-        ;;
-        *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
-            if [[ "$NAME" == "Debian" ]]; then
-            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
-            else
-            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
-            fi
-        ;;
-        esac
-        $addMicrosoft
-        $enableMicrosoft
+        microsoftRepo
         sudo $pkgm $argInstall $preFlags $basicPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
-        ;;
+        installSVP
+        distroboxContainers
         ;;
     *)
         # Code to execute when $variable doesn't match any of the specified values
@@ -392,7 +419,7 @@ serverSetup ()
 techSetup ()
 {
     case $NAME in
-    *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+    $FedoraDistros)
     if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
           echo ""
@@ -402,7 +429,7 @@ techSetup ()
       fi 
     sudo systemctl disable NetworkManager-wait-online.service
     if [ "$os_id" == "Fedora" ]; then
-        sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages $fedoraPackages -y
+        sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories dnf-plugins-core -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
         swapCodecsFedora
     else
         sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
@@ -411,10 +438,9 @@ techSetup ()
     *Red*)
     caution "RHEL"
     ;;
-    *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
+    $debianDistros)
     sudo $pkgm update -y && sudo $pkgm upgrade -y
     sudo $pkgm install $essentialPackages -y
-    gnomePackages=$(echo "$gnomePackages" | awk '{print $1}')
     ;;
     *Gentoo*)
     caution "Gentoo"
@@ -438,28 +464,17 @@ techSetup ()
     askReboot
     displayMenu
 }
+#This functios in only for Fedora, might be adapted to other distros like openSUSE
 swapCodecsFedora ()
 {
-    pkg1=$(echo $essentialPackages | awk '{print $5}')
+    pkg1=$(echo $essentialPackages | awk '{print $7}')
     pkg2=$(echo $fedoraPackages | awk '{print $1}')
+    pkg3=$(echo $fedoraPackages | awk '{print $3}')
     sudo $pkgm swap $preFlags $pkg1 $pkg2 $postFlags
-    pkg1=$(echo $essentialPackages | awk '{print $6}')
+    pkg1=$(echo $essentialPackages | awk '{print $8}')
     pkg2=$(echo $fedoraPackages | awk '{print $2}')
     sudo $pkgm swap $preFlags $pkg1 $pkg2 $postFlags
-}
-installSVP ()
-{
-  pkgs="/home/$(whoami)/SVP\ 4/SVPManager"
-        which $pkgs > /dev/null 2>&1
-        if [ $? == 0 ]
-        then
-          echo "SVP is already installed"
-        else
-            wget https://www.svp-team.com/files/svp4-linux.4.5.210-2.tar.bz2
-            tar -xf svp4-linux.4.5.210-2.tar.bz2
-            sudo chmod +x svp4-linux-64.run
-            sudo -u $(whoami) ./svp4-linux-64.run && rm svp4-latest* svp4-linux-64.run 
-        fi
+    sudo $pkgm $argInstall $preFlags $pkg3 $postFlags
 }
 finalTweaks ()
 {
@@ -488,14 +503,17 @@ updateSystem ()
   sudo $pkgm $argUpdate -y
   success "Your system has been updated"
 }
+# Declaring distros
+fedoraDistros="*Fedora*|*Nobara*|*Risi*|*Ultramarine*"
+debianDistros="*Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*"
 # Declaring Packages
 # Generic GNU/Linux Packages
-essentialPackages="git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils" #gcc-c++ lm_sensors.x86_64
+essentialPackages="git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g*" #gcc-c++ lm_sensors.x86_64
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
 basicPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet obs-studio *gtkglext* libxdo-* ncdu scrot xclip thunar thunar-archive-plugin file-roller"
 gamingPackages="steam goverlay lutris mumble"
 multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
-developmentPackages="git gcc cargo npm python3-pip cmake nodejs golang"
+developmentPackages="gcc cargo npm python3-pip nodejs golang conda"
 virtconPackages="podman distrobox bridge-utils"
 supportPackages="stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
 amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
@@ -510,6 +528,7 @@ i3Packages="i3 @i3-desktop-environment"
 openboxPackages="openbox @basic-desktop-environment"
 budgiePackages="budgie-desktop budgie-desktop"
 swayPackages="sway sway"
+hyprlandPackages="hyprland hyprland" #Still on the works
 # Specific GNU/Linux Packages
 intelPackages="intel-media-*driver"
 essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
@@ -517,12 +536,14 @@ essentialPackagesDebian="software-properties-common build-essential manpages-dev
 virtconPackagesRPM="@virtualization libvirt libvirt-devel virt-install qemu-kvm qemu-img virt-manager"
 virtconPackagesDebian="libvirt-daemon-system libvirt-clients"
 amdPackagesRPM="xorg-x11-drv-amdgpu systemd-devel"
-fedoraPackages="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld dnf-plugins-core"
+fedoraPackages="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld libavcodec-freeworld"
 amdPackagesDebian="xserver-xorg-video-amdgpu libsystemd-dev"
 nvidiaPackagesRPM="akmod-nvidia"
 nvidiaPackagesDebian="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
 nvidiaPackagesUbuntu="nvidia-driver-535"
 nvidiaPackagesArch="nvidia-open"
+astronomyPackages="astropy kstars celestia siril "
+compneuroPackages="neuron "
 # Corporate Packages
 anydesk="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb"
 rustdesk="https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9.deb"
