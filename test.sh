@@ -400,7 +400,7 @@ purposeMenu ()
     0)
         caution $1
         microsoftRepo
-        sudo $pkgm $argInstall $preFlags $basicPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
         installSVP
         distroboxContainers
         ;;
