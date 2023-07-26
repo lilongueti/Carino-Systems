@@ -417,9 +417,9 @@ serverSetup ()
 }
 techSetup ()
 {
-    echo $NAME
+    caution $NAME
     case $NAME in
-    *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+    *Fedora*)
     if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
           echo ""
@@ -428,12 +428,11 @@ techSetup ()
           sudo sh -c 'echo max_parallel_downloads=10 >> /etc/dnf/dnf.conf'
       fi 
     sudo systemctl disable NetworkManager-wait-online.service
-    if [ "$NAME" == "Fedora" ]; then
-        sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories dnf-plugins-core -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
-        swapCodecsFedora
-    else
-        sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
-    fi
+    sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories dnf-plugins-core -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+    swapCodecsFedora
+    ;;
+    *Nobara*|*Risi*|*Ultramarine*)
+    sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     ;;
     *Red*)
     caution "RHEL"
