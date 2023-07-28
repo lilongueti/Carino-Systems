@@ -377,51 +377,51 @@ purposeMenu ()
   case $optionmenu in
     1)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     2)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $gamingPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $gamingPackages $postFlags
         ;;
     3)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $microsoftPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $microsoftPackages $postFlags
         ;;
     4)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $developmentPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $developmentPackages $postFlags
         ;;
     5)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     6)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     7)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     8)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     9)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     10)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     11)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     12)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     13)
         displayMenu
@@ -429,7 +429,7 @@ purposeMenu ()
     0)
         caution $1
         microsoftRepo
-        sudo $pkgm $argInstall $preFlags $basicPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
         sudo usermod -aG libvirt $(whoami)
         installSVP
         distroboxContainers
@@ -443,7 +443,7 @@ purposeMenu ()
 serverSetup ()
 {
     sudo $pkgm update -y && sudo $pkgm upgrade -y
-    sudo $pkgm $argInstall $preFlags $essentialPackages $basicPackages $serverPackages $supportPackages $developmentPackages $postFlags
+    sudo $pkgm $argInstall $preFlags $essentialPackages $basicSystemPackages $serverPackages $supportPackages $developmentPackages $postFlags
 }
 techSetup ()
 {
@@ -539,7 +539,8 @@ debianDistros="*Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmi
 # Generic GNU/Linux Packages
 essentialPackages="git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g*" #gcc-c++ lm_sensors.x86_64
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
-basicPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice wine cowsay xrdp htop powertop neofetch tldr figlet obs-studio *gtkglext* libxdo-* ncdu scrot xclip thunar thunar-archive-plugin file-roller"
+basicPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice obs-studio"
+basicSystemPackages="wine xrdp htop powertop neofetch tldr figlet *gtkglext* libxdo-* ncdu scrot xclip thunar thunar-archive-plugin file-roller"
 gamingPackages="steam goverlay lutris mumble"
 multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
 developmentPackages="gcc cargo npm python3-pip nodejs golang conda*"
