@@ -233,7 +233,8 @@ desktopenvironmentMenu ()
         ;;
     11)
         info "Still on the works, won't be added"
-        #hyprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
+        #yprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
+        sudo dnf install hyprland-git waybar-git xdg-desktop-portal-hyprland -y && sudo systemctl set-default graphical.target
         #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
         #success "You have HYPRLAND installed, moving on"
         ;;
