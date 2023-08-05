@@ -252,7 +252,7 @@ desktopenvironmentMenu ()
         i3Packages="$(echo "$i3Packages" | awk '{print $desktopOption}')"
         sudo $pkgm $argInstall $i3Packages -y
         sudo dnf copr enable solopasha/hyprland -y
-        sudo dnf install waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff lightdm -y && sudo systemctl set-default graphical.target
+        sudo dnf install waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff -y && sudo systemctl set-default graphical.target
         #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
         success "You have HYPRLAND installed, moving on"
         ;;
