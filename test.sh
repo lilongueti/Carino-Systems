@@ -8,7 +8,7 @@ exec > >(tee -a "$LOG") 2>&1
 RED="\e[31m"; BLUE="\e[94m"; GREEN="\e[32m"; YELLOW="\e[33m"; ENDCOLOR="\e[0m";USERNAME="MiguelCarino"; REPO="Carino-Systems"; latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message');latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}');latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version');hardwareAcceleration=$(glxinfo | grep "direct rendering");hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}');archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}'); locale_language=$(locale | grep "LANG=" | cut -d'=' -f2)
 # Localized Display Menus
 tech_setup_en_US="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Setup Script\n-------------------------------------\nVersion: 1.1\nDetected Distribution: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\n-------------------------------------\nPlease select an option:\n1. Technical Setup\n2. Purpose Setup\n3. Server Setup\n4. Exit"
-tech_setup_ja_JP="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" セットアップ スクリプト\n-------------------------------------\nバージョン: 1.1\nDetected 検出されたディストリビューション： $DISTRIBUTION $VERSION_ID\n最新のGitHubコミット： $latest_commit\n最新のLinuxカーネルバージョン： $latest_kernel\nあなたのカーネルバージョン： $(uname -r)\nCPUアーキテクチャ： $archType\nハードウェアアクセラレーションが有効： $hardwareAcceleration\nハードウェアレンダラー： $hardwareRenderer\n-------------------------------------\nオプションを選択してください：\n1. 技術的なセットアップ\n2. 目的のセットアップ\n3. 3. サーバーセットアップ\n4. 終了"
+tech_setup_ja_JP="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" セットアップ スクリプト\n-------------------------------------\nバージョン: 1.1\nDetected 検出されたディストリビューション： $DISTRIBUTION $VERSION_ID\n最新のGitHubコミット： $latest_commit\n最新のLinuxカーネルバージョン： $latest_kernel\nあなたのカーネルバージョン： $(uname -r)\nCPUアーキテクチャ： $archType\nハードウェアアクセラレーションが有効： $hardwareAcceleration\nハードウェアレンダラー： $hardwareRenderer\n-------------------------------------\nオプションを選択してください：\n1. 技術的なセットアップ\n2. 目的のセットアップ\n3. サーバーセットアップ\n4. 終了"
 tech_setup_ru_RU="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Скрипт установки\n-------------------------------------\nВерсия: 1.1\nОбнаруженное распространение: $DISTRIBUTION $VERSION_ID\nПоследний коммит в GitHub: $latest_commit\nПоследняя версия ядра Linux: $latest_kernel\nВаша версия ядра: $(uname -r)\nАрхитектура ЦП: $archType\nАппаратное ускорение отключено: $hardwareAcceleration\nАппаратный рендерер: $hardwareRenderer\n-------------------------------------\nПожалуйста, выберите опцию:\n1. Техническая настройка\n2. 2. Назначение настройки\n3. Настройка сервера\n4. Выход"
 tech_setup_es_ES="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Setup Script\n-------------------------------------\nVersion: 1.1\nDistribución Detectada: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nAceleración de Hardware habilitada: $hardwareAcceleration\nRenderizador de Hardware: $hardwareRenderer\n-------------------------------------\nPor favor, seleccione una opción:\n1. Configuración Técnica\n2. Configuración para propósito de uso\n3. Configuración como servidor\n4. Salir"
 purpose_setup_en_US="\n\n\-------------------------------------nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
@@ -81,6 +81,21 @@ if [[ -f /etc/os-release ]]; then
     desktopOption=2
     microsoftRepo
     ;;
+    *Centos*)
+    caution "RHEL"
+    pkgm=dnf
+    pkgext=rpm
+    argInstall=install
+    argUpdate=update
+    preFlags=""
+    postFlags="--skip-broken -y"
+    essentialPackages="$essentialPackages $essentialPackagesRPM"
+    amdPackages="$amdPackages $amdPackagesRPM"
+    nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
+    virtconPackage="$virtconPackages $virtconPackagesRPM"
+    desktopOption=2
+    microsoftRepo
+    ;;
     *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
     pkgm=apt
     pkgext=deb
@@ -96,16 +111,16 @@ if [[ -f /etc/os-release ]]; then
     microsoftRepo
     ;;
     *Gentoo*)
-    caution "Gentoo"
+    caution "Gentoo is not supported"
     ;;
     *Slackware*)
-    caution "Slackware"
+    caution "Slackware is not supported"
     ;;
     *Arch*)
-    caution "Arch"
+    caution "Arch is not supported, and you wouldn't be using scripts anyway"
     ;;
     *Opensuse*)
-    caution "openSUSE"
+    caution "openSUSE is not supported"
     ;;
     *)
     echo "2"
@@ -364,7 +379,7 @@ distroboxContainers ()
     distrobox-create --name debian --image docker.io/library/debian:12 -Y
     #distrobox-create --name clearlinux --image docker.io/library/clearlinux:latest -Y
     distrobox-create --name centos --image quay.io/centos/centos:stream9 -Y
-    distrobox-create --name arch --image docker.io/library/archlinux:latest -Y
+    #distrobox-create --name arch --image docker.io/library/archlinux:latest -Y
     #distrobox-create --name opensusel --image registry.opensuse.org/opensuse/leap:latest -Y
     #distrobox-create --name opensuset --image registry.opensuse.org/opensuse/tumbleweed:latest  -Y
     #distrobox-create --name gentoo --image docker.io/gentoo/stage3:latest -Y
@@ -432,8 +447,8 @@ purposeMenu ()
         microsoftRepo
         sudo $pkgm $argInstall $preFlags $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
         sudo usermod -aG libvirt $(whoami)
-        installSVP
-        distroboxContainers
+        #installSVP
+        #distroboxContainers
         ;;
     *)
         # Code to execute when $variable doesn't match any of the specified values
@@ -455,12 +470,13 @@ techSetup ()
       then
           echo ""
       else
-          sudo sh -c 'echo fastestmirror=true >> /etc/dnf/dnf.conf'
+          sudo sh -c 'echo fastestmirror=true >> /etc/dnf/dnf.conf' #Looks for the lowest ping, not necessarily the best bandwith
           sudo sh -c 'echo max_parallel_downloads=10 >> /etc/dnf/dnf.conf'
       fi 
     sudo systemctl disable NetworkManager-wait-online.service
+    caution "Installing RPM FUsion"
     sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories dnf-plugins-core -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
-    swapCodecsFedora
+    #swapCodecsFedora
     ;;
     *Nobara*|*Risi*|*Ultramarine*)
     sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
