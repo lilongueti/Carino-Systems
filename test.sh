@@ -249,6 +249,7 @@ desktopenvironmentMenu ()
     11)
         info "Still on the works, won't be added"
         hyprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
+        sudo dnf copr enable solopasha/hyprland -y
         sudo dnf install waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprland-protocols hyprpaper libdisplay-info libinput libliftoff -y && sudo systemctl set-default graphical.target
         #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
         #success "You have HYPRLAND installed, moving on"
