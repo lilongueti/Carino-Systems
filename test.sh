@@ -567,7 +567,7 @@ debianDistros="*Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmi
 # Generic GNU/Linux Packages
 essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g*" #gcc-c++ lm_sensors.x86_64
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
-basicPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice obs-studio"
+basicPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio"
 basicSystemPackages="wine xrdp htop powertop neofetch tldr figlet *gtkglext* libxdo-* ncdu scrot xclip thunar thunar-archive-plugin file-roller nvtop"
 gamingPackages="steam goverlay lutris mumble"
 multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
@@ -610,5 +610,5 @@ zoom="https://zoom.us/client/latest/zoom_x86_64.rpm"
 googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
 ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
 # CustomPackages
-carinoPackages="lpf-spotify-client"
+carinoPackages="lpf-spotify-client telegram-desktop"
 identifyDistro
