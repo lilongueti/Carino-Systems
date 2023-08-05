@@ -555,7 +555,7 @@ fedoraDistros="*Fedora*|*Nobara*|*Risi*|*Ultramarine*"
 debianDistros="*Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*"
 # Declaring Packages
 # Generic GNU/Linux Packages
-essentialPackages="git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g*" #gcc-c++ lm_sensors.x86_64
+essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g*" #gcc-c++ lm_sensors.x86_64
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
 basicPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice obs-studio"
 basicSystemPackages="wine xrdp htop powertop neofetch tldr figlet *gtkglext* libxdo-* ncdu scrot xclip thunar thunar-archive-plugin file-roller nvtop"
