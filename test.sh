@@ -81,8 +81,8 @@ if [[ -f /etc/os-release ]]; then
     desktopOption=2
     microsoftRepo
     ;;
-    *Centos*)
-    caution "RHEL"
+    *CentOS*)
+    caution "CentOS"
     pkgm=dnf
     pkgext=rpm
     argInstall=install
@@ -248,8 +248,8 @@ desktopenvironmentMenu ()
         ;;
     11)
         info "Still on the works, won't be added"
-        #yprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
-        sudo dnf install hyprland-git waybar-git xdg-desktop-portal-hyprland -y && sudo systemctl set-default graphical.target
+        hyprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
+        sudo dnf install waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprland-protocols hyprpaper libdisplay-info libinput libliftoff -y && sudo systemctl set-default graphical.target
         #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
         #success "You have HYPRLAND installed, moving on"
         ;;
@@ -575,7 +575,7 @@ i3Packages="i3 @i3-desktop-environment"
 openboxPackages="openbox @basic-desktop-environment"
 budgiePackages="budgie-desktop budgie-desktop"
 swayPackages="sway sway"
-hyprlandPackages="hyprland hyprland" #Still on the works
+hyprlandPackages="hyprland hyprland-git" #Still on the works
 # Specific GNU/Linux Packages
 intelPackages="intel-media-*driver"
 essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
