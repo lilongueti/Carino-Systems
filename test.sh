@@ -455,7 +455,7 @@ purposeMenu ()
     0)
         caution $1
         microsoftRepo
-        sudo $pkgm $argInstall $preFlags $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
         sudo usermod -aG libvirt $(whoami)
         #installSVP
         #distroboxContainers
