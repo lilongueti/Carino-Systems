@@ -65,6 +65,7 @@ if [[ -f /etc/os-release ]]; then
     virtconPackage="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
     microsoftRepo
+    updateGrub
     ;;
     *Red*)
     caution "RHEL"
@@ -291,6 +292,11 @@ info "Installing GPU drivers"
     sudo $pkgm $argInstall $amdPackages -y
   fi
   info "For Intel Arc drivers, please refer to https://www.intel.com/content/www/us/en/download/747008/intel-arc-graphics-driver-ubuntu.html"
+}
+updateGrub ()
+{
+    sudo sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
+    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 }
 nvtopInstall ()
 {
