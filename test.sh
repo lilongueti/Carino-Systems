@@ -65,7 +65,6 @@ if [[ -f /etc/os-release ]]; then
     virtconPackage="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
     microsoftRepo
-    updateGrub
     ;;
     *Red*)
     caution "RHEL"
@@ -486,6 +485,7 @@ techSetup ()
     sudo systemctl disable NetworkManager-wait-online.service
     caution "Installing RPM FUsion"
     sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories dnf-plugins-core -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+    updateGrub
     #swapCodecsFedora
     ;;
     *Nobara*|*Risi*|*Ultramarine*)
