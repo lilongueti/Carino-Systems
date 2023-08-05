@@ -585,7 +585,7 @@ i3Packages="i3 @i3-desktop-environment"
 openboxPackages="openbox @basic-desktop-environment"
 budgiePackages="budgie-desktop budgie-desktop"
 swayPackages="sway sway"
-hyprlandPackages="hyprland hyprland-git" #Still on the works
+hyprlandPackages="hyprland-git hyprland-git" #Still on the works
 # Specific GNU/Linux Packages
 intelPackages="intel-media-*driver"
 essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
