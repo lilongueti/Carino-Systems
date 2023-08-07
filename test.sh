@@ -62,7 +62,7 @@ if [[ -f /etc/os-release ]]; then
     essentialPackages="$essentialPackages $essentialPackagesRPM"
     amdPackages="$amdPackages $amdPackagesRPM"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
-    virtconPackage="$virtconPackages $virtconPackagesRPM"
+    virtconPackages="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
     microsoftRepo
     ;;
@@ -77,7 +77,7 @@ if [[ -f /etc/os-release ]]; then
     essentialPackages="$essentialPackages $essentialPackagesRPM"
     amdPackages="$amdPackages $amdPackagesRPM"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
-    virtconPackage="$virtconPackages $virtconPackagesRPM"
+    virtconPackages="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
     microsoftRepo
     ;;
@@ -92,7 +92,7 @@ if [[ -f /etc/os-release ]]; then
     essentialPackages="$essentialPackages $essentialPackagesRPM"
     amdPackages="$amdPackages $amdPackagesRPM"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
-    virtconPackage="$virtconPackages $virtconPackagesRPM"
+    virtconPackages="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
     microsoftRepo
     ;;
@@ -106,7 +106,7 @@ if [[ -f /etc/os-release ]]; then
     essentialPackages="$essentialPackages $essentialPackagesDebian"
     amdPackages="$amdPackages $amdPackagesDebian"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesDebian"
-    virtconPackage="$virtconPackages $virtconPackagesDebian"
+    virtconPackages="$virtconPackages $virtconPackagesDebian"
     desktopOption=1
     microsoftRepo
     ;;
@@ -403,51 +403,52 @@ purposeMenu ()
   case $optionmenu in
     1)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     2)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $gamingPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $gamingPackages $postFlags
         ;;
     3)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $microsoftPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $microsoftPackages $postFlags
         ;;
     4)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $developmentPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $developmentPackages $virtconPackages $postFlags
+        distroboxContainers
         ;;
     5)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     6)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     7)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     8)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     9)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     10)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     11)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     12)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $supportPackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
         ;;
     13)
         displayMenu
@@ -455,10 +456,10 @@ purposeMenu ()
     0)
         caution $1
         microsoftRepo
-        sudo $pkgm $argInstall $preFlags $basicPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $virtconPackagesRPM $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
         sudo usermod -aG libvirt $(whoami)
-        #installSVP
-        #distroboxContainers
+        #installSVP #Trying to find a FOSS alternative for smooth video
+        distroboxContainers
         ;;
     *)
         # Code to execute when $variable doesn't match any of the specified values
@@ -560,16 +561,18 @@ updateSystem ()
   sudo $pkgm $argUpdate -y
   success "Your system has been updated"
 }
-# Declaring distros
-fedoraDistros="*Fedora*|*Nobara*|*Risi*|*Ultramarine*"
-debianDistros="*Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*"
 # Declaring Packages
 # Generic GNU/Linux Packages
+#Essential packages are what will allow system review for advanced users and stable hardware experience
 essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g*" #gcc-c++ lm_sensors.x86_64
+#Server packages ensure SSH, FTP and RDP connectivity, so advanced users can configure and use the server remotely
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
-basicPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio"
-basicSystemPackages="wine xrdp htop powertop neofetch tldr figlet *gtkglext* libxdo-* ncdu scrot xclip thunar thunar-archive-plugin file-roller nvtop"
+#Basic packages will allow endusers to perform basic activities or get basic features
+basicUserPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio"
+basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr figlet *gtkglext* libxdo-* ncdu scrot xclip thunar thunar-archive-plugin file-roller nvtop"
+#Gaming packages will allow enduseres to play on the most popular platforms
 gamingPackages="steam goverlay lutris mumble"
+#Multimedia pacakges allow the end user to use the most
 multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
 developmentPackages="gcc cargo npm python3-pip nodejs golang conda*"
 virtconPackages="podman distrobox bridge-utils"
