@@ -420,7 +420,7 @@ purposeMenu ()
         microsoftPackagesArray=($microsoftPackages)
         microsoftPackages=$(echo "${microsoftPackagesArray[1]}")
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $developmentPackages $microsoftPackages $virtconPackages $postFlags
-        #distroboxContainers
+        distroboxContainers
         ;;
     5)
         caution $1
