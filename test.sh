@@ -568,7 +568,7 @@ essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdp
 #Server packages ensure SSH, FTP and RDP connectivity, so advanced users can configure and use the server remotely
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
 #Basic packages will allow endusers to perform basic activities or get basic features
-basicUserPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio"
+basicUserPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio epiphany qbittorrent"
 basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr figlet *gtkglext* libxdo-* ncdu scrot xclip thunar thunar-archive-plugin file-roller nvtop"
 #Gaming packages will allow enduseres to play on the most popular platforms
 gamingPackages="steam goverlay lutris mumble"
@@ -576,7 +576,7 @@ gamingPackages="steam goverlay lutris mumble"
 multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
 developmentPackages="gcc cargo npm python3-pip nodejs golang conda*"
 virtconPackages="podman distrobox bridge-utils"
-supportPackages="stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
+supportPackages="stacer bleachbit remmina filezilla barrier keepassxc bless"
 amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
 nvidiaPackages="vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig" #kernel-headers kernel-devel xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
 xfcePackages="task-xfce-desktop @xfce-desktop-environment"
