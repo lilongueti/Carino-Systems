@@ -411,12 +411,16 @@ purposeMenu ()
         ;;
     3)
         caution $1
+        microsoftPackagesArray=($microsoftPackages)
+        microsoftPackages=$(echo "${microsoftPackagesArray[0]}")
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $microsoftPackages $googlePackages $ciscoPackages $postFlags
         ;;
     4)
         caution $1
-        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $developmentPackages $virtconPackages $postFlags
-        distroboxContainers
+        microsoftPackagesArray=($microsoftPackages)
+        microsoftPackages=$(echo "${microsoftPackagesArray[1]}")
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $developmentPackages $microsoftPackages $virtconPackages $postFlags
+        #distroboxContainers
         ;;
     5)
         caution $1
