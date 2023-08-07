@@ -64,7 +64,6 @@ if [[ -f /etc/os-release ]]; then
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
     virtconPackages="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
-    microsoftRepo
     ;;
     *Red*)
     caution "RHEL"
@@ -79,7 +78,6 @@ if [[ -f /etc/os-release ]]; then
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
     virtconPackages="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
-    microsoftRepo
     ;;
     *CentOS*)
     caution "CentOS"
@@ -94,7 +92,6 @@ if [[ -f /etc/os-release ]]; then
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
     virtconPackages="$virtconPackages $virtconPackagesRPM"
     desktopOption=2
-    microsoftRepo
     ;;
     *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
     pkgm=apt
@@ -108,7 +105,6 @@ if [[ -f /etc/os-release ]]; then
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesDebian"
     virtconPackages="$virtconPackages $virtconPackagesDebian"
     desktopOption=1
-    microsoftRepo
     ;;
     *Gentoo*)
     caution "Gentoo is not supported"
@@ -411,12 +407,14 @@ purposeMenu ()
         ;;
     3)
         caution $1
+        microsoftRepo
         microsoftPackagesArray=($microsoftPackages)
         microsoftPackages=$(echo "${microsoftPackagesArray[0]}")
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $microsoftPackages $googlePackages $ciscoPackages $postFlags
         ;;
     4)
         caution $1
+        microsoftRepo
         microsoftPackagesArray=($microsoftPackages)
         microsoftPackages=$(echo "${microsoftPackagesArray[1]}")
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $developmentPackages $microsoftPackages $virtconPackages $postFlags
@@ -469,6 +467,7 @@ purposeMenu ()
         # Code to execute when $variable doesn't match any of the specified values
         ;;
     esac
+    finalTweaks
     displayMenu
 }
 serverSetup ()
@@ -541,24 +540,29 @@ swapCodecsFedora ()
 finalTweaks ()
 {
   # Hostname
-  if [[ $(hostname) == $hostnamegiven ]];
-  then
-      echo "Please provide a hostname for the computer"
-      read hostname
-      sudo hostnamectl set-hostname --static $hostname
-  else
-      echo 'hostname was not changed'
-  fi
+  #if [[ $(hostname) == $hostnamegiven ]];
+  #then
+  #    echo "Please provide a hostname for the computer"
+  #    read hostname
+  #    sudo hostnamectl set-hostname --static $hostname
+  #else
+  #    echo 'hostname was not changed'
+  #fi
+  # Asthetic Tweaks
+  sudo $pkgm $argInstall $preFlags plymouth plymouth-theme-spinfinity $postFlags
+  sudo plymouth-set-default-theme spinfinity -R
   # Desktop Environment tweaks
-  if [ $XDG_SESSION_DESKTOP = "gnome" ] || [ $XDG_SESSION_DESKTOP = "xfce" ]
-  then
-      gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-      gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true  
-      gsettings set org.gnome.desktop.session idle-delay 0
-      xdg-mime default thunar.desktop inode/directory
-  else
-      echo ""
-  fi
+  case $XDG_SESSION_DESKTOP in
+    *gnome*|*xfce*)
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+    gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true  
+    gsettings set org.gnome.desktop.session idle-delay 0
+    xdg-mime default thunar.desktop inode/directory
+    ;;
+    *)
+    error "No supported Desktop Environment for tweaks"
+    ;;
+    esac
 }
 updateSystem ()
 {
