@@ -250,7 +250,7 @@ desktopenvironmentMenu ()
         info "Installing Hyprland"
         sudo dnf copr enable solopasha/hyprland -y
         sudo $pkgm $argInstall $hyprlandPackages -y
-        sudo dnf install waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff thunar -y && sudo systemctl set-default graphical.target
+        sudo dnf install xorg-x11-server-Xwayland waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff thunar -y && sudo systemctl set-default graphical.target
         mkdir ~/.config/hypr/
         curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/hyprland.conf > ~/.config/hypr/hyprland.conf
         #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
@@ -599,7 +599,7 @@ i3Packages="i3 @i3-desktop-environment"
 openboxPackages="openbox @basic-desktop-environment"
 budgiePackages="budgie-desktop budgie-desktop"
 swayPackages="sway sway"
-hyprlandPackages="hyprland hyprland" #Still on the works
+hyprlandPackages="hyprland-git hyprland-git" #Still on the works
 # Specific GNU/Linux Packages
 intelPackages="intel-media-*driver"
 essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
