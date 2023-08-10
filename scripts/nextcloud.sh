@@ -1,43 +1,44 @@
 #!/bin/bash
 
-# Update system packages
-sudo dnf update -y
-
-# Install required packages
-sudo dnf install -y httpd mariadb-server php php-mysqlnd php-json php-gd php-mbstring php-intl php-xml php-zip php-curl php-apcu php-dom php-xmlreader php-xmlwriter php-posix php-ctype php-fileinfo php-tokenizer php-zlib php-simplexml php-ldap wget unzip
-
-# Start and enable Apache
-sudo systemctl start httpd
-sudo systemctl enable httpd
-
-# Start and enable MariaDB
-sudo systemctl start mariadb
-sudo systemctl enable mariadb
-
-# Secure MariaDB installation
-sudo mysql_secure_installation
-
-# Create a database and user for Nextcloud
-MYSQL_ROOT_PASS="your_mysql_root_password"
-NEXTCLOUD_DB="nextcloud_db"
-NEXTCLOUD_USER="nextcloud_user"
-NEXTCLOUD_PASS="your_nextcloud_password"
-
-sudo mysql -u root -p$MYSQL_ROOT_PASS <<EOF
-CREATE DATABASE $NEXTCLOUD_DB;
-CREATE USER '$NEXTCLOUD_USER'@'localhost' IDENTIFIED BY '$NEXTCLOUD_PASS';
-GRANT ALL PRIVILEGES ON $NEXTCLOUD_DB.* TO '$NEXTCLOUD_USER'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
-EOF
-
-# Download and extract Nextcloud
-wget https://download.nextcloud.com/server/releases/latest.zip
-unzip latest.zip -d /var/www/html/
-sudo chown -R apache:apache /var/www/html/nextcloud/
-rm latest.zip
+## Update system packages
+#sudo dnf update -y
+#
+## Install required packages
+#sudo dnf install -y httpd mariadb-server php php-mysqlnd php-json php-gd php-mbstring php-intl php-xml php-zip php-curl php-apcu php-dom php-xmlreader php-xmlwriter php-posix php-ctype php-fileinfo php-tokenizer php-zlib php-simplexml php-ldap wget unzip
+#
+## Start and enable Apache
+#sudo systemctl start httpd
+#sudo systemctl enable httpd
+#
+## Start and enable MariaDB
+#sudo systemctl start mariadb
+#sudo systemctl enable mariadb
+#
+## Secure MariaDB installation
+#sudo mysql_secure_installation
+#
+## Create a database and user for Nextcloud
+#MYSQL_ROOT_PASS="your_mysql_root_password"
+#NEXTCLOUD_DB="nextcloud_db"
+#NEXTCLOUD_USER="nextcloud_user"
+#NEXTCLOUD_PASS="your_nextcloud_password"
+#
+#sudo mysql -u root -p$MYSQL_ROOT_PASS <<EOF
+#CREATE DATABASE $NEXTCLOUD_DB;
+#CREATE USER '$NEXTCLOUD_USER'@'localhost' IDENTIFIED BY '$NEXTCLOUD_PASS';
+#GRANT ALL PRIVILEGES ON $NEXTCLOUD_DB.* TO '$NEXTCLOUD_USER'@'localhost';
+#FLUSH PRIVILEGES;
+#EXIT;
+#EOF
+#
+## Download and extract Nextcloud
+#wget https://download.nextcloud.com/server/releases/latest.zip
+#unzip latest.zip -d /var/www/html/
+#sudo chown -R apache:apache /var/www/html/nextcloud/
+#rm latest.zip
 
 # Configure Apache for Nextcloud
+mkdir -p /var/www/html/nextcloud/
 sudo tee /etc/httpd/conf.d/nextcloud.conf <<EOF
 Alias /nextcloud "/var/www/html/nextcloud/"
 
