@@ -38,7 +38,7 @@
 #rm latest.zip
 
 # Configure Apache for Nextcloud
-mkdir -p /var/www/html/nextcloud/
+sudo mkdir -p /var/www/html/nextcloud/
 sudo tee /etc/httpd/conf.d/nextcloud.conf <<EOF
 Alias /nextcloud "/var/www/html/nextcloud/"
 
