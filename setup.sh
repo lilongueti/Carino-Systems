@@ -1,446 +1,262 @@
 #!/bin/bash
-#Setup script
+# Setup script
 # Log all output to file
+currentDate=$(date +%Y%M%D)
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
-#Defining values in variables
-version=1.20230715
-RED="\e[31m"
-BLUE="\e[94m"
-GREEN="\e[32m"
-YELLOW="\e[33m"
-ENDCOLOR="\e[0m"
-#Declaring Functions
-# Fetching the latest commit
-USERNAME="MiguelCarino"
-REPO="Carino-Systems"
-commit_info=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1")
-latest_commit=$(echo "$commit_info" | jq -r '.[0].commit.message')
-identifyDistro ()
-{
-# get distro data from /etc/os-release
-os_id=$(grep -E '^ID=' /etc/os-release | sed -e 's/ID=//g' -e 's/"//g')
-# get distro version data from /etc/os-release
-os_version=$(grep -E '^VERSION_ID=' /etc/os-release | sed -e 's/VERSION_ID=//g' -e 's/"//g' | tr -cd '[:digit:]')
-#if [ "$os_version" -ge "9" ]; then
-arch_type=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}')
-case $os_id in
-*fedora*)
-  if [ "$os_version" -ge "37" ]; then
-    pkgm=dnf
-    pkgext=rpm
-    argInstall=install
-    argUpdate=update
-    hostnamegiven=workstation
-    preFlags=""
-    postFlags="--skip-broken -y"
-    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-    essentialPackages="mesa-va-drivers mesa-vdpau-drivers wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
-    xfcePackages="@xfce-desktop-environment thunar-archive-plugin file-roller"
-    gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
-    kdePackages="@kde-desktop-environment"
-    lxqtPackages="@lxqt-desktop-environment"
-    cinnamonPackages="@cinnamon-desktop-environment"
-    matePackages="@mate-desktop-environment"
-    i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
-    openboxPackages="@basic-desktop-environment"
-    budgiePackages=""
-    swayPackages=""
-    intelPackages=""
-		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel rocm*"
-    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client libreoffice"
-    gamingPackages="steam goverlay lutris mumble"
-    multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang gscan2pdf"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 Apython3-pip virt-manager wine distrobox"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.2.1/rustdesk-1.2.1-0.x86_64-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
-    microsoftPackages="microsoft-edge-stable code powershell"
-    corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
-    googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
-    ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
-    dnfDistro
-  else
-    error "This script is only for "$os_id" 37 or newer."
-  fi
-  ;;
-*nobara*|*risi*|*ultramarine*)
-    if [ "$os_version" -ge "37" ]; then
-    pkgm=dnf
-    pkgext=rpm
-    argInstall=install
-    argUpdate=update
-    hostnamegiven=fedora
-    preFlags=""
-    postFlags="--skip-broken -y"
-    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
-    xfcePackages="@xfce-desktop-environment thunar-archive-plugin file-roller"
-    gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
-    kdePackages="@kde-desktop-environment"
-    lxqtPackages="@lxqt-desktop-environment"
-    cinnamonPackages="@cinnamon-desktop-environment"
-    matePackages="@mate-desktop-environment"
-    i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
-    openboxPackages="@basic-desktop-environment"
-    budgiePackages=""
-    swayPackages=""
-    intelPackages=""
-		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
-    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client libreoffice"
-    gamingPackages="steam goverlay lutris mumble"
-    multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
-    microsoftPackages="microsoft-edge-stable code powershell"
-    corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
-    googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
-    ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
-    dnfDistro
-  else
-    error "This script is only for "$os_id" 37 or newer."
-  fi
-  ;;
-*rhel*)
-  if [ "$os_version" -ge "90" ]; then
-    pkgm=dnf
-    pkgext=rpm
-    argInstall=install
-    argUpdate=update
-    hostnamegiven=fedora
-    preFlags=""
-    postFlags="--skip-broken -y"
-    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
-    xfcePackages="@xfce-desktop-environment thunar-archive-plugin file-roller"
-    gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
-    kdePackages="@kde-desktop-environment"
-    lxqtPackages="@lxqt-desktop-environment"
-    cinnamonPackages="@cinnamon-desktop-environment"
-    matePackages="@mate-desktop-environment"
-    i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
-    openboxPackages="@basic-desktop-environment"
-    budgiePackages=""
-    swayPackages=""
-    intelPackages=""
-		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
-    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client libreoffice"
-    gamingPackages="steam goverlay lutris mumble"
-    multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
-    microsoftPackages="microsoft-edge-stable code powershell"
-    corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
-    googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
-    ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
-  else
-    pkgm=dnf
-    pkgext=rpm
-    argInstall=install
-    argUpdate=update
-    hostnamegiven=rhel
-    preFlags=""
-    postFlags="--skip-broken -y"
-    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
-    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
-    essentialPackages="wget nano curl gedit figlet dnf-plugins-core NetworkManager-tui dhcp-server elinks cmake nasm ncurses-devel git gcc-c++ htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm_sensors.x86_64 xkill rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-server xrdp cargo cowsay"
-    xfcePackages="@xfce-desktop-environment thunar-archive-plugin file-roller"
-    gnomePackages="@workstation-product-environment gnome-tweaks gnome-extensions-app"
-    kdePackages="@kde-desktop-environment"
-    lxqtPackages="@lxqt-desktop-environment"
-    cinnamonPackages="@cinnamon-desktop-environment"
-    matePackages="@mate-desktop-environment"
-    i3Packages="@i3-desktop-environment nnn scrot xclip thunar thunar-archive-plugin file-roller"
-    openboxPackages="@basic-desktop-environment"
-    budgiePackages=""
-    swayPackages=""
-    intelPackages=""
-		nvidiaPackages="kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda nvidia-driver xorg-x11-drv-nvidia-cuda-libs vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig"
-    amdPackages="ocl-icd-devel opencl-headers libdrm-devel xorg-x11-drv-amdgpu systemd-devel mesa-va-drivers mesa-vdpau-drivers"
-    basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk  lpf-spotify-client libreoffice"
-    gamingPackages="steam goverlay lutris mumble"
-    multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
-    virtconPackages="podman @virtualization libvirt libvirt-devel virt-install qemu-kvm qemu qemu-img python3 python3-pip virt-manager wine"
-    supportPackages="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm stacer bleachbit qbittorrent remmina filezilla barrier keepassxc bless"
-    microsoftPackages="microsoft-edge-stable code powershell"
-    corporateGeneric="https://zoom.us/client/latest/zoom_x86_64.rpm"
-    googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
-    ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
-  fi
-  ;;
-*debian*|*ubuntu*|*kubuntu*|*lubuntu*|*xubuntu*|*uwuntu*|*linuxmint*)
-  pkgm=apt
-  pkgext=deb
-  argInstall=install
-  argUpdate=update
-  hostnamegiven=fedora
-  preFlags="-f"
-  postFlags="-y"
-  if [[ "$os_id" == "debian" && "os_version" -ge 11 ]]; then
-      addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
-    elif [[ "$os_id" == "ubuntu" && "os_version" -ge 2204 ]]; then
-      addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
-    else
-      error "This version of $os_id is not supported"
-      exit
-  fi
-  enableMicrosoft="sudo apt-add-repository https://packages.microsoft.com/$os_id/$os_version/prod"
-  essentialPackages="build-essential manpages-dev linux-headers-amd64 linux-image-amd64 wget nano curl gedit figlet network-manager isc-dhcp-server elinks cmake nasm libncurses5-dev libncursesw5-dev git htop powertop neofetch ncdu tldr sshpass ftp vsftpd lshw lm-sensors x11-utils rsync rclone yt-dlp mediainfo cockpit bridge-utils cifs-utils tigervnc-standalone-server tigervnc-common xrdp cargo libgl1-mesa-dev"
-  serverPackages="netcat-traditional npm neofetch libgtkglext1 xserver-xorg-video-dummy openssh-server vsftpd tldr htop curl python3-pip gedit"
-  customserver="wget https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb && wget https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9.deb"
-  xfcePackages="task-xfce-desktop"
-  gnomePackages="task-gnome-desktop"
-  kdePackages="task-kde-desktop"
-  lxqtPackages="task-lxqt-desktop"
-  cinnamonPackages="task-cinnamon-desktop"
-  matePackages="task-mate-desktop"
-  i3Packages="i3"
-  openboxPackages="openbox"
-  budgiePackages=""
-  swayPackages=""
-  intelPackages=""
-	nvidiaPackages="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
-  amdPackages="ocl-icd-dev opencl-headers libdrm-dev xserver-xorg-video-amdgpu libsystemd-dev"
-  basicPackages="firefox thunderbird mpv ffmpegthumbnailer tumbler telegram-desktop clamav clamtk libreoffice"#https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
-  gamingPackages="steam goverlay lutris mumble"
-  multimediaPackages="obs-studio gimp krita blender kdenlive gstreamer* qt5-qtbase-devel python3-qt5 python3-vapoursynth nodejs golang"
-  virtconPackages="podman qemu qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon python3 python3-pip virt-manager wine"
-  supportPackages="stacer bleachbit qbittorrent remmina filezilla barrier keepassxc"#https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
-  microsoftPackages="microsoft-edge-stable code powershell"
-  corporateGeneric=""#https://zoom.us/client/latest/zoom_amd64.deb
-  googlePackages=""#https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  ciscoPackages="vpnc"#https://binaries.webex.com/WebexDesktop-Ubuntu-Official-Package/Webex.deb
-  aptDistro
-  ;;
-*)
-  info $os_id
-  error "Another distro, unable to run the script"
-  ;;
-esac
-}
-dnfDistro ()
-{
-  firstMenu
-  case $optionmenu in
-    1)
-      success "Workstation"
-      argInstall=install
-      if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
-      then
-          break
-      else
-          sudo sh -c 'echo fastestmirror=true >> /etc/dnf/dnf.conf'
-          sudo sh -c 'echo max_parallel_downloads=10 >> /etc/dnf/dnf.conf'
-      fi 
-    sudo systemctl disable NetworkManager-wait-online.service
-    if [ "$os_id" == "fedora" ]; then
-      sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
-    else
-      sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
-    fi
-    #sudo dnf config-manager --add-repo https://download.opensuse.org/repositories/home:bgstack15:Chicago95/Fedora_36/home:bgstack15:Chicago95.repo
-    desktopenvironmentMenu
-    graphicDrivers
-    nvtopInstall
-    askReboot
-    profileMenu
-    finalTweaks
-    sudo journalctl --vacuum-size=2G --vacuum-time=35d
-    systemReview
-    ;;
-    3)
-      success "Updating system..."
-      updateSystem
-    ;;
-    4)
-      graphicDrivers
-    ;;
-    *)
-      success "Bye"
-      exit
-    ;;
-  esac
-}
-aptDistro ()
-{
-  firstMenu
-  case $optionmenu in
-    1)
-      success "Workstation"
-      sudo $pkgm update -y && sudo $pkgm upgrade -y
-      sudo $pkgm install $essentialPackages -y
-      desktopenvironmentMenu
-      graphicDrivers
-      nvtopInstall
-      askReboot
-      profileMenu
-      finalTweaks
-      systemReview
-    ;;
-    2)
-      success "Server"
-      sudo $pkgm update -y && sudo $pkgm upgrade -y
-      sudo $pkgm install $serverPackages -y
-      customserversteps
-      desktopenvironmentMenu
-      askReboot
-    ;;
-    3)
-      success "Updating system..."
-      updateSystem
-    ;;
-    4)
-      graphicDrivers
-    ;;
-    *)
-      success "Bye"
-      exit;
-    ;;
-    esac
-}
-#General Functions
-info ()
-{
+# Defining Global Variables
+RED="\e[31m"; BLUE="\e[94m"; GREEN="\e[32m"; YELLOW="\e[33m"; ENDCOLOR="\e[0m";USERNAME="MiguelCarino"; REPO="Carino-Systems"; latest_commit=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | jq -r '.[0].commit.message');latest_commit_time=$(curl -s "https://api.github.com/repos/$USERNAME/$REPO/commits?per_page=1" | grep -m 1 '"date":' | awk -F'"' '{print $4}');latest_kernel=$(curl -s https://www.kernel.org/releases.json | jq -r '.releases[1].version');hardwareAcceleration=$(glxinfo | grep "direct rendering");hardwareRenderer=$(glxinfo | grep "direct rendering" | awk '{print $3}');archType=$(lscpu | grep -e "^Architecture:" | awk '{print $NF}'); locale_language=$(locale | grep "LANG=" | cut -d'=' -f2)
+# Localized Display Menus
+tech_setup_en_US="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Setup Script\n-------------------------------------\nVersion: 1.1\nDetected Distribution: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\n-------------------------------------\nPlease select an option:\n1. Technical Setup\n2. Purpose Setup\n3. Server Setup\n4. Exit"
+tech_setup_ja_JP="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" セットアップ スクリプト\n-------------------------------------\nバージョン: 1.1\nDetected 検出されたディストリビューション： $DISTRIBUTION $VERSION_ID\n最新のGitHubコミット： $latest_commit\n最新のLinuxカーネルバージョン： $latest_kernel\nあなたのカーネルバージョン： $(uname -r)\nCPUアーキテクチャ： $archType\nハードウェアアクセラレーションが有効： $hardwareAcceleration\nハードウェアレンダラー： $hardwareRenderer\n-------------------------------------\nオプションを選択してください：\n1. 技術的なセットアップ\n2. 目的のセットアップ\n3. サーバーセットアップ\n4. 終了"
+tech_setup_ru_RU="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Скрипт установки\n-------------------------------------\nВерсия: 1.1\nОбнаруженное распространение: $DISTRIBUTION $VERSION_ID\nПоследний коммит в GitHub: $latest_commit\nПоследняя версия ядра Linux: $latest_kernel\nВаша версия ядра: $(uname -r)\nАрхитектура ЦП: $archType\nАппаратное ускорение отключено: $hardwareAcceleration\nАппаратный рендерер: $hardwareRenderer\n-------------------------------------\nПожалуйста, выберите опцию:\n1. Техническая настройка\n2. 2. Назначение настройки\n3. Настройка сервера\n4. Выход"
+tech_setup_es_ES="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Setup Script\n-------------------------------------\nVersion: 1.1\nDistribución Detectada: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nAceleración de Hardware habilitada: $hardwareAcceleration\nRenderizador de Hardware: $hardwareRenderer\n-------------------------------------\nPor favor, seleccione una opción:\n1. Configuración Técnica\n2. Configuración para propósito de uso\n3. Configuración como servidor\n4. Salir"
+purpose_setup_en_US="\n\n\-------------------------------------nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+purpose_setup_en_US="-------------------------------------\n"$DISTRIBUTION" "$VERSION_ID" Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic. Most common non-commercial software for basic needs.\n 2. Gaming. Most popular gaming and basic software.\n 3. Corporate. Get Microsoft, Google and Cisco software. \n 4. Development. All your Python, JS, npm, and other stuff for coding.\n 5. Astronomy. Complete open source toolchain to both amateur and\n               professional astronomers.\n 6. Comp-Neuro. A plethora of Free/Open source computational modelling\n                tools for Neuroscience.\n 7. Desing. Visual design, multimedia production, and publishing suite \n 8. Jam. For audio enthusiasts and musicians who want to create, edit and\n         produce audio and music.\n 9. Security Lab. A safe test environment to work on security auditing,\n                 forensics, system rescue and teaching security testing methodologies.\n10. Robotics. A wide variety of free and open robotics software packages\n               for beginners and experts in robotics.\n11. Scientific. A bundle of open source scientific and numerical tools\n               used in research.\n12. Offline. A collection of software, models and content for those who\n               expect being offline due to various reasons."
+purpose_setup_ja_JP="-------------------------------------\n"$DISTRIBUTION" "$VERSION_ID" セットアップスクリプト\nディストロの目的を選択してください\n-------------------------------------\n 1. ディストロの目的を選択してください\n 2. ゲーム。最も人気のあるゲームと基本的なソフトウェア。\n 3. 企業向け。Microsoft、Google、およびCiscoのソフトウェアを取得します。 \n 4. 開発。Python、JS、npm、その他のコーディングに必要なすべてのツール。\n 5. 天文学。アマチュアおよびプロの天文学者向けの完全なオープンソースツールセット。\n 6. Comp-Neuro。神経科学のための多様な無料/オープンソースの計算モデリングツール。\n 7. デザイン。ビジュアルデザイン、マルチメディア制作、およびパブリッシングスイート。 \n 8. ジャム。オーディオ愛好家や音楽家向けのオーディオと音楽の作成、編集、制作。\n 9. セキュリティラボ。セキュリティ監査、フォレンジック、システムレスキュー、およびセキュリティテスト手法の教育に取り組むための安全なテスト環境。\n10. ロボティクス。初心者から専門家までの幅広い無料かつオープンなロボティクスソフトウェアパッケージ。\n11. サイエンティフィック。研究で使用されるオープンソースの科学技術および数値計算ツールのバンドル。\n12. オフライン。さまざまな理由でオフラインを予想するユーザー向けのソフトウェア、モデル、およびコンテンツのコレクション。"
+purpose_setup_ru_RU="-------------------------------------\n"$DISTRIBUTION" "$VERSION_ID" Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Базовая. Самое распространенное не коммерческое программное обеспечение для базовых потребностей.\n 2. Игры. Самое популярное игровое и базовое программное обеспечение.\n 3. Корпоративная. Получите программное обеспечение Microsoft, Google и Cisco.\n 4. Разработка. Весь ваш Python, JS, npm и другие инструменты для программирования.\n 5. Астрономия. Функциональный полностью открытый и свободный инструмент для любителей и профессионалов.\n 6. Исследуйте мозг. Множество бесплатных/открытых инструментов численного моделирования для нейробиологии.\n 7. Дизайн. Набор свободных с открытым исходным текстом творческих инструментов для визуального проектирования, производства мультимедийных продуктов и публикации.\n 8. Звукозапись. Для любителей звукозаписи и музыкантов, которые хотят создавать, редактировать и выпускать аудиозаписи и музыку на Linux.\n 9. Лаборатория безопасности. Безопасная тестовая среда для работы в области проверки безопасности, криминалистики, восстановления систем и преподавания методов тестирования безопасности.\n10. Робототехника. Большое разнообразие свободных и открытых програмных пакетов для начинающих и экспертов в области робототехнике.\n11. Научная. Пакет средств с открытым исходным кодом для научных и численных расчетов, используемых при исследованиях.\n12. -------------------------------------\n"$DISTRIBUTION" "$VERSION_ID" Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Базовая. Самое распространенное не коммерческое программное обеспечение для базовых потребностей.\n 2. Игры. Самое популярное игровое и базовое программное обеспечение.\n 3. Корпоративная. Получите программное обеспечение Microsoft, Google и Cisco.\n 4. Разработка. Весь ваш Python, JS, npm и другие инструменты для программирования.\n 5. Астрономия. Функциональный полностью открытый и свободный инструмент для любителей и профессионалов.\n 6. Исследуйте мозг. Множество бесплатных/открытых инструментов численного моделирования для нейробиологии.\n 7. Дизайн. Набор свободных с открытым исходным текстом творческих инструментов для визуального проектирования, производства мультимедийных продуктов и публикации.\n 8. Звукозапись. Для любителей звукозаписи и музыкантов, которые хотят создавать, редактировать и выпускать аудиозаписи и музыку на Linux.\n 9. Лаборатория безопасности. Безопасная тестовая среда для работы в области проверки безопасности, криминалистики, восстановления систем и преподавания методов тестирования безопасности.\n10. Робототехника. Большое разнообразие свободных и открытых програмных пакетов для начинающих и экспертов в области робототехнике.\n11. Научная. Пакет средств с открытым исходным кодом для научных и численных расчетов, используемых при исследованиях.\n12. Офлайн. Коллекция программного обеспечения, моделей и контента для тех, кто ожидает отсутствия подключения из-за различных причин."
+purpose_setup_es_ES="-------------------------------------\n$NAME $VERSION_ID Setup Script\nPlease select a purpose for your distro\n-------------------------------------\n 1. Basic\n 2. Gaming\n 3. Corporate\n 4. Development\n 5. Astronomy\n 6. Comp-Neuro\n 7. Desing\n 8. Jam\n 9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
+
+# Declaring Global Functions
+info (){
   echo -e "${BLUE}$1${ENDCOLOR}"
 }
-error ()
-{
+error (){
   echo -e "${RED}$1${ENDCOLOR}"
 }
-caution ()
-{
+caution (){
   echo -e "${YELLOW}$1${ENDCOLOR}"
 }
-success ()
-{
+success (){
   echo -e "${GREEN}$1${ENDCOLOR}"
 }
-firstMenu ()
+# Declaring Specific Functions
+identifyDistro ()
 {
-  echo -e "${GREEN}"$os_id $os_version"
-  echo -e "${YELLOW}"Latest commit: $latest_commit"
-  echo -e "Setup Scripts\nVersion $version\nHello $(whoami)\nPlease select an option:\n${YELLOW}1. "$os_id" Workstation Setup\n2. Quick $os_id Server Setup\n3. Update system\n4. Install GPU Drivers\n5.Exit${ENDCOLOR}"
-  read optionmenu
+if [[ -f /etc/os-release ]]; then
+        source /etc/os-release 
+        if [[ -n "$NAME" ]]; then
+            export DISTRIBUTION=$NAME
+            export VERSION=$VERSION_ID
+            success "$NAME"
+            success "$VERSION"
+        fi
+    elif [[ -f /etc/lsb-release ]]; then
+        source /etc/lsb-release
+        if [[ -n "$DISTRIB_ID" ]]; then
+            export DISTRIBUTION=$DISTRIB_ID
+            export VERSION=$DISTRIB_RELEASE
+        fi
+    else
+        export DISTRIBUTION="Unknown"
+        export VERSION="Unknown"
+    fi
+    case $NAME in
+    *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+    pkgm=dnf
+    pkgext=rpm
+    argInstall=install
+    argUpdate=update
+    preFlags=""
+    postFlags="--skip-broken -y"
+    essentialPackages="$essentialPackages $essentialPackagesRPM"
+    amdPackages="$amdPackages $amdPackagesRPM"
+    nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
+    virtconPackages="$virtconPackages $virtconPackagesRPM"
+    desktopOption=2
+    ;;
+    *Red*)
+    caution "RHEL"
+    pkgm=dnf
+    pkgext=rpm
+    argInstall=install
+    argUpdate=update
+    preFlags=""
+    postFlags="--skip-broken -y"
+    essentialPackages="$essentialPackages $essentialPackagesRPM"
+    amdPackages="$amdPackages $rhelPackages $amdPackagesRPM"
+    nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
+    virtconPackages="$virtconPackages $virtconPackagesRPM"
+    desktopOption="3,4"
+    ;;
+    *CentOS*)
+    caution "CentOS"
+    pkgm=dnf
+    pkgext=rpm
+    argInstall=install
+    argUpdate=update
+    preFlags=""
+    postFlags="--skip-broken -y"
+    essentialPackages="$essentialPackages $essentialPackagesRPM"
+    amdPackages="$amdPackages $amdPackagesRPM"
+    nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
+    virtconPackages="$virtconPackages $virtconPackagesRPM"
+    desktopOption=2
+    ;;
+    *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
+    pkgm=apt
+    pkgext=deb
+    argInstall=install
+    argUpdate=update
+    preFlags="-f"
+    postFlags="-y -m"
+    essentialPackages="$essentialPackages $essentialPackagesDebian"
+    amdPackages="$amdPackages $amdPackagesDebian"
+    nvidiaPackages="$nvidiaPackages $nvidiaPackagesDebian"
+    virtconPackages="$virtconPackages $virtconPackagesDebian"
+    desktopOption=1
+    ;;
+    *Gentoo*)
+    caution "Gentoo is not supported"
+    ;;
+    *Slackware*)
+    caution "Slackware is not supported"
+    ;;
+    *Arch*)
+    caution "Arch is not supported, and you wouldn't be using scripts anyway"
+    ;;
+    *Opensuse*)
+    caution "openSUSE is not supported"
+    ;;
+    *)
+    echo "2"
+    ;;
+    esac
+    echo $NAME
+    displayMenu
 }
-profileMenu ()
+load_dictionary() {
+    case "$locale_language" in
+        *en_US* | *en* | *en_*)
+            printingDisplay="${phase}_en_US"
+            info "${!printingDisplay}"
+            ;;
+        *es_ES* | *es_ES* | es | es_)
+            printingDisplay="${phase}_es_ES"
+            info "${!printingDisplay}"
+            ;;
+	    *ru_RU* | *ru_RU* | ru | ru_)
+            printingDisplay="${phase}_ru_RU"
+            info "${!printingDisplay}"
+            ;;
+	    *ja_JP* | *ja_JP* | *ja* | *ja_*)
+            printingDisplay="${phase}_ja_JP"
+            info "${!printingDisplay}"
+            ;;
+	    *)
+            caution "Locale not supported. Using default English (en) dictionary."
+            printingDisplay="${phase}_en_US"
+            info "${!printingDisplay}"
+            ;;
+    esac
+}
+
+displayMenu ()
 {
-  caution "Time to choose a profile.\nPlease select a Workstation profile:\n1. Basic Profile. For the most basic use cases like media playback, internet browsing, office suite, file manipulation, communication and remote assistance.\n2. Gaming profile. Is Basic profile plus popular gaming platforms and utilities, like Steam.\n3. Microsoft profile. Delivers the Microsoft ecosystem.\n4. Google profile. Delivers the Google ecosystem.\n5. Cisco profile. Delivers the Cisco ecosystem.\n6.Corporate profile. Delivers the most packages for office work, videocalls, including applications\nfor specific working ecosystems like Microsoft's, Google's and Cisco's\n9. Exit \n"
+  #clear
+  phase=tech_setup
+  load_dictionary
   read optionmenu
   case $optionmenu in
     1)
-      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $supportPackages $postFlags
-    ;;
+        clear
+        caution "Tech Setup is starting..."
+        techSetup
+        ;;
     2)
-      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $gamingPackages $supportPackages $postFlags
-      timeout 180s steam
-    ;;
+        purposeMenu
+        ;;
     3)
-      $addMicrosoft
-      $enableMicrosoft
-      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $supportPackages $postFlags
-      #onedrive pending
-      sharedFolder
-    ;;
+        caution "Server Setup Runs"
+        serverSetup
+        ;;
     4)
-      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $supportPackages $postFlags
-      #google cloud pending
-    ;;
-    5)
-      sudo $pkgm $argInstall $preFlags $basicPackages $googlePackages $ciscoPackages $supportPackages $postFlags
-    ;;
-    6)
-      $addMicrosoft
-      $enableMicrosoft
-      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $corporateGeneric $supportPackages $postFlags
-      sharedFolder
-    ;;
-    0)
-      $addMicrosoft
-      $enableMicrosoft
-      sudo $pkgm $argInstall $preFlags $basicPackages $microsoftPackages $googlePackages $ciscoPackages $gamingPackages $multimediaPackages $virtconPackages $supportPackages $postFlags
-      timeout 180s steam
-      #curl -s https://raw.githubusercontent.com/sukhmeetbawa/OpenCL-AMD-Fedora/master/opencl-amd.sh > opencl-amd.sh && chmod +x opencl-amd.sh && sudo ./opencl-amd.sh && rm opencl-amd.sh
-      installSVP
-      #installDistrobox
-      installproton
-      #installamdgpupro
-      #installgstreamerobs
-      sudo dnf install plymouth-theme-spinfinity -y
-      sudo plymouth-set-default-theme spinfinity -R
-      sudo usermod -aG libvirt $(whoami)
-      sudo systemctl enable xrdp && sudo systemctl start xrdp
-      sudo firewall-cmd --permanent --add-port=24070/tcp
-      sudo firewall-cmd --permanent --add-port=24800/tcp #barrier
-      sudo firewall-cmd --reload
-      sudo chcon --type=bin_t /usr/sbin/xrdp
-      sudo chcon --type=bin_t /usr/sbin/xrdp-sesman 
-      xdg-settings set default-web-browser microsoft-edge.desktop
-      
-
-      #xfconf-query -c xsettings -p /Net/ThemeName -s "Chicago95"
-    ;;
+        caution "Exit"
+        ;;
     *)
-      error "Invalid option"
-      exit
-    ;;
-  esac
+        error "Bad input"
+        ;;
+    esac
 }
-customserversteps ()
+desktopenvironment ()
 {
-  $customserver
+    if [[ -n $XDG_CURRENT_DESKTOP ]]; then
+        success "You have $XDG_CURRENT_DESKTOP installed already, moving on"
+    else
+        desktopenvironmentMenu
+        success "You have $XDG_CURRENT_DESKTOP installed, moving on"
+    fi
 }
 desktopenvironmentMenu ()
 {
-  caution "What Desktop Environment you want?\n1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. BUDGIE\n10. SWAY\n11. NONE"
+  caution "What Desktop Environment you want?\n1. GNOME\n2. XFCE\n3. KDE\n4. LXQT\n5. CINNAMON\n6. MATE\n7. i3\n8. OPENBOX\n9. BUDGIE\n10. SWAY\n11. HYPRLAND\n12.NONE"
   read option
   case $option in
     1)
-        sudo $pkgm $argInstall $gnomePackages -y && sudo systemctl set-default graphical.target
+        gnomePackages="$(echo "$gnomePackages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $gnomePackages $postFlags && sudo systemctl set-default graphical.target
         success "You have GNOME installed, moving on"
         ;;
     2)
-        sudo $pkgm $argInstall $xfcePackages -y && sudo systemctl set-default graphical.target
+        xfcePackages="$(echo "$xfcePackages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $xfcePackages $basicDesktopEnvironmentPackages $postFlags && sudo systemctl set-default graphical.target
         success "You have XFCE installed, moving on"
         ;;
     3)
-        sudo $pkgm $argInstall $kdePackages -y && sudo systemctl set-default graphical.target
+        kdePackages="$(echo "$kdePackages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $kdePackages $postFlags && sudo systemctl set-default graphical.target
         success "You have KDE installed, moving on"
         ;;
     4)
-        sudo $pkgm $argInstall $lxqtPackages -y && sudo systemctl set-default graphical.target
+        lxqtPackages="$(echo "$lxqtPackages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $lxqtPackages $postFlags && sudo systemctl set-default graphical.target
         success "You have LXQT installed, moving on"
         ;;
     5)
-        sudo $pkgm $argInstall $cinnamonPackages -y && sudo systemctl set-default graphical.target
+        cinnamonPackages="$(echo "$cinnamonPackages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $cinnamonPackages $postFlags && sudo systemctl set-default graphical.target
         success "You have CINNAMON installed, moving on"
         ;;
     6)
-        sudo $pkgm $argInstall $matePackages -y && sudo systemctl set-default graphical.target
+        matePackages="$(echo "$matePackages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $matePackages $postFlags && sudo systemctl set-default graphical.target
         success "You have MATE installed, moving on"
         ;;
     7)
-        sudo $pkgm $argInstall $i3Packages -y && sudo systemctl set-default graphical.target
+        i3Packages="$(echo "$i3Packages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $i3Packages $basicDesktopEnvironmentPackages $postFlags && sudo systemctl set-default graphical.target
         success "You have i3 installed, moving on"
         ;;
     8)
-        sudo $pkgm $argInstall $openboxPackages -y && sudo systemctl set-default graphical.target
+        openboxPackages="$(echo "$openboxPackages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $openboxPackages $postFlags && sudo systemctl set-default graphical.target
         success "You have OPENBOX installed, moving on"
         ;;
     9)
-        info "Desktop Environment will be added on Fedora 38"
-        #sudo $pkgm $argInstall $budgiePackages -y && sudo systemctl set-default graphical.target
-        #success "You have BUDGIE installed, moving on"
+        budgiePackages="$(echo "$budgiePackages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $budgiePackages $postFlags && sudo systemctl set-default graphical.target
+        success "You have BUDGIE installed, moving on"
         ;;
     10)
-        info "Desktop Environment will be added on Fedora 38"
-        #sudo $pkgm $argInstall $swayPackages -y && sudo systemctl set-default graphical.target
-        #success "You have SWAY installed, moving on"
+        swayPackages="$(echo "$swayPackages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $swayPackages $basicDesktopEnvironmentPackages $postFlags && sudo systemctl set-default graphical.target
+        success "You have SWAY installed, moving on"
         ;;
     11)
+        info "Still on the works, i3 will be installed first"
+        hyprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
+        i3Packages="$(echo "$i3Packages" | awk '{print $desktopOption}')"
+        sudo $pkgm $argInstall $i3Packages $basicDesktopEnvironmentPackages $postFlags
+        info "Installing Hyprland"
+        sudo dnf copr enable solopasha/hyprland -y
+        sudo $pkgm $argInstall $hyprlandPackages -y
+        sudo dnf install xorg-x11-server-Xwayland waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff thunar -y && sudo systemctl set-default graphical.target
+        mkdir ~/.config/hypr/
+        curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/hyprland.conf > ~/.config/hypr/hyprland.conf
+        #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
+        success "You have HYPRLAND installed, moving on"
+        ;;
+    12)
         caution "No Desktop Environment will be installed"
         ;;
     *)
@@ -475,39 +291,35 @@ info "Installing GPU drivers"
   fi
   info "For Intel Arc drivers, please refer to https://www.intel.com/content/www/us/en/download/747008/intel-arc-graphics-driver-ubuntu.html"
 }
+updateGrub ()
+{
+    sudo sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
+    sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+}
 nvtopInstall ()
 {
   which nvtop > /dev/null 2>&1
     if [ $? == 0 ]
     then
-        success ""
+        info "Already have nvtop installed."
     else
         git clone https://github.com/Syllo/nvtop.git && mkdir -p nvtop/build && cd nvtop/build && cmake .. && make && sudo make install && cd ../.. && rm -rf nvtop
+        success "nvtop has been successfully installed."
     fi
 }
-askReboot ()
+installSVP ()
 {
-  caution "Would you like to reboot? (Recommended) [y/N]"
-  read option
-    if [ $option == y ]
-    then
-        sudo reboot
-    else
-        caution "No reboot was requested."
-    fi
-}
-installmpv ()
-{
-  echo "mpv"
- #Compiling and installing MPV (Seems not to be necessary anymore)
-        #which mpv > /dev/null 2>&1
-        #if [ $? == 0 ]
-        #then
-        #  echo "Mpv is already installed"
-        #else
-        #  sudo dnf builddep mpv -y && sudo git clone https://github.com/mpv-player/mpv && cd mpv/ && sudo ./bootstrap.py && sudo ./waf configure --enable-vapoursynth && sudo ./waf && sudo ./waf install && cd .. && sudo rm -r mpv
-        #######sudo ./waf configure --disable-lgpl --enable-libmpv-shared --disable-libmpv-static --disable-static-build --disable-build-date --disable-debug-build --enable-manpage-build --disable-html-build --disable-pdf-build --enable-cplugins --disable-clang-database --disable-android --disable-tvos --disable-egl-android --disable-swift --disable-uwp --disable-win32-internal-pthreads --enable-iconv --enable-javascript --enable-zlib --enable-libbluray --enable-dvdnav --enable-cdda --enable-uchardet --enable-rubberband --enable-zimg --enable-lcms2 --enable-vapoursynth --enable-libarchive --enable-dvbin --enable-sdl2 --enable-sdl2-gamepad --enable-libavdevice --enable-sdl2-audio --disable-oss-audio --enable-pipewire --enable-pulse --enable-jack --disable-opensles --enable-alsa --disable-coreaudio --disable-audiounit --disable-wasapi --enable-sdl2-video --disable-cocoa --enable-drm --enable-gbm --enable-wayland --enable-x11 --enable-xv --disable-gl-cocoa --enable-gl-x11 --enable-egl --enable-egl-x11 --enable-egl-drm --enable-gl-wayland --disable-gl-win32 --disable-gl-dxinterop --disable-egl-angle --disable-egl-angle-lib --disable-egl-angle-win32 --enable-vdpau --enable-vdpau-gl-x11 --enable-vaapi --enable-vaapi-x11 --enable-vaapi-wayland --enable-vaapi-drm --enable-vaapi-x-egl --enable-caca --enable-jpeg --disable-direct3d --enable-shaderc --disable-d3d11 --disable-rpi --disable-ios-gl --enable-plain-gl --enable-gl --enable-libplacebo --enable-vulkan --disable-videotoolbox-gl --disable-d3d-hwaccel --disable-d3d9-hwaccel --disable-gl-dxinterop-d3d9 --enable-cuda-hwaccel --enable-cuda-interop --disable-rpi-mmal && sudo ./waf && sudo ./waf install
-        #fi
+  pkgs="/home/$(whoami)/SVP\ 4/SVPManager"
+        which $pkgs > /dev/null 2>&1
+        if [ $? == 0 ]
+        then
+          echo "SVP is already installed"
+        else
+            wget https://www.svp-team.com/files/svp4-linux.4.5.210-2.tar.bz2
+            tar -xf svp4-linux.4.5.210-2.tar.bz2
+            sudo chmod +x svp4-linux-64.run
+            sudo -u $(whoami) ./svp4-linux-64.run && rm svp4-latest* svp4-linux-64.run 
+        fi
 }
 installproton ()
 {
@@ -538,151 +350,286 @@ installproton ()
       installproton
   fi
 }
-#This function will be a test ground for installing packages from different architectures.
-installcrowtranslator ()
+microsoftRepo ()
 {
-  if [ $(crow) ]
-  then
-      CURRENTVERSION=$(crow -v | awk '{print $NF}')
-      echo CURRENTVERSION
-      for I in 3 2
-       do
-        for J in 11 10
-          do
-            for K in 12 11 10 9 8 7 6 5 4 3
-              do
-                if [[ $CURRENTVERSION -eq $I.$J.$K ]]
-                then
-                  success "You already have the latest ProtonGE $I version."
-                else
-                  CROWVERSION=$I.$J.$K
-                  info "Installing version $CROWVERSION"
-                  wget https://github.com/crow-translate/crow-translate/releases/download/$CROWVERSION/crow-translate-$CROWVERSION-1.$arch_type.$pkgext &> /dev/null
-                    if [ $? -eq 0 ]
-                    then
-                      sudo $pkgm $argInstall crow-translate-$CROWVERSION-1.$arch_type.$pkgext -y
-                      success "Crow translator has been installed."
-                      break
-                    else
-                      caution "Crow translator $CROWVERSION has not been found."
-                    fi
-                fi
-              done
-        done
-      done
-  else
-      info "Crow is not installed."
-  fi
+    case $NAME in 
+    *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+    addMicrosoft="sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc"
+    enableMicrosoft="sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge && sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-stable.repo && sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/vscode && curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo"
+    $addMicrosoft && $enableMicrosoft
+    ;;
+    *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
+    if [[ "$NAME" == "Debian" ]]; then
+            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -"
+            else
+            addMicrosoft="curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc"
+            fi
+    $addMicrosoft
+    ;;
+    esac
 }
-installgstreamerobs ()
+askReboot ()
 {
-  if [ $(ls ~/.config/obs-studio/) ]
-  then
-      wget https://github.com/fzwoch/obs-gstreamer/releases/download/v0.4.0/obs-gstreamer.zip
-      if [ $(ls ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/ | grep 64bit) ]
+  caution "Would you like to reboot? (Recommended) [y/N]"
+  read option
+    if [ $option == y ]
+    then
+        sudo reboot
+    else
+        caution "No reboot was requested."
+    fi
+}
+distroboxContainers ()
+{
+    distrobox-create --name fedora --image quay.io/fedora/fedora:38 -Y
+    distrobox-create --name ubuntu --image docker.io/library/ubuntu:22.04 -Y
+    distrobox-create --name rhel --image registry.access.redhat.com/ubi9/ubi -Y
+    distrobox-create --name debian --image docker.io/library/debian:12 -Y
+    #distrobox-create --name clearlinux --image docker.io/library/clearlinux:latest -Y
+    distrobox-create --name centos --image quay.io/centos/centos:stream9 -Y
+    #distrobox-create --name arch --image docker.io/library/archlinux:latest -Y
+    #distrobox-create --name opensusel --image registry.opensuse.org/opensuse/leap:latest -Y
+    #distrobox-create --name opensuset --image registry.opensuse.org/opensuse/tumbleweed:latest  -Y
+    #distrobox-create --name gentoo --image docker.io/gentoo/stage3:latest -Y
+}
+purposeMenu ()
+{
+  phase=purpose_setup
+  clear
+  load_dictionary
+  read optionmenu
+  case $optionmenu in
+    1)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $googlePackages $postFlags
+        ;;
+    2)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $googlePackages $gamingPackages $postFlags
+        ;;
+    3)
+        caution $1
+        microsoftRepo
+        microsoftPackagesArray=($microsoftPackages)
+        microsoftPackages=$(echo "${microsoftPackagesArray[0]}")
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $microsoftPackages $googlePackages $ciscoPackages $postFlags
+        ;;
+    4)
+        caution $1
+        microsoftRepo
+        microsoftPackagesArray=($microsoftPackages)
+        microsoftPackages=$(echo "${microsoftPackagesArray[1]}")
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $developmentPackages $microsoftPackages $virtconPackages $postFlags
+        distroboxContainers
+        ;;
+    5)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
+        ;;
+    6)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
+        ;;
+    7)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
+        ;;
+    8)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
+        ;;
+    9)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
+        ;;
+    10)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
+        ;;
+    11)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
+        ;;
+    12)
+        caution $1
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $postFlags
+        ;;
+    13)
+        displayMenu
+        ;;
+    0)
+        caution $1
+        microsoftRepo
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
+        sudo usermod -aG libvirt $(whoami)
+        #installSVP #Trying to find a FOSS alternative for smooth video
+        distroboxContainers
+        ;;
+    *)
+        # Code to execute when $variable doesn't match any of the specified values
+        ;;
+    esac
+    finalTweaks
+    displayMenu
+}
+serverSetup ()
+{
+    sudo $pkgm update -y && sudo $pkgm upgrade -y
+    sudo $pkgm $argInstall $preFlags $essentialPackages $basicSystemPackages $serverPackages $supportPackages $developmentPackages $postFlags
+}
+techSetup ()
+{
+    caution $NAME
+    case $NAME in
+    *Fedora*)
+    if [ $(cat /etc/dnf/dnf.conf | grep fastestmirror=true) ]
       then
-          info "Installing obs-gstreamer..."
-          unzip obs-gstreamer.zip -d ls ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/ && cp obs-gstreamer/linux/obs-gstreamer.so ls ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/
-          success "obs-gstreamer has been installed."
-      else
-          info "Installing obs-gstreamer..."
-          mkdir -p ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/ && unzip obs-gstreamer.zip -d obs-gstreamer/ && cp obs-gstreamer/linux/obs-gstreamer.so ~/.config/obs-studio/plugins/obs-streamer/bin/64bit/ && rm -r obs-gstreamer/
-          success "obs-gstreamer has been installed."
-      fi
-  else
-      error "OBS is not installed, obs-gstreamer won't be installed either."
-  fi
-}
-installamdgpupro ()
-{
-  git clone https://github.com/CosmicFusion/fedora-amdgpu-pro
-  cd fedora-amdgpu-pro
-  ./package-builder.sh amdamf-pro-runtime 64
-  ./package-builder.sh amdvlk-pro 64
-  ./package-builder.sh libdrm-pro 64
-  cd packages
-  sudo dnf install *.rpm -y
-}
-installSVP ()
-{
-  pkgs="/home/$(whoami)/SVP\ 4/SVPManager"
-        which $pkgs > /dev/null 2>&1
-        if [ $? == 0 ]
-        then
-          echo "SVP is already installed"
-        else
-            wget https://www.svp-team.com/files/svp4-linux.4.5.210-2.tar.bz2
-            tar -xf svp4-linux.4.5.210-2.tar.bz2
-            sudo chmod +x svp4-linux-64.run
-            sudo -u $(whoami) ./svp4-linux-64.run && rm svp4-latest* svp4-linux-64.run 
-        fi
-}
-installDistrobox ()
-{
-  which $pkgs > /dev/null 2>&1
-        if [ $? == 0 ]
-        then
           echo ""
-        else
-          #curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh
-          distrobox-create --name fedora --image quay.io/fedora/fedora:38 -Y
-          #distrobox-create --name tumbleweed --image registry.opensuse.org/opensuse/tumbleweed:latest -Y
-          #distrobox-create --name ubuntu18 --image docker.io/library/ubuntu:18.04 -Y
-          #distrobox-create --name ubuntu20 --image docker.io/library/ubuntu:20.04 -Y
-          distrobox-create --name ubuntu22 --image docker.io/library/ubuntu:22.04 -Y
-          #distrobox-create --name rhel8 --image registry.access.redhat.com/ubi8/ubi -Y
-          distrobox-create --name rhel9 --image registry.access.redhat.com/ubi9/ubi -Y
-          #distrobox-create --name arch --image docker.io/library/archlinux:latest -Y
-        fi
+      else
+          sudo sh -c 'echo fastestmirror=true >> /etc/dnf/dnf.conf' #Looks for the lowest ping, not necessarily the best bandwith
+          sudo sh -c 'echo max_parallel_downloads=10 >> /etc/dnf/dnf.conf'
+      fi 
+    sudo systemctl disable NetworkManager-wait-online.service
+    caution "Installing RPM FUsion"
+    sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories dnf-plugins-core -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+    updateGrub
+    #swapCodecsFedora
+    ;;
+    *Nobara*|*Risi*|*Ultramarine*)
+    sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+    ;;
+    *Red*)
+    caution "RHEL"
+    sudo systemctl disable NetworkManager-wait-online.service
+    info "Installing EPEL repo"
+    sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+    sudo $pkgm $argInstall https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
+    info "Installing Essential Packages"
+    sudo $pkgm install $essentialPackages $postFlags
+    ;;
+    *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
+    sudo $pkgm update -y && sudo $pkgm upgrade -y
+    sudo $pkgm install $essentialPackages -y
+    ;;
+    *Gentoo*)
+    caution "Gentoo"
+    ;;
+    *Slackware*)
+    caution "Slackware"
+    ;;
+    *Arch*)
+    caution "Arch"
+    ;;
+    *Opensuse*)
+    caution "openSUSE"
+    ;;
+    *)
+    echo "2"
+    ;;
+    esac
+    desktopenvironment
+    graphicDrivers
+    #nvtopInstall
+    askReboot
+    displayMenu
 }
-sharedFolder ()
+#This functios in only for Fedora, might be adapted to other distros like openSUSE
+swapCodecsFedora ()
 {
-  #Mounting Windows Shared folder
-        echo "Do you want to setup a Windows Shared Folder?"
-        read option
-        if [ $option == y ]
-        then
-            echo "What is the server name you wish to connect to?"
-            read server
-            echo "What is the shared folder of $server?"
-            read folder
-            echo "What is the user to connect to $folder in $server?"
-            read srvuser2o mount.cifs //$server/$folder /home/$(whoami)/WinFiles/ -o user=$srvuser
-            echo "Windows Shared Folder has been successfully mounted!"
-        else
-            echo -e "No Windows shared folders were added\n--------------------------------------"
-        fi
+    pkg1=$(echo $essentialPackages | awk '{print $7}')
+    pkg2=$(echo $fedoraPackages | awk '{print $1}')
+    pkg3=$(echo $fedoraPackages | awk '{print $3}')
+    sudo $pkgm swap $preFlags $pkg1 $pkg2 $postFlags
+    pkg1=$(echo $essentialPackages | awk '{print $8}')
+    pkg2=$(echo $fedoraPackages | awk '{print $2}')
+    sudo $pkgm swap $preFlags $pkg1 $pkg2 $postFlags
+    sudo $pkgm $argInstall $preFlags $pkg3 $postFlags
 }
 finalTweaks ()
 {
-  #Hostname
-  if [[ $(hostname) == $hostnamegiven ]];
-  then
-      echo "Please provide a hostname for the computer"
-      read hostname
-      sudo hostnamectl set-hostname --static $hostname
-  else
-      echo 'hostname was not changed'
-  fi
-  #Desktop Environment tweaks
-  if [ $XDG_SESSION_DESKTOP = "gnome" ] || [ $XDG_SESSION_DESKTOP = "xfce" ]
-  then
-      gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-      gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true  
-      gsettings set org.gnome.desktop.session idle-delay 0
-      xdg-mime default thunar.desktop inode/directory
-  else
-      echo ""
-  fi
+  # Hostname
+  #if [[ $(hostname) == $hostnamegiven ]];
+  #then
+  #    echo "Please provide a hostname for the computer"
+  #    read hostname
+  #    sudo hostnamectl set-hostname --static $hostname
+  #else
+  #    echo 'hostname was not changed'
+  #fi
+  # Asthetic Tweaks
+  sudo $pkgm $argInstall $preFlags plymouth plymouth-theme-spinfinity $postFlags
+  sudo plymouth-set-default-theme spinfinity -R
+  # Desktop Environment tweaks
+  case $XDG_SESSION_DESKTOP in
+    *gnome*|*xfce*)
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+    gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true  
+    gsettings set org.gnome.desktop.session idle-delay 0
+    xdg-mime default thunar.desktop inode/directory
+    ;;
+    *)
+    error "No supported Desktop Environment for tweaks"
+    ;;
+    esac
 }
 updateSystem ()
 {
   sudo $pkgm $argUpdate -y
-  installproton
-  success "System has been updated"
+  success "Your system has been updated"
 }
-systemReview ()
-{
-  cowsay "The process has been completed, here is a review of your system." | neofetch
-}
+# Declaring Packages
+# Generic GNU/Linux Packages
+#Essential packages are what will allow system review for advanced users and stable hardware experience
+essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g*" #gcc-c++ lm_sensors.x86_64
+#Server packages ensure SSH, FTP and RDP connectivity, so advanced users can configure and use the server remotely
+serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
+#Basic packages will allow endusers to perform basic activities or get basic features
+basicUserPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio epiphany qbittorrent"
+basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr figlet *gtkglext* libxdo-* ncdu scrot xclip nvtop"
+basicDesktopEnvironmentPackages="thunar thunar-archive-plugin file-roller"
+#Gaming packages will allow enduseres to play on the most popular platforms
+gamingPackages="steam goverlay lutris mumble"
+#Multimedia pacakges allow the end user to use the most
+multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
+developmentPackages="gcc cargo npm python3-pip nodejs golang conda*"
+virtconPackages="podman distrobox bridge-utils"
+supportPackages="stacer bleachbit remmina filezilla barrier keepassxc bless"
+amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
+nvidiaPackages="vdpauinfo libva-vdpau-driver libva-utils vulkan nvidia-xconfig" #kernel-headers kernel-devel xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
+xfcePackages="task-xfce-desktop @xfce-desktop-environment @Xfce @base-x"
+gnomePackages="task-gnome-desktop @workstation-product-environment @gnome @base-x"
+kdePackages="task-kde-desktop @kde-desktop-environment @kde @base-x"
+lxqtPackages="task-lxqt-desktop @lxqt-desktop-environment"
+cinnamonPackages="task-cinnamon-desktop @cinnamon-desktop-environment"
+matePackages="task-mate-desktop @mate-desktop-environment"
+i3Packages="i3 @i3-desktop-environment i3"
+openboxPackages="openbox @basic-desktop-environment @openbox @base-x"
+budgiePackages="budgie-desktop budgie-desktop @budgie @base-x"
+swayPackages="sway sway @sway @base-x"
+hyprlandPackages="hyprland-git hyprland-git" #Still on the works
+# Specific GNU/Linux Packages
+intelPackages="intel-media-*driver"
+essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
+essentialPackagesDebian="software-properties-common build-essential manpages-dev linux-headers-amd64 linux-image-amd64 net-tools x11-utils tigervnc-standalone-server tigervnc-common tightvncserver isc-dhcp-server" #libncurses5-dev libncursesw5-dev libgtkglext1
+virtconPackagesRPM="@virtualization libvirt libvirt-devel virt-install qemu-kvm qemu-img virt-manager"
+virtconPackagesDebian="libvirt-daemon-system libvirt-clients"
+amdPackagesRPM="xorg-x11-dr* systemd-devel" #xorg-x11-drv-amdgpu
+fedoraPackages="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld libavcodec-freeworld"
+rhelPackages="mesa-dri-drivers libavcodec*" #mesa-vdpau-drivers
+amdPackagesDebian="xserver-xorg-video-amdgpu libsystemd-dev"
+nvidiaPackagesRPM="akmod-nvidia"
+nvidiaPackagesDebian="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
+nvidiaPackagesUbuntu="nvidia-driver-535"
+nvidiaPackagesArch="nvidia-open"
+astronomyPackages="astropy kstars celestia siril "
+compneuroPackages="neuron "
+# Corporate Packages
+anydesk="https://download.anydesk.com/linux/anydesk-6.2.1-1.el8.x86_64.rpm https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb"
+rustdesk="https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9-fedora28-centos8.rpm https://github.com/rustdesk/rustdesk/releases/download/1.1.9/rustdesk-1.1.9.deb"
+microsoftPackages="microsoft-edge-stable code powershell"
+zoom="https://zoom.us/client/latest/zoom_x86_64.rpm"
+googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
+ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
+# CustomPackages
+carinoPackages="lpf-spotify-client telegram-desktop"
 identifyDistro
