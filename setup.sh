@@ -585,7 +585,7 @@ essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdp
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
 #Basic packages will allow endusers to perform basic activities or get basic features
 basicUserPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio epiphany qbittorrent"
-basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr figlet *gtkglext* libxdo-* ncdu scrot xclip nvtop"
+basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr *gtkglext* libxdo-* ncdu scrot xclip nvtop"
 basicDesktopEnvironmentPackages="thunar thunar-archive-plugin file-roller"
 #Gaming packages will allow enduseres to play on the most popular platforms
 gamingPackages="steam goverlay lutris mumble"
