@@ -251,6 +251,7 @@ desktopenvironmentMenu ()
         sudo dnf copr enable solopasha/hyprland -y
         sudo $pkgm $argInstall $hyprlandPackages -y
         sudo dnf install xorg-x11-server-Xwayland waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff thunar -y && sudo systemctl set-default graphical.target
+        info "Creating Hyprland config file"
         mkdir ~/.config/hypr/
         curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/hyprland.conf > ~/.config/hypr/hyprland.conf
         #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
@@ -473,7 +474,7 @@ purposeMenu ()
         caution $1
         microsoftRepo
         librewolfRepo
-        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $languagePackages $postFlags
         sudo usermod -aG libvirt $(whoami)
         #installSVP #Trying to find a FOSS alternative for smooth video
         distroboxContainers
@@ -644,5 +645,6 @@ zoom="https://zoom.us/client/latest/zoom_x86_64.rpm"
 googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
 ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
 # CustomPackages
+languagePackages="fcitx5"
 carinoPackages="lpf-spotify-client telegram-desktop"
 identifyDistro
