@@ -368,6 +368,18 @@ microsoftRepo ()
     ;;
     esac
 }
+librewolfRepo ()
+{
+    case $NAME in 
+    *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
+    sudo dnf config-manager --add-repo https://rpm.librewolf.net/librewolf-repo.repo -y
+    sudo dnf install librewolf -y
+    ;;
+    *)
+    caution "Not supported for other distros yet."
+    ;;
+    esac
+}
 askReboot ()
 {
   caution "Would you like to reboot? (Recommended) [y/N]"
@@ -460,6 +472,7 @@ purposeMenu ()
     0)
         caution $1
         microsoftRepo
+        librewolfRepo
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $postFlags
         sudo usermod -aG libvirt $(whoami)
         #installSVP #Trying to find a FOSS alternative for smooth video
@@ -613,7 +626,7 @@ essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
 essentialPackagesDebian="software-properties-common build-essential manpages-dev linux-headers-amd64 linux-image-amd64 net-tools x11-utils tigervnc-standalone-server tigervnc-common tightvncserver isc-dhcp-server" #libncurses5-dev libncursesw5-dev libgtkglext1
 virtconPackagesRPM="@virtualization libvirt libvirt-devel virt-install qemu-kvm qemu-img virt-manager"
 virtconPackagesDebian="libvirt-daemon-system libvirt-clients"
-amdPackagesRPM="xorg-x11-dr* systemd-devel" #xorg-x11-drv-amdgpu
+amdPackagesRPM="xorg-x11-drv-amdgpu systemd-devel" #xorg-x11-dr*
 fedoraPackages="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld libavcodec-freeworld"
 rhelPackages="mesa-dri-drivers libavcodec*" #mesa-vdpau-drivers
 amdPackagesDebian="xserver-xorg-video-amdgpu libsystemd-dev"
