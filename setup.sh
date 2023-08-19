@@ -645,6 +645,6 @@ zoom="https://zoom.us/client/latest/zoom_x86_64.rpm"
 googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
 ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
 # CustomPackages
-languagePackages="fcitx5"
+languagePackages="fcitx5 fcitx5-mozc"
 carinoPackages="lpf-spotify-client telegram-desktop"
 identifyDistro
