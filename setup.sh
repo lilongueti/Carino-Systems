@@ -252,8 +252,6 @@ desktopenvironmentMenu ()
         sudo $pkgm $argInstall $hyprlandPackages -y
         sudo dnf install xorg-x11-server-Xwayland waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff thunar -y && sudo systemctl set-default graphical.target
         info "Creating Hyprland config file"
-        mkdir ~/.config/hypr/
-        curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/hyprland.conf > ~/.config/hypr/hyprland.conf
         #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
         success "You have HYPRLAND installed, moving on"
         ;;
@@ -580,6 +578,12 @@ finalTweaks ()
     gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true  
     gsettings set org.gnome.desktop.session idle-delay 0
     xdg-mime default thunar.desktop inode/directory
+    ;;
+    *hyprland*)
+    curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/hyprland.conf > ~/.config/hypr/hyprland.conf
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+    xdg-mime default thunar.desktop inode/directory
+    mkdir ~/.config/hypr/
     ;;
     *)
     error "No supported Desktop Environment for tweaks"
