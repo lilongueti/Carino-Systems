@@ -488,6 +488,10 @@ serverSetup ()
 {
     sudo $pkgm update -y && sudo $pkgm upgrade -y
     sudo $pkgm $argInstall $preFlags $essentialPackages $basicSystemPackages $serverPackages $supportPackages $developmentPackages $postFlags
+    wget https://github.com/rustdesk/rustdesk/releases/download/1.2.2/rustdesk-1.2.2-x86_64.deb
+    wget https://download.anydesk.com/linux/anydesk_6.3.0-1_amd64.deb
+    sudo dpkg -i rustdesk-*
+    sudo dpkg -i anydesk*
 }
 techSetup ()
 {
@@ -603,7 +607,7 @@ essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdp
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
 #Basic packages will allow endusers to perform basic activities or get basic features
 basicUserPackages="gedit yt-dlp thunderbird mpv ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio epiphany qbittorrent"
-basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr *gtkglext* libxdo-* ncdu scrot xclip nvtop"
+basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr *gtkglext* libxdo-* ncdu scrot xclip"
 basicDesktopEnvironmentPackages="thunar thunar-archive-plugin file-roller fontawesome-fonts"
 #Gaming packages will allow enduseres to play on the most popular platforms
 gamingPackages="steam goverlay lutris mumble"
