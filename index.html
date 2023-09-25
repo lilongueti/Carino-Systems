@@ -6,7 +6,7 @@
 	<title>Carino Systems</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	<link rel="icon" href="./images/logo50x50.png">
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <!-- OGP -->
@@ -19,127 +19,19 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" as="style">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" media="print" onload="this.media='all'">
-    <style>
-         /* Style for the header */
-         .header {
-            /*background-image: url('header-image.jpg'); /* Add your header image URL here */
-            background-color: black;
-            background-size: cover;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-        
-		/* Style for the footer */
-        footer {
-            background-color: #000000;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-		
-        options {
-            font-family: Arial, sans-serif;
-            background-color: #000000;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80%;
-        }
-
-        .block {
-            width: clamp(0px,16.6666666667vw,320px);
-            height: clamp(0px,34.475vw,900px);
-            margin: 2px;
-            display: inline-block;
-            border: 1px solid #000;
-            cursor: pointer;
-            box-sizing: border-box;
-            position: relative;
-            opacity: .5;
-            #animation: bounce 2s infinite;
-        }
-		
-		.block1 {
-			background-color: #3498db;
-		}
-
-		.block2 {
-			background-color: #3498db;
-		}
-
-		.block3 {
-			background-color: #3498db;
-		}
-
-		.block4 {
-			background-color: #3498db;
-		}
-		.block5 {
-			background-color: #3498db;
-		}
-		 /* Style for the block */
-		 .appear-block {
-            opacity: 0; /* Initially hidden */
-            animation: appear 2s ease-in-out forwards; /* Animation properties */
-        }
-
-        /* Keyframes animation for appearing */
-        @keyframes appear {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1; /* Fully visible */
-            }
-        }
-        
-        /* Change the background color on hover */
-        .block1:hover {
-            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
-        }
-		.block2:hover {
-            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
-        }
-		.block3:hover {
-            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
-        }
-		.block4:hover {
-            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
-        }
-		.block5:hover {
-            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-    </style>
 	<script>
         // Array of random phrases
         const phrases = [
             "A simple website for my convenience and hopefully yours.",
-            "クソガキ",
+            "クソガキ。",
             "Welcome, pero no mucho rato.",
             "Learn something new every day and forget it the day after.",
             "How about no.",
 			"ᐊᕆᐅᙵᐃᐹ",
-			"For the Emperor",
-			"I use Fedora btw",
-			"I did this last weekend, sorry if it's incomplete"
+			"For the Emperor.",
+			"I use Fedora btw.",
+			"I did this last weekend, sorry if it's incomplete.",
+			"Sup, halfBytes."
         ];
 
         // Function to pick and display a random phrase
@@ -154,16 +46,16 @@
     </script>
 </head>
 <header class="header">
-    <h1>Carino</h1>
+    <h1>Carino Systems</h1>
     <p id="random-phrase">Loading...</p>
 </header>
 <body style="background-color: #000000;">
 <options class="appear-block">
-    <div class="block block1" alt="Operating Systems"></div>
-    <div class="block block2" alt="Software"></div>
-    <div class="block block3" alt="Models"></div>
-    <div class="block block4" alt="Languages"></div>
-    <div class="block block5" alt="Lurking"></div>
+    <div class="block block1" alt="Operating Systems" style="background-position: center center;"><p class="blockletter">OPERATING SYSTEMS</p></div>
+    <div class="block block2" alt="Software"><p class="blockletter">SOFTWARE SOLUTIONS</p></div>
+    <div class="block block3" alt="Models"><p class="blockletter">A.I. MODELS</p></div>
+    <div class="block block4" alt="Languages"><p class="blockletter">NATURAL LANGUAGE PROCESSING</p></div>
+    <div class="block block5" alt="Lurking"><p class="blockletter"></p></div>
 </options>
 <!-- Footer -->
 <footer>
