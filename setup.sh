@@ -325,7 +325,7 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 14 13 12 11 10 9 8 7 6 5 4
+      for I in 26 25 24 23 22 21 20 19 18 17 16
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
@@ -473,9 +473,11 @@ purposeMenu ()
         microsoftRepo
         librewolfRepo
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $languagePackages $postFlags
-        sudo usermod -aG libvirt $(whoami)
         #installSVP #Trying to find a FOSS alternative for smooth video
         distroboxContainers
+        #FinalTweaks
+        sudo usermod -aG libvirt $(whoami)
+        xdg-settings set default-web-browser microsoft-edge.desktop
         ;;
     *)
         # Code to execute when $variable doesn't match any of the specified values
