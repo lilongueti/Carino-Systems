@@ -54,8 +54,7 @@
 
         .block {
             width: clamp(0px,16.6666666667vw,320px);
-            height: clamp(0px,37.475vw,900px);
-            background-color: #3498db;
+            height: clamp(0px,34.475vw,900px);
             margin: 2px;
             display: inline-block;
             border: 1px solid #000;
@@ -65,11 +64,58 @@
             opacity: .5;
             #animation: bounce 2s infinite;
         }
+		
+		.block1 {
+			background-color: #3498db;
+		}
+
+		.block2 {
+			background-color: #3498db;
+		}
+
+		.block3 {
+			background-color: #3498db;
+		}
+
+		.block4 {
+			background-color: #3498db;
+		}
+		.block5 {
+			background-color: #3498db;
+		}
+		 /* Style for the block */
+		 .appear-block {
+            opacity: 0; /* Initially hidden */
+            animation: appear 2s ease-in-out forwards; /* Animation properties */
+        }
+
+        /* Keyframes animation for appearing */
+        @keyframes appear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1; /* Fully visible */
+            }
+        }
         
         /* Change the background color on hover */
-        .block:hover {
-            background-color: #e74c3c; /* Change to a different color on hover */
+        .block1:hover {
+            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
         }
+		.block2:hover {
+            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
+        }
+		.block3:hover {
+            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
+        }
+		.block4:hover {
+            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
+        }
+		.block5:hover {
+            background-image: url('./images/banners/gnulinuxbanner.webp'); /* Change to a different color on hover */
+        }
+
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -89,7 +135,11 @@
             "クソガキ",
             "Welcome, pero no mucho rato.",
             "Learn something new every day and forget it the day after.",
-            "How about no."
+            "How about no.",
+			"ᐊᕆᐅᙵᐃᐹ",
+			"For the Emperor",
+			"I use Fedora btw",
+			"I did this last weekend, sorry if it's incomplete"
         ];
 
         // Function to pick and display a random phrase
@@ -108,12 +158,12 @@
     <p id="random-phrase">Loading...</p>
 </header>
 <body style="background-color: #000000;">
-<options>
-    <div class="block" alt="Operating Systems"></div>
-    <div class="block" alt="Software"></div>
-    <div class="block" alt="Models"></div>
-    <div class="block" alt="Languages"></div>
-    <div class="block" alt="Lurking"></div>
+<options class="appear-block">
+    <div class="block block1" alt="Operating Systems"></div>
+    <div class="block block2" alt="Software"></div>
+    <div class="block block3" alt="Models"></div>
+    <div class="block block4" alt="Languages"></div>
+    <div class="block block5" alt="Lurking"></div>
 </options>
 <!-- Footer -->
 <footer>
