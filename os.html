@@ -1,144 +1,173 @@
-<!DOCTYPE HTML>
-<!--
-	Stellar by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Operating Systems - Carino Systems</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" href="./images/logo50x50.png">
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head prefix="og: https://ogp.me/ns# website: https://ogp.me/ns/website#">
+	<title>Carino Systems</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="icon" href="./images/logo50x50.png">
+    <!-- OGP -->
+	<meta property="og:title" content="『カリノ:リナックスを消去した男』。公式ウェブサイト | Carino Systems">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://carino.systems">
+	<meta property="og:image" content="https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/images/block1_after.webp">
+	<meta property="og:site_name" content="『カリノ:リナックスを消去した男』。公式ウェブサイト">
+	<meta property="og:description" content="『カリノ:リナックスを消去した男』。公式ウェブサイト">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" as="style">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" media="print" onload="this.media='all'">
+	<script>
+        // Array of random phrases
+        const phrases = [
+            "「 A simple website for my convenience and hopefully yours. 」",
+            "「 クソガキ。」",
+            "「 Welcome, pero no mucho rato. 」",
+            "「 Learn something new every day and forget it the day after. 」",
+            "「 How about no. 」",
+			"「 ᐊᕆᐅᙵᐃᐹ 」",
+			"「 For the Emperor. 」",
+			"「 I use Fedora btw. 」",
+			"「 I did this last weekend, sorry if it's incomplete. 」",
+			"「 Sup, halfBytes. 」",
+			"「 Real Yakuza use a gamepad. 」",
+			"「 Real detectives use a gamepad. 」",
+			"「 Switching to your pistol is always faster than reloading. 」",
+			"「  」"
+			/*"「  」"*/
+        ];
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+        // Function to pick and display a random phrase
+        function displayRandomPhrase() {
+            const randomIndex = Math.floor(Math.random() * phrases.length);
+            const randomPhrase = phrases[randomIndex];
+            document.getElementById("random-phrase").textContent = randomPhrase;
+        }
 
-				<!-- Header -->
-					<header id="header">
-						<h1>Operating Systems</h1>
-						<p>My daily suffering</p>
-					</header>
+        // Call the function to display a random phrase when the page loads
+        window.onload = displayRandomPhrase;
 
-				<!-- Nav -->
-				<nav id="nav">
-					<ul>
-						<li><a href="index.html#intro" class="active"> Introduction</a></li>
-						<li><a href="#" class="icon solid fa-laptop"> Operating Systems</a></li>
-						<li><a href="index.html#second" class="icon solid fa-screwdriver"> Tools</a></li>
-						<li><a href="ai.html" class="icon solid fa-signal"> Artificial Intelligence</a></li>
-					</ul>
-				</nav>
+        // JavaScript functions to open and close the overlay
+        function openOverlay() {
+            document.getElementById("prepareOverlay").style.display = "block";
+        }
+        function closeOverlay() {
+            document.getElementById("prepareOverlay").style.display = "none";
+        }
+        // JavaScript functions to open and close the overlay
+        function openOverlay() {
+            document.getElementById("chooseosOverlay").style.display = "block";
+        }
+        function closeOverlay() {
+            document.getElementById("chooseosOverlay").style.display = "none";
+        }
+        // JavaScript functions to open and close the overlay
+        function openOverlay() {
+            document.getElementById("copyOverlay").style.display = "block";
+        }
+        function closeOverlay() {
+            document.getElementById("copyOverlay").style.display = "none";
+        }
+        // JavaScript functions to open and close the overlay
+        function openOverlay() {
+            document.getElementById("installOverlay").style.display = "block";
+        }
+        function closeOverlay() {
+            document.getElementById("installOverlay").style.display = "none";
+        }
+        // JavaScript functions to open and close the overlay
+        function openOverlay() {
+            document.getElementById("configureOverlay").style.display = "block";
+        }
+        function closeOverlay() {
+            document.getElementById("configureOverlay").style.display = "none";
+        }
+    </script>
+</head>
+<header class="header appear-block">
+    <h1>Operating Systems</h1>
+    <p id="random-phrase">Loading...</p>
+</header>
+<body style="background-color: #000000; color: aliceblue;">
+    <h2 style="text-align: center;"><b>You will have to follow five steps in order to install an operating system.</b></h2>
+    <options class="appear-block">
+        <button onclick="openOverlay()" class="blackButton">
+        <div class="blockos block1" alt="Operating Systems" style="background-position: center center;"><p class="blockletter">PREPARE</p></div></button>
+        <div class="">></div>
+        <button onclick="chooseosOverlay()" class="blackButton">
+        <div class="blockos block2" alt="Software"><p class="blockletter">CHOOSE</p></div>
+        <div class="">></div></button>
+        <div class="blockos block3" alt="Models"><p class="blockletter">COPY</p></div>
+        <div class="">></div>
+        <div class="blockos block4" alt="Languages"><p class="blockletter">INSTALL</p></div>
+        <div class="">></div>
+        <div class="blockos block5" alt="Lurking"><p class="blockletter" style="background-position: center right;">CONFIGURE</p></div>
 
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Content -->
-							<section id="content" class="main">
-								<!--<span class="image main"><img src="images/banners/moesoft.webp" alt="" /></span>-->
-								<h2><b>Installing your operating system</b></h2>
-								<p>You will have to follow five steps in order to install an operating system.</p>
-								<ul class="statistics">
-									<li class="style1">
-										<span class="icon solid fa-code-branch"><a href="#second"></a></span>
-										<br>Prepare your USB
-									</li>
-									<li class="style2">
-										<span class="icon fa-folder-open"></span>
-										<br>Choose your OS
-									</li>
-									<li class="style3">
-										<span class="icon solid fa-signal"></span>
-										<br>Copy files
-									</li>
-									<li class="style4">
-										<span class="icon solid fa-laptop"></span>
-										<br>Install
-									</li>
-									<li class="style5">
-										<span class="icon fa-gem"></span>
-										<br>Configure
-									</li>
-								</ul>
-								<h2 style="background-color: red; color: #ffffff;">Disclaimer</h3>
-								<p style="background-color: #ffffff; color: red;">Firstly, I'm not responsible for any damage caused by using this software.<br>Secondly, I'm biased towards x86_64 and Workstation images of standard releases with a Desktop Environment pre-installed. The less you have to configure, the better.</b> Server images and other architectures may be available on their official sites.</p>
-								<h2 id="first">1. Preparing your usb</h2>
-								Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you don't know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.
-								<p>
-								<h2 id="second">2. Choose your Operating System</h2>
-								<div class="row gtr-uniform">
-									<div class="col-4"><b>Microsoft Windows®</b><a href="windows.html"><span class="image fit"><img src="images/banners/windowssystems.webp" alt=""></span></a></div>
-									<div class="col-4"><a href="gnulinux.html"><b>GNU/Linux®</b><span class="image fit"><img src="images/banners/gnuLinuxcommunity.webp" alt=""></span></a></div>
-									<div class="col-4"><a href="gnulinuxcommercial.html"><b>GNU/Linux® Commercial</b><span class="image fit"><img src="images/banners/gnuLinuxscommercial.webp" alt=""></span></a></div>
-									<!--<div class="col-3">GNU/Linux® <span class="image fit"><img src="images/pic01.jpg" alt=""></span></div>-->
-								</div>
-								<h2 id="third">3. Copy files</h2>
-								Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it.
-								<br><img src="images/osimages/ventoy1.webp" width="33%"><img src="images/osimages/ventoy2.webp" width="33%"><img src="images/osimages/ventoy3.webp" width="33%"><br>Then copy the ISO(s) you downloaded into your USB.<br><img src="images/osimages/ventoy4.webp" width="50%"><img src="images/osimages/ventoy5.webp" width="50%"><!--<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you don't know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.-->
-								<h2 id="fourth">4. Install the system</h2>
-								This is the tricky part and the point of no return. Make sure you have backed up your data.
-								<h2 id="fifth">5. Configure the system</h2>
-								<ul class="statistics">
-									<li class="style5">
-										<span><b>Microsoft Windows®</b></span>
-										Open Windows Powershell as Administrator and paste
-										<br><input type="text" value="iwr -useb https://carino.systems/setup.ps1 | iex" style="width: 100%;">
-									</li>
-									<li class="style1">
-										<span><b>GNU/Linux®</b></span>
-										Open the terminal and paste
-										<br><input type="text" value="bash <(curl -s https://carino.systems/setup.sh)" style="width: 100%;">
-									</li>
-								</ul>
-								</article>
-							</section>
-
-					</div>
-
-				<!-- Footer -->
-					<footer id="footer">
-						<!--<section>
-							<h2>Aliquam sed mauris</h2>
-							<p>Sed lorem ipsum dolor sit amet et nullam consequat feugiat consequat magna adipiscing tempus etiam dolore veroeros. eget dapibus mauris. Cras aliquet, nisl ut viverra sollicitudin, ligula erat egestas velit, vitae tincidunt odio.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">Learn More</a></li>
-							</ul>
-						</section>
-						<section>
-							<h2>Etiam feugiat</h2>
-							<dl class="alt">
-								<dt>Address</dt>
-								<dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-								<dt>Phone</dt>
-								<dd>(000) 000-0000 x 0000</dd>
-								<dt>Email</dt>
-								<dd><a href="#">information@untitled.tld</a></dd>
-							</dl>
-							<ul class="icons">
-								<li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
-								<li><a href="#" class="icon brands fa-dribbble alt"><span class="label">Dribbble</span></a></li>
-							</ul>
-						</section>-->
-						<p class="copyright">&copy; Carino Systems. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</footer>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+<!-- Overlay container -->
+<div id="prepareOverlay" class="overlay-container">
+    <!-- Content inside the overlay -->
+    <div class="overlay-content">
+        <span class="close-button" onclick="closeOverlay()">&#10006;</span>
+        <h2 style="background-color: red; color: #ffffff;">Disclaimer</h3>
+            <p style="background-color: #ffffff; color: red;">Firstly, I'm not responsible for any damage caused by using this software.<br>Secondly, I'm biased towards x86_64 and Workstation images of standard releases with a Desktop Environment pre-installed. The less you have to configure, the better.</b> Server images and other architectures may be available on their official sites.</p>
+            <h2 id="first">1. Preparing your usb</h2>
+            Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you don't know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.
+    </div>
+</div>
+<!-- Overlay container -->
+<div id="chooseosOverlay" class="overlay-container">
+    <!-- Content inside the overlay -->
+    <div class="overlay-content">
+        <span class="close-button" onclick="closeOverlay()">&#10006;</span>
+        <h2 style="background-color: red; color: #ffffff;">Disclaimer</h3>
+            <p style="background-color: #ffffff; color: red;">Firstly, I'm not responsible for any damage caused by using this software.<br>Secondly, I'm biased towards x86_64 and Workstation images of standard releases with a Desktop Environment pre-installed. The less you have to configure, the better.</b> Server images and other architectures may be available on their official sites.</p>
+            <h2 id="first">1. Preparing your usb</h2>
+            Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you don't know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.
+    </div>
+</div>
+<!-- Overlay container -->
+<div id="copyOverlay" class="overlay-container">
+    <!-- Content inside the overlay -->
+    <div class="overlay-content">
+        <span class="close-button" onclick="closeOverlay()">&#10006;</span>
+        <h2 style="background-color: red; color: #ffffff;">Disclaimer</h3>
+            <p style="background-color: #ffffff; color: red;">Firstly, I'm not responsible for any damage caused by using this software.<br>Secondly, I'm biased towards x86_64 and Workstation images of standard releases with a Desktop Environment pre-installed. The less you have to configure, the better.</b> Server images and other architectures may be available on their official sites.</p>
+            <h2 id="first">1. Preparing your usb</h2>
+            Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you don't know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.
+    </div>
+</div>
+<!-- Overlay container -->
+<div id="installOverlay" class="overlay-container">
+    <!-- Content inside the overlay -->
+    <div class="overlay-content">
+        <span class="close-button" onclick="closeOverlay()">&#10006;</span>
+        <h2 style="background-color: red; color: #ffffff;">Disclaimer</h3>
+            <p style="background-color: #ffffff; color: red;">Firstly, I'm not responsible for any damage caused by using this software.<br>Secondly, I'm biased towards x86_64 and Workstation images of standard releases with a Desktop Environment pre-installed. The less you have to configure, the better.</b> Server images and other architectures may be available on their official sites.</p>
+            <h2 id="first">1. Preparing your usb</h2>
+            Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you don't know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.
+    </div>
+</div>
+<!-- Overlay container -->
+<div id="configureOverlay" class="overlay-container">
+    <!-- Content inside the overlay -->
+    <div class="overlay-content">
+        <span class="close-button" onclick="closeOverlay()">&#10006;</span>
+        <h2 style="background-color: red; color: #ffffff;">Disclaimer</h3>
+            <p style="background-color: #ffffff; color: red;">Firstly, I'm not responsible for any damage caused by using this software.<br>Secondly, I'm biased towards x86_64 and Workstation images of standard releases with a Desktop Environment pre-installed. The less you have to configure, the better.</b> Server images and other architectures may be available on their official sites.</p>
+            <h2 id="first">1. Preparing your usb</h2>
+            Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you don't know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.
+    </div>
+</div>
+<!--<options class="appear-block">
+    <div class="block block1" alt="Operating Systems" style="background-position: center center;"><p class="blockletter">OPERATING SYSTEMS</p></div>
+    <div class="block block2" alt="Software"><p class="blockletter">SOFTWARE SOLUTIONS</p></div>
+    <div class="block block3" alt="Models"><p class="blockletter">A.I. MODELS</p></div>
+    <div class="block block4" alt="Languages"><p class="blockletter">NATURAL LANGUAGE PROCESSING</p></div>
+    <div class="block block5" alt="Lurking"><p class="blockletter" style="background-position: center right;">ENTERTAINMENT AND LURKING</p></div>
+</options>-->
+<!-- Footer -->
+<footer class="appear-block">
+	&copy; 2023 Carino Systems
+</footer>
+</body>
 </html>
