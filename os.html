@@ -21,19 +21,12 @@
         // Array of random phrases
         const phrases = [
             "「 A simple website for my convenience and hopefully yours. 」",
-            "「 クソガキ。」",
             "「 Welcome, pero no mucho rato. 」",
-            "「 Learn something new every day and forget it the day after. 」",
-            "「 How about no. 」",
-			"「 ᐊᕆᐅᙵᐃᐹ 」",
-			"「 For the Emperor. 」",
-			"「 I use Fedora btw. 」",
-			"「 I did this last weekend, sorry if it's incomplete. 」",
-			"「 Sup, halfBytes. 」",
-			"「 Real Yakuza use a gamepad. 」",
-			"「 Real detectives use a gamepad. 」",
-			"「 Switching to your pistol is always faster than reloading. 」",
-			"「  」"
+            "「 Whom'st'd've'ed thought I could do web design.」",
+			"「 ばかみたいの. 」",
+			"「 Reboot first, then come back. 」",
+			"「 Swapping is faster than reloading. 」",
+			"「 . 」"
 			/*"「  」"*/
         ];
 
@@ -90,7 +83,7 @@
 </header>
 <body style="background-color: #000000; color: aliceblue;">
     <h2 style="text-align: center;"><b>You will have to follow five steps in order to install an operating system.</b></h2>
-    <options class="appear-block">
+    <options class="appear-block" style="flex-direction: column;">
         <button onclick="openOverlay('prepareOverlay')" class="blackButton">
         <div class="blockos block1" alt="Operating Systems" style="background-position: center center;"><p class="blockletter">PREPARE</p></div></button>
         <div class="">></div>
@@ -105,7 +98,7 @@
         <div class="">></div></button>
         <button onclick="openOverlay('configureOverlay')" class="blackButton">
         <div class="blockos block5" alt="Lurking"><p class="blockletter" style="background-position: center right;">CONFIGURE</p></div></button>
-
+    </options>
 <!-- Overlay container -->
 <div id="prepareOverlay" class="overlay-container">
     <!-- Content inside the overlay -->
