@@ -134,8 +134,8 @@
             }
         }
 
-        /* Styles for the overlay container */
-        .overlay-container {
+        /* Style for the overlay container */
+        .overlay {
             display: none; /* Hide the overlay by default */
             position: fixed; /* Position the overlay so it covers the entire viewport */
             top: 0;
@@ -146,24 +146,42 @@
             z-index: 1000; /* Set a high z-index to ensure it appears on top */
         }
 
-        /* Styles for the content inside the overlay */
+        /* Style for the content inside the overlay */
         .overlay-content {
             position: absolute; /* Position the content relative to the overlay container */
             top: 50%; /* Center the content vertically */
             left: 50%; /* Center the content horizontally */
             transform: translate(-50%, -50%); /* Center the content exactly */
-            background-color: rgb(0, 0, 0);
+            background-color: white;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a shadow for depth */
+            text-align: center;
         }
 
         /* Close button for the overlay */
-        .close-button {
+        #closeOverlay {
             position: absolute;
             top: 10px;
             right: 10px;
             cursor: pointer;
+        }
+
+        /* Style for the button that opens the overlay */
+        #openOverlay {
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the open button */
+        #openOverlay:hover {
+            background-color: #0056b3;
         }
         
         .blackButton {
