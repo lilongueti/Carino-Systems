@@ -20,12 +20,7 @@
 	<script>
         // Array of random phrases
         const phrases = [
-            "「 A simple website for my convenience and hopefully yours. 」",
-            "「 Welcome, pero no mucho rato. 」",
-            "「 Whom'st'd've'ed thought I could do web design.」",
-			"「 ばかみたいの. 」",
-			"「 Reboot first, then come back. 」",
-			"「 Swapping is faster than reloading. 」",
+            "「 I use Fedora btw. 」",
 			"「 . 」"
 			/*"「  」"*/
         ];
@@ -40,39 +35,19 @@
         // Call the function to display a random phrase when the page loads
         window.onload = displayRandomPhrase;
 
-        const showOverlayButton = document.getElementById('show-overlay');
-        const overlayContainer = document.querySelector('.overlay-container');
-        const close-overlayButton = document.getElementById('close-overlay');
-
-        showOverlayButton.addEventListener('click', () => {
-            overlayContainer.style.display = 'flex';
-        });
-
-        close-overlayButton.addEventListener('click', () => {
-            overlayContainer.style.display = 'none';
-        });
-
     </script>
 </head>
 <header class="header appear-block">
-    <h1>Operating Systems</h1>
+    <h1><a href="index.html" style="color: aliceblue;">Go back</a><br><br>Operating Systems</h1>
     <p id="random-phrase">Loading...</p>
 </header>
 <body style="background-color: #000000; color: aliceblue;">
     <h2 style="text-align: center;"><b>You will have to follow four steps in order to install an operating system.</b></h2>
-    <button id="show-overlay">Open Overlay</button>
-    <div id="overlay" class="overlay">
-        <div class="overlay-container">
-            <h2>This is a Nice-Looking Overlay</h2>
-            <p>You can put any content you want here.</p>
-            <button id="close-overlay">Close</button>
-        </div>
-    </div>
     <options class="appear-block block-container">
-        <a href="os.html"><div class="block block1" alt="Operating Systems" style="background-position: center center;"><p class="blockletter">CHOOSE</p></div></a>
-        <div class="block block2" alt="Software"><p class="blockletter">PREPARE</p></div>
-        <div class="block block4" alt="Languages"><p class="blockletter">INSTALL</p></div>
-        <div class="block block5" alt="Lurking"><p class="blockletter" style="background-position: center right;">CONFIGURE</p></div>
+        <a href="os.html"><div class="blockos block1" alt="Operating Systems" style="background-position: center center;"><p class="blockletter">CHOOSE</p></div></a>
+        <div class="blockos block2" alt="Software"><p class="blockletter">PREPARE</p></div>
+        <div class="blockos block4" alt="Languages"><p class="blockletter">INSTALL</p></div>
+        <div class="blockos block5" alt="Lurking"><p class="blockletter" style="background-position: center right;">CONFIGURE</p></div>
     </options>
 <!-- Overlay container -->
 

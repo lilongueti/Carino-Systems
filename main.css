@@ -32,7 +32,7 @@
 
         .block {
             width: clamp(0px,16.6666666667vw,320px);
-            height: clamp(0px,34.475vw,900px);
+            height: clamp(0px,34.475vw,580px);
             margin: 2px;
             display: inline-block;
             border: 1px solid #000;
@@ -62,12 +62,12 @@
 
 		/* Style for the block letter */
         .blockletter {
-            background-color: #000000;
+            background-color: #00000000;
             color: white;
             text-align: center;
             padding: 10px 0;
             position: absolute;
-            bottom: 0;
+            bottom: 40%;
             width: 100%;
         }
 		
@@ -205,6 +205,10 @@
                 position: relative;
                 opacity: .5;
                 #animation: bounce 2s infinite;
+            }
+            
+            .blockletter {
+                bottom: 20%;
             }
             
             /* Style for the footer */
