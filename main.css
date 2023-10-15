@@ -66,6 +66,7 @@
             position: relative;
             opacity: .5;
             border-radius: 10px;
+            text-align: center;
         }
 
         .blockinfo-secondary {
@@ -80,7 +81,8 @@
             opacity: .5;
             border-radius: 10px;
             flex: 1 1 300px;
-            #animation: bounce 2s infinite;
+            text-align: center;
+            align-content: center;
         }
 
         .block-container {
@@ -89,7 +91,6 @@
 
 		/* Style for the block letter */
         .blockletter {
-            background-color: #00000000;
             font-weight: bold;
             color: white;
             text-align: center;
@@ -170,7 +171,7 @@
 
         @media screen and (max-width: 900px) {
             .block-container {
-                flex-direction: row; /* Change to a column layout */
+                flex-direction: column; /* Change to a column layout */
             }
         
             .block {
