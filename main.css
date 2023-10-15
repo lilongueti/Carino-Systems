@@ -216,7 +216,7 @@
                 color: rgb(255, 255, 255);
                 text-align: center;
                 padding: 20px 0;
-                position: fixed;
+                position: absolute;
                 bottom: 0;
                 width: 100%;
                 opacity: 1;
