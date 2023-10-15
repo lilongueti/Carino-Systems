@@ -124,6 +124,7 @@
 		 /* Style for the block */
 		 .appear-block {
             opacity: 0; /* Initially hidden */
+            animation: appear 2s ease-in-out forwards; /* Animation properties */
         }
 		
         /* Keyframes animation for appearing */
