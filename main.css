@@ -172,7 +172,7 @@
 
         @media screen and (max-width: 900px) {
             .block-container {
-                flex-direction: column; /* Change to a column layout */
+                flex-direction: row; /* Change to a column layout */
             }
         
             .block {
@@ -204,7 +204,6 @@
             .blockinfo-secondary {
                 width: 50%;
                 height: 150px;
-                flex-direction: row;
             }
 
             .blockletter {
