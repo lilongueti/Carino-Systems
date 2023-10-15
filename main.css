@@ -40,7 +40,6 @@
             box-sizing: border-box;
             position: relative;
             opacity: .5;
-            animation: bounce 2s infinite;
         }
 
         .blockos {
