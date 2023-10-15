@@ -124,7 +124,6 @@
 		 /* Style for the block */
 		 .appear-block {
             opacity: 0; /* Initially hidden */
-            animation: appear 2s ease-in-out forwards; /* Animation properties */
         }
 		
         /* Keyframes animation for appearing */
@@ -184,7 +183,6 @@
                 box-sizing: border-box;
                 position: relative;
                 opacity: .5;
-                #animation: bounce 2s infinite;
             }
 
             .blockos {
@@ -197,7 +195,6 @@
                 box-sizing: border-box;
                 position: relative;
                 opacity: .5;
-                #animation: bounce 2s infinite;
             }
             
             .blockinfo-secondary {
