@@ -58,7 +58,7 @@ if [[ -f /etc/os-release ]]; then
     argInstall=install
     argUpdate=update
     preFlags=""
-    postFlags="--skip-broken -y"
+    postFlags="--skip-broken --allowerasing -y"
     essentialPackages="$essentialPackages $essentialPackagesRPM"
     amdPackages="$amdPackages $amdPackagesRPM"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
