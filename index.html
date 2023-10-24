@@ -27,14 +27,12 @@
 			"「 Reboot first, then come back 」"
 			/*"「  」"*/
         ];
-
         // Function to pick and display a random phrase
         function displayRandomPhrase() {
             const randomIndex = Math.floor(Math.random() * phrases.length);
             const randomPhrase = phrases[randomIndex];
             document.getElementById("random-phrase").textContent = randomPhrase;
         }
-
         // Call the function to display a random phrase when the page loads
         window.onload = displayRandomPhrase;
     </script>
