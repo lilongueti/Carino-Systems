@@ -12,37 +12,16 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="icon" href="./images/logo50x50.png">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<style>
-			.grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
-				grid-template-rows: repeat(4, 1fr);
-				height: 50em;
-				padding-top: 5em;		
-				grid-auto-flow: column;
-				grid-auto-columns: minmax(160px,1fr);
-				overflow-x: auto;
-			}
-			.cell {
-				background-size: cover;
-				background-position: center;
-				animation: moveUpwards 5s linear infinite;
-			}
-			@keyframes moveUpwards {
-    		0% { transform: translateY(100%); }
-    		100% { transform: translateY(-100%); }
-}
-		</style>
 	</head>
 	<body class="is-preload">
 
 		<!-- Wrapper -->
-			<div id="">
+			<div id="wrapper">
 
 				<!-- Header -->
 				<!-- Note: The "styleN" class below should match that of the banner element. -->
 					<header id="header" class="alt style2">
-						<a href="index.html" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
+						<a href="index.html" class="logo"><strong>Carino</strong> <span>Systems</span></a>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -64,34 +43,80 @@
 
 				<!-- Banner -->
 				<!-- Note: The "styleN" class below should match that of the header element. -->
+					<section><!DOCTYPE html>
+						<html>
+						<head>
 							
-							<div id="grid" class="grid"></div>
-						
-							<script>
-								// List of background images
-								var images = ["images/banners/gnulinuxcommercial.webp", "images/banners/gnuLinuxcommunity.webp", "images/banners/windowsbanner.webp", /*...*/ "images/banners/gnulinuxbanner.webp"];
-						
-								// Create 20 grid cells with random backgrounds
-								var grid = document.getElementById('grid');
-								for (var i = 0; i < 25; i++) {
-									var cell = document.createElement('div');
-									cell.className = 'cell';
-									cell.style.backgroundImage = 'url(' + images[Math.floor(Math.random() * images.length)] + ')';
-									grid.appendChild(cell);
-								}
-						
-								// Function to change the background image of a cell
-								function changeBackground(cell) {
-									cell.style.backgroundImage = 'url(' + images[Math.floor(Math.random() * images.length)] + ')';
-								}
-						
-								// Periodically change the background image of a random cell
-								setInterval(function() {
-									var cells = document.getElementsByClassName('cell');
-									var randomCell = cells[Math.floor(Math.random() * cells.length)];
-									changeBackground(randomCell);
-								}, 5000);
-							</script>
+						</head>
+						<body>
+							<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-auto-rows: 200px;
+            overflow: auto;
+            height: 100vh;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+        .cell {
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    		<div id="grid"></div>
+
+    		<script>
+    		    const albums = [
+    		        { url: 'https://example.com/album1', image: 'images/banners/gnulinuxbanner.webp' },
+    		        { url: 'https://example.com/album2', image: 'images/banners/gnuLinuxcommunity.webp' },
+					{ url: 'https://example.com/album1', image: 'images/banners/windowsbanner.webp' },
+    		        { url: 'https://example.com/album2', image: 'images/banners/windowssystems.webp' },
+					{ url: 'https://example.com/album2', image: 'images/banners/gnuLinuxscommercial.webp' },
+    		        // add more albums here
+    		    ];
+			
+    		    const grid = document.getElementById('grid');
+			
+    		    function addCell(album) {
+    		        const cell = document.createElement('a');
+    		        cell.href = album.url;
+    		        cell.target = '_blank';
+    		        cell.className = 'cell';
+    		        cell.style.backgroundImage = `url(${album.image})`;
+    		        grid.appendChild(cell);
+    		    }
+			
+    		    function populateGrid() {
+    		        for (let i = 0; i < 50; i++) {
+    		            addCell(albums[Math.floor(Math.random() * albums.length)]);
+    		        }
+    		    }
+			
+    		    function checkScroll() {
+    		        if (grid.scrollTop + grid.clientHeight >= grid.scrollHeight) {
+    		            populateGrid();
+    		        }
+    		    }
+			
+    		    populateGrid();
+    		    grid.addEventListener('scroll', checkScroll);
+    		</script>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="copyright">
+								<li>&copy; Carino Systems</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
 			</div>
 
 		<!-- Scripts -->
