@@ -40,35 +40,28 @@
 							<li><a href="#" class="button fit">Log In</a></li>
 						</ul>
 					</nav>
-
-				<!-- Banner -->
-				<!-- Note: The "styleN" class below should match that of the header element. -->
-					<section><!DOCTYPE html>
-						<html>
-						<head>
-							
-						</head>
-						<body>
-							<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        #grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            grid-auto-rows: 200px;
-            overflow: auto;
-            height: 100vh;
-            position: relative;
-            scroll-behavior: smooth;
-        }
-        .cell {
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
-</head>
-<body>
+    				<style>
+    				    #grid {
+    				        display: grid;
+    				        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    				        grid-auto-rows: 200px;
+    				        overflow: auto;
+    				        height: 100vh;
+    				        position: relative;
+    				        scroll-behavior: smooth;
+    				    }
+    				    .cell {
+    				        background-size: cover;
+    				        background-position: center;
+							/* Add transition property */
+							transition: transform 0.3s ease;
+    				    }
+					
+						/* Add hover effect */
+						.cell:hover {
+						    transform: scale(1.2);
+						}
+    				</style>
     		<div id="grid"></div>
 
     		<script>
@@ -104,7 +97,8 @@
 					{ url: 'https://example.com/album2', image: 'images/lurking/mu_22.webp' },
 					{ url: 'https://example.com/album2', image: 'images/lurking/mu_23.webp' },
 					{ url: 'https://example.com/album2', image: 'images/lurking/mu_24.webp' },
-					{ url: 'https://example.com/album2', image: 'images/lurking/mu_25.webp' },
+					{ url: 'https://www.youtube.com/watch?v=0BqPowGQWW8', image: 'images/lurking/mu_25.webp' },
+					{ url: 'https://example.com/album2', image: 'images/lurking/mu_26.webp' },
     		        // add more albums here
     		    ];
 			
