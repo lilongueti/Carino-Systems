@@ -637,7 +637,7 @@ basicDesktopEnvironmentPackages="thunar thunar-archive-plugin file-roller fontaw
 #Gaming packages will allow enduseres to play on the most popular platforms
 gamingPackages="steam goverlay lutris mumble"
 #Multimedia pacakges allow the end user to use the most
-multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt*" #qt5-qtbase-devel python3-qt5 python3-vapoursynth
+multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt* python3-vapoursynth" #qt5-qtbase-devel python3-qt5
 developmentPackages="gcc cargo npm python3-pip nodejs golang conda*"
 virtconPackages="podman distrobox bridge-utils"
 supportPackages="bleachbit remmina filezilla keepassxc bless" #stacer barrier
