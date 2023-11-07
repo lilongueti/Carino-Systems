@@ -416,7 +416,7 @@ askReboot ()
 }
 distroboxContainers ()
 {
-    distrobox-create --name fedora --image quay.io/fedora/fedora:38 -Y
+    distrobox-create --name fedora --image quay.io/fedora/fedora:39 -Y
     distrobox-create --name ubuntu --image docker.io/library/ubuntu:22.04 -Y
     distrobox-create --name rhel --image registry.access.redhat.com/ubi9/ubi -Y
     distrobox-create --name debian --image docker.io/library/debian:12 -Y
@@ -664,7 +664,7 @@ amdPackagesRPM="xorg-x11-drv-amdgpu systemd-devel" #xorg-x11-dr*
 fedoraPackages="mesa-va-drivers-freeworld mesa-vdpau-drivers-freeworld libavcodec-freeworld"
 rhelPackages="mesa-dri-drivers libavcodec*" #mesa-vdpau-drivers
 amdPackagesDebian="xserver-xorg-video-amdgpu libsystemd-dev"
-nvidiaPackagesRPM="akmod-nvidia"
+nvidiaPackagesRPM="akmod-nvidia nvidia-vaapi-driver"
 nvidiaPackagesDebian="nvidia-driver* nvidia-opencl* nvidia-xconfig nvidia-vdpau-driver nvidia-vulkan*"
 nvidiaPackagesUbuntu="nvidia-driver-535"
 nvidiaPackagesArch="nvidia-open"
