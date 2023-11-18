@@ -87,11 +87,13 @@ switch ($b)
     Write-Host "Installing packages..."
 (
     "CodecGuide.K-LiteCodecPack.Mega",
+    "KDE.Okular.Nightly",
     "AdrienAllard.FileConverter",
     "7zip.7zip",
     "Oracle.JavaRuntimeEnvironment",
     #"Mozilla.Thunderbird",
     "AnyDeskSoftwareGmbH.AnyDesk",
+    "ventoy.Ventoy",
     "RustDesk.RustDesk",
     "OBSProject.OBSStudio",
     "Google.Chrome",
@@ -104,11 +106,13 @@ switch ($b)
     Write-Host "Installing packages..."
 (
     "CodecGuide.K-LiteCodecPack.Mega",
+    "KDE.Okular.Nightly",
     "Spotify.Spotify",
     "AdrienAllard.FileConverter",
     "7zip.7zip",
     "Oracle.JavaRuntimeEnvironment",
     #"Mozilla.Thunderbird",
+    "ventoy.Ventoy",
     "RustDesk.RustDesk",
     #"Telegram.TelegramDesktop",
     "TheDocumentFoundation.LibreOffice",
@@ -121,12 +125,14 @@ switch ($b)
     Write-Host "Installing packages..."
 (
     "Cisco.WebexTeams",
+    "KDE.Okular.Nightly",
     "Cisco.Jabber",
     "Google.Chrome",
     "Google.Drive",
     "CodecGuide.K-LiteCodecPack.Mega",
     "AdrienAllard.FileConverter",
     "7zip.7zip",
+    "ventoy.Ventoy",
     "OBSProject.OBSStudio",
     "Oracle.JavaRuntimeEnvironment",
     #"Mozilla.Thunderbird",
@@ -143,9 +149,11 @@ switch ($b)
     Write-Host "Installing packages..."
 (
     "CodecGuide.K-LiteCodecPack.Mega",
+    "KDE.Okular.Nightly",
     "Spotify.Spotify",
     "AdrienAllard.FileConverter",
     "7zip.7zip",
+    "ventoy.Ventoy",
     "OBSProject.OBSStudio",
     "Oracle.JavaRuntimeEnvironment",
     #"Mozilla.Thunderbird",
