@@ -3380,7 +3380,7 @@ input, select, textarea {
 		-webkit-align-items: center;
 		-ms-align-items: center;
 		align-items: center;
-		background-image: url("../../images/banner.jpg");
+		background-image: url("../../images/banners/");
 		display: -moz-flex;
 		display: -webkit-flex;
 		display: -ms-flex;
@@ -3950,3 +3950,13 @@ input, select, textarea {
 			opacity: 1;
 			visibility: visible;
 		}
+        
+		@keyframes gradient {
+			0% {background: red;}
+			0% {background: rgb(60, 255, 0);}
+			50% {background: rgb(255, 0, 242);}
+			75% {background: rgb(0, 47, 255);}
+			100% {background: red;}
+		}
+		
+          

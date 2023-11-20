@@ -332,4 +332,31 @@
 
 			});
 
+			// Array of random phrases
+			const phrases = [
+				"「 In doubt, reboot 」",
+				"「 Viruses are mostly explicitly accepted, but you didn't notice 」",
+				"「 Never trust brands, only reviews 」",
+				"「 Always copy your files, never cut them 」",
+				"「 Update your system if you have some spare time, otherwise it will update when you don't 」",
+				"「 You can't download RAM 」",
+				"「 Most cloud services you use are on land, and even underwater 」",
+				"「 Clean your keyboard throughly at least twice a year, don't ask why 」",
+				"「 Antivirus are malware that hate competition 」",
+				"「 All software is licensed, even if it's free 」",
+				"「 The less social networks you have, the healthiest your social life gets 」",
+				"「 There's no way you can be %100 anonymous on the internet 」",
+				"「  」",
+				/*"「  」",*/
+			];
+	
+			// Function to pick and display a random phrase
+			function displayRandomPhrase() {
+				const randomIndex = Math.floor(Math.random() * phrases.length);
+				const randomPhrase = phrases[randomIndex];
+				document.getElementById("random-phrase").textContent = randomPhrase;
+			}
+			// Call the function to display a random phrase when the page loads
+			window.onload = displayRandomPhrase;
+			
 })(jQuery);
