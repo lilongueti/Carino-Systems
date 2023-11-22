@@ -21,7 +21,7 @@
 				<!-- Header -->
 					<header id="header" class="alt">
                         <a rel="me" href="https://mastodon.social/@miguelcarino"></a>
-						<a href="index.html" class="logo"><strong>Carino</strong> <span>Systems - <b style="color:greenyellow;" id="random-phrase">Loading...</b></span></a>
+						<a href="index.html" class="logo"><strong>Carino</strong> <span>Systems <b style="color:greenyellow;"></b></span></a>
 						<!--<nav>
 							<a href="#menu">Menu</a>
 						</nav>-->
@@ -40,7 +40,22 @@
 							<li><a href="#" class="button fit">Log In</a></li>
 						</ul>
 					</nav>-->
+				<!-- Banner -->
+				<!-- Note: The "styleN" class below should match that of the header element. -->
+				<section id="banner" class="" style="animation: gradient 10s ease infinite;">
 
+					<div class="inner">
+						<span class="image">
+							<img src="" alt="" />
+						</span>
+						<header class="major">
+							<h1>Friendly IT solutions, openly available</h1>
+						</header>
+						<div class="content">
+							<p>Random tip of the day:</p><p id="random-phrase" style="color: rgba(240, 236, 47, 0.973);"></p>
+						</div>
+					</div>
+				</section>
 				<!-- Main -->
 					<div id="main">
 
@@ -137,41 +152,19 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-            <script>
-                // Array of random phrases
-                const phrases = [
-                    "「 I use Fedora btw 」",
-                    "「 I don't use Arch btw 」",
-                    "「 Install Gentoo. 」",
-                    "「 A simple website for my convenience and hopefully yours 」",
-                    "「 Welcome, pero no mucho rato 」",
-                    "「 Whom'st'd've'ed thought I could do web design」",
-			        "「 Reboot first, then come back 」",
-                    /*"「  」",*/
-                ];
-        
-                // Function to pick and display a random phrase
-                function displayRandomPhrase() {
-                    const randomIndex = Math.floor(Math.random() * phrases.length);
-                    const randomPhrase = phrases[randomIndex];
-                    document.getElementById("random-phrase").textContent = randomPhrase;
-                }
-        
-                // Call the function to display a random phrase when the page loads
-                window.onload = displayRandomPhrase;
-            </script>
 			<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-	(function(){
-	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-	s1.async=true;
-	s1.src='https://embed.tawk.to/655c3bf8d600b968d31553e3/1hfo4kh3h';
-	s1.charset='UTF-8';
-	s1.setAttribute('crossorigin','*');
-	s0.parentNode.insertBefore(s1,s0);
-	})();
-	</script>
-	<!--End of Tawk.to Script-->
+			<script type="text/javascript">
+			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+			(function(){
+			var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+			s1.async=true;
+			s1.src='https://embed.tawk.to/655c3bf8d600b968d31553e3/1hfo4kh3h';
+			s1.charset='UTF-8';
+			s1.setAttribute('crossorigin','*');
+			s0.parentNode.insertBefore(s1,s0);
+			})();
+			</script>
+			<!--End of Tawk.to Script-->
+		<!--End of scripts-->
 	</body>
 </html>
