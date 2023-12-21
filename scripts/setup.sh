@@ -679,5 +679,5 @@ googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x8
 ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
 # CustomPackages
 languagePackages="fcitx5 fcitx5-mozc"
-carinoPackages="lpf-spotify-client telegram-desktop texlive-scheme-full"
+carinoPackages="lpf-spotify-client telegram-desktop texlive-scheme-full gnome-extensions"
 identifyDistro
