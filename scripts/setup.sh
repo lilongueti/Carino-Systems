@@ -627,20 +627,20 @@ updateSystem ()
 # Declaring Packages
 # Generic GNU/Linux Packages
 #Essential packages are what will allow system review for advanced users and stable hardware experience
-essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g*" #gcc-c++ lm_sensors.x86_64
+essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g* lsof" #gcc-c++ lm_sensors.x86_64
 #Server packages ensure SSH, FTP and RDP connectivity, so advanced users can configure and use the server remotely
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
 #Basic packages will allow endusers to perform basic activities or get basic features
 basicUserPackages="gedit yt-dlp thunderbird mpv ffmpeg ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio epiphany qbittorrent"
-basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr *gtkglext* libxdo-* ncdu scrot xclip"
+basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr *gtkglext* libxdo-* ncdu scrot x`cli`p"
 basicDesktopEnvironmentPackages="thunar thunar-archive-plugin file-roller fontawesome-fonts"
 #Gaming packages will allow enduseres to play on the most popular platforms
 gamingPackages="steam goverlay lutris mumble"
 #Multimedia pacakges allow the end user to use the most
-multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt* python3-vapoursynth" #qt5-qtbase-devel python3-qt5
+multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt* python3-vapoursynth qt5-qtbase-devel vapoursynth-* libqt5* libass*" #qt5-qtbase-devel python3-qt5
 developmentPackages="gcc cargo npm python3-pip nodejs golang conda*"
 virtconPackages="podman distrobox bridge-utils"
-supportPackages="bleachbit remmina filezilla keepassxc bless" #stacer barrier
+supportPackages="bleachbit remmina filezilla keepassxc bless xxd dynamips" #stacer barrier
 amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
 nvidiaPackages="vdpauinfo libva-utils vulkan nvidia-xconfig" #libva-vdpau-driver kernel-headers kernel-devel xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
 xfcePackages="task-xfce-desktop @xfce-desktop-environment @Xfce @base-x"
@@ -679,5 +679,5 @@ googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x8
 ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
 # CustomPackages
 languagePackages="fcitx5 fcitx5-mozc"
-carinoPackages="lpf-spotify-client telegram-desktop"
+carinoPackages="lpf-spotify-client telegram-desktop texlive-scheme-full"
 identifyDistro
