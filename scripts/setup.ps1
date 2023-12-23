@@ -69,8 +69,11 @@ switch ($a)
     setwindowsUpdate
     continue
 }
- '2' {
-    'Second Block Executes'
+ '10.0.22631' {
+    Write-Host "Basic profile for Windows 11"
+    windows11tweaks
+    setwindowsUpdate
+    continue'Second Block Executes'
     continue
 }
  '3'  {
@@ -87,7 +90,7 @@ switch ($b)
     Write-Host "Installing packages..."
 (
     "CodecGuide.K-LiteCodecPack.Mega",
-    "KDE.Okular.Nightly",
+    "KDE.Okular",
     "AdrienAllard.FileConverter",
     "7zip.7zip",
     "Oracle.JavaRuntimeEnvironment",
@@ -170,12 +173,40 @@ switch ($b)
     "DebaucheeOpenSourceGroup",
     "Git.Git",
     "Python.Python.3.11",
-    "Bittorrent.qBittorrent"
+    "qBittorrent.qBittorrent"
 
 ) | foreach {winget install $_}
    }
    "0" {
-    exit
+     Write-Host "Installing packages..."
+(
+    "CodecGuide.K-LiteCodecPack.Mega",
+    "KDE.Okular.Nightly",
+    "AdrienAllard.FileConverter",
+    "7zip.7zip",
+    "dbeaver.dbeaver",
+    "Espanso.Espanso",
+    "Gyan.FFmpeg",
+    "GIMP.GIMP",
+    "KDE.Kdenlive",
+    "Oracle.JavaRuntimeEnvironment",
+    #"Mozilla.Thunderbird",
+    "AnyDeskSoftwareGmbH.AnyDesk",
+    "ventoy.Ventoy",
+    "RustDesk.RustDesk",
+    "OBSProject.OBSStudio",
+    "Google.Chrome",
+    #"Telegram.TelegramDesktop",
+    "TheDocumentFoundation.LibreOffice",
+    "qBittorrent.qBittorrent",
+    "Mozilla.Thunderbird",
+    "KDE.Okular",
+    "RedHat.Podman",
+    "RedHat.Podman-Desktop",
+    "KeePassXCTeam.KeePassXC",
+    "Microsoft.VisualStudioCode",
+    #"Spotify.Spotify"
+) | foreach {winget install $_}
    }
    Default {
     'Nothing will be installed'
