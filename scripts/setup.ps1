@@ -204,7 +204,7 @@ switch ($b)
     "RedHat.Podman",
     "RedHat.Podman-Desktop",
     "KeePassXCTeam.KeePassXC",
-    "Microsoft.VisualStudioCode",
+    "Microsoft.VisualStudioCode"
     #"Spotify.Spotify"
 ) | foreach {winget install $_}
    }
