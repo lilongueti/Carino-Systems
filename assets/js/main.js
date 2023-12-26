@@ -359,4 +359,23 @@
 			// Call the function to display a random phrase when the page loads
 			window.onload = displayRandomPhrase;
 			
+			//Function for a searchbar in software page
+			document.getElementById('searchInput').addEventListener('keyup', function() {
+				var searchQuery = this.value.toLowerCase();
+				var list = document.getElementById('responsive-table');
+				var items = list.getElementsByClassName('table-row');
+			
+				for (var i = 0; i < items.length; i++) {
+					var programName = items[i].getElementsByClassName('col-1')[0];
+					if (programName) {
+						var textValue = programName.textContent || programName.innerText;
+						if (textValue.toLowerCase().indexOf(searchQuery) > -1) {
+							items[i].style.display = "";
+						} else {
+							items[i].style.display = "none";
+						}
+					}       
+				}
+			});
+			
 })(jQuery);

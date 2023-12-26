@@ -3385,17 +3385,17 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		padding: 6em 0 2em 0 ;
+		padding: 3em 0 2em 0 ;
 		background-attachment: fixed;
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
 		border-bottom: 0 !important;
 		cursor: default;
-		height: 60vh;
+		height: 5vh;
 		margin-bottom: -3.25em;
 		max-height: 32em;
-		min-height: 22em;
+		min-height: 18em;
 		position: relative;
 		top: -3.25em;
 	}
@@ -3960,7 +3960,7 @@ input, select, textarea {
 		}
 		
 		.container {
-			max-width: 1000px;
+			max-width: 900px;
 			margin-left: auto;
 			margin-right: auto;
 			padding-left: 10px;
@@ -3985,7 +3985,7 @@ input, select, textarea {
 			  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
 			}
 			.col-1 {
-			  flex-basis: 25%;
+			  flex-basis: 65%;
 			}
 			.col-2 {
 			  flex-basis: 55%;
