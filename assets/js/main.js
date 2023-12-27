@@ -344,9 +344,11 @@
 				"「 Clean your keyboard throughly at least twice a year, don't ask why 」",
 				"「 Antivirus are malware that hate competition 」",
 				"「 All software is licensed, even if it's free 」",
-				"「 The less social networks you have, the healthiest your social life gets 」",
+				"「 The less social networks you have, the safer your are 」",
 				"「 There's no way you can be %100 anonymous on the internet 」",
-				"「  」",
+				"「 A real backup is made by three copies of your data, on two different types of storage media, with one copy stored offsite 」",
+				"「 Data redundancy is not a backup 」",
+				"「 Remembering your passwords is a fatal security flaw, use a password manager instead 」"
 				/*"「  」",*/
 			];
 	
