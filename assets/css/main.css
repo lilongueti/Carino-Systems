@@ -2056,7 +2056,7 @@ input, select, textarea {
 	}
 
 	::-webkit-input-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: rgba(231, 46, 13, 0.2) !important;
 		opacity: 1.0;
 	}
 
@@ -2066,7 +2066,7 @@ input, select, textarea {
 	}
 
 	::-moz-placeholder {
-		color: rgba(244, 244, 255, 0.2) !important;
+		color: rgba(255, 255, 255, 0.979) !important;
 		opacity: 1.0;
 	}
 
@@ -4045,7 +4045,7 @@ input, select, textarea {
 			  flex-basis: 65%;
 			}
 			.col-2 {
-			  flex-basis: 45%;
+			  flex-basis: 35%;
 			}
 			.col-3 {
 			  flex-basis: 20%;
