@@ -379,24 +379,45 @@
 			});
 
 			//Copies commands to clipboard
-			function copyToClipboard(text) {
-				navigator.clipboard.writeText(text).then(() => {
-					alert(`Copied to clipboard: ${text}`);
-				}).catch(err => {
-					console.error('Failed to copy to clipboard: ', err);
+			document.addEventListener('DOMContentLoaded', (event) => {
+				document.querySelectorAll('.fedora-button').forEach(element => {
+					element.addEventListener('click', function() {
+						const text = this.getAttribute('data-text');
+						navigator.clipboard.writeText(text).then(() => {
+							console.log('Text copied to clipboard');
+							// You can add any notification here to show that the text was copied
+						}).catch(err => {
+							console.error('Error in copying text: ', err);
+						});
+					});
 				});
-			}
-			
-			document.getElementById('command1').addEventListener('click', function() {
-				copyToClipboard("sudo dnf install dbeaver");
+			});
+
+			document.addEventListener('DOMContentLoaded', (event) => {
+				document.querySelectorAll('.windows-button').forEach(element => {
+					element.addEventListener('click', function() {
+						const text = this.getAttribute('data-text');
+						navigator.clipboard.writeText(text).then(() => {
+							console.log('Text copied to clipboard');
+							// You can add any notification here to show that the text was copied
+						}).catch(err => {
+							console.error('Error in copying text: ', err);
+						});
+					});
+				});
 			});
 			
-			document.getElementById('command2').addEventListener('click', function() {
-				copyToClipboard('brew install --cask dbeaver-community');
+			document.addEventListener('DOMContentLoaded', (event) => {
+				document.querySelectorAll('.macos-button').forEach(element => {
+					element.addEventListener('click', function() {
+						const text = this.getAttribute('data-text');
+						navigator.clipboard.writeText(text).then(() => {
+							console.log('Text copied to clipboard');
+							// You can add any notification here to show that the text was copied
+						}).catch(err => {
+							console.error('Error in copying text: ', err);
+						});
+					});
+				});
 			});
-			
-			document.getElementById('command3').addEventListener('click', function() {
-				copyToClipboard('winget install -e --id dbeaver.dbeaver');
-			});
-			
 })(jQuery);

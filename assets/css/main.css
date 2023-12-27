@@ -2713,24 +2713,59 @@ input, select, textarea {
 		}
 	
 	.fedora-button {
-        background-image: url('../../images/logos30x30.png;');
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        background-image: url('../../images/icons/Fedora_icon_\(2021\).svg');
         background-size: cover;
-        border: none;
-        cursor: pointer;
-        width: 50px; /* You can adjust the size */
-        height: 50px; /* You can adjust the size */
+        background-repeat: no-repeat;
+        background-position: center;
     }
-	.windows {
-        background-color: #0078D7;
-        color: white;
+	.windows-button {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        background-image: url('../../images/icons/windows.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
-    .macos {
-        background-color: #000000;
-        color: white;
+    .macos-button {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+		padding-top: ;
+        background-image: url('../../images/icons/finder.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
-    .linux {
-        background-color: #FCC624;
-        color: black;
+    .linux-button {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        background-image: url('../../images/icons/Fedora_icon_\(2021\).svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+	.software-download-item {
+		--tw-border-opacity: 1;
+		--tw-bg-opacity: 1;
+		background-color: #fff;
+		background-color: rgb(255 255 255/var(--tw-bg-opacity));
+		border-color: #e5e7eb;
+		border-color: rgb(229 231 235/var(--tw-border-opacity));
+		border-width: 1px;
+		padding: .5rem 1.25rem;
+	}
+	.rounded-xl {
+		border-radius: .75rem;
+	}
+
+	.span-space {
+            margin-right: 10px; /* Adjust the value as needed */
     }
 
 /* Tiles */
@@ -3417,7 +3452,7 @@ input, select, textarea {
 		height: 5vh;
 		margin-bottom: -3.25em;
 		max-height: 32em;
-		min-height: 18em;
+		min-height: 16em;
 		position: relative;
 		top: -3.25em;
 	}
@@ -4010,13 +4045,13 @@ input, select, textarea {
 			  flex-basis: 65%;
 			}
 			.col-2 {
-			  flex-basis: 55%;
+			  flex-basis: 45%;
 			}
 			.col-3 {
-			  flex-basis: 25%;
+			  flex-basis: 20%;
 			}
 			.col-4 {
-			  flex-basis: 20%;
+			  flex-basis: 25%;
 			}
 			
 			@media all and (max-width: 767px) {
