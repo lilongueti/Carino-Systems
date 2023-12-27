@@ -377,5 +377,26 @@
 					}       
 				}
 			});
+
+			//Copies commands to clipboard
+			function copyToClipboard(text) {
+				navigator.clipboard.writeText(text).then(() => {
+					alert(`Copied to clipboard: ${text}`);
+				}).catch(err => {
+					console.error('Failed to copy to clipboard: ', err);
+				});
+			}
+			
+			document.getElementById('command1').addEventListener('click', function() {
+				copyToClipboard("sudo dnf install dbeaver");
+			});
+			
+			document.getElementById('command2').addEventListener('click', function() {
+				copyToClipboard('brew install --cask dbeaver-community');
+			});
+			
+			document.getElementById('command3').addEventListener('click', function() {
+				copyToClipboard('winget install -e --id dbeaver.dbeaver');
+			});
 			
 })(jQuery);

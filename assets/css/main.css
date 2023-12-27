@@ -2711,6 +2711,27 @@ input, select, textarea {
 			cursor: default;
 			opacity: 0.25;
 		}
+	
+	.fedora-button {
+        background-image: url('../../images/logos30x30.png;');
+        background-size: cover;
+        border: none;
+        cursor: pointer;
+        width: 50px; /* You can adjust the size */
+        height: 50px; /* You can adjust the size */
+    }
+	.windows {
+        background-color: #0078D7;
+        color: white;
+    }
+    .macos {
+        background-color: #000000;
+        color: white;
+    }
+    .linux {
+        background-color: #FCC624;
+        color: black;
+    }
 
 /* Tiles */
 
