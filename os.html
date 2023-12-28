@@ -134,6 +134,9 @@
 					<div id="main">
 						<!-- One -->
 						<section id="one" class="spotlights">
+							<header class="">
+								<h3 style="text-align: center;" id="selectos">Select an operating system</h3>
+							</header>
 							<div class="container">
 								<div class="container">
 									<div id="option1" class="square" style="background-image: url(images/icons/Fedora_icon_\(2021\).svg); background-size: cover;"></div>
@@ -149,40 +152,20 @@
 									<!-- Content will be dynamically loaded here -->
 								</div>
 								</section>
-								<!--<section>
-									<a href="#" class="image">
-										<img src="images/pic09.jpg" alt="" data-position="top center" />
-									</a>
-									<div class="content">
-										<div class="inner">
-											<header class="major">
-												<h3>Installing an operating system</h3>
-											</header>
-											<p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you don't know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p>
-											<ul class="actions">
-												<li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li>
-											</ul>
-										</div>
-									</div>
-								</section>
 								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic10.jpg" alt="" data-position="25% 25%" />
-									</a>
-									<div class="content">
-										<div class="inner">
-											<header class="major">
-												<h3>Configuring an operating system</h3>
+									<div class="" style="text-align: center; padding-top: 200px;">
+										<button id="scrollButton01">Go to system setup</button>
+											<header class="" id="setupos">
+												<h3 style="padding-top: 30px;">Setup your operating system</h3>
 											</header>
 											<p>Once you have your system installed, run the following command in your terminal.</p>
 											<div style="padding:10px; border-radius:5px;">
 												<b>Windows</b><input style="max-width: 55%;" type="text" id="textToCopy" value="iwr -useb https://carino.systems/scripts/setup.ps1 | iex" readonly>
 												<b>GNU/Linux</b><input style="max-width: 55%;" type="text" id="textToCopy" value="bash <(curl -s https://carino.systems/scripts/setup.sh)" readonly>
 											</div>
-										</div>
 									</div>
 								</section>
-								<section>
+								<!--<section>
 									<a href="generic.html" class="image">
 										<img src="images/pic09.jpg" alt="" data-position="top center" />
 									</a>
@@ -258,13 +241,34 @@
 					function updateContent(option) {
 						var contentArea = document.getElementById('content-area');
 						if (option === 1) {
-							contentArea.innerHTML = '<div style="text-align: center;"><h3>Fedora Linux</h3><p class="desktop-fedora"></p><br><p>The most innovative system with the best and latest technologies for general,<br> development, office, creative and gaming use cases without issues.</p></div>';
+							contentArea.innerHTML = '<div style="text-align: center;""><h3>Fedora Linux</h3><p class="desktop-fedora"></p><br><p>The most innovative system with the best and latest technologies for general,<br> development, office, creative and gaming use cases without issues.</p><li><a href="#" class="button">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
 						} else if (option === 2) {
-							contentArea.innerHTML = '<div style="text-align: center;"><h3>Windows</h3><p class="desktop-fedora"></p><br><p>Most used desktop operating system in the world,<br>supported by countless business.</p></div>';
+							contentArea.innerHTML = '<div style="text-align: center;"><h3>Windows</h3><p class="desktop-fedora"></p><br><p>Most used desktop operating system in the world,<br>supported by countless business.</p><li><a href="#" class="button">Download</a></li></div>';
 						} else if (option === 3) {
-							contentArea.innerHTML = '<div style="text-align: center;"><h3>macOS</h3><p class="desktop-fedora"></p><br><p>Most used system by creative professional all over the world.</p></div>';
+							contentArea.innerHTML = '<div style="text-align: center;"><h3>macOS</h3><p class="desktop-fedora"></p><br><p>Most used system by creative professional all over the world.</p><li><a href="#" class="button">Download</a></li></div>';
 						}
 					}
+					document.getElementById('scrollButton01').addEventListener('click', function() {
+    			    	document.getElementById('setupos').scrollIntoView({ 
+    			    	    behavior: 'smooth' 
+    			    	});
+    				});
+    				document.getElementById('option1').addEventListener('click', function() {
+    				    document.getElementById('selectos').scrollIntoView({ 
+    				        behavior: 'smooth' 
+    				    });
+    				});
+    				document.getElementById('option2').addEventListener('click', function() {
+    				    document.getElementById('selectos').scrollIntoView({ 
+    				        behavior: 'smooth' 
+    				    });
+    				});
+					document.getElementById('option3').addEventListener('click', function() {
+    				    document.getElementById('selectos').scrollIntoView({ 
+    				        behavior: 'smooth' 
+    				    });
+    				});
+					
 				});
 			</script>		
 			<script src="assets/js/jquery.min.js"></script>
