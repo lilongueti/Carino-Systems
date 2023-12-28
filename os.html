@@ -24,6 +24,46 @@
 		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" as="style">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" media="print" onload="this.media='all'">
 	</head>
+	<style>
+		.container {
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.square {
+			width: 200px;
+			height: 200px;
+			/*background-color: rgb(255, 255, 255);*/
+			margin: 20px;
+		}
+		.desktop-fedora {
+		    background-image: url('images/banners/fedoradesktop.webp'); /* Replace with your image URL */
+		    background-size: cover; /* This will cover the entire area of the paragraph */
+		    max-width: 600px; /* Maximum width of the paragraph */
+		    height: 350px; /* Set a height for the paragraph */
+		    margin: 0 auto; /* This centers the paragraph if the parent is wider */
+		    padding: 20px; /* Optional: For internal spacing */
+		    color: white; /* Optional: Change text color if needed */
+		}
+		.desktop-windows {
+		    background-image: url('images/banners/fedoradesktop.webp'); /* Replace with your image URL */
+		    background-size: cover; /* This will cover the entire area of the paragraph */
+		    max-width: 600px; /* Maximum width of the paragraph */
+		    height: 350px; /* Set a height for the paragraph */
+		    margin: 0 auto; /* This centers the paragraph if the parent is wider */
+		    padding: 20px; /* Optional: For internal spacing */
+		    color: white; /* Optional: Change text color if needed */
+		}
+		.desktop-macos {
+		    background-image: url('images/banners/fedoradesktop.webp'); /* Replace with your image URL */
+		    background-size: cover; /* This will cover the entire area of the paragraph */
+		    max-width: 600px; /* Maximum width of the paragraph */
+		    height: 350px; /* Set a height for the paragraph */
+		    margin: 0 auto; /* This centers the paragraph if the parent is wider */
+		    padding: 20px; /* Optional: For internal spacing */
+		    color: white; /* Optional: Change text color if needed */
+		}
+	</style>
 	<body class="is-preload">
 
 		<!-- Wrapper -->
@@ -66,7 +106,7 @@
 						<li style="background-color: rgb(20, 220, 193);"> </li>
 						<li style="background-color: crimson;"> </li>
 						<li style="background-color: rgb(0, 0, 0);"> </li>
-						<li style="background-color: rgb(228, 123, 63);"> </li>	
+						<li style="background-color: rgb(228, 123, 63);"> </li>
 					<!---->
 					<!-- Div background animation-->
 					<div class="ripple-background">
@@ -85,35 +125,31 @@
 								<h1>Operating Systems</h1>
 							</header>
 							<div class="content">
-								<p>Test</p>
+								<p>Because you have the right to choose your poison.</p>
 							</div>
 						</div>
 					</section>
 
 				<!-- Main -->
 					<div id="main">
-
-						
+						<!-- One -->
+						<section id="one" class="spotlights">
+							<div class="container">
+								<div class="container">
+									<div id="option1" class="square" style="background-image: url(images/icons/Fedora_icon_\(2021\).svg); background-size: cover;"></div>
+									<div id="option2" class="square" style="background-image: url(images/icons/windows.svg); background-size: cover;"></div>
+									<div id="option3" class="square" style="background-image: url(images/icons/finder.svg); background-size: cover;"></div>
+								</div>
+							</div>
+						</section>
 
 						<!-- Two -->
 							<section id="two" class="spotlights">
-								<section>
-									<a href="generic.html" class="image">
-										<img src="images/pic08.jpg" alt="" data-position="center center" />
-									</a>
-									<div class="content">
-										<div class="inner">
-											<header class="major">
-												<h3>Available operating systems</h3>
-											</header>
-											<p>Choose among various operating systems according to your use case or technical needs.</p>
-											<ul class="actions">
-												<li><a href="selectos.html" class="button">Choose</a></li>
-											</ul>
-										</div>
-									</div>
+								<div id="content-area" style="">
+									<!-- Content will be dynamically loaded here -->
+								</div>
 								</section>
-								<section>
+								<!--<section>
 									<a href="#" class="image">
 										<img src="images/pic09.jpg" alt="" data-position="top center" />
 									</a>
@@ -174,76 +210,19 @@
 											</ul>
 										</div>
 									</div>
-								</section>
+								</section>-->
 							</section>
 
 						<!-- Three -->
 							<section id="three">
 								<div class="inner">
-									<header class="major">
-										<h2>Not what you were looking for?</h2>
-									</header>
-									<p>Feel free to contact me.</p>
-									<ul class="actions">
+									<ul class="actions" style="padding-left: 45%;">
 										<li><a href="index.html" class="button next">Go Back</a></li>
 									</ul>
 								</div>
 							</section>
 
 					</div>
-
-				<!-- Contact 
-					<section id="contact">
-						<div class="inner">
-							<section>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="6"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Clear" /></li>
-									</ul>
-								</form>
-							</section>
-							<section class="split">
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-envelope"></span>
-										<h3>Email</h3>
-										<a href="#">information@untitled.tld</a>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-phone"></span>
-										<h3>Phone</h3>
-										<span>(000) 000-0000 x12387</span>
-									</div>
-								</section>
-								<section>
-									<div class="contact-method">
-										<span class="icon solid alt fa-home"></span>
-										<h3>Address</h3>
-										<span>1234 Somewhere Road #5432<br />
-										Nashville, TN 00000<br />
-										United States of America</span>
-									</div>
-								</section>
-							</section>
-						</div>
-					</section>-->
 
 				<!-- Footer -->
 					<footer id="footer">
@@ -262,6 +241,32 @@
 			</div>
 
 		<!-- Scripts -->
+			<script>
+				document.addEventListener('DOMContentLoaded', function () {
+					document.getElementById('option1').addEventListener('click', function() {
+						updateContent(1);
+					});
+				
+					document.getElementById('option2').addEventListener('click', function() {
+						updateContent(2);
+					});
+				
+					document.getElementById('option3').addEventListener('click', function() {
+						updateContent(3);
+					});
+				
+					function updateContent(option) {
+						var contentArea = document.getElementById('content-area');
+						if (option === 1) {
+							contentArea.innerHTML = '<div style="text-align: center;"><h3>Fedora Linux</h3><p class="desktop-fedora"></p><br><p>The most innovative system with the best and latest technologies for general,<br> development, office, creative and gaming use cases without issues.</p></div>';
+						} else if (option === 2) {
+							contentArea.innerHTML = '<div style="text-align: center;"><h3>Windows</h3><p class="desktop-fedora"></p><br><p>Most used desktop operating system in the world,<br>supported by countless business.</p></div>';
+						} else if (option === 3) {
+							contentArea.innerHTML = '<div style="text-align: center;"><h3>macOS</h3><p class="desktop-fedora"></p><br><p>Most used system by creative professional all over the world.</p></div>';
+						}
+					}
+				});
+			</script>		
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
