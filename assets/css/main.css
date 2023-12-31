@@ -2720,7 +2720,19 @@ input, select, textarea {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+		display: inline-block;
+    	transform: translateZ(0);
+    	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    	backface-visibility: hidden;
+    	-moz-osx-font-smoothing: grayscale;
+    	transition-duration: 0.3s;
+    	transition-property: transform;
     }
+	.fedora-button:hover,
+	.fedora-button:focus,
+	.fedora-button:active {
+	    transform: scale(1.4);
+	}
 	.windows-button {
         display: inline-block;
         width: 26px;
@@ -2729,7 +2741,19 @@ input, select, textarea {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+		display: inline-block;
+    	transform: translateZ(0);
+    	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    	backface-visibility: hidden;
+    	-moz-osx-font-smoothing: grayscale;
+    	transition-duration: 0.3s;
+    	transition-property: transform;
     }
+	.windows-button:hover,
+	.windows-button:focus,
+	.windows-button:active {
+	    transform: scale(1.4);
+	}
     .macos-button {
         display: inline-block;
         width: 32px;
@@ -2739,7 +2763,19 @@ input, select, textarea {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+		display: inline-block;
+    	transform: translateZ(0);
+    	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    	backface-visibility: hidden;
+    	-moz-osx-font-smoothing: grayscale;
+    	transition-duration: 0.3s;
+    	transition-property: transform;
     }
+	.macos-button:hover,
+	.macos-button:focus,
+	.macos-button:active {
+	    transform: scale(1.4);
+	}
 	
     .linux-button {
         display: inline-block;

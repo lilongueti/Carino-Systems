@@ -35,6 +35,19 @@
 			height: 200px;
 			/*background-color: rgb(255, 255, 255);*/
 			margin: 20px;
+			background-position: center;
+			display: inline-block;
+    		transform: translateZ(0);
+    		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    		backface-visibility: hidden;
+    		-moz-osx-font-smoothing: grayscale;
+    		transition-duration: 0.3s;
+    		transition-property: transform;
+    	}
+		.square	:hover,
+		.square:focus,
+		.square:active {
+		    transform: scale(1.5);
 		}
 		.desktop-fedora {
 		    background-image: url('images/banners/fedoradesktop.webp'); /* Replace with your image URL */
@@ -181,7 +194,7 @@
 											</header>
 											<p>Once you have your system installed, run the following command in your terminal.</p>
 											<div style="padding:10px; border-radius:5px;">
-												<b><span class="button fedora-setup" id="fedora-setup" data-text="bash <(curl -s https://carino.systems/scripts/setup.sh)">Fedora</span><span class="button windows-setup" id="windows-setup" data-text="iwr -useb https://carino.systems/scripts/setup.ps1 | iex">Windows</span><span class="button macos-setup" id="macos-setup" data-text="macOS">macOS</span></b>
+												<b><span class="fedora-button" id="fedora-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="bash <(curl -s https://carino.systems/scripts/setup.sh)">Click to copy</span><span class="windows-button" id="windows-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="iwr -useb https://carino.systems/scripts/setup.ps1 | iex">Click to copy</span><span class="macos-button" id="macos-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="macOS">Click to copy</span></b>
 											</div>
 									</div>
 								</section>
@@ -261,7 +274,7 @@
 					function updateContent(option) {
 						var contentArea = document.getElementById('content-area');
 						if (option === 1) {
-							contentArea.innerHTML = '<div style="text-align: center;""><h3>Fedora Linux</h3><p class="desktop-fedora"></p><br><p>The most innovative system with the best and latest technologies for general,<br> development, office, creative and gaming use cases without issues.</p><li><a href="https://fedoraproject.org/#editions" target="_blank" class="button" style="background-color: #0c4191;">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
+							contentArea.innerHTML = '<div style="text-align: center;"><h3>Fedora Linux</h3><p class="desktop-fedora"></p><br><p>The most innovative system with the best and latest technologies for general,<br> development, office, creative and gaming use cases without issues.</p><li><a href="https://fedoraproject.org/#editions" target="_blank" class="button" style="background-color: #0c4191;">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
 						} else if (option === 2) {
 							contentArea.innerHTML = '<div style="text-align: center;"><h3>Windows</h3><p class="desktop-windows"></p><br><p>Most used desktop operating system in the world,<br>supported by countless business.</p><li><a href="https://www.microsoft.com/en-us/software-download/windows11/" target="_blank" class="button" style="background-color: green;">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
 						} else if (option === 3) {
@@ -289,7 +302,7 @@
     				    });
     				});
 					//Copies commands to clipboard
-						document.querySelectorAll('.fedora-setup').forEach(element => {
+						document.querySelectorAll('.fedora-button').forEach(element => {
 							element.addEventListener('click', function() {
 								const text = this.getAttribute('data-text');
 								navigator.clipboard.writeText(text).then(() => {
@@ -301,7 +314,7 @@
 							});
 						});
 
-						document.querySelectorAll('.windows-setup').forEach(element => {
+						document.querySelectorAll('.windows-button').forEach(element => {
 							element.addEventListener('click', function() {
 								const text = this.getAttribute('data-text');
 								navigator.clipboard.writeText(text).then(() => {
@@ -313,7 +326,7 @@
 							});
 						});
 
-						document.querySelectorAll('.macos-setup').forEach(element => {
+						document.querySelectorAll('.macos-button').forEach(element => {
 							element.addEventListener('click', function() {
 								const text = this.getAttribute('data-text');
 								navigator.clipboard.writeText(text).then(() => {
