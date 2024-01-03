@@ -4372,7 +4372,29 @@ input, select, textarea {
 				}
 			  }
 			}
+		.use-case-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
 
+        .use-case {
+            width: 30%;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .use-case h3 {
+            margin-top: 0;
+        }
+
+        .description {
+            margin-top: 10px;
+        }
 /*Scroll down*/
 	#scrollButton {
 		padding: 10px 20px;
