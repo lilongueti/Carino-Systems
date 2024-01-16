@@ -18,7 +18,7 @@
 		<meta property="og:site_name" content="Carino Systems" />
 		<meta property="og:locale" content="en_US" />
 
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css" />
 		<link rel="icon" href="./images/logo50x50.png">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -51,8 +51,36 @@
 		margin-top: 0;
 	}
 
+	.hardwarecontainer {
+	display: flex;
+	min-height: 500px;
+	}
+	
+	.left-panel, .right-panel {
+	    padding: 10px;
+	}
+	
+	.left-panel {
+	    width: 16%;
+	    background-color: rgb(63, 143, 218);
+	}
+	
+	.right-panel {
+	    width: 84%;
+	    background-color: rgb(123, 196, 221);
+	}
+	
+	.item {
+	    display: block;
+	    margin-bottom: 5px;
+	    cursor: pointer;
+	    min-height: 2em;
+	    font-size: 25px;
+	    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	}
+	
 	.description {
-		margin-top: 10px;
+	    display: none;
 	}
 	</style>
 	<body class="is-preload">
@@ -127,251 +155,50 @@
 
 						<!-- One -->
 							<section id="one">
-								<div class="inner">
-									<div style="text-align: center; padding-bottom: 50px;">
-										<button style="display: block; margin: 0 auto;">Basic computer recommendations</button>
-									</div>									
-									<div class="use-case-container">
-										<div class="use-case">
-											<h3>General Use Case Laptop</h3>
-											
-											<div class="description">
-												<p>Web browsing, Multimedia, Document and spreadsheet Editing</p>
-												<table border="1">
-													<tr>
-														<th>Specs</th>
-														<th>Model</th>
-													</tr>
-													<tr>
-														<td>CPU</td>
-														<td>AMD Ryzen 5825U / Intel i5-1240P</td>
-													</tr>
-													<tr>
-														<td>RAM</td>
-														<td>8GB @ 3200 MHZ at least</td>
-													</tr>
-													<tr>
-														<td>Storage</td>
-														<td>256GB at least</td>
-													</tr>
-													<!-- Add more rows as needed -->
-												</table>
-												<p><a href="">Model recommendation</a></p>
-												<p>Want to find a model for yourself?</p>
-												<button>Copy the specs.</button>
-											</div>
-										</div>
-										<div class="use-case">
-											<h3>General Use Case Desktop</h3>
-											
-											<div class="description">
-												<p>Web browsing, Multimedia, Document and spreadsheet Editing</p>
-												<table border="1">
-													<tr>
-														<th>Specs</th>
-														<th>Model</th>
-													</tr>
-													<tr>
-														<td>CPU</td>
-														<td>AMD Ryzen 5825U / Intel i5-1240P</td>
-													</tr>
-													<tr>
-														<td>RAM</td>
-														<td>8GB @ 3200 MHZ at least</td>
-													</tr>
-													<tr>
-														<td>Storage</td>
-														<td>256GB at least</td>
-													</tr>
-													<!-- Add more rows as needed -->
-												</table>
-												<p><a href="">Model recommendation</a></p>
-												<p>Want to find a model for yourself?</p>
-												<button>Copy the specs.</button>
-											</div>
-										</div>
-										<!-- Add more use cases in a similar format -->
+								<div class="hardwarecontainer">
+									<div class="left-panel">
+										<span class="item" onclick="showDescription(1)">General</span>
+										<span class="item" onclick="showDescription(2)">Business</span>
+										<span class="item" onclick="showDescription(3)">Gaming</span>
+										<!-- Add more items as needed -->
 									</div>
-									<br>
-									<div style="text-align: center; padding-bottom: 50px;">
-										<button style="display: block; margin: 0 auto;">Specific use case computer recommendations</button>
-									</div>
-									<div class="use-case-container">
-										<div class="use-case">
-											<h3>General Use Case Laptop</h3>
-											
-											<div class="description">
-												<p>Web browsing, Multimedia, Document and spreadsheet Editing</p>
-												<table border="1">
-													<tr>
-														<th>Specs</th>
-														<th>Model</th>
-													</tr>
-													<tr>
-														<td>CPU</td>
-														<td>AMD Ryzen 5825U / Intel i5-1240P</td>
-													</tr>
-													<tr>
-														<td>RAM</td>
-														<td>8GB @ 3200 MHZ at least</td>
-													</tr>
-													<tr>
-														<td>Storage</td>
-														<td>256GB at least</td>
-													</tr>
-													<!-- Add more rows as needed -->
-												</table>
-												<p><a href="">Model recommendation</a></p>
-												<p>Want to find a model for yourself?</p>
-												<button>Copy the specs.</button>
+									<div class="right-panel">
+										<span class="description" id="desc1"><div style="width: 50%;">ds</div><div style="width: 50%;">dssdsdaa</div></span>
+										<span class="description" id="desc2">
+											<div class="use-case-container">
+												<div class="use-case">
+													<h3>General Use Case Laptop</h3>
+													
+													<div class="description">
+														<p>Web browsing, Multimedia, Document and spreadsheet Editing</p>
+														<table border="1">
+															<tr>
+																<th>Specs</th>
+																<th>Model</th>
+															</tr>
+															<tr>
+																<td>CPU</td>
+																<td>AMD Ryzen 5825U / Intel i5-1240P</td>
+															</tr>
+															<tr>
+																<td>RAM</td>
+																<td>8GB @ 3200 MHZ at least</td>
+															</tr>
+															<tr>
+																<td>Storage</td>
+																<td>256GB at least</td>
+															</tr>
+															<!-- Add more rows as needed -->
+														</table>
+														<p><a href="">Model recommendation</a></p>
+														<p>Want to find a model for yourself?</p>
+														<button>Copy the specs.</button>
+													</div>
+												</div>	
 											</div>
-										</div>
-										<div class="use-case">
-											<h3>General Use Case Laptop</h3>
-											
-											<div class="description">
-												<p>Web browsing, Multimedia, Document and spreadsheet Editing</p>
-												<table border="1">
-													<tr>
-														<th>Specs</th>
-														<th>Model</th>
-													</tr>
-													<tr>
-														<td>CPU</td>
-														<td>AMD Ryzen 5825U / Intel i5-1240P</td>
-													</tr>
-													<tr>
-														<td>RAM</td>
-														<td>8GB @ 3200 MHZ at least</td>
-													</tr>
-													<tr>
-														<td>Storage</td>
-														<td>256GB at least</td>
-													</tr>
-													<!-- Add more rows as needed -->
-												</table>
-												<p><a href="">Model recommendation</a></p>
-												<p>Want to find a model for yourself?</p>
-												<button>Copy the specs.</button>
-											</div>
-										</div>
-										<div class="use-case">
-											<h3>General Use Case Laptop</h3>
-											
-											<div class="description">
-												<p>Web browsing, Multimedia, Document and spreadsheet Editing</p>
-												<table border="1">
-													<tr>
-														<th>Specs</th>
-														<th>Model</th>
-													</tr>
-													<tr>
-														<td>CPU</td>
-														<td>AMD Ryzen 5825U / Intel i5-1240P</td>
-													</tr>
-													<tr>
-														<td>RAM</td>
-														<td>8GB @ 3200 MHZ at least</td>
-													</tr>
-													<tr>
-														<td>Storage</td>
-														<td>256GB at least</td>
-													</tr>
-													<!-- Add more rows as needed -->
-												</table>
-												<p><a href="">Model recommendation</a></p>
-												<p>Want to find a model for yourself?</p>
-												<button>Copy the specs.</button>
-											</div>
-										</div>
-										<div class="use-case">
-											<h3>General Use Case Laptop</h3>
-											
-											<div class="description">
-												<p>Web browsing, Multimedia, Document and spreadsheet Editing</p>
-												<table border="1">
-													<tr>
-														<th>Specs</th>
-														<th>Model</th>
-													</tr>
-													<tr>
-														<td>CPU</td>
-														<td>AMD Ryzen 5825U / Intel i5-1240P</td>
-													</tr>
-													<tr>
-														<td>RAM</td>
-														<td>8GB @ 3200 MHZ at least</td>
-													</tr>
-													<tr>
-														<td>Storage</td>
-														<td>256GB at least</td>
-													</tr>
-													<!-- Add more rows as needed -->
-												</table>
-												<p><a href="">Model recommendation</a></p>
-												<p>Want to find a model for yourself?</p>
-												<button>Copy the specs.</button>
-											</div>
-										</div>
-										<div class="use-case">
-											<h3>General Use Case Laptop</h3>
-											
-											<div class="description">
-												<p>Web browsing, Multimedia, Document and spreadsheet Editing</p>
-												<table border="1">
-													<tr>
-														<th>Specs</th>
-														<th>Model</th>
-													</tr>
-													<tr>
-														<td>CPU</td>
-														<td>AMD Ryzen 5825U / Intel i5-1240P</td>
-													</tr>
-													<tr>
-														<td>RAM</td>
-														<td>8GB @ 3200 MHZ at least</td>
-													</tr>
-													<tr>
-														<td>Storage</td>
-														<td>256GB at least</td>
-													</tr>
-													<!-- Add more rows as needed -->
-												</table>
-												<p><a href="">Model recommendation</a></p>
-												<p>Want to find a model for yourself?</p>
-												<button>Copy the specs.</button>
-											</div>
-										</div>
-										<div class="use-case">
-											<h3>General Use Case Desktop</h3>
-											
-											<div class="description">
-												<p>Web browsing, Multimedia, Document and spreadsheet Editing</p>
-												<table border="1">
-													<tr>
-														<th>Specs</th>
-														<th>Model</th>
-													</tr>
-													<tr>
-														<td>CPU</td>
-														<td>AMD Ryzen 5825U / Intel i5-1240P</td>
-													</tr>
-													<tr>
-														<td>RAM</td>
-														<td>8GB @ 3200 MHZ at least</td>
-													</tr>
-													<tr>
-														<td>Storage</td>
-														<td>256GB at least</td>
-													</tr>
-													<!-- Add more rows as needed -->
-												</table>
-												<p><a href="">Model recommendation</a></p>
-												<p>Want to find a model for yourself?</p>
-												<button>Copy the specs.</button>
-											</div>
-										</div>
-										<!-- Add more use cases in a similar format -->
+										</span>
+										<span class="description" id="desc3">Description for Item 3</span>
+										<!-- Corresponding descriptions for each item -->
 									</div>
 								</div>
 							</section>
@@ -423,11 +250,6 @@
     			    	    behavior: 'smooth' 
     			    	});
     				});
-    				document.getElementById('option1').addEventListener('click', function() {
-    				    document.getElementById('selectos').scrollIntoView({ 
-    				        behavior: 'smooth' 
-    				    });
-    				});
     				document.getElementById('option2').addEventListener('click', function() {
     				    document.getElementById('selectos').scrollIntoView({ 
     				        behavior: 'smooth' 
@@ -474,9 +296,21 @@
 								});
 							});
 						});
-
 				});
-			</script>	
+				function showDescription(n) {
+				// Hide all descriptions
+				var descriptions = document.getElementsByClassName('description');
+				for (var i = 0; i < descriptions.length; i++) {
+					descriptions[i].style.display = 'none';
+				}
+			
+				// Show the selected description
+				var desc = document.getElementById('desc' + n);
+				if (desc) {
+					desc.style.display = 'block';
+				}
+			}
+			</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/jquery.scrollex.min.js"></script>
