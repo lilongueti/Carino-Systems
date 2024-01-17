@@ -213,7 +213,7 @@
 													<button>Copy the specs.</button>
 											</div>
 											<div class="use-case">
-													<p>Recommended Laptop/p>
+													<p>Recommended Laptop</p>
 													<table border="1">
 														<tr>
 															<th>Specs</th>
@@ -288,7 +288,7 @@
 														<button>Copy the specs.</button>
 												</div>
 												<div class="use-case">
-														<p>Recommended Laptop/p>
+														<p>Recommended Laptop</p>
 														<table border="1">
 															<tr>
 																<th>Specs</th>
@@ -363,7 +363,7 @@
 													<button>Copy the specs.</button>
 											</div>
 											<div class="use-case">
-													<p>Recommended Laptop/p>
+													<p>Recommended Laptop</p>
 													<table border="1">
 														<tr>
 															<th>Specs</th>
@@ -412,28 +412,7 @@
 		<!-- Scripts -->
 			<script>
 				document.addEventListener('DOMContentLoaded', function () {
-					document.getElementById('option1').addEventListener('click', function() {
-						updateContent(1);
-					});
-				
-					document.getElementById('option2').addEventListener('click', function() {
-						updateContent(2);
-					});
-				
-					document.getElementById('option3').addEventListener('click', function() {
-						updateContent(3);
-					});
-				
-					function updateContent(option) {
-						var contentArea = document.getElementById('content-area');
-						if (option === 1) {
-							contentArea.innerHTML = '<div style="text-align: center;"><h3>Fedora Linux</h3><p class="desktop-fedora"></p><br><p>The most innovative system with the best and latest technologies for general,<br> development, office, creative and gaming use cases without issues.</p><li><a href="https://fedoraproject.org/#editions" target="_blank" class="button" style="background-color: #0c4191;">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
-						} else if (option === 2) {
-							contentArea.innerHTML = '<div style="text-align: center;"><h3>Windows</h3><p class="desktop-windows"></p><br><p>Most used desktop operating system in the world,<br>supported by countless business.</p><li><a href="https://www.microsoft.com/en-us/software-download/windows11/" target="_blank" class="button" style="background-color: green;">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
-						} else if (option === 3) {
-							contentArea.innerHTML = '<div style="text-align: center;"><h3>macOS</h3><p class="desktop-macos"></p><br><p>Most used system by creative professional all over the world.</p><li><a href="https://apps.apple.com/us/app/macos-sonoma/id6450717509?mt=12" target="_blank" class="button" style="background-color: rgb(0, 0, 0);">Download</a></li></div>';
-						}
-					}
+					
 					document.getElementById('scrollButton01').addEventListener('click', function() {
     			    	document.getElementById('setupos').scrollIntoView({ 
     			    	    behavior: 'smooth' 
