@@ -2,7 +2,6 @@
 # Setup script
 # Log all output to file
 currentDate=$(date +%Y%M%D)
-export LC_ALL=he_IL.UTF-8
 LOG=carino-setup$version.log
 exec > >(tee -a "$LOG") 2>&1
 # Defining Global Variables
@@ -10,9 +9,12 @@ RED="\e[31m"; BLUE="\e[94m"; GREEN="\e[32m"; YELLOW="\e[33m"; ENDCOLOR="\e[0m";U
 # Localized Display Menus
 tech_setup_en_US="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Setup Script\n-------------------------------------\nVersion:\n1.1\nDetected Distribution: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\n-------------------------------------\nPlease select an option:\n1. Technical Setup\n2. Purpose Setup\n3. Server Setup\n4. Exit"
 tech_setup_ja_JP="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" セットアップ スクリプト\n-------------------------------------\nバージョン:\n1.1\nDetected 検出されたディストリビューション： $DISTRIBUTION $VERSION_ID\n最新のGitHubコミット： $latest_commit\n最新のLinuxカーネルバージョン： $latest_kernel\nあなたのカーネルバージョン： $(uname -r)\nCPUアーキテクチャ： $archType\nハードウェアアクセラレーションが有効： $hardwareAcceleration\nハードウェアレンダラー： $hardwareRenderer\n-------------------------------------\nオプションを選択してください：\n1. 技術的なセットアップ\n2. 目的のセットアップ\n3. サーバーセットアップ\n4. 終了"
-tech_setup_ru_RU="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Скрипт установки\n-------------------------------------\nВерсия:\n1.1\nОбнаруженное распространение: $DISTRIBUTION $VERSION_ID\nПоследний коммит в GitHub: $latest_commit\nПоследняя версия ядра Linux: $latest_kernel\nВаша версия ядра: $(uname -r)\nАрхитектура ЦП: $archType\nАппаратное ускорение отключено: $hardwareAcceleration\nАппаратный рендерер: $hardwareRenderer\n-------------------------------------\nПожалуйста, выберите опцию:\n1. Техническая настройка\n2.\n2. Назначение настройки\n3. Настройка сервера\n4. Выход"
-tech_setup_es_ES="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Setup Script\n-------------------------------------\nVersion:\n1.1\nDistribución Detectada: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nYour Kernel Version: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nAceleración de Hardware habilitada: $hardwareAcceleration\nRenderizador de Hardware: $hardwareRenderer\n-------------------------------------\nPor favor, seleccione una opción:\n1. Configuración Técnica\n2. Configuración para propósito de uso\n3. Configuración como servidor\n4. Salir"
+tech_setup_ru_RU="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Скрипт установки\n-------------------------------------\nВерсия:\n1.1\nОбнаруженное распространение: $DISTRIBUTION $VERSION_ID\nПоследний коммит в GitHub: $latest_commit\nПоследняя версия ядра Linux: $latest_kernel\nВаша версия ядра: $(uname -r)\nАрхитектура ЦП: $archType\nАппаратное ускорение отключено: $hardwareAcceleration\nАппаратный рендерер: $hardwareRenderer\n-------------------------------------\nПожалуйста, выберите опцию:\n1. Техническая настройка\n2. Назначение настройки\n3. Настройка сервера\n4. Выход"
+tech_setup_es_ES="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Setup Script\n-------------------------------------\nVersion:\n1.1\nDistribución Detectada: $DISTRIBUTION $VERSION_ID\nLatest GitHub Commit: $latest_commit\nLatest Linux Kernel Version: $latest_kernel\nVersión de Kernel: $(uname -r)\nCPU Architecture: $archType\nHardware acceleration enabled: $hardwareAcceleration\nHardware renderer: $hardwareRenderer\nAceleración de Hardware habilitada: $hardwareAcceleration\nRenderizador de Hardware: $hardwareRenderer\n-------------------------------------\nPor favor, seleccione una opción:\n1. Configuración Técnica\n2. Configuración para propósito de uso\n3. Configuración como servidor\n4. Salir"
 tech_setup_fi_FI="-------------------------------------\n "$DISTRIBUTION" "$VERSION_ID" Asennusskripti\n-------------------------------------\nVersio:\n1.1\nTunnistettu jakelu: $DISTRIBUTION $VERSION_ID\nViimeisin GitHubin sitoutuminen: $latest_commit\nViimeisin Linux-ytimen versio: $latest_kernel\nKäyttämäsi ytimen versio: $(uname -r)\nSuorittimen arkkitehtuuri: $archType\nLaitteistokiihdytys käytössä: $hardwareAcceleration\nLaitteiston renderöinti: $hardwareRenderer\n-------------------------------------\nValitse vaihtoehto:\n1. Tekninen asennus\n2. Tarkoitusasennus\n3. Palvelimen asennus\n4. Poistu"
+tech_setup_zh_CN="-------------------------------------\n“$DISTRIBUTION” “$VERSION_ID” 安装脚本\n-------------------------------------\n版本：\n1.1\n检测到的发行版：$DISTRIBUTION $VERSION_ID\n最新的GitHub提交：$latest_commit\n最新的Linux内核版本：$latest_kernel\n您的内核版本：$(uname -r)\nCPU架构：$archType\n硬件加速启用：$hardwareAcceleration\n硬件渲染器：$hardwareRenderer\n-------------------------------------\n请选择一个选项：\n1. 技术设置\n2. 目的设置\n3. 服务器设置\n4. 退出"
+tech_setup_ko_KO="-------------------------------------\n “$DISTRIBUTION” “$VERSION_ID” 설정 스크립트\n-------------------------------------\n버전:\n1.1\n감지된 배포판: $DISTRIBUTION $VERSION_ID\n최근 GitHub 커밋: $latest_commit\n최신 Linux 커널 버전: $latest_kernel\n사용 중인 커널 버전: $(uname -r)\nCPU 아키텍처: $archType\n하드웨어 가속 활성화됨: $hardwareAcceleration\n하드웨어 렌더러: $hardwareRenderer\n-------------------------------------\n옵션을 선택하세요:\n1. 기술 설정\n2. 목적 설정\n3. 서버 설정\n4. 종료"
+tech_setup_he_IL="-------------------------------------\n סקריפט התקנה של “$DISTRIBUTION” “$VERSION_ID”\n-------------------------------------\nגרסה:\n1.1\nהתפלגות שזוהתה: $DISTRIBUTION $VERSION_ID\nהתחייבות GitHub אחרונה: $latest_commit\nגרסת הליבה של Linux האחרונה: $latest_kernel\nגרסת הליבה שלך: $(uname -r)\nארכיטקטורת CPU: $archType\nתאוצה בחומרה מופעלת: $hardwareAcceleration\nמנדף חומרה: $hardwareRenderer\n-------------------------------------\nאנא בחר אופציה:\n1. הגדרת טכנית\n2. הגדרת מטרה\n3. הגדרת שרת\n4. יציאה"
 purpose_setup_en_US="\n\n\-------------------------------------nPlease select a purpose for your distro\n-------------------------------------\n1. Basic\n\n2. Gaming\n\n3. Corporate\n\n4. Development\n\n5. Astronomy\n\n6. Comp-Neuro\n\n7. Desing\n\n8. Jam\n\n9. Security Lab\n10. Robotics\n11. Scientific\n12. Offline"
 purpose_setup_ja_JP="ディストリビューションの目的を選択してください:\n1. ベーシック\n2. ゲーミング\n3. コーポレート\n4. 開発\n5. 天文学\n6. コンプ-ニューロ\n7. デザイン\n8. ジャム\n9. セキュリティラボ\n10. ロボティクス\n11. 科学的\n12. オフライン"
 purpose_setup_ru_RU="Выберите цель для вашего дистрибутива:\n1. Базовый\n2. Игровой\n3. Корпоративный\n4. Разработка\n5. Астрономия\n6. Комп-Нейро\n7. Дизайн\n8. Джем\n9. Лаборатория безопасности\n10. Робототехника\n11. Научный\n12. Оффлайн"
@@ -148,20 +150,20 @@ load_dictionary() {
             printingDisplay="${phase}_ja_JP"
             info "${!printingDisplay}"
             ;;
-	    *fi_FI* | *ja_JP* | *ja* | *ja_*)
-            printingDisplay="${phase}_ja_JP"
+	    *fi_FI* | *fi* | *fi_*)
+            printingDisplay="${phase}_fi_FI"
             info "${!printingDisplay}"
             ;;
-	    *zh_CN* | *ja_JP* | *ja* | *ja_*)
-            printingDisplay="${phase}_ja_JP"
+	    *zh_CN* | *zh* | *zh_*)
+            printingDisplay="${phase}_zh_CN"
             info "${!printingDisplay}"
             ;;
-	    *ko_KR* | *ja_JP* | *ja* | *ja_*)
-            printingDisplay="${phase}_ja_JP"
+	    *ko_KR* | *ko* | *ko_*)
+            printingDisplay="${phase}_ko_KO"
             info "${!printingDisplay}"
             ;;
-	    *he_IL* | *ja_JP* | *ja* | *ja_*)
-            printingDisplay="${phase}_ja_JP"
+	    *he_IL* | *he* | *he_*)
+            printingDisplay="${phase}_he_IL"
             info "${!printingDisplay}"
             ;;
 	    *)
