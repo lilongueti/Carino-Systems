@@ -515,6 +515,7 @@ purposeMenu ()
     0)
         caution $1
         microsoftRepo
+        flathubEnable
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $languagePackages $postFlags
         #installSVP #Trying to find a FOSS alternative for smooth video
         distroboxContainers
