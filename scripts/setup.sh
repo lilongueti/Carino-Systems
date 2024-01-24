@@ -696,7 +696,7 @@ anydesk="https://download.anydesk.com/linux/anydesk-6.3.0-1.el8.x86_64.rpm https
 rustdesk="https://github.com/rustdesk/rustdesk/releases/download/1.2.3/rustdesk-1.2.3-0.x86_64.rpm https://github.com/rustdesk/rustdesk/releases/download/1.2.3/rustdesk-1.2.3-x86_64.deb"
 microsoftPackages="microsoft-edge-stable code" #powershell
 zoom="https://zoom.us/client/latest/zoom_x86_64.rpm"
-googlePackages="https://dl.google.com/linux/direct/google-chrome-beta_current_x86_64.rpm"
+googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
 ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
 # CustomPackages
 languagePackages="fcitx5 fcitx5-mozc"
