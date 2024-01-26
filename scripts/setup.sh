@@ -263,15 +263,15 @@ desktopenvironmentMenu ()
         ;;
     11)
         info "Still on the works, i3 will be installed first"
-        hyprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
+        #hyprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
         i3Packages="$(echo "$i3Packages" | awk '{print $desktopOption}')"
         sudo $pkgm $argInstall $i3Packages $i3RicingPackages $basicDesktopEnvironmentPackages $postFlags
         info "Installing Hyprland"
-        sudo dnf copr enable solopasha/hyprland -y
-        sudo $pkgm $argInstall $hyprlandPackages -y
-        sudo dnf install xorg-x11-server-Xwayland waybar-git xdg-desktop-portal-hyprland hyprshot hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff thunar -y && sudo systemctl set-default graphical.target
+        #sudo dnf copr enable solopasha/hyprland -y<
+        sudo $pkgm $argInstall $hyprlandPackages $postFlags && sudo systemctl set-default graphical.target
+        #hyprshot
         info "Creating Hyprland config file"
-        #sudo $pkgm $argInstall $hyprlandPackages -y && sudo systemctl set-default graphical.target
+        #sudo $pkgm $argInstall $hyprlandPackages -y 
         success "You have HYPRLAND installed, moving on"
         ;;
     12)
@@ -683,7 +683,7 @@ i3RicingPackages="rofi i3blocks picom kitty nitrogen lxappearance"
 openboxPackages="openbox @basic-desktop-environment @openbox @base-x"
 budgiePackages="budgie-desktop budgie-desktop @budgie @base-x"
 swayPackages="sway sway @sway @base-x"
-hyprlandPackages="hyprland-git hyprland-git" #Still on the works
+hyprlandPackages="hyprland xorg-x11-server-Xwayland waybar xdg-desktop-portal-hyprland hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff thunar" #Still on the works
 # Specific GNU/Linux Packages
 intelPackages="intel-media-*driver"
 essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
