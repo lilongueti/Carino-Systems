@@ -667,7 +667,7 @@ basicDesktopEnvironmentPackages="thunar thunar-archive-plugin file-roller fontaw
 gamingPackages="steam goverlay lutris mumble"
 #Multimedia pacakges allow the end user to use the most
 multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt* python3-vapoursynth qt5-qtbase-devel vapoursynth-* libqt5* libass*" #qt5-qtbase-devel python3-qt5
-developmentPackages="gcc cargo npm python3-pip nodejs golang conda* "
+developmentPackages="gcc cargo npm python3-pip nodejs golang conda* dbeaver"
 virtconPackages="podman distrobox bridge-utils"
 supportPackages="bleachbit remmina filezilla keepassxc bless xxd dynamips" #stacer barrier
 amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
