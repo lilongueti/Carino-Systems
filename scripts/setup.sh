@@ -243,7 +243,7 @@ desktopenvironmentMenu ()
         ;;
     7)
         i3Packages="$(echo "$i3Packages" | awk '{print $desktopOption}')"
-        sudo $pkgm $argInstall $i3Packages $basicDesktopEnvironmentPackages $postFlags && sudo systemctl set-default graphical.target
+        sudo $pkgm $argInstall $i3Packages $i3RicingPackages $basicDesktopEnvironmentPackages $postFlags && sudo systemctl set-default graphical.target
         success "You have i3 installed, moving on"
         ;;
     8)
@@ -265,7 +265,7 @@ desktopenvironmentMenu ()
         info "Still on the works, i3 will be installed first"
         hyprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
         i3Packages="$(echo "$i3Packages" | awk '{print $desktopOption}')"
-        sudo $pkgm $argInstall $i3Packages $basicDesktopEnvironmentPackages $postFlags
+        sudo $pkgm $argInstall $i3Packages $i3RicingPackages $basicDesktopEnvironmentPackages $postFlags
         info "Installing Hyprland"
         sudo dnf copr enable solopasha/hyprland -y
         sudo $pkgm $argInstall $hyprlandPackages -y
@@ -514,12 +514,11 @@ purposeMenu ()
         ;;
     0)
         caution $1
-        microsoftRepo
         flathubEnable
-        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $microsoftPackages $ciscoPackages $googlePackages $languagePackages $postFlags
+        sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $ciscoPackages $googlePackages $languagePackages $postFlags
         #installSVP #Trying to find a FOSS alternative for smooth video
         distroboxContainers
-        #FinalTweaks
+        FinalTweaks
         sudo usermod -aG libvirt $(whoami)
         #xdg-settings set default-web-browser microsoft-edge.desktop
         ;;
@@ -552,6 +551,7 @@ techSetup ()
           sudo sh -c 'echo max_parallel_downloads=10 >> /etc/dnf/dnf.conf'
       fi 
     sudo systemctl disable NetworkManager-wait-online.service
+    flathubEnable
     caution "Installing RPM FUsion"
     sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories dnf-plugins-core -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
     updateGrub
@@ -635,6 +635,12 @@ finalTweaks ()
     xdg-mime default thunar.desktop inode/directory
     mkdir ~/.config/hypr/
     ;;
+    *i3*
+    git clone https://gitlab.com/dajhub/i3-dotfiles.git
+    cp -r ~/i3-dotfiles/.config/i3/ ~/.config/
+    cp -r ~/i3-dotfiles/.fonts/ ~/
+    cp -r ~/i3-dotfiles/.icons/ ~/
+    ;;
     *)
     error "No supported Desktop Environment for tweaks"
     ;;
@@ -659,7 +665,7 @@ basicDesktopEnvironmentPackages="thunar thunar-archive-plugin file-roller fontaw
 gamingPackages="steam goverlay lutris mumble"
 #Multimedia pacakges allow the end user to use the most
 multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt* python3-vapoursynth qt5-qtbase-devel vapoursynth-* libqt5* libass*" #qt5-qtbase-devel python3-qt5
-developmentPackages="gcc cargo npm python3-pip nodejs golang conda*"
+developmentPackages="gcc cargo npm python3-pip nodejs golang conda* "
 virtconPackages="podman distrobox bridge-utils"
 supportPackages="bleachbit remmina filezilla keepassxc bless xxd dynamips" #stacer barrier
 amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
@@ -671,6 +677,7 @@ lxqtPackages="task-lxqt-desktop @lxqt-desktop-environment"
 cinnamonPackages="task-cinnamon-desktop @cinnamon-desktop-environment"
 matePackages="task-mate-desktop @mate-desktop-environment"
 i3Packages="i3 @i3-desktop-environment i3"
+i3RicingPackages="rofi i3blocks picom kitty nitrogen lxappearance"
 openboxPackages="openbox @basic-desktop-environment @openbox @base-x"
 budgiePackages="budgie-desktop budgie-desktop @budgie @base-x"
 swayPackages="sway sway @sway @base-x"
@@ -701,4 +708,4 @@ ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/W
 # CustomPackages
 languagePackages="fcitx5 fcitx5-mozc"
 carinoPackages="lpf-spotify-client telegram-desktop texlive-scheme-full gnome-extensions"
-identifyDistro
+identifyDistro0
