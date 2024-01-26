@@ -641,6 +641,8 @@ finalTweaks ()
     cp -r ~/i3-dotfiles/.fonts/ ~/
     cp -r ~/i3-dotfiles/.icons/ ~/
     curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/i3/config > ~/.config/i3/config
+    # xinput set-prop "ASUE1200:00 04F3:30F7 Touchpad" "libinput Tapping Enabled" 1
+    
     ;;
     *)
     error "No supported Desktop Environment for tweaks"
@@ -655,7 +657,7 @@ updateSystem ()
 # Declaring Packages
 # Generic GNU/Linux Packages
 #Essential packages are what will allow system review for advanced users and stable hardware experience
-essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g* lsof" #gcc-c++ lm_sensors.x86_64
+essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g* lsof xinput" #gcc-c++ lm_sensors.x86_64
 #Server packages ensure SSH, FTP and RDP connectivity, so advanced users can configure and use the server remotely
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
 #Basic packages will allow endusers to perform basic activities or get basic features
