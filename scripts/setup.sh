@@ -635,7 +635,7 @@ finalTweaks ()
     xdg-mime default thunar.desktop inode/directory
     mkdir ~/.config/hypr/
     ;;
-    *i3*
+    *i3*)
     git clone https://gitlab.com/dajhub/i3-dotfiles.git
     cp -r ~/i3-dotfiles/.config/i3/ ~/.config/
     cp -r ~/i3-dotfiles/.fonts/ ~/
@@ -711,4 +711,4 @@ ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/W
 # CustomPackages
 languagePackages="fcitx5 fcitx5-mozc"
 carinoPackages="lpf-spotify-client telegram-desktop texlive-scheme-full gnome-extensions"
-identifyDistro0
+identifyDistro
