@@ -639,7 +639,7 @@ finalTweaks ()
     cp -r ~/i3-dotfiles/.config/i3/ ~/.config/
     cp -r ~/i3-dotfiles/.fonts/ ~/
     cp -r ~/i3-dotfiles/.icons/ ~/
-    curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/i3/config > ~/.config/i3/config
+    #curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/i3/config > ~/.config/i3/config
     # xinput set-prop "ASUE1200:00 04F3:30F7 Touchpad" "libinput Tapping Enabled" 1
     
     ;;
