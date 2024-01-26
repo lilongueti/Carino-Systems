@@ -518,7 +518,7 @@ purposeMenu ()
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $ciscoPackages $googlePackages $languagePackages $postFlags
         #installSVP #Trying to find a FOSS alternative for smooth video
         distroboxContainers
-        FinalTweaks
+        finalTweaks
         sudo usermod -aG libvirt $(whoami)
         #xdg-settings set default-web-browser microsoft-edge.desktop
         ;;
@@ -551,9 +551,9 @@ techSetup ()
           sudo sh -c 'echo max_parallel_downloads=10 >> /etc/dnf/dnf.conf'
       fi 
     sudo systemctl disable NetworkManager-wait-online.service
-    flathubEnable
     caution "Installing RPM FUsion"
     sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories dnf-plugins-core -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
+    flathubEnable
     updateGrub
     #swapCodecsFedora
     ;;
@@ -640,6 +640,7 @@ finalTweaks ()
     cp -r ~/i3-dotfiles/.config/i3/ ~/.config/
     cp -r ~/i3-dotfiles/.fonts/ ~/
     cp -r ~/i3-dotfiles/.icons/ ~/
+    curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/i3/config > ~/.config/i3/config
     ;;
     *)
     error "No supported Desktop Environment for tweaks"
