@@ -514,7 +514,6 @@ purposeMenu ()
         ;;
     0)
         caution $1
-        flathubEnable
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $ciscoPackages $googlePackages $languagePackages $postFlags
         #installSVP #Trying to find a FOSS alternative for smooth video
         distroboxContainers
@@ -553,7 +552,6 @@ techSetup ()
     sudo systemctl disable NetworkManager-wait-online.service
     caution "Installing RPM FUsion"
     sudo $pkgm $argInstall https://mirror.fcix.net/rpmfusion/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://opencolo.mm.fcix.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm fedora-workstation-repositories dnf-plugins-core -y && sudo $pkgm update -y && sudo $pkgm install $essentialPackages -y
-    flathubEnable
     updateGrub
     #swapCodecsFedora
     ;;
@@ -589,6 +587,7 @@ techSetup ()
     echo "2"
     ;;
     esac
+    flathubEnable
     desktopenvironment
     graphicDrivers
     #nvtopInstall
@@ -657,12 +656,12 @@ updateSystem ()
 # Declaring Packages
 # Generic GNU/Linux Packages
 #Essential packages are what will allow system review for advanced users and stable hardware experience
-essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g* lsof xinput" #gcc-c++ lm_sensors.x86_64
+essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g* lsof xinput flatpak" #gcc-c++ lm_sensors.x86_64
 #Server packages ensure SSH, FTP and RDP connectivity, so advanced users can configure and use the server remotely
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
 #Basic packages will allow endusers to perform basic activities or get basic features
 basicUserPackages="gedit yt-dlp thunderbird mpv ffmpeg ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio epiphany qbittorrent"
-basicSystemPackages="flatpak wine xrdp htop powertop neofetch tldr *gtkglext* libxdo-* ncdu scrot xclip"
+basicSystemPackages="wine xrdp htop powertop neofetch tldr *gtkglext* libxdo-* ncdu scrot xclip"
 basicDesktopEnvironmentPackages="thunar thunar-archive-plugin file-roller fontawesome-fonts"
 #Gaming packages will allow enduseres to play on the most popular platforms
 gamingPackages="steam goverlay lutris mumble"
