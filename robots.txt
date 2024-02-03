@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /*.sh$
+Disallow: /*.ps1$
+Disallow: /assets/
+Disallow: /images/
+Disallow: /profiles/
+Disallow: /scripts/
