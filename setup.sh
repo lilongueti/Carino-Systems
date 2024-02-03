@@ -262,16 +262,8 @@ desktopenvironmentMenu ()
         success "You have SWAY installed, moving on"
         ;;
     11)
-        info "Still on the works, i3 will be installed first"
-        #hyprlandPackages="$(echo "$hyprlandPackages" | awk '{print $desktopOption}')"
-        i3Packages="$(echo "$i3Packages" | awk '{print $desktopOption}')"
-        sudo $pkgm $argInstall $i3Packages $i3RicingPackages $basicDesktopEnvironmentPackages $postFlags
-        info "Installing Hyprland"
-        #sudo dnf copr enable solopasha/hyprland -y<
-        sudo $pkgm $argInstall $hyprlandPackages $postFlags && sudo systemctl set-default graphical.target
-        #hyprshot
-        info "Creating Hyprland config file"
-        #sudo $pkgm $argInstall $hyprlandPackages -y 
+        info "Still on the works"
+        sudo $pkgm $argInstall $basicDesktopEnvironmentPackages $hyprlandPackages $postFlags && sudo systemctl set-default graphical.target
         success "You have HYPRLAND installed, moving on"
         ;;
     12)
@@ -662,7 +654,7 @@ serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockp
 #Basic packages will allow endusers to perform basic activities or get basic features
 basicUserPackages="gedit yt-dlp thunderbird mpv ffmpeg ffmpegthumbnailer tumbler clamav clamtk libreoffice obs-studio epiphany qbittorrent"
 basicSystemPackages="wine xrdp htop powertop neofetch tldr *gtkglext* libxdo-* ncdu scrot xclip"
-basicDesktopEnvironmentPackages="thunar thunar-archive-plugin file-roller fontawesome-fonts"
+basicDesktopEnvironmentPackages="nautilus fontawesome-fonts"
 #Gaming packages will allow enduseres to play on the most popular platforms
 gamingPackages="steam goverlay lutris mumble"
 #Multimedia pacakges allow the end user to use the most
@@ -683,7 +675,7 @@ i3RicingPackages="rofi i3blocks picom kitty nitrogen lxappearance"
 openboxPackages="openbox @basic-desktop-environment @openbox @base-x"
 budgiePackages="budgie-desktop budgie-desktop @budgie @base-x"
 swayPackages="sway sway @sway @base-x"
-hyprlandPackages="hyprland xorg-x11-server-Xwayland waybar xdg-desktop-portal-hyprland hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff thunar" #Still on the works
+hyprlandPackages="hyprland xorg-x11-server-Xwayland waybar xdg-desktop-portal-hyprland hyprland-autoname-workspaces hyprpaper libdisplay-info libinput libliftoff hyprshot" #Still on the works
 # Specific GNU/Linux Packages
 intelPackages="intel-media-*driver"
 essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
