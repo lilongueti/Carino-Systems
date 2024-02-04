@@ -361,7 +361,7 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 31 30 29 28 27 26 25 24 23 22 21
+      for I in 40 39 38 37 36 35 34 33 32 31 30
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
@@ -433,7 +433,7 @@ distroboxContainers ()
     distrobox-create --name rhel --image registry.access.redhat.com/ubi9/ubi -Y
     distrobox-create --name debian --image docker.io/library/debian:12 -Y
     #distrobox-create --name clearlinux --image docker.io/library/clearlinux:latest -Y
-    distrobox-create --name centos --image quay.io/centos/centos:stream9 -Y
+    #distrobox-create --name centos --image quay.io/centos/centos:stream9 -Y
     #distrobox-create --name arch --image docker.io/library/archlinux:latest -Y
     #distrobox-create --name opensusel --image registry.opensuse.org/opensuse/leap:latest -Y
     #distrobox-create --name opensuset --image registry.opensuse.org/opensuse/tumbleweed:latest  -Y

@@ -102,9 +102,6 @@
 								<section>-->
 									<div class="container">
 										<br>
-										Get the latest
-										<br>
-										<br>
 										<!--<center><h2>All software here is multiplatform, free, open source and commercially viable.</h2></center>-->
 										<input type="text" id="searchInput" style="background-color: #205497; color: rgb(255, 255, 255); border-color: brown;" placeholder="Describe your use case...">
 										<br>
@@ -114,10 +111,40 @@
 											<div class="col col-2">Solution</div>
 											<div class="col col-3">Install</div>
 										  </li>
-										  <li class="table-row" id="7zip">
+										  <li class="table-row basic-software" id="firefox">
+											<div class="col col-1" data-label="Description">Web Browser</div>
+											<div class="col col-2" data-label="Program Name"><a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a></div>
+											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install firefox"></span><span class="windows-button span-space" data-text="winget install -e --id Mozilla.Firefox"></span><span class="macos-button span-space" data-text="brew install --cask firefox"></span></div>
+										  </li>
+										  <li class="table-row basic-software" id="7zip">
 											<div class="col col-1" data-label="Description">Data Compression</div>
 											<div class="col col-2" data-label="Program Name"><a href="https://www.7-zip.org/download.html">7zip</a></div>
 											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install p7zip"></span><span class="windows-button span-space" data-text="winget install -e --id M2Team.NanaZip"></span><span class="macos-button span-space" data-text="brew install sevenzip"></span></div>
+										  </li>
+										  <li class="table-row basic-software" id="mpv">
+											<div class="col col-1" data-label="Description">Media player</div>
+											<div class="col col-2" data-label="Program Name"><a href="https://mpv.io/installation/">mpv</a></div>
+											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install mpv"></span><span class="windows-button span-space" data-text="winget install -e --id IanWalton.JellyfinMPVShim"></span><span class="macos-button span-space" data-text="brew install mpv"></span></div>
+										  </li>
+										  <li class="table-row basic-software" id="okular">
+											<div class="col col-1" data-label="Description">PDF Reader</div>
+											<div class="col col-2" data-label="Program Name"><a href="https://okular.kde.org/">Okular</a></div>
+											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install okular"></span><span class="windows-button span-space" data-text="winget install -e --id KDE.Okular"></span><span class="macos-button span-space" data-text="brew install okular"></span></div>
+										  </li>
+										  <li class="table-row basic-software" id="libreoffice">
+											<div class="col col-1" data-label="Description">Office Suite</div>
+											<div class="col col-2" data-label="Program Name"><a href="https://www.libreoffice.org/download/download-libreoffice/">Libre Office</a></div>
+											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install libreoffice"></span><span class="windows-button span-space" data-text="winget install -e --id TheDocumentFoundation.LibreOffice"></span><span class="macos-button span-space" data-text="brew install --cask libreoffice"></span></div>
+										  </li>
+										  <li class="table-row basic-software" id="thunderbird">
+											<div class="col col-1" data-label="Description">Mail Client</div>
+											<div class="col col-2" data-label="Program Name"><a href="https://www.thunderbird.net/en-US/download/">Thunderbird</a></div>
+											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install thunderbird"></span><span class="windows-button span-space" data-text="winget install -e --id Mozilla.Thunderbird"></span><span class="macos-button span-space" data-text="brew install --cask thunderbird"></span></div>
+										  </li>
+										  <li class="table-row basic-software" id="espanso">
+											<div class="col col-1" data-label="Description">Text Expander</div>
+											<div class="col col-2" data-label="Program Name"><a href="https://espanso.org/">Espanso</a></div>
+											<div class="col col-3"><span class="fedora-button span-space" data-text="bash <(curl -s https://carino.systems/scripts/espanso.sh)"></span><span class="windows-button span-space" data-text="winget install -e --id Espanso.Espanso"></span><span class="macos-button span-space" data-text="brew install --cask espanso"></span></div>
 										  </li>
 										  <li class="table-row" id="audacity">
 											<div class="col col-1" data-label="Description">Audio Editor</div>
@@ -154,11 +181,6 @@
 											<div class="col col-2" data-label="Program Name"><a href="https://easydiffusion.github.io/">EasyDiffusion</a></div>
 											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
 										  </li>
-										  <li class="table-row" id="espanso">
-											<div class="col col-1" data-label="Description">Text Expander</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://espanso.org/">Espanso</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="bash <(curl -s https://carino.systems/scripts/espanso.sh)"></span><span class="windows-button span-space" data-text="winget install -e --id Espanso.Espanso"></span><span class="macos-button span-space" data-text="brew install --cask espanso"></span></div>
-										  </li>
 										  <li class="table-row" id="ffmpeg">
 											<div class="col col-1" data-label="Description">Multimedia Framework</div>
 											<div class="col col-2" data-label="Program Name"><a href="https://ffmpeg.org/">ffmpeg</a></div>
@@ -194,16 +216,6 @@
 											<div class="col col-2" data-label="Program Name"><a href="https://kdenlive.org/en/download">KDenlive</a></div>
 											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install kdenlive"></span><span class="windows-button span-space" data-text="winget install -e --id KDE.Kdenlive"></span><span class="macos-button span-space" data-text="brew install --cask kdenlive"></span></div>
 										  </li>
-										  <li class="table-row" id="libreoffice">
-											<div class="col col-1" data-label="Description">Office Suite</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.libreoffice.org/download/download-libreoffice/">Libre Office</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install libreoffice"></span><span class="windows-button span-space" data-text="winget install -e --id TheDocumentFoundation.LibreOffice"></span><span class="macos-button span-space" data-text="brew install --cask libreoffice"></span></div>
-										  </li>
-										  <li class="table-row" id="mpv">
-											<div class="col col-1" data-label="Description">Media player</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://mpv.io/installation/">mpv</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install mpv"></span><span class="windows-button span-space" data-text="winget install -e --id IanWalton.JellyfinMPVShim"></span><span class="macos-button span-space" data-text="brew install mpv"></span></div>
-										  </li>
 										  <li class="table-row" id="obs-studio">
 											<div class="col col-1" data-label="Description">Video recording and livestreaming</div>
 											<div class="col col-2" data-label="Program Name"><a href="https://obsproject.com/download">OBS-Studio</a></div>
@@ -223,16 +235,6 @@
 											<div class="col col-1" data-label="Description">Torrent Manager</div>
 											<div class="col col-2" data-label="Program Name"><a href="https://www.qbittorrent.org/download">qBittorrent</a></div>
 											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install qbittorrent"></span><span class="windows-button span-space" data-text="winget install -e --id qBittorrent.qBittorrent"></span><span class="macos-button span-space" data-text="brew install --cask qbittorrent"></span></div>
-										  </li>
-										  <li class="table-row" id="thunderbird">
-											<div class="col col-1" data-label="Description">Mail Client</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.thunderbird.net/en-US/download/">Thunderbird</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install thunderbird"></span><span class="windows-button span-space" data-text="winget install -e --id Mozilla.Thunderbird"></span><span class="macos-button span-space" data-text="brew install --cask thunderbird"></span></div>
-										  </li>
-										  <li class="table-row" id="okular">
-											<div class="col col-1" data-label="Description">PDF Reader</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://okular.kde.org/">Okular</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install okular"></span><span class="windows-button span-space" data-text="winget install -e --id KDE.Okular"></span><span class="macos-button span-space" data-text="brew install okular"></span></div>
 										  </li>
 										  <li class="table-row" id="podman">
 											<div class="col col-1" data-label="Description">Containers and Kubernetes</div>
