@@ -35,6 +35,57 @@
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
+						<style>
+							#grid {
+								display: grid;
+								grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+								/*grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));*/
+								grid-auto-rows: 300px;
+								overflow: auto;
+								height: 32vh;
+								position: relative;
+								scroll-behavior: smooth;
+							}
+							.cell {
+    				        background-size: cover;
+    				        background-position: center;
+							/* Add transition property */
+							transition: transform 0.3s ease;
+							background-color: #205497;
+    				    }
+							.section {
+							  flex: 1; /* Each section takes equal space */
+							  text-align: center; /* Optional: Center the text inside each section */
+							  padding: 1px; /* Optional: Add some padding for better visual */
+							  /* Add any other styling as needed */
+							}
+							
+							.section {
+							    width: 100%; /* Each section takes full width of the cell */
+							    text-align: center; /* Center the text in each section */
+							    padding: 3vh; /* Add padding for spacing */
+							    /* Add any additional styling as needed */
+							}
+							
+							/* Styling for specific sections if needed */
+							.section1 {
+							    /* Styles for section 1 */
+							}
+							
+							.section2 {
+							    /* Styles for section 2 */
+							}
+							
+							.section3 {
+							    /* Styles for section 3 */
+							}
+
+						
+							/* Add hover effect */
+							/*.cell:hover {
+								transform: scale(1.2);
+							}*/
+						</style>
 					</header>
 
 				<!-- Menu -->
@@ -83,7 +134,10 @@
 
 				<!-- Main -->
 					<div id="main">
-
+						<input type="text" id="searchInput" style="background-color: #205497; color: rgb(255, 255, 255); border-color: brown;" placeholder="Describe your use case...">
+						<br>
+						
+						<div id="grid"></div>
 						<!-- Two 
 							<section id="two" class="spotlights">
 								<section>
@@ -103,8 +157,7 @@
 									<div class="container">
 										<br>
 										<!--<center><h2>All software here is multiplatform, free, open source and commercially viable.</h2></center>-->
-										<input type="text" id="searchInput" style="background-color: #205497; color: rgb(255, 255, 255); border-color: brown;" placeholder="Describe your use case...">
-										<br>
+										
 										<ul class="responsive-table" id="responsive-table">
 										  <li class="table-header">
 											<div class="col col-1">Description</div>
@@ -401,6 +454,57 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+    		const grid = document.getElementById('grid');
+			const albums = [
+			    { id: 'firefox', url: 'https://www.mozilla.org/en-US/firefox/new/', image: 'images/lurking/mu_1.webp', usecase: 'Web Browser', solution: 'Firefox', clin: 'sudo dnf install firefox', cwin: 'winget install -e --id Mozilla.Firefox', cmac: 'brew install --cask firefox' },
+			    { id: 'firefox1', url: 'https://www.youtube.com/watch?v=YPrs3DqraWM', image: 'images/lurking/mu_2.webp', usecase: 'Web Browser1', solution: 'Firefox1', clin: '', cwin: '', cmac: '' },
+			    { id: 'firefox2', url: 'https://www.youtube.com/watch?v=ZAn3JdtSrnY', image: 'images/lurking/mu_3.webp', usecase: 'Web Browser2', solution: 'Firefox2', clin: '', cwin: '', cmac: '' },
+			    { id: 'firefox3', url: 'https://www.youtube.com/watch?v=ZXu6q-6JKjA', image: 'images/lurking/mu_4.webp', usecase: 'Web Browser3', solution: 'Firefox3', clin: '', cwin: '', cmac: '' },
+			    { id: 'firefox4', url: 'https://www.youtube.com/watch?v=TMAK05tpoI4', image: 'images/lurking/mu_5.webp', usecase: 'Web Browser4', solution: 'Firefox4', clin: '', cwin: '', cmac: '' },
+			    // add more albums here
+			];
+
+function addCell(album) {
+    // Create the cell as an anchor element
+    const cell = document.createElement('a');
+    /*cell.href = album.url;*/
+    cell.target = '_blank';
+    cell.className = 'cell';
+    /*cell.style.backgroundImage = `url(${album.image})`;*/
+	
+    // Create the three sections within the cell
+    const section1 = document.createElement('div');
+    section1.className = 'section section1';
+    section1.textContent = `${album.usecase}`; // Content for the first section
+    cell.appendChild(section1);
+
+    const section2 = document.createElement('div');
+    section2.className = 'section section2';
+	const linksec2 = document.createElement('a'); //Starts defining link
+	linksec2.href = album.url;
+	linksec2.textContent = `${album.solution}`;
+	linksec2.target = '_blank'; // Open link in a new tab
+	section2.appendChild(linksec2); //Append link defined
+    cell.appendChild(section2);
+
+    const section3 = document.createElement('div');
+    section3.className = 'section section3';
+	const linksec3 = document.createElement('a'); //Starts defining link
+    linksec3.href = album.url;
+    linksec3.textContent = 'Download';
+    linksec3.target = '_blank'; // Open link in a new tab
+    section3.appendChild(linksec3); //Append link defined
+    cell.appendChild(section3);
+
+    // Append the cell to the grid
+    grid.appendChild(cell);
+}
+
+// Populate the grid with cells for each album
+albums.forEach(addCell);
+
+			</script>
 			<!--Start of Tawk.to Script-->
 			<script type="text/javascript">
 			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -415,43 +519,7 @@
 			</script>
 			<!--End of Tawk.to Script-->
 			<script>
-				function sortTable(n) {
-					var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-					table = document.getElementById("myTable");
-					switching = true;
-					dir = "asc"; 
-					while (switching) {
-						switching = false;
-						rows = table.rows;
-						for (i = 1; i < (rows.length - 1); i++) {
-							shouldSwitch = false;
-							x = rows[i].getElementsByTagName("TD")[n];
-							y = rows[i + 1].getElementsByTagName("TD")[n];
-							if (dir == "asc") {
-								if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-									shouldSwitch= true;
-									break;
-								}
-							} else if (dir == "desc") {
-								if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-									shouldSwitch = true;
-									break;
-								}
-							}
-						}
-						if (shouldSwitch) {
-							rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-							switching = true;
-							switchcount ++;      
-						} else {
-							if (switchcount == 0 && dir == "asc") {
-								dir = "desc";
-								switching = true;
-							}
-						}
-					}
-				}
-				</script>
+			</script>
 
 	</body>
 </html>
