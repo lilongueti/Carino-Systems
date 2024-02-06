@@ -361,23 +361,31 @@
 			// Call the function to display a random phrase when the page loads
 			window.onload = displayRandomPhrase;
 			
-			// Function for a search bar in the software page
-			document.getElementById('searchInput').addEventListener('keyup', function() {
-			    var searchQuery = this.value.toLowerCase();
-			    var grid = document.getElementById('grid');
-			    var cells = grid.getElementsByClassName('cell');
+			// Search function for Software page
+		    const grid = document.getElementById('grid');
+		    const searchInput = document.getElementById('searchInput');
+
+		    // Function to filter and display cells
+		    function filterAndDisplayCells() {
+		        // Clear existing cells
+		        grid.innerHTML = '';
 			
-			    for (var i = 0; i < cells.length; i++) {
-			        // Assuming each cell has an id that matches the id in your array
-			        var cellId = cells[i].getAttribute('id');
-				
-			        if (cellId.toLowerCase().indexOf(searchQuery) > -1) {
-			            cells[i].style.display = "";
-			        } else {
-			            cells[i].style.display = "none";
-			        }
-			    }
-			});
+		        // Get the current value of the search input
+		        const searchValue = searchInput.value.trim().toLowerCase();
+			
+		        // Filter albums array
+		        const filteredAlbums = albums.filter(album => album.id.toLowerCase().includes(searchValue));
+			
+		        // Display filtered albums
+		        filteredAlbums.forEach(addCell);
+		    }
+		
+		    // Event listener for the search input
+		    searchInput.addEventListener('input', filterAndDisplayCells);
+		
+		    // Initial display of all cells
+		    albums.forEach(addCell);
+
 
 			//Copies commands to clipboard
 			document.addEventListener('DOMContentLoaded', (event) => {

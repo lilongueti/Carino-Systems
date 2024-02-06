@@ -93,7 +93,7 @@
 						<ul class="links">
 							<li><a href="index.html">Home</a></li>
 							<li><a href="os.html">Operating Systems</a></li>
-							<li><a href="artificial.html">Artifical Intelligence</a></li>
+							<li><a href="artificial.html">Artificial Intelligence</a></li>
 							<li><a href="lurking.html">Entertainment</a></li>
 						</ul>
 						<ul class="actions stacked">
@@ -457,7 +457,7 @@
 			<script>
     		const grid = document.getElementById('grid');
 			const albums = [
-			    { id: 'firefox', url: 'https://www.mozilla.org/en-US/firefox/new/', image: 'images/lurking/mu_1.webp', usecase: 'Web Browser', solution: 'Firefox', clin: 'sudo dnf install firefox', cwin: 'winget install -e --id Mozilla.Firefox', cmac: 'brew install --cask firefox' },
+			    { id: 'web browser', url: 'https://www.mozilla.org/en-US/firefox/new/', image: 'images/lurking/mu_1.webp', usecase: 'Web Browser', solution: 'Firefox', clin: 'firefox', cwin: 'Mozilla.Firefox', cmac: '--cask firefox' },
 			    { id: 'firefox1', url: 'https://www.youtube.com/watch?v=YPrs3DqraWM', image: 'images/lurking/mu_2.webp', usecase: 'Web Browser1', solution: 'Firefox1', clin: '', cwin: '', cmac: '' },
 			    { id: 'firefox2', url: 'https://www.youtube.com/watch?v=ZAn3JdtSrnY', image: 'images/lurking/mu_3.webp', usecase: 'Web Browser2', solution: 'Firefox2', clin: '', cwin: '', cmac: '' },
 			    { id: 'firefox3', url: 'https://www.youtube.com/watch?v=ZXu6q-6JKjA', image: 'images/lurking/mu_4.webp', usecase: 'Web Browser3', solution: 'Firefox3', clin: '', cwin: '', cmac: '' },
@@ -465,41 +465,56 @@
 			    // add more albums here
 			];
 
-function addCell(album) {
-    // Create the cell as an anchor element
-    const cell = document.createElement('a');
-    /*cell.href = album.url;*/
-    cell.target = '_blank';
-    cell.className = 'cell';
-    /*cell.style.backgroundImage = `url(${album.image})`;*/
-	
-    // Create the three sections within the cell
-    const section1 = document.createElement('div');
-    section1.className = 'section section1';
-    section1.textContent = `${album.usecase}`; // Content for the first section
-    cell.appendChild(section1);
+			function addCell(album) {
+			    // Create the cell as an anchor element
+			    const cell = document.createElement('a');
+			    /*cell.href = album.url;*/
+			    cell.target = '_blank';
+			    cell.className = 'cell';
+			    /*cell.style.backgroundImage = `url(${album.image})`;*/
 
-    const section2 = document.createElement('div');
-    section2.className = 'section section2';
-	const linksec2 = document.createElement('a'); //Starts defining link
-	linksec2.href = album.url;
-	linksec2.textContent = `${album.solution}`;
-	linksec2.target = '_blank'; // Open link in a new tab
-	section2.appendChild(linksec2); //Append link defined
-    cell.appendChild(section2);
-
-    const section3 = document.createElement('div');
-    section3.className = 'section section3';
-	const linksec3 = document.createElement('a'); //Starts defining link
-    linksec3.href = album.url;
-    linksec3.textContent = 'Download';
-    linksec3.target = '_blank'; // Open link in a new tab
-    section3.appendChild(linksec3); //Append link defined
-    cell.appendChild(section3);
-
-    // Append the cell to the grid
-    grid.appendChild(cell);
-}
+			    // Create the three sections within the cell
+			    const section1 = document.createElement('div');
+			    section1.className = 'section section1';
+			    section1.textContent = `${album.usecase}`; // Content for the first section
+			    cell.appendChild(section1);
+			
+			    const section2 = document.createElement('div');
+			    section2.className = 'section section2';
+				const linksec2 = document.createElement('a'); //Starts defining link
+				linksec2.href = album.url;
+				linksec2.textContent = `${album.solution}`;
+				linksec2.target = '_blank'; // Open link in a new tab
+				section2.appendChild(linksec2); //Append link defined
+			    cell.appendChild(section2);
+			
+			    const section3 = document.createElement('div');
+				section3.className = 'section section3';
+				// Function to copy text to clipboard
+				function copyToClipboard(text) {
+				    navigator.clipboard.writeText(text).then(() => {
+				        console.log('Text copied to clipboard');
+				    }).catch(err => {
+				        console.error('Failed to copy text: ', err);
+				    });
+				}
+				// Create and append the buttons
+				['fedora', 'windows', 'macos'].forEach(os => {
+				    const button = document.createElement('span');
+				    const command = os === 'fedora' ? `sudo dnf install ${album.clin}` : 
+				                    os === 'windows' ? `winget install -e --id ${album.cwin}` : 
+				                    `brew install ${album.cmac}`;
+				    button.className = `${os}-button span-space`;
+				    button.setAttribute('data-text', command);
+				    button.title = 'Click to copy command';
+				    button.addEventListener('click', () => copyToClipboard(command));
+				    section3.appendChild(button);
+				});
+				cell.appendChild(section3);
+			
+			    // Append the cell to the grid
+			    grid.appendChild(cell);
+			}
 
 // Populate the grid with cells for each album
 albums.forEach(addCell);
