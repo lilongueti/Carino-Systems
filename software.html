@@ -38,22 +38,33 @@
 						<style>
 							#grid {
 								display: grid;
-								grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+								grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 								/*grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));*/
-								grid-auto-rows: 300px;
+								/*grid-auto-rows: 250px;*/
 								overflow: auto;
 								height: fit-content;
 								/*height: 32vh;*/
 								position: relative;
 								scroll-behavior: smooth;
+								padding: 5px;
+								background: #000000;
+
 							}
 							.cell {
-    				        background-size: cover;
-    				        background-position: center;
-							/* Add transition property */
-							transition: transform 0.3s ease;
-							background-color: #205497;
-    				    }
+							    background-size: cover;
+							    background-position: center;
+							    transition: transform 0.3s ease;
+							    background-color: #205497;
+							    /* Adding border with curves and padding */
+							    border: 10px solid #000000; /* Example: 2px solid black border */
+							    border-radius: 15px; /* Curve the corners. Adjust as needed */
+							    padding: 0px; /* Spacing inside the cell. Adjust as needed */
+							}
+							/* Add hover effect */
+							.cell:hover {
+								transform: scale(1.1);
+							}
+
 							.section {
 							  flex: 1; /* Each section takes equal space */
 							  text-align: center; /* Optional: Center the text inside each section */
@@ -64,7 +75,7 @@
 							.section {
 							    width: 100%; /* Each section takes full width of the cell */
 							    text-align: center; /* Center the text in each section */
-							    padding: 3vh; /* Add padding for spacing */
+							    padding: 1.4vh; /* Add padding for spacing */
 							    /* Add any additional styling as needed */
 							}
 							
@@ -82,10 +93,7 @@
 							}
 
 						
-							/* Add hover effect */
-							/*.cell:hover {
-								transform: scale(1.2);
-							}*/
+							
 						</style>
 					</header>
 
@@ -134,243 +142,9 @@
 					</section>
 
 				<!-- Main -->
-					<div id="main">
+					<div id="main" style="background-color: #205497;">
 						<input type="text" id="searchInput" style="background-color: #205497; color: rgb(255, 255, 255); border-color: brown;" placeholder="Describe your use case...">
-						<br>
-						
 						<div id="grid"></div>
-						<!-- Two 
-							<section id="two" class="spotlights">
-								<section>
-									<a href="generic.html" class="image">
-										<img src="images/layout/banner_2.webp" alt="" data-position="center center" />
-									</a>
-									<div class="content">
-										<div class="inner">
-											<header class="major">
-												<h3>All software here is multiplatform, free and open source</h3>
-											</header>
-											<p>There are various categories on the list, you can order each column alphabetically.</p>
-										</div>
-									</div>
-								</section>
-								<section>-->
-									<div class="container">
-										<br>
-										<!--<center><h2>All software here is multiplatform, free, open source and commercially viable.</h2></center>-->
-										
-										<ul class="responsive-table" id="responsive-table">
-										  <li class="table-header">
-											<div class="col col-1">Description</div>
-											<div class="col col-2">Solution</div>
-											<div class="col col-3">Install</div>
-										  </li>
-										<!--	
-										  <li class="table-row" id="keepassxc">
-											<div class="col col-1" data-label="Description">Password Manager</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://keepassxc.org/">KeePassXC</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id KeePassXCTeam.KeePassXC"></span><span class="macos-button span-space" data-text="brew install --cask keepassxc"></span></div>
-										  </li>									  
-											<li class="table-row basic-software" id="espanso">
-											<div class="col col-1" data-label="Description">Text Expander</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://espanso.org/">Espanso</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="bash <(curl -s https://carino.systems/scripts/espanso.sh)"></span><span class="windows-button span-space" data-text="winget install -e --id Espanso.Espanso"></span><span class="macos-button span-space" data-text="brew install --cask espanso"></span></div>
-										  </li>-->
-										  
-										  <li class="table-row" id="dbeaver">
-											<div class="col col-1" data-label="Description">Universal Database Tool</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://dbeaver.io/">DBeaver</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install dbeaver"></span><span class="windows-button span-space" data-text="winget install -e --id dbeaver.dbeaver"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="easydiffusion">
-											<div class="col col-1" data-label="Description">Offline Stable Difussion</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://easydiffusion.github.io/">EasyDiffusion</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="ffmpeg">
-											<div class="col col-1" data-label="Description">Multimedia Framework</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://ffmpeg.org/">ffmpeg</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install ffmpeg --allowerasing"></span><span class="windows-button span-space" data-text="winget install -e --id Gyan.FFmpeg"></span><span class="macos-button span-space" data-text="brew install ffmpeg"></span></div>
-										  </li>
-										  <li class="table-row" id="frappebooks">
-											<div class="col col-1" data-label="Description">Accounting</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://frappebooks.com/download">Frappe Books</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask frappe-books"></span></div>
-										  </li>
-										  <li class="table-row" id="gimp">
-											<div class="col col-1" data-label="Description">Graphics Editor</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.gimp.org/downloads/">Gimp</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install gimp"></span><span class="windows-button span-space" data-text="winget install -e --id GIMP.GIMP"></span><span class="macos-button span-space" data-text="brew install --cask gimp"></span></div>
-										  </li>
-										  <li class="table-row" id="gpt4all">
-											<div class="col col-1" data-label="Description">Local Large Language Models</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://gpt4all.io/">gpt4all</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="inkscape">
-											<div class="col col-1" data-label="Description">Vector Graphics Editor</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://inkscape.org/">Inkscape</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install inkscape"></span><span class="windows-button span-space" data-text="winget install -e --id Inkscape.Inkscape"></span><span class="macos-button span-space" data-text="brew install --cask inkscape"></span></div>
-										  </li>
-										  <li class="table-row" id="jellyfin">
-											<div class="col col-1" data-label="Description">Media Server</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://jellyfin.org/downloads/">Jellyfin</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install jellyfin"></span><span class="windows-button span-space" data-text="winget install -e --id Jellyfin.Server"></span><span class="macos-button span-space" data-text="brew install --cask jellyfin"></span></div>
-										  </li>
-										  <li class="table-row" id="kdenlive">
-											<div class="col col-1" data-label="Description">Video Editor</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://kdenlive.org/en/download">KDenlive</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install kdenlive"></span><span class="windows-button span-space" data-text="winget install -e --id KDE.Kdenlive"></span><span class="macos-button span-space" data-text="brew install --cask kdenlive"></span></div>
-										  </li>
-										  <li class="table-row" id="obs-studio">
-											<div class="col col-1" data-label="Description">Video recording and livestreaming</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://obsproject.com/download">OBS-Studio</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install obs-studio"></span><span class="windows-button span-space" data-text="winget install -e --id OBSProject.OBSStudio"></span><span class="macos-button span-space" data-text="brew install --cask obs"></span></div>
-										  </li>
-										  <li class="table-row" id="rustdesk">
-											<div class="col col-1" data-label="Description">Remote control</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://github.com/rustdesk/rustdesk/releases/latest">Rustdesk</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install https://github.com/rustdesk/rustdesk/releases/download/1.2.3/rustdesk-1.2.3-0.x86_64.rpm"></span><span class="windows-button span-space" data-text="winget install -e --id RustDesk.RustDesk"></span><span class="macos-button span-space" data-text="brew install --cask rustdesk"></span></div>
-										  </li>
-										  <li class="table-row" id="krita">
-											<div class="col col-1" data-label="Description">Graphics Editor</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://krita.org/">Krita</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="qbittorrent">
-											<div class="col col-1" data-label="Description">Torrent Manager</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.qbittorrent.org/download">qBittorrent</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install qbittorrent"></span><span class="windows-button span-space" data-text="winget install -e --id qBittorrent.qBittorrent"></span><span class="macos-button span-space" data-text="brew install --cask qbittorrent"></span></div>
-										  </li>
-										  <li class="table-row" id="podman">
-											<div class="col col-1" data-label="Description">Containers and Kubernetes</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://podman-desktop.io/">Podman</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="flatpak install flathub io.podman_desktop.PodmanDesktop"></span><span class="windows-button span-space" data-text="winget install -e --id RedHat.Podman-Desktop"></span><span class="macos-button span-space" data-text="brew install podman-desktop"></span></div>
-										  </li>
-										  <li class="table-row" id="qgis">
-											<div class="col col-1" data-label="Description">Geographic information system</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://qgis.org">QGIS</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install qgis"></span><span class="windows-button span-space" data-text="winget install -e --id OSGeo.QGIS"></span><span class="macos-button span-space" data-text="brew install --cask qgis"></span></div>
-										  </li>
-										  <li class="table-row" id="openstreetmaps">
-											<div class="col col-1" data-label="Description">Collaborative global map</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.openstreetmap.org/">Open Street Map</a></div>
-											<div class="col col-3">Not available</div>
-										  </li>
-										  <li class="table-row" id="nextcloud">
-											<div class="col col-1" data-label="Description">Collaboration platform</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://nextcloud.com/install/#instructions-server">Nextcloud</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="kiwix">
-											<div class="col col-1" data-label="Description">Offline web browser</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://kiwix.org/">Kiwix</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="haveibeenpwned">
-											<div class="col col-1" data-label="Description">Check if mail have been in data breaches</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://haveibeenpwned.com/">Have I been pwned</a></div>
-											<div class="col col-3">Not available</div>
-										  </li>
-										  <li class="table-row" id="spammyness">
-											<div class="col col-1" data-label="Description">Mail spammyness test</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.mail-tester.com/">Mail Tester</a></div>
-											<div class="col col-3">Not available</div>
-										  </li>
-										  <li class="table-row" id="bufferbloat">
-											<div class="col col-1" data-label="Description">Network latency test (bufferbloat)</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.waveform.com/tools/bufferbloat">Bufferbloat</a></div>
-											<div class="col col-3">Not available</div>
-										  </li>
-										  <li class="table-row" id="openspeedtest">
-											<div class="col col-1" data-label="Description">Internet speed test (bandwith)</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://openspeedtest.com/">OpenSpeedTest</a></div>
-											<div class="col col-3">Not available</div>
-										  </li>
-										  <li class="table-row" id="pip">
-											<div class="col col-1" data-label="Description">Python Package Index (pip repository)</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://pypi.org/">PyPi</a></div>
-											<div class="col col-3">Not available</div>
-										  </li>
-										  <li class="table-row" id="winget">
-											<div class="col col-1" data-label="Description">Windows Package Manager</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://winget.run/">Winget</a></div>
-											<div class="col col-3">Not available</div>
-										  </li>
-										  <li class="table-row" id="brew">
-											<div class="col col-1" data-label="Description">macOS Package Manager</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://brew.sh/">Brew</a></div>
-											<div class="col col-3"><span class="macos-button span-space" data-text='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'></span></div>
-										  </li>
-										  <li class="table-row" id="stellarium">
-											<div class="col col-1" data-label="Description">Planetarium (Astronomy)</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://syncthing.net/">Stellarium</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install stellarium"></span><span class="windows-button span-space" data-text="winget install -e --id Stellarium.Stellarium"></span><span class="macos-button span-space" data-text="brew install --cask stellarium"></span></div>
-										  </li>
-										  <li class="table-row" id="iptv">
-											<div class="col col-1" data-label="Description">Publicly available IPTV</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://github.com/iptv-org/iptv">iptv</a></div>
-											<div class="col col-3">Not available</div>
-										  </li>
-										  <li class="table-row" id="syncthing">
-											<div class="col col-1" data-label="Description">File Synchronization</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://syncthing.net/">Syncthing</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="sunvox">
-											<div class="col col-1" data-label="Description">Modular Synthetizer</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://warmplace.ru/soft/sunvox/">Sunvox</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="scribus">
-											<div class="col col-1" data-label="Description">Document Publishing</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.scribus.net/">Scribus</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="texlive">
-											<div class="col col-1" data-label="Description">Tex typesetting system</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.tug.org/texlive/">TeX Live</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="musescore">
-											<div class="col col-1" data-label="Description">Music Notation</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://musescore.org/">MuseScore</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install musescore"></span><span class="windows-button span-space" data-text="winget install -e --id Musescore.Musescore"></span><span class="macos-button span-space" data-text="brew install --cask musescore"></span></div>
-										  </li>
-										  <li class="table-row" id="ultimaker">
-											<div class="col col-1" data-label="Description">3D Printer Slicer</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://github.com/Ultimaker/Cura/releases/">UltiMaker</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="webtorrent">
-											<div class="col col-1" data-label="Description">Torrent Streaming</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://webtorrent.io/desktop/">WebTorrent</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="vscodium">
-											<div class="col col-1" data-label="Description">Code Editor</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://vscodium.com/">VS Codium</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="ventoy">
-											<div class="col col-1" data-label="Description">USB Flasher</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.ventoy.net/en/index.html">Ventoy</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>
-										  <li class="table-row" id="learnxinyminutes">
-											<div class="col col-1" data-label="Description">Learn programming languages</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://learnxinyminutes.com/">Learn X in Y minutes</a></div>
-											<div class="col col-3"></span>Not available</div>
-										  </li>
-										  <!--<li class="table-row" id="">
-											<div class="col col-1" data-label="Description">Media</div>
-											<div class="col col-2" data-label="Program Name"><a href="#">mpv</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id  a"></span><span class="macos-button span-space" data-text="brew install --cask dbeaver-community"></span></div>
-										  </li>-->
-										</ul>
-									  </div>
-									
-								</section>
 					</div>
 				<!-- Footer -->
 					<footer id="footer">
@@ -405,14 +179,38 @@
 			    { id: 'Media Player', url: 'https://mpv.io/installation/', solution: 'mpv', clin: 'mpv', cwin: 'tsl0922.ImPlay', cmac: 'mpv' },
 			    { id: 'PDF Reader', url: 'https://okular.kde.org/', solution: 'Okular', clin: 'okular', cwin: 'KDE.Okular', cmac: 'okular' },
 			    { id: 'Office Suite', url: 'https://www.libreoffice.org/download/download-libreoffice/', solution: 'Libre Office', clin: 'libreoffice', cwin: 'TheDocumentFoundation.LibreOffice', cmac: '--cask libreoffice' },
-				{ id: 'Mail Client', url: 'https://www.thunderbird.net/en-US/download/', solution: 'Libre Office', clin: 'thunderbird', cwin: 'Mozilla.Thunderbird', cmac: '--cask thunderbird' },
+				{ id: 'Mail Client', url: 'https://www.thunderbird.net/en-US/download/', solution: 'Thunderbird', clin: 'thunderbird', cwin: 'Mozilla.Thunderbird', cmac: '--cask thunderbird' },
 				{ id: 'Note-Taking', url: 'https://joplinapp.org/', solution: 'Joplin', clin: 'flatpak && flatpak install flathub net.cozic.joplin_desktop', cwin: 'Joplin.Joplin', cmac: '--cask joplin' },
 				{ id: 'Password Manager', url: 'https://buttercup.pw/', solution: 'Buttercup', clin: 'sorry, not available', cwin: 'Buttercup.Buttercup', cmac: '--cask buttercup' },
 				{ id: 'Audio Editor', url: 'https://www.audacityteam.org/', solution: 'Audacity', clin: 'audacity', cwin: 'Audacity.Audacity', cmac: '--cask audacity' },
 				{ id: 'Digital Forensics Platform', url: 'https://www.autopsy.com/download/', solution: 'Autopsy', clin: 'Sorry, not available', cwin: 'SleuthKit.Autopsy', cmac: 'autopsy' },
 				{ id: '3D Modelling', url: 'https://www.blender.org/download/', solution: 'Blender', clin: 'blender', cwin: 'BlenderFoundation.Blender', cmac: '--cask blender' },
 				{ id: 'Universal Database Tool', url: 'https://dbeaver.io/', solution: 'DBeaver', clin: 'dbeaver', cwin: 'dbeaver.dbeaver', cmac: '--cask dbeaver-community' },
-			    // add more albums here
+				{ id: 'Offline Text-to-image generation', url: 'https://easydiffusion.github.io/', solution: 'EasyDiffusion', clin: 'sorry, not available', cwin: 'sorry, not available', cmac: 'sorry, not available' },
+				{ id: 'Multimedia Framework', url: 'https://ffmpeg.org/', solution: 'FFmpeg', clin: 'ffmpeg', cwin: 'Gyan.FFmpeg', cmac: 'ffmpeg' },
+				{ id: 'Graphics Editor', url: 'https://www.gimp.org/downloads/', solution: 'Gimp', clin: 'gimp', cwin: 'GIMP.GIMP', cmac: '--cask gimp' },
+				{ id: 'Offline Large Language Models', url: 'https://gpt4all.io/', solution: 'gpt4all', clin: 'sorry, not available', cwin: 'sorry, not available', cmac: 'sorry, not available' },
+				{ id: 'Vector Graphics Editor', url: 'https://inkscape.org/', solution: 'Inkscape', clin: 'inkscape', cwin: 'Inkscape.Inkscape', cmac: '--cask inkscape' },
+				{ id: 'Media Server', url: 'https://jellyfin.org/downloads/', solution: 'Jellyfin', clin: 'jellyfin', cwin: 'Jellyfin.Server', cmac: '--cask jellyfin' },
+				{ id: 'Video Editor', url: 'https://kdenlive.org/en/download', solution: 'FFmpeg', clin: 'kdenlive', cwin: 'KDE.Kdenlive', cmac: '--cask kdenlive' },
+				{ id: 'Screen Recording and Livestreaming', url: 'https://obsproject.com/download', solution: 'OBS', clin: 'obs-studio', cwin: 'OBSProject.OBSStudio', cmac: '--cask obs' },
+				{ id: 'Remote Control Client', url: 'https://github.com/rustdesk/rustdesk/releases/latest', solution: 'RustDesk', clin: 'https://github.com/rustdesk/rustdesk/releases/download/1.2.3/rustdesk-1.2.3-0.x86_64.rpm', cwin: 'RustDesk.RustDesk', cmac: '--cask rustdesk' },
+				{ id: 'Graphics Editor', url: 'https://krita.org/', solution: 'Krita', clin: 'krita', cwin: 'KDE.Krita', cmac: '--cask krita' },
+				{ id: 'Torrent Client', url: 'https://www.qbittorrent.org/download', solution: 'qBitTorrent', clin: 'qbittorrent', cwin: 'qBittorrent.qBittorrent', cmac: '--cask qbittorrent' },
+				{ id: 'Containers and Kubernetes', url: 'https://podman-desktop.io/', solution: 'Podman', clin: 'flatpak && flatpak install flathub io.podman_desktop.PodmanDesktop', cwin: 'RedHat.Podman-Desktop', cmac: 'podman-desktop' },
+				{ id: 'Geographic information system', url: 'https://qgis.org', solution: 'QGIS', clin: 'qgis', cwin: 'OSGeo.QGIS', cmac: '--cask qgis' },
+				{ id: 'Collaborative global map', url: 'https://www.openstreetmap.org/', solution: 'Open Streeet Map', clin: 'sorry, not available', cwin: 'sorry, not available', cmac: 'sorry, not available' },
+				{ id: 'Offline Web Browser', url: 'https://kiwix.org/', solution: 'Kiwix', clin: 'flatpak && flatpak install flathub org.kiwix.desktop', cwin: 'Kiwix.KiwixJS', cmac: '--cask kiwix' },
+				{ id: 'Planetarium (Astronomy)', url: 'https://stellarium.org/', solution: 'Stellarium', clin: 'stellarium', cwin: 'Stellarium.Stellarium', cmac: '--cask stellarium' },
+				{ id: 'Continuous File Synchronization', url: 'https://syncthing.net/', solution: 'Syncthing', clin: 'syncthing', cwin: 'SyncTrayzor.SyncTrayzor', cmac: 'syncthing' },
+			    { id: 'Music Notation', url: 'https://musescore.org/', solution: 'MuseScore', clin: 'musescore', cwin: 'Musescore.Musescore', cmac: '--cask musescore' },
+				{ id: 'Code Editor', url: 'https://vscodium.com/', solution: 'VSCodium', clin: 'https://github.com/VSCodium/vscodium/releases/download/1.85.2.24019/codium-1.85.2.24019-el7.x86_64.rpm', cwin: 'VSCodium.VSCodium', cmac: '--cask vscodium' },
+				//{ id: 'Media Player', url: 'https://mpv.io/installation/', solution: 'mpv', clin: 'mpv', cwin: 'tsl0922.ImPlay', cmac: 'mpv' },
+				//{ id: 'Media Player', url: 'https://mpv.io/installation/', solution: 'mpv', clin: 'mpv', cwin: 'tsl0922.ImPlay', cmac: 'mpv' },
+				//{ id: 'Media Player', url: 'https://mpv.io/installation/', solution: 'mpv', clin: 'mpv', cwin: 'tsl0922.ImPlay', cmac: 'mpv' },
+				//{ id: 'Media Player', url: 'https://mpv.io/installation/', solution: 'mpv', clin: 'mpv', cwin: 'tsl0922.ImPlay', cmac: 'mpv' },
+				//{ id: 'Media Player', url: 'https://mpv.io/installation/', solution: 'mpv', clin: 'mpv', cwin: 'tsl0922.ImPlay', cmac: 'mpv' },
+				// add more albums here
 			];
 
 			function addCell(album) {
