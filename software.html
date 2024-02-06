@@ -42,7 +42,8 @@
 								/*grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));*/
 								grid-auto-rows: 300px;
 								overflow: auto;
-								height: 32vh;
+								height: fit-content;
+								/*height: 32vh;*/
 								position: relative;
 								scroll-behavior: smooth;
 							}
@@ -175,21 +176,7 @@
 											<div class="col col-2" data-label="Program Name"><a href="https://espanso.org/">Espanso</a></div>
 											<div class="col col-3"><span class="fedora-button span-space" data-text="bash <(curl -s https://carino.systems/scripts/espanso.sh)"></span><span class="windows-button span-space" data-text="winget install -e --id Espanso.Espanso"></span><span class="macos-button span-space" data-text="brew install --cask espanso"></span></div>
 										  </li>-->
-										  <li class="table-row" id="autopsy">
-											<div class="col col-1" data-label="Description">Digital Forensics Platform</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.autopsy.com/download/">Autopsy</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install a"></span><span class="windows-button span-space" data-text="winget install -e --id SleuthKit.Autopsy"></span><span class="macos-button span-space" data-text="brew install autopsy"></span></div>
-										  </li>
-										  <li class="table-row" id="blender">
-											<div class="col col-1" data-label="Description">3D Modelling</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.blender.org/download/">Blender</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install blender"></span><span class="windows-button span-space" data-text="winget install -e --id BlenderFoundation.Blender"></span><span class="macos-button span-space" data-text="brew install --cask blender"></span></div>
-										  </li>
-										  <li class="table-row" id="clamav">
-											<div class="col col-1" data-label="Description">Antivirus</div>
-											<div class="col col-2" data-label="Program Name"><a href="https://www.clamav.net/downloads">ClamAV</a></div>
-											<div class="col col-3"><span class="fedora-button span-space" data-text="sudo dnf install clamav"></span><span class="windows-button span-space" data-text="winget install -e --id Cisco.ClamAV"></span><span class="macos-button span-space" data-text="brew install clamav"></span></div>
-										  </li>
+										  
 										  <li class="table-row" id="dbeaver">
 											<div class="col col-1" data-label="Description">Universal Database Tool</div>
 											<div class="col col-2" data-label="Program Name"><a href="https://dbeaver.io/">DBeaver</a></div>
@@ -422,7 +409,9 @@
 				{ id: 'Note-Taking', url: 'https://joplinapp.org/', solution: 'Joplin', clin: 'flatpak && flatpak install flathub net.cozic.joplin_desktop', cwin: 'Joplin.Joplin', cmac: '--cask joplin' },
 				{ id: 'Password Manager', url: 'https://buttercup.pw/', solution: 'Buttercup', clin: 'sorry, not available', cwin: 'Buttercup.Buttercup', cmac: '--cask buttercup' },
 				{ id: 'Audio Editor', url: 'https://www.audacityteam.org/', solution: 'Audacity', clin: 'audacity', cwin: 'Audacity.Audacity', cmac: '--cask audacity' },
-				{ id: 'Digital Forensics Platform', url: 'https://www.autopsy.com/download/', solution: 'Autopsy', clin: 'Sorry, not available', cwin: 'SleuthKit.Autopsy', cmac: 'autospy' },
+				{ id: 'Digital Forensics Platform', url: 'https://www.autopsy.com/download/', solution: 'Autopsy', clin: 'Sorry, not available', cwin: 'SleuthKit.Autopsy', cmac: 'autopsy' },
+				{ id: '3D Modelling', url: 'https://www.blender.org/download/', solution: 'Blender', clin: 'blender', cwin: 'BlenderFoundation.Blender', cmac: '--cask blender' },
+				{ id: 'Universal Database Tool', url: 'https://dbeaver.io/', solution: 'DBeaver', clin: 'dbeaver', cwin: 'dbeaver.dbeaver', cmac: '--cask dbeaver-community' },
 			    // add more albums here
 			];
 
