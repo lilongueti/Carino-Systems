@@ -10,24 +10,82 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!-- Open Graph Protocol Meta Tags -->
-		<meta property="og:title" content="Carino Systems - Startpage" />
+		<meta property="og:title" content="Carino Systems" />
 		<meta property="twitter:title" content="Carino Systems" />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://carino.systems" />
 		<meta property="og:image" content="https://carino.systems/images/layout/banner_2_ogp.webp" />
-		<meta property="og:description" content="My personal startpage" />
+		<meta property="og:description" content="Friendly IT solutions, openly available" />
 		<meta property="og:site_name" content="Carino Systems" />
 		<meta property="og:locale" content="en_US" />
-		
 		<link rel="stylesheet" href="assets/css/main.css" />
         <link rel="icon" href="./images/logo50x50.png">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload">
+	<style>
+		/*Searchbar*/
+		.searchbar {
+		  max-height: 2em;
+		  display: flex;
+		  align-items: center;
+		  background: #121212; /* Dark background for futuristic vibe */
+		  border-radius: 30px; /* Rounded edges */
+		  max-width: 100%;
+		  }
+	  
+		.searchbar input[type="text"] {
+		  width: 100%;
+		  border-radius: 25px;
+		  padding: 10px 20px;
+		  font-size: 1rem; /* Adjust based on preference */
+		  font-weight: bold;
+		  background: linear-gradient(145deg, #232323, #131313); /* Subtle gradient */
+		  color: #fcfffe; /* Futuristic font color */
+		  border: none; /* Remove border */
+		  outline: none; /* Remove outline */
+		  transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
+		}
+	  
+		.searchbar input[type="text"]:hover, form#search input[type="text"]:focus {
+		  background: linear-gradient(145deg, #2b2b2b, #1a1a1a); /* Darker gradient on hover/focus */
+		}
+	  
+		.searchbar input[type="submit"] {
+		  visibility: hidden; /* Keep your hidden submit button */
+		}
 
+		/*Containers*/
+		.container {
+			display: flex; /* Align columns side by side */
+		  }
+		  .column {
+			flex: 1; /* Each column takes equal width */
+			padding: 10px; /* Spacing inside each column */
+		  }
+		  .center-div {
+			margin-bottom: 10px; /* Spacing between child divs */
+			background-color: rgba(211, 211, 211, 0); /* Visual distinction */
+			padding: auto; /* Padding inside child divs */
+			text-align: center; /* Centering text inside child divs */
+			min-width: 40%;
+		  }
+		.side-div {
+			margin-bottom: 10px; /* Spacing between child divs */
+			background-color: rgba(211, 211, 211, 0); /* Visual distinction */
+			padding: auto; /* Padding inside child divs */
+			text-align: center; /* Centering text inside child divs */
+		  	min-width: 30%;
+		  }
+		  /* CSS styles for the iframe */
+		  #globe-iframe {
+            width: 100%;
+            height: 300px;
+            border: none; /* Remove iframe border */
+        	}
+	  </style> 
+	<body class="is-preload">
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Header -->
 					<header id="header" class="alt">
 						<a href="index.html" class="logo"><strong>Carino</strong> <span>Systems <b style="color:greenyellow;"></b></span></a>
@@ -52,7 +110,6 @@
 				<section id="banner" class="circles" style="">
 				<!-- Div background animation-->	
 				<li style="background-color: crimson;"> </li>
-				<li> </li>
 				<li style="background-color: rgb(255, 255, 255);"> </li>
 				<li style="background-color: rgb(220, 207, 20);"> </li>
 				<li style="background-color: rgb(20, 220, 20);"> </li>
@@ -62,37 +119,6 @@
 				<li style="background-color: crimson;"> </li>
 				<li style="background-color: rgb(0, 0, 0);"> </li>
 				<li style="background-color: rgb(228, 123, 63);"> </li>	
-                <style>
-                    .searchbar {
-                      max-height: 2em;
-                      display: flex;
-                      align-items: center;
-                      background: #121212; /* Dark background for futuristic vibe */
-                      border-radius: 30px; /* Rounded edges */
-                      max-width: 40%;
-                      }
-                  
-                    .searchbar input[type="text"] {
-                      width: 100%;
-                      border-radius: 25px;
-                      padding: 10px 20px;
-                      font-size: 1rem; /* Adjust based on preference */
-                      font-weight: bold;
-                      background: linear-gradient(145deg, #232323, #131313); /* Subtle gradient */
-                      color: #00ffae; /* Futuristic font color */
-                      border: none; /* Remove border */
-                      outline: none; /* Remove outline */
-                      transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
-                    }
-                  
-                    .searchbar input[type="text"]:hover, form#search input[type="text"]:focus {
-                      background: linear-gradient(145deg, #2b2b2b, #1a1a1a); /* Darker gradient on hover/focus */
-                    }
-                  
-                    .searchbar input[type="submit"] {
-                      visibility: hidden; /* Keep your hidden submit button */
-                    }
-                  </style>
 				<!---->
 				<!-- Div background animation-->
 					<div class="ripple-background">
@@ -105,21 +131,39 @@
 				<!---->
 				
 					<div class="inner">
-						
-						<span class="image">
-							<img src="" alt="" />
-						</span>
-						<form class="searchbar" method="get" id="search" action="https://duckduckgo.com/"><input type="text" name="q" maxlength="300" placeholder="Search with DuckDuckGo"></form>
-                        <pre id="weather">Loading weather data...</pre>
-
+						<br>
+						<div>
+							<form class="searchbar" method="get" id="search" action="https://duckduckgo.com/"><input type="text" name="q" maxlength="300" placeholder="Search with DuckDuckGo"></form>
+						</div>
 					</div>
 				</section>
 				<!-- Main -->
-					<div id="main">
+					<div id="main" style="background-color: rgba(250, 235, 215, 0);">
 
 						<!-- One -->
-							<section id="one" class="tiles">
-								
+							<section id="one" class="">
+								<div class="container">
+									<div class="column">
+									  <!-- Add as many divs as you like here -->
+									  <div class="side-div"><fxwidget-er inverse="false" amount="1" decimals="2" large="false" shadow="true" symbol="true" flag="true" changes="true" grouping="true" border="false" main-curr="USD" sel-curr="USD,EUR,GBP,CAD,CNY,JPY,MXN,RUB" background-color="#1A2980" background="linear-gradient(253deg,#1A2980,#26D0CE)" border-radius="0.5"></fxwidget-er><script async src="https://s.fx-w.io/widgets/exchange-rates/latest.js"></script></div>
+									  <div class="side-div"><fxwidget-er inverse="false" amount="1" decimals="2" large="false" shadow="true" symbol="true" flag="true" changes="true" grouping="true" border="false" main-curr="BTC" sel-curr="USD,EUR,GBP,CAD,CNY,JPY,MXN,RUB,XAG,XAU,XPT" background-color="#1A2980" background="linear-gradient(253deg,#1A2980,#26D0CE)" border-radius="0.5"></fxwidget-er><script async src="https://s.fx-w.io/widgets/exchange-rates/latest.js"></script></div>
+									  <div class="side-div">Child Div 1</div>
+									</div>
+									<div class="column">
+									  <!-- Add as many divs as you like here -->
+									  <div class="center-div"><form class="searchbar" method="get" id="search" action="https://duckduckgo.com/"><input type="text" name="q" maxlength="300" placeholder="Search with DuckDuckGo"></form></div>
+									  <div class="center-div">Child Div 1</div>
+									  <div class="center-div">Child Div 1</div>
+									</div>
+									<div class="column">
+									  <!-- Add as many divs as you like here -->
+									  <div class="side-div">Child Div 3</div>
+									  <div class="side-div">Child Div 1</div>
+									</div>
+								  </div>
+								<div class="container">
+									<div class="column"><iframe id="globe-iframe" src="https://globe.adsbexchange.com/"></iframe></div>
+								</div>
 							</section>
 
 						<!-- Two 
@@ -135,19 +179,19 @@
 
 					</div>
 				<!-- Footer -->
-					<footer id="footer" style="min-height: 15px;">
+					<footer id="footer">
 						<div class="inner">
 							<ul class="icons">
-								<li><a href="https://github.com/MiguelCarino" class="icon brands alt fa-github"><span class="label">Github</span></a></li>
-								<li><a href="https://www.linkedin.com/in/miguelcarino94" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-								<li><a href="https://mastodon.social/@miguelcarino" class="icon brands alt fa-mastodon"><span class="label">Mastodon</span></a></li>
 							</ul>
 							<ul class="copyright">
 								<li>&copy; Carino Systems</li><li>Design: a modified <a href="https://html5up.net">HTML5 UP</a> template</li>
+								<li>
+									<a href="https://github.com/MiguelCarino" class="icon brands alt fa-github"><span class="label">Github</span></a>
+									<a href="https://www.linkedin.com/in/miguelcarino94" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a>
+									<a href="https://mastodon.social/@miguelcarino" class="icon brands alt fa-mastodon"><span class="label">Mastodon</span></a></li>
 							</ul>
 						</div>
 					</footer>
-
 			</div>
 
 		<!-- Scripts -->
@@ -158,30 +202,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-            <script>
-                // Function to fetch weather information
-                function fetchWeather() {
-                    const url = 'https://wttr.in/?format=%l:+%C+%t';
-        
-                    fetch(url)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.text();
-                        })
-                        .then(data => {
-                            document.getElementById('weather').textContent = data;
-                        })
-                        .catch(error => {
-                            console.error('There was a problem with your fetch operation:', error);
-                            document.getElementById('weather').textContent = 'Failed to load weather data';
-                        });
-                }
-        
-                // Call the function when the script loads
-                fetchWeather();
-            </script>
 		<!--End of scripts-->
 	</body>
 </html>
