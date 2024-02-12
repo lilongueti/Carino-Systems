@@ -57,6 +57,7 @@
 		/*Containers*/
 		.container {
 			display: flex; /* Align columns side by side */
+			flex-wrap: wrap;
 		  }
 		  .column {
 			flex: 1; /* Each column takes equal width */
@@ -78,7 +79,7 @@
 		  }
 		  /* CSS styles for the iframe */
 		  #globe-iframe {
-            width: 100%;
+            width: 99%;
             height: 300px;
             border: none; /* Remove iframe border */
         	}
@@ -132,8 +133,10 @@
 				
 					<div class="inner">
 						<br>
+						<div id="ww_1f4fc6cb5fc76" v='1.3' loc='auto' a='{"t":"responsive","lang":"en","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one","sl_sot":"celsius","cl_bkg":"#FFFFFF00","cl_font":"#000000","cl_cloud":"#d4d4d4","cl_persp":"#2196F3","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","sl_tof":"3","el_wfc":3,"cl_odd":"#00000000"}'>More forecasts: <a href="https://oneweather.org/new_york_city/30_days/" id="ww_1f4fc6cb5fc76_u" target="_blank">New York 30 day forecast</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_1f4fc6cb5fc76"></script>
+						<br>
 						<div>
-							<form class="searchbar" method="get" id="search" action="https://duckduckgo.com/"><input type="text" name="q" maxlength="300" placeholder="Search with DuckDuckGo"></form>
+							<form class="searchbar" target="_blank" method="get" id="search" action="https://duckduckgo.com/"><input type="text" name="q" maxlength="300" placeholder="Search with DuckDuckGo"></form>
 						</div>
 					</div>
 				</section>
@@ -144,23 +147,17 @@
 							<section id="one" class="">
 								<div class="container">
 									<div class="column">
-									  <!-- Add as many divs as you like here -->
-									  <div class="side-div"><fxwidget-er inverse="false" amount="1" decimals="2" large="false" shadow="true" symbol="true" flag="true" changes="true" grouping="true" border="false" main-curr="USD" sel-curr="USD,EUR,GBP,CAD,CNY,JPY,MXN,RUB" background-color="#1A2980" background="linear-gradient(253deg,#1A2980,#26D0CE)" border-radius="0.5"></fxwidget-er><script async src="https://s.fx-w.io/widgets/exchange-rates/latest.js"></script></div>
-									  <div class="side-div"><fxwidget-er inverse="false" amount="1" decimals="2" large="false" shadow="true" symbol="true" flag="true" changes="true" grouping="true" border="false" main-curr="BTC" sel-curr="USD,EUR,GBP,CAD,CNY,JPY,MXN,RUB,XAG,XAU,XPT" background-color="#1A2980" background="linear-gradient(253deg,#1A2980,#26D0CE)" border-radius="0.5"></fxwidget-er><script async src="https://s.fx-w.io/widgets/exchange-rates/latest.js"></script></div>
-									  <div class="side-div">Child Div 1</div>
+									  <fxwidget-er inverse="false" amount="1" decimals="2" large="false" shadow="true" symbol="true" flag="true" changes="true" grouping="true" border="false" main-curr="USD" sel-curr="USD,CAD,JPY,MXN,EUR,GBP,CNY,RUB" background-color="#1A2980" background="linear-gradient(253deg,#1A2980,#26D0CE)" border-radius="0.5"></fxwidget-er><script async src="https://s.fx-w.io/widgets/exchange-rates/latest.js"></script>
 									</div>
 									<div class="column">
-									  <!-- Add as many divs as you like here -->
-									  <div class="center-div"><form class="searchbar" method="get" id="search" action="https://duckduckgo.com/"><input type="text" name="q" maxlength="300" placeholder="Search with DuckDuckGo"></form></div>
-									  <div class="center-div">Child Div 1</div>
-									  <div class="center-div">Child Div 1</div>
+										<fxwidget-er inverse="false" amount="1" decimals="2" large="false" shadow="true" symbol="true" flag="true" changes="true" grouping="true" border="false" main-curr="BTC" sel-curr="USD,CAD,JPY,MXN,EUR,GBP,CNY,RUB,XAG,XAU,XPT" background-color="#1A2980" background="linear-gradient(253deg,#1A2980,#26D0CE)" border-radius="0.5"></fxwidget-er><script async src="https://s.fx-w.io/widgets/exchange-rates/latest.js"></script>
 									</div>
 									<div class="column">
-									  <!-- Add as many divs as you like here -->
-									  <div class="side-div">Child Div 3</div>
-									  <div class="side-div">Child Div 1</div>
+									 <fxwidget-er inverse="false" amount="1" decimals="2" large="false" shadow="true" symbol="true" flag="true" changes="true" grouping="true" border="false" main-curr="XAG" sel-curr="USD,CAD,JPY,MXN,EUR,GBP,CNY,RUB,BTC,XAU,XPT" background-color="#1A2980" background="linear-gradient(253deg,#1A2980,#26D0CE)" border-radius="0.5"></fxwidget-er><script async src="https://s.fx-w.io/widgets/exchange-rates/latest.js"></script>
 									</div>
-								  </div>
+									<div class="column">
+									<fxwidget-er inverse="false" amount="1" decimals="2" large="false" shadow="true" symbol="true" flag="true" changes="true" grouping="true" border="false" main-curr="XAU" sel-curr="USD,CAD,JPY,MXN,EUR,GBP,CNY,RUB,BTC,XAG,XPT" background-color="#1A2980" background="linear-gradient(253deg,#1A2980,#26D0CE)" border-radius="0.5"></fxwidget-er><script async src="https://s.fx-w.io/widgets/exchange-rates/latest.js"></script></div>
+									</div>
 								<div class="container">
 									<div class="column"><iframe id="globe-iframe" src="https://globe.adsbexchange.com/"></iframe></div>
 								</div>
