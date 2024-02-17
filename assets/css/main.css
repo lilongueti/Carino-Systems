@@ -2805,6 +2805,92 @@ input, select, textarea {
             margin-right: 10px; /* Adjust the value as needed */
     }
 
+/*Software grid*/
+	#softwareid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		/*grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));*/
+		/*grid-auto-rows: 250px;*/
+		overflow: auto;
+		height: fit-content;
+		/*height: 32vh;*/
+		position: relative;
+		scroll-behavior: smooth;
+		padding: 5px;
+		background: #292731;
+	}
+	.softcell {
+		background-size: cover;
+		background-position: center;
+		transition: transform 0.3s ease;
+		background-color: #205497;
+		/* Adding border with curves and padding */
+		border: 10px solid #292731; /* Example: 2px solid black border */
+		border-radius: 15px; /* Curve the corners. Adjust as needed */
+		padding: 0px; /* Spacing inside the cell. Adjust as needed */
+	}
+	/* Add hover effect */
+	.softcell:hover {
+		transform: scale(1.1);
+	}
+	.section {
+	  flex: 1; /* Each section takes equal space */
+	  text-align: center; /* Optional: Center the text inside each section */
+	  padding: 1px; /* Optional: Add some padding for better visual */
+	  /* Add any other styling as needed */
+	}
+	.section {
+		width: 100%; /* Each section takes full width of the cell */
+		text-align: center; /* Center the text in each section */
+		padding: 1.4vh; /* Add padding for spacing */
+		/* Add any additional styling as needed */
+	}
+	/* Styling for specific sections if needed */
+	.section1 {
+		/* Styles for section 1 */
+	}
+	.section2 {
+		/* Styles for section 2 */
+	}
+	.section3 {
+		/* Styles for section 3 */
+	}
+
+/*Music Grid*/
+	#musicgrid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		grid-auto-rows: 200px;
+		overflow: auto;
+		height: 100vh;
+		position: relative;
+		scroll-behavior: smooth;
+	}
+	.cell {
+		background-size: cover;
+  		background-position: center;
+  		transition: transform 0.3s ease;
+	}
+	/* Add hover effect */
+	.cell:hover {
+		transform: scale(1.2);
+	}
+/*Music iframe*/
+	.video-container {
+	    position: relative;
+	    width: 100%;
+	    padding-bottom: 56.25%; /* 16:9 aspect ratio (height:width) */
+	    overflow: hidden;
+	}
+
+	.video-container iframe {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	}
+
 /* Tiles */
 
 	.tiles {

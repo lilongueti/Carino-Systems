@@ -19,9 +19,8 @@
 		<meta property="twitter:description" content="Multiplatform, free and open source solutions." />
 		<meta property="og:site_name" content="Carino Systems" />
 		<meta property="og:locale" content="en_US" />
-		
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" href="./images/logo50x50.png">
+		<link rel="icon" href="./images/logo50x50.webp">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -36,68 +35,7 @@
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
-						<style>
-							#grid {
-								display: grid;
-								grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-								/*grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));*/
-								/*grid-auto-rows: 250px;*/
-								overflow: auto;
-								height: fit-content;
-								/*height: 32vh;*/
-								position: relative;
-								scroll-behavior: smooth;
-								padding: 5px;
-								background: #292731;
-
-							}
-							.cell {
-							    background-size: cover;
-							    background-position: center;
-							    transition: transform 0.3s ease;
-							    background-color: #205497;
-							    /* Adding border with curves and padding */
-							    border: 10px solid #292731; /* Example: 2px solid black border */
-							    border-radius: 15px; /* Curve the corners. Adjust as needed */
-							    padding: 0px; /* Spacing inside the cell. Adjust as needed */
-							}
-							/* Add hover effect */
-							.cell:hover {
-								transform: scale(1.1);
-							}
-
-							.section {
-							  flex: 1; /* Each section takes equal space */
-							  text-align: center; /* Optional: Center the text inside each section */
-							  padding: 1px; /* Optional: Add some padding for better visual */
-							  /* Add any other styling as needed */
-							}
-							
-							.section {
-							    width: 100%; /* Each section takes full width of the cell */
-							    text-align: center; /* Center the text in each section */
-							    padding: 1.4vh; /* Add padding for spacing */
-							    /* Add any additional styling as needed */
-							}
-							
-							/* Styling for specific sections if needed */
-							.section1 {
-							    /* Styles for section 1 */
-							}
-							
-							.section2 {
-							    /* Styles for section 2 */
-							}
-							
-							.section3 {
-							    /* Styles for section 3 */
-							}
-
-						
-							
-						</style>
 					</header>
-
 				<!-- Menu -->
 					<nav id="menu">
 						<ul class="links">
@@ -111,7 +49,6 @@
 							<li><a href="#" class="button fit">Log In</a></li>
 						</ul>
 					</nav>
-
 				<!-- Banner -->
 				<!-- Note: The "styleN" class below should match that of the header element. -->
 				<section id="banner" class="circles" style="">
@@ -145,7 +82,7 @@
 				<!-- Main -->
 					<div id="main" style="background-color: #205497;">
 						<input type="text" id="searchInput" style="background-color: #205497; color: rgb(255, 255, 255); border-color: brown;" placeholder="Describe your use case...">
-						<div id="grid"></div>
+						<div id="softwareid"></div>
 					</div>
 				<!-- Footer -->
 				<footer id="footer">
@@ -171,8 +108,8 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
-    		const grid = document.getElementById('grid');
-			const albums = [
+			const softwareid = document.getElementById('softwareid');
+			const software = [
 			    { id: 'Web Browser', url: 'https://www.mozilla.org/en-US/firefox/new/', solution: 'Firefox', clin: 'firefox', cwin: 'Mozilla.Firefox', cmac: '--cask firefox' },
 			    { id: 'Data Compression', url: 'https://www.7-zip.org/download.html', solution: '7zip', clin: 'p7zip', cwin: 'M2Team.NanaZip', cmac: 'sevenzip' },
 			    { id: 'Media Player', url: 'https://mpv.io/installation/', solution: 'mpv', clin: 'mpv', cwin: 'tsl0922.ImPlay', cmac: 'mpv' },
@@ -212,28 +149,28 @@
 				// add more albums here
 			];
 
-			function addCell(album) {
+			function addCell(software) {
 			    // Create the cell as an anchor element
-			    const cell = document.createElement('a');
+			    const softcell = document.createElement('a');
 			    /*cell.href = album.url;*/
-			    cell.target = '_blank';
-			    cell.className = 'cell';
+			    softcell.target = '_blank';
+			    softcell.className = 'softcell';
 			    /*cell.style.backgroundImage = `url(${album.image})`;*/
 
 			    // Create the three sections within the cell
 			    const section1 = document.createElement('div');
 			    section1.className = 'section section1';
-			    section1.textContent = `${album.id}`; // Content for the first section
-			    cell.appendChild(section1);
+			    section1.textContent = `${software.id}`; // Content for the first section
+			    softcell.appendChild(section1);
 			
 			    const section2 = document.createElement('div');
 			    section2.className = 'section section2';
 				const linksec2 = document.createElement('a'); //Starts defining link
-				linksec2.href = album.url;
-				linksec2.textContent = `${album.solution}`;
+				linksec2.href = software.url;
+				linksec2.textContent = `${software.solution}`;
 				linksec2.target = '_blank'; // Open link in a new tab
 				section2.appendChild(linksec2); //Append link defined
-			    cell.appendChild(section2);
+			    softcell.appendChild(section2);
 			
 			    const section3 = document.createElement('div');
 				section3.className = 'section section3';
@@ -248,40 +185,22 @@
 				// Create and append the buttons
 				['fedora', 'windows', 'macos'].forEach(os => {
 				    const button = document.createElement('span');
-				    const command = os === 'fedora' ? `sudo dnf install ${album.clin}` : 
-				                    os === 'windows' ? `winget install -e --id ${album.cwin}` : 
-				                    `brew install ${album.cmac}`;
+				    const command = os === 'fedora' ? `sudo dnf install ${software.clin}` : 
+				                    os === 'windows' ? `winget install -e --id ${software.cwin}` : 
+				                    `brew install ${software.cmac}`;
 				    button.className = `${os}-button span-space`;
 				    button.setAttribute('data-text', command);
 				    button.title = 'Click to copy command';
 				    button.addEventListener('click', () => copyToClipboard(command));
 				    section3.appendChild(button);
 				});
-				cell.appendChild(section3);
+				softcell.appendChild(section3);
 			
 			    // Append the cell to the grid
-			    grid.appendChild(cell);
+			    softwareid.appendChild(softcell);
 			}
-
-// Populate the grid with cells for each album
-albums.forEach(addCell);
-
+			// Populate the grid with cells for each album
+			software.forEach(addCell);
 			</script>
-			<!--Start of Tawk.to Script-->
-			<script type="text/javascript">
-			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-			(function(){
-			var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-			s1.async=true;
-			s1.src='https://embed.tawk.to/655c3bf8d600b968d31553e3/1hfo4kh3h';
-			s1.charset='UTF-8';
-			s1.setAttribute('crossorigin','*');
-			s0.parentNode.insertBefore(s1,s0);
-			})();
-			</script>
-			<!--End of Tawk.to Script-->
-			<script>
-			</script>
-
 	</body>
 </html>
