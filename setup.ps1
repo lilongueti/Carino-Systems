@@ -102,7 +102,7 @@ switch ($b)
     "Google.Chrome",
     #"Telegram.TelegramDesktop",
     "TheDocumentFoundation.LibreOffice",
-    "Espanso.Espanso"
+    #"Espanso.Espanso"
     #"Spotify.Spotify"
 ) | foreach {winget install $_}
    } 

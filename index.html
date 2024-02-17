@@ -20,14 +20,12 @@
 		<meta property="og:locale" content="en_US" />
 		
 		<link rel="stylesheet" href="assets/css/main.css" />
-        <link rel="icon" href="./images/logo50x50.png">
+        <link rel="icon" href="./images/logo50x50.webp">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
-	<body class="is-preload">
-
+	<body class="is-preload" onload="loadTawkToChat()">
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Header -->
 					<header id="header" class="alt">
                         <a rel="me" href="https://mastodon.social/@miguelcarino"></a>
@@ -52,17 +50,18 @@
 				<!--Background animations-->
 				<section id="banner" class="circles" style="">
 				<!-- Div background animation-->	
-				<li style="background-color: crimson;"> </li>
-				<li> </li>
-				<li style="background-color: rgb(255, 255, 255);"> </li>
-				<li style="background-color: rgb(220, 207, 20);"> </li>
-				<li style="background-color: rgb(20, 220, 20);"> </li>
-				<li style="background-color: rgb(20, 147, 220);"> </li>
-				<li style="background-color: rgb(173, 20, 220);"> </li>
-				<li style="background-color: rgb(20, 220, 193);"> </li>
-				<li style="background-color: crimson;"> </li>
-				<li style="background-color: rgb(0, 0, 0);"> </li>
-				<li style="background-color: rgb(228, 123, 63);"> </li>	
+				<li style="bg-crimson"><span><img src="images/logo50x50.webp"></span></li>
+				<li class="bg-crimson"></li>
+    			<li class="bg-default"></li> <!-- Assuming you want a default or specific style for this -->
+    			<li class="bg-white"></li>
+    			<li class="bg-yellow"></li>
+    			<li class="bg-green"></li>
+    			<li class="bg-blue"></li>
+    			<li class="bg-purple"></li>
+    			<li class="bg-teal"></li>
+    			<li class="bg-crimson"></li>
+    			<li class="bg-black"></li>
+    			<li class="bg-orange"></li>
 				<!---->
 				<!-- Div background animation-->
 					<div class="ripple-background">
@@ -73,9 +72,7 @@
 						<div class="circle small shade5"></div>
 					</div>					
 				<!---->
-				
 					<div class="inner">
-						
 						<span class="image">
 							<img src="" alt="" />
 						</span>
@@ -89,7 +86,6 @@
 				</section>
 				<!-- Main -->
 					<div id="main">
-
 						<!-- One -->
 							<section id="one" class="tiles">
 								<article>
@@ -147,18 +143,6 @@
 									</header>
 								</article>
 							</section>
-
-						<!-- Two 
-							<section id="two">
-								<div class="inner">
-									<header class="major">
-										<h2>What is this website?</h2>
-									</header>
-									<p>A collection of resources related to my professional needs and personal interests.</p>
-                                    
-								</div>
-							</section>-->
-
 					</div>
 				<!-- Footer -->
 				<footer id="footer">
@@ -174,9 +158,7 @@
 						</ul>
 					</div>
 				</footer>
-
 			</div>
-
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
@@ -185,19 +167,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<!--Start of Tawk.to Script-->
-			<script type="text/javascript">
-			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-			(function(){
-			var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-			s1.async=true;
-			s1.src='https://embed.tawk.to/655c3bf8d600b968d31553e3/1hfo4kh3h';
-			s1.charset='UTF-8';
-			s1.setAttribute('crossorigin','*');
-			s0.parentNode.insertBefore(s1,s0);
-			})();
-			</script>
-			<!--End of Tawk.to Script-->
 		<!--End of scripts-->
 	</body>
 </html>

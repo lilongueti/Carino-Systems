@@ -4108,6 +4108,15 @@ input, select, textarea {
     animation-duration: 11s;
 }
 
+.bg-crimson { background-color: crimson; }
+.bg-white { background-color: #fff; } /* rgb(255, 255, 255) */
+.bg-yellow { background-color: rgb(220, 207, 20); }
+.bg-green { background-color: rgb(20, 220, 20); }
+.bg-blue { background-color: rgb(20, 147, 220); }
+.bg-purple { background-color: rgb(173, 20, 220); }
+.bg-teal { background-color: rgb(20, 220, 193); }
+.bg-black { background-color: #000; } /* rgb(0, 0, 0) */
+.bg-orange { background-color: rgb(228, 123, 63); }
 
 
 @keyframes animate {
@@ -4419,5 +4428,3 @@ min-height: 500px;
 .description {
     display: none;
 }
-
-/*Searchbar for startpage*/
