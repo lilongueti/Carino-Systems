@@ -101,7 +101,7 @@ switch ($b)
     "OBSProject.OBSStudio",
     "Google.Chrome",
     #"Telegram.TelegramDesktop",
-    "TheDocumentFoundation.LibreOffice",
+    "TheDocumentFoundation.LibreOffice"
     #"Espanso.Espanso"
     #"Spotify.Spotify"
 ) | foreach {winget install $_}
