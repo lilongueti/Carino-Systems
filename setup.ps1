@@ -90,14 +90,14 @@ switch ($b)
     Write-Host "Installing packages..."
 (
     "CodecGuide.K-LiteCodecPack.Mega",
-    "KDE.Okular",
+    #"KDE.Okular",
     "AdrienAllard.FileConverter",
     "7zip.7zip",
     "Oracle.JavaRuntimeEnvironment",
     #"Mozilla.Thunderbird",
     "AnyDeskSoftwareGmbH.AnyDesk",
-    "ventoy.Ventoy",
-    "RustDesk.RustDesk",
+    #"ventoy.Ventoy",
+    #"RustDesk.RustDesk",
     "OBSProject.OBSStudio",
     "Google.Chrome",
     #"Telegram.TelegramDesktop",
