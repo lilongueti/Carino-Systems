@@ -95,268 +95,68 @@
 							<section id="one" style="text-align: center; flex-wrap: nowrap;">
 							<div id="general2" class="" style="display: contents;">
     						    <!-- Content for General Specs -->
-    						    <h2>These are the usecases I have procured to have recommended specs for</h2>
-    						    <p>Please click on your use case...</p>
+								<br>
     						</div>
 								<!-- Buttons -->
     						<div id="buttons">
-    						    <button onclick="showSpecs('general')">General</button>
-    						    <button onclick="showSpecs('business')">Business</button>
-    						    <button onclick="showSpecs('gaming')">Gaming</button>
-								<button onclick="showSpecs('enthusiast')">Enthusiast</button>
+    						    <button onclick="updateSpecs('budget')">Budget</button>
+    						    <button onclick="updateSpecs('general')">General</button>
+    						    <button onclick="updateSpecs('business')">Business</button>
+    						    <button onclick="updateSpecs('gaming')">Gaming</button>
+								<button onclick="updateSpecs('enthusiast')">Enthusiast</button><!--
+								<button onclick="updateSpecs('homeserver')">Home server</button>
+								<button onclick="updateSpecs('proserver')">Production server</button>-->
     						</div>
-						
-    						<!-- Cards -->
-    						<div id="specs">
-    						    <div id="general" class="card" style="display: none; background-image: url(images/layout/);">
-    						        <!-- Content for General Specs -->
-    						        <h2>General Computer Specs</h2>
-									<table border="1" style="">
-										<tbody><tr>
+							<div id="default" class="card">
+								<br>
+								<table border="1">
+									<tbody id="specsTable">
+										<tr>
 											<th style="text-align: center;">Specs</th>
 											<th style="text-align: center;">Desktop</th>
 											<th style="text-align: center;">Laptop</th>
-											<th style="text-align: center;">Or...</th>
+											<th style="text-align: center;">Or ...</th>
 										</tr>
 										<tr>
 											<td>CPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
+											<td id="cpuDesktop">...</td>
+											<td id="cpuLaptop">...</td>
+											<td id="cpuOr">...</td>
 										</tr>
 										<tr>
 											<td>RAM</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
+											<td id="ramDesktop">...</td>
+											<td id="ramLaptop">...</td>
+											<td id="ramOr">...</td>
 										</tr>
 										<tr>
 											<td>GPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
+											<td id="gpuDesktop">...</td>
+											<td id="gpuLaptop">...</td>
+											<td id="gpuOr">...</td>
 										</tr>
 										<tr>
 											<td>Storage</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
+											<td id="storageDesktop">...</td>
+											<td id="storageLaptop">...</td>
+											<td id="storageOr">...</td>
 										</tr>
 										<tr>
 											<td>Power Supply</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
+											<td id="psuDesktop">...</td>
+											<td id="psuLaptop">...</td>
+											<td id="psuOr">...</td>
 										</tr>
 										<tr>
 											<td>Recommendation</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
+											<td id="recDesktop">...</td>
+											<td id="recLaptop">...</td>
+											<td id="recOr">...</td>
 										</tr>
 										<!-- Add more rows as needed -->
-									</tbody></table>
-									
-    						    </div>
-    						    <div id="business" class="card" style="display: none;">
-    						        <!-- Content for Business Specs -->
-    						        <h2>Business Computer Specs</h2>
-									<table border="1" style="">
-										<tbody><tr>
-											<th style="text-align: center;">Specs</th>
-											<th style="text-align: center;">Desktop</th>
-											<th style="text-align: center;">Laptop</th>
-											<th style="text-align: center;">Or...</th>
-										</tr>
-										<tr>
-											<td>CPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>RAM</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>GPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Storage</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Power Supply</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Recommendation</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<!-- Add more rows as needed -->
-									</tbody></table>
-									
-    						    </div>
-    						    <div id="gaming" class="card" style="display: none;">
-    						        <!-- Content for Gaming Specs -->
-    						        <h2>Gaming Computer Specs</h2>
-									<table border="1" style="">
-										<tbody><tr>
-											<th style="text-align: center;">Specs</th>
-											<th style="text-align: center;">Desktop</th>
-											<th style="text-align: center;">Laptop</th>
-											<th style="text-align: center;">Or...</th>
-										</tr>
-										<tr>
-											<td>CPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>RAM</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>GPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Storage</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Power Supply</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Recommendation</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<!-- Add more rows as needed -->
-									</tbody></table>
-									
-    						    </div>
-								<div id="enthusiast" class="card" style="display: none;">
-    						        <!-- Content for Gaming Specs -->
-    						        <h2>Enthusiast Computer Specs</h2>
-									<table border="1" style="">
-										<tbody><tr>
-											<th style="text-align: center;">Specs</th>
-											<th style="text-align: center;">Desktop</th>
-											<th style="text-align: center;">Laptop</th>
-											<th style="text-align: center;">Or...</th>
-										</tr>
-										<tr>
-											<td>CPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>RAM</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>GPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Storage</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Power Supply</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Recommendation</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<!-- Add more rows as needed -->
-									</tbody></table>
-								</div>
-								<div id="default" class="card" style="display: none;">
-    						        <!-- Content for Gaming Specs -->
-    						        <h2>Computer Specs</h2>
-									<table border="1" style="">
-										<tbody><tr>
-											<th style="text-align: center;">Specs</th>
-											<th style="text-align: center;">Desktop</th>
-											<th style="text-align: center;">Laptop</th>
-											<th style="text-align: center;">Or...</th>
-										</tr>
-										<tr>
-											<td>CPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>RAM</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>GPU</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Storage</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Power Supply</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<tr>
-											<td>Recommendation</td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-											<td><a href="https://www.amazon.com/s?k=12600K">AMD Ryzen 7 5800X</a> / <a href="https://www.amazon.com/s?k=12600K">Intel i5-12600K</a></td>
-										</tr>
-										<!-- Add more rows as needed -->
-									</tbody></table>
-								</div>
-    						</div>
+									</tbody>
+								</table>
+							</div>
 							</section>
 					</div>
 
@@ -379,18 +179,172 @@
 
 		<!-- Scripts -->
 			<script>
-				function showSpecs(specType) {
-			    // Hide all cards
-			    document.querySelectorAll('.card').forEach(card => {
-			        card.style.display = 'none';
-			    });
-			
-			    // Show the selected card
-			    document.getElementById(specType).style.display = 'block';
-			}
-			
-			// Call the function to display the "default" card initially
-			showSpecs('default');
+			// Define your data in the form of an object of objects
+			const specsData = {
+			    'default': {
+			        'cpuDesktop': 'AMD sdas 7 5900X',
+			        'cpuLaptop': 'Intel i5-12600K',
+			        'cpuOr': 'Intel i5-12s600K',
+			        'ramDesktop': '16GB DsDR4',
+			        'ramLaptop': '8GB sDDR4',
+			        'ramOr': '8GB DDRs4',
+			        'gpuDesktop': '16GB DDR4',
+			        'gpuLaptop': '8GsB DDR4',
+			        'gpuOr': '8GB DDRs4',
+			        'storageDesktop': '16GB DDR4',
+			        'storageLaptop': '8GB sDDR4',
+			        'storageOr': '8GB DDR4',
+			        'psuDesktop': '16GB DDR4',
+			        'psuLaptop': '8GBs DDR4',
+			        'psuOr': '8GB DDR4',
+			        'recDesktop': '16GB sDDR4',
+			        'recLaptop': '8GB DsDR4',
+			        'recOr': '8GB dsfasdf',
+			        // Add more properties as needed
+			    },
+				'budget': {
+			        'cpuDesktop': 'AMD Ryzen 7 5800X',
+			        'cpuLaptop': 'Intel i5-12600K',
+			        'cpuOr': 'Intel i5-12600K',
+			        'ramDesktop': '16GB DDR4',
+			        'ramLaptop': '8GB DDR4',
+			        'ramOr': '8GB DDR4',
+			        'gpuDesktop': '16GB DDR4',
+			        'gpuLaptop': '8GB DDR4',
+			        'gpuOr': '8GB DDR4',
+			        'storageDesktop': '16GB DDR4',
+			        'storageLaptop': '8GB DDR4',
+			        'storageOr': '8GB DDR4',
+			        'psuDesktop': '16GB DDR4',
+			        'psuLaptop': '8GB DDR4',
+			        'psuOr': '8GB DDR4',
+			        'recDesktop': '16GB DDR4',
+			        'recLaptop': '8GB DDR4',
+			        'recOr': '8GB DDR4',
+			        // Add more properties as needed
+			    },
+				'general': {
+			        'cpuDesktop': 'AMD Ryzen 7 5800X',
+			        'cpuLaptop': 'Intel i5-12600K',
+			        'cpuOr': 'Intel i5-12600K',
+			        'ramDesktop': '16GB DDR4',
+			        'ramLaptop': '8GB DDR4',
+			        'ramOr': '8GB DDR4',
+			        'gpuDesktop': '16GB DDR4',
+			        'gpuLaptop': '8GB DDR4',
+			        'gpuOr': '8GB DDR4',
+			        'storageDesktop': '16GB DDR4',
+			        'storageLaptop': '8GB DDR4',
+			        'storageOr': '8GB DDR4',
+			        'psuDesktop': '16GB DDR4',
+			        'psuLaptop': '8GB DDR4',
+			        'psuOr': '8GB DDR4',
+			        'recDesktop': '16GB DDR4',
+			        'recLaptop': '8GB DDR4',
+			        'recOr': '8GB DDR4',
+			        // Add more properties as needed
+			    },
+				'business': {
+			        'cpuDesktop': 'AMD Ryzen 7 5800X',
+			        'cpuLaptop': 'Intel i5-12600K',
+			        'cpuOr': 'Intel i5-12600K',
+			        'ramDesktop': '16GB DDR4',
+			        'ramLaptop': '8GB DDR4',
+			        'ramOr': '8GB DDR4',
+			        'gpuDesktop': '16GB DDR4',
+			        'gpuLaptop': '8GB DDR4',
+			        'gpuOr': '8GB DDR4',
+			        'storageDesktop': '16GB DDR4',
+			        'storageLaptop': '8GB DDR4',
+			        'storageOr': '8GB DDR4',
+			        'psuDesktop': '16GB DDR4',
+			        'psuLaptop': '8GB DDR4',
+			        'psuOr': '8GB DDR4',
+			        'recDesktop': '16GB DDR4',
+			        'recLaptop': '8GB DDR4',
+			        'recOr': '8GB DDR4',
+			        // Add more properties as needed
+			    },
+				'gaming': {
+			        'cpuDesktop': 'AMD Ryzen 7 5800X',
+			        'cpuLaptop': 'Intel i5-12600K',
+			        'cpuOr': 'Intel i5-12600K',
+			        'ramDesktop': '16GB DDR4',
+			        'ramLaptop': '8GB DDR4',
+			        'ramOr': '8GB DDR4',
+			        'gpuDesktop': '16GB DDR4',
+			        'gpuLaptop': '8GB DDR4',
+			        'gpuOr': '8GB DDR4',
+			        'storageDesktop': '16GB DDR4',
+			        'storageLaptop': '8GB DDR4',
+			        'storageOr': '8GB DDR4',
+			        'psuDesktop': '16GB DDR4',
+			        'psuLaptop': '8GB DDR4',
+			        'psuOr': '8GB DDR4',
+			        'recDesktop': '16GB DDR4',
+			        'recLaptop': '8GB DDR4',
+			        'recOr': '8GB DDR4',
+			        // Add more properties as needed
+			    },
+				'enthusiast': {
+			        'cpuDesktop': 'AMD Ryzen 7 5800X',
+			        'cpuLaptop': 'Intel i5-12600K',
+			        'cpuOr': 'Intel i5-12600K',
+			        'ramDesktop': '16GB DDR4',
+			        'ramLaptop': '8GB DDR4',
+			        'ramOr': '8GB DDR4',
+			        'gpuDesktop': '16GB DDR4',
+			        'gpuLaptop': '8GB DDR4',
+			        'gpuOr': '8GB DDR4',
+			        'storageDesktop': '16GB DDR4',
+			        'storageLaptop': '8GB DDR4',
+			        'storageOr': '8GB DDR4',
+			        'psuDesktop': '16GB DDR4',
+			        'psuLaptop': '8GB DDR4',
+			        'psuOr': '8GB DDR4',
+			        'recDesktop': '16GB DDR4',
+			        'recLaptop': '8GB DDR4',
+			        'recOr': '8GB DDR4',
+			        // Add more properties as needed
+			    },
+			    // Add more objects for additional IDs
+			};
+
+		
+    		// Function to update the content of the table based on the ID
+    		function updateSpecs(specId) {
+		    const specs = specsData[specId];
+		    if (specs) {
+		        for (const key in specs) {
+		            if (specs.hasOwnProperty(key)) {
+		                const element = document.getElementById(key);
+		                if (element) {
+		                    // Clear existing content
+		                    element.innerHTML = '';
+		                    // Create new link element
+		                    const link = document.createElement('a');
+		                    link.href = '#';
+		                    link.textContent = specs[key];
+		                    link.onclick = function() {
+		                        redirectToAmazon(specs[key]); // Pass the content to redirectToAmazon
+		                        return false; // Prevent default link behavior
+		                    };
+		                    // Append link to cell
+		                    element.appendChild(link);
+		                }
+		            }
+		        }
+		    }
+		}
+
+		// Call the function initially to populate with default data
+		updateSpecs('default');
+
+			// Function to redirect to Amazon with the specified search keyword
+			function redirectToAmazon(keyword) {
+    	    window.location.href = "https://www.amazon.com/s?k=" + keyword;
+			window.open(url, "_blank");
+    		}
 			</script>
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
