@@ -3036,7 +3036,7 @@ button:disabled,
     position: absolute;
     float: right;
     padding-right: 600px;
-    width: 80%;
+    width: 100%;
     z-index: 2
 }
 
@@ -3374,11 +3374,12 @@ button:disabled,
 }
 
 #header .logo:hover strong {
-    background-color: #1638e2
+    background-color: #242943;
+    color: #ffffff;
 }
 
 #header .logo:active strong {
-    background-color: #1638e2
+    background-color: #ffffff
 }
 
 #header nav {
@@ -3483,27 +3484,11 @@ button:disabled,
 }
 
 #header.alt.style1 .logo strong {
-    color: #6fc3df
+    color: #ffffff
 }
 
 #header.alt.style2 .logo strong {
-    color: #8d82c4
-}
-
-#header.alt.style3 .logo strong {
-    color: #ec8d81
-}
-
-#header.alt.style4 .logo strong {
-    color: #e78e88
-}
-
-#header.alt.style5 .logo strong {
-    color: #8ea9e8
-}
-
-#header.alt.style6 .logo strong {
-    color: #87c5a4
+    color: #000000
 }
 
 body.is-preload #header.alt {
@@ -3713,24 +3698,9 @@ body.is-preload #header.alt {
 }
 
 #banner.style2:after {
-    background-color: #8d82c4
+    background-color: #ffffff
 }
 
-#banner.style3:after {
-    background-color: #ec8d81
-}
-
-#banner.style4:after {
-    background-color: #0c4191
-}
-
-#banner.style5:after {
-    background-color: #8ea9e8
-}
-
-#banner.style6:after {
-    background-color: #87c5a4
-}
 
 body.is-preload #banner:after {
     opacity: 1.0
