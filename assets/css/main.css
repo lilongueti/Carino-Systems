@@ -2992,7 +2992,7 @@ button:disabled,
     min-height: 13em;
     overflow: hidden;
     position: relative;
-    width: 25%
+    width: 33.3%
 }
 
 .tiles article .image {
@@ -3005,7 +3005,7 @@ button:disabled,
 }
 
 .tiles article h3 {
-    font-size: 1.75em
+    font-size: 1.35em
 }
 
 .tiles article h3 a:hover {
@@ -3034,7 +3034,9 @@ button:disabled,
     left: 0;
     opacity: 0.85;
     position: absolute;
-    width: 100%;
+    float: right;
+    padding-right: 600px;
+    width: 80%;
     z-index: 2
 }
 
@@ -3068,7 +3070,7 @@ button:disabled,
 
 .tiles article:nth-child(4n - 1),
 .tiles article:nth-child(4n - 2) {
-    width: 25%
+    width: 33.3%
 }
 
 .tiles article:nth-child(6n - 5):before {
