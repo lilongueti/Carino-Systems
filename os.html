@@ -5,203 +5,234 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Carino Systems - Operating Systems</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" href="./images/logo50x50.png">
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<!-- Open Graph Protocol Meta Tags -->
-		<meta property="og:title" content="Carino Systems" />
-		<meta property="twitter:title" content="Carino Systems" />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://carino.systems" />
-		<meta property="og:image" content="https://carino.systems/images/layout/banner_1_ogp.webp" />
-		<meta property="og:description" content="Because you have the right to choose your poison." />
-		<meta property="twitter:description" content="Because you have the right to choose your poison." />
-		<meta property="og:site_name" content="Carino Systems" />
-		<meta property="og:locale" content="en_US" />
-		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-		<link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" as="style">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" media="print" onload="this.media='all'">
-	</head>
-	<style>
-		.container {
-			display: flex;
-			justify-content: space-around;
-		}
 
-		.square {
-			width: 200px;
-			height: 200px;
-			/*background-color: rgb(255, 255, 255);*/
-			margin: 20px;
-			background-position: center;
-			display: inline-block;
-    		transform: translateZ(0);
-    		box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    		backface-visibility: hidden;
-    		-moz-osx-font-smoothing: grayscale;
-    		transition-duration: 0.3s;
-    		transition-property: transform;
-    	}
-		.square	:hover,
-		.square:focus,
-		.square:active {
-		    transform: scale(1.5);
-		}
-		.desktop-fedora {
-		    background-image: url('images/banners/fedoradesktop.webp'); /* Replace with your image URL */
-		    background-size: cover; /* This will cover the entire area of the paragraph */
-		    max-width: 600px; /* Maximum width of the paragraph */
-		    height: 340px; /* Set a height for the paragraph */
-		    margin: 0 auto; /* This centers the paragraph if the parent is wider */
-		    padding: 20px; /* Optional: For internal spacing */
-		    color: white; /* Optional: Change text color if needed */
-		}
-		.desktop-windows {
-		    background-image: url('images/banners/windows11desktop.webp'); /* Replace with your image URL */
-		    background-size: cover; /* This will cover the entire area of the paragraph */
-		    max-width: 600px; /* Maximum width of the paragraph */
-		    height: 340px; /* Set a height for the paragraph */
-		    margin: 0 auto; /* This centers the paragraph if the parent is wider */
-		    padding: 20px; /* Optional: For internal spacing */
-		    color: white; /* Optional: Change text color if needed */
-		}
-		.desktop-macos {
-		    background-image: url('images/banners/macosdesktop.webp'); /* Replace with your image URL */
-		    background-size: cover; /* This will cover the entire area of the paragraph */
-		    max-width: 600px; /* Maximum width of the paragraph */
-		    height: 340px; /* Set a height for the paragraph */
-		    margin: 0 auto; /* This centers the paragraph if the parent is wider */
-		    padding: 20px; /* Optional: For internal spacing */
-		    color: white; /* Optional: Change text color if needed */
-		}
-		.fedora-setup {
-        	display: inline-block;
-        	background-color: #0c4191;
-        	background-size: cover;
-        	background-repeat: no-repeat;
-        	background-position: center;
-    	}
-		.windows-setup {
-    	    display: inline-block;
-    	    background-color: green;
-    	    background-size: cover;
-    	    background-repeat: no-repeat;
-    	    background-position: center;
-    	}
-    	.macos-setup {
-    	    display: inline-block;
-    	    background-color: rgb(0, 0, 0);
-    	    background-size: cover;
-    	    background-repeat: no-repeat;
-    	    background-position: center;
-    	}
-	</style>
-	<body class="is-preload">
+<head>
+    <title>OS&#8482;</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" href="./images/logo50x50.png">
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <!-- Open Graph Protocol Meta Tags -->
+    <meta property="og:title" content="Carino Systems" />
+    <meta property="twitter:title" content="Carino Systems" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://carino.systems" />
+    <meta property="og:image" content="https://carino.systems/images/layout/banner_1_ogp.webp" />
+    <meta property="og:description" content="Because you have the right to choose your poison." />
+    <meta property="twitter:description" content="Because you have the right to choose your poison." />
+    <meta property="og:site_name" content="Carino Systems" />
+    <meta property="og:locale" content="en_US" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" media="print" onload="this.media='all'">
+</head>
+<style>
+    .container {
+        display: flex;
+        justify-content: space-around;
+    }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    .square {
+        width: 200px;
+        height: 200px;
+        /*background-color: rgb(255, 255, 255);*/
+        margin: 20px;
+        background-position: center;
+        display: inline-block;
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        transition-duration: 0.3s;
+        transition-property: transform;
+    }
 
-				<!-- Header -->
-				<!-- Note: The "styleN" class below should match that of the banner element. -->
-					<header id="header" class="alt style2">
-						<a href="index.html" class="logo"><strong>Carino</strong> <span>Systems</span></a>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
+    .square:hover,
+    .square:focus,
+    .square:active {
+        transform: scale(1.5);
+    }
 
-				<!-- Menu -->
-					<nav id="menu">
-						<ul class="links">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="software.html">Software Solutions</a></li>
-							<li><a href="artificial.html">Artifical Intelligence</a></li>
-							<li><a href="lurking.html">Entertainment</a></li>
-						</ul>
-						<ul class="actions stacked">
-							<li><a href="#" class="button primary fit">Get Started</a></li>
-							<li><a href="#" class="button fit">Log In</a></li>
-						</ul>
-					</nav>
+    .desktop-fedora {
+        background-image: url('images/banners/fedoradesktop.webp');
+        /* Replace with your image URL */
+        background-size: cover;
+        /* This will cover the entire area of the paragraph */
+        max-width: 600px;
+        /* Maximum width of the paragraph */
+        height: 340px;
+        /* Set a height for the paragraph */
+        margin: 0 auto;
+        /* This centers the paragraph if the parent is wider */
+        padding: 20px;
+        /* Optional: For internal spacing */
+        color: white;
+        /* Optional: Change text color if needed */
+    }
 
-				<!-- Banner -->
-				<!-- Note: The "styleN" class below should match that of the header element. -->
-				<section id="banner" class="circles" style="">
-						<!-- Div background animation-->	
-						<li style="bg-crimson"><span></li>
-						<li class="bg-crimson"></li>
-						<li class="bg-default"></li> <!-- Assuming you want a default or specific style for this -->
-						<li class="bg-white"></li>
-						<li class="bg-yellow"></li>
-						<li class="bg-green"></li>
-						<li class="bg-blue"></li>
-						<li class="bg-purple"></li>
-						<li class="bg-teal"></li>
-						<li class="bg-crimson"></li>
-						<li class="bg-black"></li>
-						<li class="bg-orange"></li>
-						<!---->
-					<!-- Div background animation-->
-					<div class="ripple-background">
-						<div class="circle xxlarge shade1"></div>
-						<div class="circle xlarge shade2"></div>
-						<div class="circle large shade3"></div>
-						<div class="circle medium shade4"></div>
-						<div class="circle small shade5"></div>
-					</div>					
-				<!---->
-						<div class="inner">
-							<span class="image">
-								<img src="images/pic07.jpg" alt="" />
-							</span>
-							<header class="major">
-								<h1>Operating Systems</h1>
-							</header>
-							<div class="content">
-								<p>Because you have the right to choose your poison.</p>
-							</div>
-						</div>
-					</section>
+    .desktop-windows {
+        background-image: url('images/banners/windows11desktop.webp');
+        /* Replace with your image URL */
+        background-size: cover;
+        /* This will cover the entire area of the paragraph */
+        max-width: 600px;
+        /* Maximum width of the paragraph */
+        height: 340px;
+        /* Set a height for the paragraph */
+        margin: 0 auto;
+        /* This centers the paragraph if the parent is wider */
+        padding: 20px;
+        /* Optional: For internal spacing */
+        color: white;
+        /* Optional: Change text color if needed */
+    }
 
-				<!-- Main -->
-					<div id="main">
-						<!-- One -->
-						<section id="one" class="spotlights">
-							<header class="">
-								<h3 style="text-align: center;" id="selectos">Select an operating system</h3>
-							</header>
-							<div class="container">
-								<div class="container">
-									<div id="option1" class="square" style="background-image: url(images/icons/Fedora_icon_\(2021\).svg); background-size: cover;"></div>
-									<div id="option2" class="square" style="background-image: url(images/icons/windows.svg); background-size: cover;"></div>
-									<div id="option3" class="square" style="background-image: url(images/icons/finder.svg); background-size: cover;"></div>
-								</div>
-							</div>
-						</section>
+    .desktop-macos {
+        background-image: url('images/banners/macosdesktop.webp');
+        /* Replace with your image URL */
+        background-size: cover;
+        /* This will cover the entire area of the paragraph */
+        max-width: 600px;
+        /* Maximum width of the paragraph */
+        height: 340px;
+        /* Set a height for the paragraph */
+        margin: 0 auto;
+        /* This centers the paragraph if the parent is wider */
+        padding: 20px;
+        /* Optional: For internal spacing */
+        color: white;
+        /* Optional: Change text color if needed */
+    }
 
-						<!-- Two -->
-							<section id="two" class="spotlights">
-								<div id="content-area" style="">
-									<!-- Content will be dynamically loaded here -->
-								</div>
-								</section>
-								<section>
-									<div class="" style="text-align: center; padding-top: 190px;">
-										<button id="scrollButton01">Go to system setup</button>
-											<header class="" id="setupos">
-												<h3 style="padding-top: 30px;">Setup your operating system</h3>
-											</header>
-											<p>Once you have your system installed, run the following command in your terminal.</p>
-											<div style="padding:10px; border-radius:5px;">
-												<b><span class="fedora-button" id="fedora-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="bash <(curl -s https://carino.systems/setup.sh)">Click to copy</span><span class="windows-button" id="windows-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="iwr -useb https://carino.systems/setup.ps1 | iex">Click to copy</span><span class="macos-button" id="macos-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="macOS">Click to copy</span></b>
-											</div>
-									</div>
-								</section>
-								<!--<section>
+    .fedora-setup {
+        display: inline-block;
+        background-color: #0c4191;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .windows-setup {
+        display: inline-block;
+        background-color: green;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .macos-setup {
+        display: inline-block;
+        background-color: rgb(0, 0, 0);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+</style>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <!-- Note: The "styleN" class below should match that of the banner element. -->
+        <header id="header" class="alt style2">
+            <a href="index.html" class="logo"><strong>Carino</strong> <span>Systems</span></a>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="software.html">Software Solutions</a></li>
+                <li><a href="artificial.html">Artifical Intelligence</a></li>
+                <li><a href="lurking.html">Entertainment</a></li>
+            </ul>
+            <ul class="actions stacked">
+                <li><a href="#" class="button primary fit">Get Started</a></li>
+                <li><a href="#" class="button fit">Log In</a></li>
+            </ul>
+        </nav>
+
+        <!-- Banner -->
+        <!-- Note: The "styleN" class below should match that of the header element. -->
+        <section id="banner" class="circles" style="">
+            <!-- Div background animation-->
+            <li style="bg-crimson"><span></li>
+            <li class="bg-crimson"></li>
+            <li class="bg-default"></li> <!-- Assuming you want a default or specific style for this -->
+            <li class="bg-white"></li>
+            <li class="bg-yellow"></li>
+            <li class="bg-green"></li>
+            <li class="bg-blue"></li>
+            <li class="bg-purple"></li>
+            <li class="bg-teal"></li>
+            <li class="bg-crimson"></li>
+            <li class="bg-black"></li>
+            <li class="bg-orange"></li>
+            <!---->
+            <!-- Div background animation-->
+            <div class="ripple-background">
+                <div class="circle xxlarge shade1"></div>
+                <div class="circle xlarge shade2"></div>
+                <div class="circle large shade3"></div>
+                <div class="circle medium shade4"></div>
+                <div class="circle small shade5"></div>
+            </div>
+            <!---->
+            <div class="inner">
+                <span class="image">
+                    <img src="images/pic07.jpg" alt="" />
+                </span>
+                <header class="major">
+                    <h1>Operating Systems</h1>
+                </header>
+                <div class="content">
+                    <p>Because you have the right to choose your poison.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main -->
+        <div id="main">
+            <!-- One -->
+            <section id="one" class="spotlights">
+                <header class="">
+                    <h3 style="text-align: center;" id="selectos">Select an operating system</h3>
+                </header>
+                <div class="container">
+                    <div class="container">
+                        <div id="option1" class="square" style="background-image: url(images/icons/Fedora_icon_\(2021\).svg); background-size: cover;"></div>
+                        <div id="option2" class="square" style="background-image: url(images/icons/windows.svg); background-size: cover;"></div>
+                        <div id="option3" class="square" style="background-image: url(images/icons/finder.svg); background-size: cover;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Two -->
+            <section id="two" class="spotlights">
+                <div id="content-area" style="">
+                    <!-- Content will be dynamically loaded here -->
+                </div>
+            </section>
+            <section>
+                <div class="" style="text-align: center; padding-top: 190px;">
+                    <button id="scrollButton01">Go to system setup</button>
+                    <header class="" id="setupos">
+                        <h3 style="padding-top: 30px;">Setup your operating system</h3>
+                    </header>
+                    <p>Once you have your system installed, run the following command in your terminal.</p>
+                    <div style="padding:10px; border-radius:5px;">
+                        <b><span class="fedora-button" id="fedora-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="bash <(curl -s https://carino.systems/setup.sh)">Click to copy</span><span class="windows-button" id="windows-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="iwr -useb https://carino.systems/setup.ps1 | iex">Click to copy</span><span class="macos-button" id="macos-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="macOS">Click to copy</span></b>
+                    </div>
+                </div>
+            </section>
+            <!--<section>
 									<a href="generic.html" class="image">
 										<img src="images/pic09.jpg" alt="" data-position="top center" />
 									</a>
@@ -230,140 +261,144 @@
 										</div>
 									</div>
 								</section>-->
-							</section>
+            </section>
 
-						<!-- Three -->
-							<section id="three">
-								<div class="inner">
-									<ul class="actions" style="padding-left: 45%;">
-										<li><a href="index.html" class="button next">Go Back</a></li>
-									</ul>
-								</div>
-							</section>
+            <!-- Three -->
+            <section id="three">
+                <div class="inner">
+                    <ul class="actions" style="padding-left: 45%;">
+                        <li><a href="index.html" class="button next">Go Back</a></li>
+                    </ul>
+                </div>
+            </section>
 
-					</div>
+        </div>
 
-				<!-- Footer -->
-				<footer id="footer">
-					<div class="inner">
-						<ul class="icons">
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Carino Systems</li><li>Design: a modified <a href="https://html5up.net">HTML5 UP</a> template</li>
-							<li>
-								<a href="https://github.com/MiguelCarino" class="icon brands alt fa-github"><span class="label">Github</span></a>
-								<a href="https://www.linkedin.com/in/miguelcarino94" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a>
-								<a href="https://mastodon.social/@miguelcarino" class="icon brands alt fa-mastodon"><span class="label">Mastodon</span></a></li>
-						</ul>
-					</div>
-				</footer>
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <ul class="icons">
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Carino Systems</li>
+                    <li>Design: a modified <a href="https://html5up.net">HTML5 UP</a> template</li>
+                    <li>
+                        <a href="https://github.com/MiguelCarino" class="icon brands alt fa-github"><span class="label">Github</span></a>
+                        <a href="https://www.linkedin.com/in/miguelcarino94" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a>
+                        <a href="https://mastodon.social/@miguelcarino" class="icon brands alt fa-mastodon"><span class="label">Mastodon</span></a></li>
+                </ul>
+            </div>
+        </footer>
 
-			</div>
+    </div>
 
-		<!-- Scripts -->
-			<script>
-				document.addEventListener('DOMContentLoaded', function () {
-					document.getElementById('option1').addEventListener('click', function() {
-						updateContent(1);
-					});
-				
-					document.getElementById('option2').addEventListener('click', function() {
-						updateContent(2);
-					});
-				
-					document.getElementById('option3').addEventListener('click', function() {
-						updateContent(3);
-					});
-				
-					function updateContent(option) {
-						var contentArea = document.getElementById('content-area');
-						if (option === 1) {
-							contentArea.innerHTML = '<div style="text-align: center;"><h3>Fedora Linux</h3><p class="desktop-fedora"></p><br><p>The most innovative system with the best and latest technologies for general,<br> development, office, creative and gaming use cases without issues.</p><li><a href="https://fedoraproject.org/#editions" target="_blank" class="button" style="background-color: #0c4191;">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
-						} else if (option === 2) {
-							contentArea.innerHTML = '<div style="text-align: center;"><h3>Windows</h3><p class="desktop-windows"></p><br><p>Most used desktop operating system in the world,<br>supported by countless business.</p><li><a href="https://www.microsoft.com/en-us/software-download/windows11/" target="_blank" class="button" style="background-color: green;">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
-						} else if (option === 3) {
-							contentArea.innerHTML = '<div style="text-align: center;"><h3>macOS</h3><p class="desktop-macos"></p><br><p>Most used system by creative professional all over the world.</p><li><a href="https://apps.apple.com/us/app/macos-sonoma/id6450717509?mt=12" target="_blank" class="button" style="background-color: rgb(0, 0, 0);">Download</a></li></div>';
-						}
-					}
-					document.getElementById('scrollButton01').addEventListener('click', function() {
-    			    	document.getElementById('setupos').scrollIntoView({ 
-    			    	    behavior: 'smooth' 
-    			    	});
-    				});
-    				document.getElementById('option1').addEventListener('click', function() {
-    				    document.getElementById('selectos').scrollIntoView({ 
-    				        behavior: 'smooth' 
-    				    });
-    				});
-    				document.getElementById('option2').addEventListener('click', function() {
-    				    document.getElementById('selectos').scrollIntoView({ 
-    				        behavior: 'smooth' 
-    				    });
-    				});
-					document.getElementById('option3').addEventListener('click', function() {
-    				    document.getElementById('selectos').scrollIntoView({ 
-    				        behavior: 'smooth' 
-    				    });
-    				});
-					//Copies commands to clipboard
-						document.querySelectorAll('.fedora-button').forEach(element => {
-							element.addEventListener('click', function() {
-								const text = this.getAttribute('data-text');
-								navigator.clipboard.writeText(text).then(() => {
-									console.log('Text copied to clipboard');
-									// You can add any notification here to show that the text was copied
-								}).catch(err => {
-									console.error('Error in copying text: ', err);
-								});
-							});
-						});
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('option1').addEventListener('click', function() {
+                updateContent(1);
+            });
 
-						document.querySelectorAll('.windows-button').forEach(element => {
-							element.addEventListener('click', function() {
-								const text = this.getAttribute('data-text');
-								navigator.clipboard.writeText(text).then(() => {
-									console.log('Text copied to clipboard');
-									// You can add any notification here to show that the text was copied
-								}).catch(err => {
-									console.error('Error in copying text: ', err);
-								});
-							});
-						});
+            document.getElementById('option2').addEventListener('click', function() {
+                updateContent(2);
+            });
 
-						document.querySelectorAll('.macos-button').forEach(element => {
-							element.addEventListener('click', function() {
-								const text = this.getAttribute('data-text');
-								navigator.clipboard.writeText(text).then(() => {
-									console.log('Text copied to clipboard');
-									// You can add any notification here to show that the text was copied
-								}).catch(err => {
-									console.error('Error in copying text: ', err);
-								});
-							});
-						});
+            document.getElementById('option3').addEventListener('click', function() {
+                updateContent(3);
+            });
 
-				});
-			</script>		
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<!--Start of Tawk.to Script-->
-			<script type="text/javascript">
-			var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-			(function(){
-			var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-			s1.async=true;
-			s1.src='https://embed.tawk.to/655c3bf8d600b968d31553e3/1hfo4kh3h';
-			s1.charset='UTF-8';
-			s1.setAttribute('crossorigin','*');
-			s0.parentNode.insertBefore(s1,s0);
-			})();
-			</script>
-			<!--End of Tawk.to Script-->
+            function updateContent(option) {
+                var contentArea = document.getElementById('content-area');
+                if (option === 1) {
+                    contentArea.innerHTML = '<div style="text-align: center;"><h3>Fedora Linux</h3><p class="desktop-fedora"></p><br><p>The most innovative system with the best and latest technologies for general,<br> development, office, creative and gaming use cases without issues.</p><li><a href="https://fedoraproject.org/#editions" target="_blank" class="button" style="background-color: #0c4191;">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
+                } else if (option === 2) {
+                    contentArea.innerHTML = '<div style="text-align: center;"><h3>Windows</h3><p class="desktop-windows"></p><br><p>Most used desktop operating system in the world,<br>supported by countless business.</p><li><a href="https://www.microsoft.com/en-us/software-download/windows11/" target="_blank" class="button" style="background-color: green;">Download</a></li></div><section><a href="#" class="image"><img src="images/pic09.jpg" alt="" data-position="top center" /></a><div class="content"><div style="text-align: center;"><header class=""><h3>Installing your operating system</h3></header><p>Download <a href="https://www.ventoy.net/en/download.html"><b>Ventoy</b></a> and format your usb with it. Then copy the ISO(s) you need from here (excepting for macOS).<br>It is extremely recommended you <a href="">test the ISO in a VM</a> and/or <a href="">do some basic research</a> to make sure the OS will cover your needs.<br>If you do not know what distro to choose, take the <a href="https://distrochooser.de/en/">test</a> or simply <a href="https://distro.moe/">choose a random distro</a>.</p><li><a href="https://www.ventoy.net/en/download.html" class="button">Download Ventoy</a></li></div></div></section>';
+                } else if (option === 3) {
+                    contentArea.innerHTML = '<div style="text-align: center;"><h3>macOS</h3><p class="desktop-macos"></p><br><p>Most used system by creative professional all over the world.</p><li><a href="https://apps.apple.com/us/app/macos-sonoma/id6450717509?mt=12" target="_blank" class="button" style="background-color: rgb(0, 0, 0);">Download</a></li></div>';
+                }
+            }
+            document.getElementById('scrollButton01').addEventListener('click', function() {
+                document.getElementById('setupos').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            document.getElementById('option1').addEventListener('click', function() {
+                document.getElementById('selectos').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            document.getElementById('option2').addEventListener('click', function() {
+                document.getElementById('selectos').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            document.getElementById('option3').addEventListener('click', function() {
+                document.getElementById('selectos').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            //Copies commands to clipboard
+            document.querySelectorAll('.fedora-button').forEach(element => {
+                element.addEventListener('click', function() {
+                    const text = this.getAttribute('data-text');
+                    navigator.clipboard.writeText(text).then(() => {
+                        console.log('Text copied to clipboard');
+                        // You can add any notification here to show that the text was copied
+                    }).catch(err => {
+                        console.error('Error in copying text: ', err);
+                    });
+                });
+            });
 
-	</body>
+            document.querySelectorAll('.windows-button').forEach(element => {
+                element.addEventListener('click', function() {
+                    const text = this.getAttribute('data-text');
+                    navigator.clipboard.writeText(text).then(() => {
+                        console.log('Text copied to clipboard');
+                        // You can add any notification here to show that the text was copied
+                    }).catch(err => {
+                        console.error('Error in copying text: ', err);
+                    });
+                });
+            });
+
+            document.querySelectorAll('.macos-button').forEach(element => {
+                element.addEventListener('click', function() {
+                    const text = this.getAttribute('data-text');
+                    navigator.clipboard.writeText(text).then(() => {
+                        console.log('Text copied to clipboard');
+                        // You can add any notification here to show that the text was copied
+                    }).catch(err => {
+                        console.error('Error in copying text: ', err);
+                    });
+                });
+            });
+
+        });
+    </script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/655c3bf8d600b968d31553e3/1hfo4kh3h';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+</body>
+
 </html>
