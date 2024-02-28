@@ -2992,7 +2992,7 @@ button:disabled,
     min-height: 13em;
     overflow: hidden;
     position: relative;
-    width: 33%
+    width: 25%
 }
 
 .tiles article .image {
@@ -3068,7 +3068,7 @@ button:disabled,
 
 .tiles article:nth-child(4n - 1),
 .tiles article:nth-child(4n - 2) {
-    width: 33%
+    width: 25%
 }
 
 .tiles article:nth-child(6n - 5):before {
