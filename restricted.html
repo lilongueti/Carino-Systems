@@ -99,10 +99,12 @@
             <section id="one">
                 <div class="inner">
                     <header class="major">
-                        <h2>Sed amet aliquam</h2>
+                        <h2>Caution</h2>
                     </header>
-                    <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna.</p>
+                    <p>There are a lot sites that distribute software and content without a proper license, quality or even infected files. Remember that just because some countries have no legal means nor resources to punish bad distribution practices, we all have some level of morality to follow, with that being said, some countries also have no legal means to distribute legal software nor content either. This page is a gray area references some of the most common questionable methods that are safe to use and not recommended at all. Accompanied by safe sources and alternatives.</p>
                 </div>
+                <input type="text" id="searchInput" style="background-color: #205497; color: rgb(255, 255, 255); border-color: brown;" placeholder="Describe the unthinkable...">
+                <div id="softwareid"></div>
             </section>
         </div>
 
@@ -145,6 +147,101 @@
             s1.setAttribute('crossorigin', '*');
             s0.parentNode.insertBefore(s1, s0);
         })();
+    </script>
+    <script>
+        const softwareid = document.getElementById('softwareid');
+        const software = [{
+                id: 'Activate Microsoft Windows',
+                url1: 'https://github.com/massgravel/Microsoft-Activation-Scripts',
+                solution: 'Microsoft Activation Scripts (MAS)',
+                alternative: 'Get Fedora instead',
+                url2: 'https://fedoraproject.org/',
+                legalsource: 'Get a Windows License',
+                url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
+                cres: 'irm https://massgrave.dev/get | iex',
+            },
+            {
+                id: 'Activate Microsoft Office',
+                url1: 'https://github.com/massgravel/Microsoft-Activation-Scripts',
+                solution: 'Microsoft Activation Scripts (MAS)',
+                alternative: 'Get LibreOffice instead',
+                url2: 'https://www.libreoffice.org/',
+                legalsource: 'Get Microsoft 365',
+                url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
+                cres: 'irm https://massgrave.dev/get | iex',
+            },
+            // add more albums here
+        ];
+
+        function addCell(software) {
+            // Create the cell as an anchor element
+            const softcell = document.createElement('a');
+            /*cell.href = album.url;*/
+            softcell.target = '_blank';
+            softcell.className = 'softcell';
+            /*cell.style.backgroundImage = `url(${album.image})`;*/
+
+            // Create the three sections within the cell
+            const section1 = document.createElement('div');
+            section1.className = 'section section1';
+            section1.textContent = `${software.id}`; // Content for the first section
+            section1.style.fontWeight = 'bold';
+            softcell.appendChild(section1);
+
+            const section2 = document.createElement('div');
+            section2.className = 'section section2';
+            const linksec2 = document.createElement('a'); //Starts defining link
+            linksec2.href = software.url1;
+            linksec2.textContent = `${software.solution}`;
+            linksec2.target = '_blank'; // Open link in a new tab
+            section2.appendChild(linksec2); //Append link defined
+            softcell.appendChild(section2);
+
+            const section3 = document.createElement('div');
+            section3.className = 'section section3';
+            const linksec3 = document.createElement('a'); //Starts defining link
+            linksec3.href = software.url2;
+            linksec3.textContent = `${software.alternative}`;
+            linksec3.target = '_blank'; // Open link in a new tab
+            section3.appendChild(linksec3); //Append link defined
+            softcell.appendChild(section3);
+
+            const section4 = document.createElement('div');
+            section4.className = 'section section4';
+            const linksec4 = document.createElement('a'); //Starts defining link
+            linksec4.href = software.url3;
+            linksec4.textContent = `${software.legalsource}`;
+            linksec4.target = '_blank'; // Open link in a new tab
+            section4.appendChild(linksec4); //Append link defined
+            softcell.appendChild(section4);
+
+            const section5 = document.createElement('div');
+            section5.className = 'section section5';
+            // Function to copy text to clipboard
+            function copyToClipboard(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    console.log('Text copied to clipboard');
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            }
+            // Create and append the buttons
+            ['msterminal'].forEach(os => {
+                const button = document.createElement('span');
+                const command = os === 'msterminal' ? `${software.cres}` : '';
+                button.className = `${os}-button span-space`;
+                button.setAttribute('data-text', command);
+                button.title = 'Click to copy command';
+                button.addEventListener('click', () => copyToClipboard(command));
+                section5.appendChild(button);
+            });
+            softcell.appendChild(section5);
+
+            // Append the cell to the grid
+            softwareid.appendChild(softcell);
+        }
+        // Populate the grid with cells for each album
+        software.forEach(addCell);
     </script>
     <!--End of Tawk.to Script-->
 
