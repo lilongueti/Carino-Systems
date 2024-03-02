@@ -100,11 +100,11 @@
                 <br>
                 <!-- Buttons -->
                 <div id="buttons">
-                    <button onclick="updateSpecs('budget')">Budget</button>
-                    <button onclick="updateSpecs('general')">General</button>
-                    <button onclick="updateSpecs('business')">Business</button>
-                    <button onclick="updateSpecs('gaming')">Gaming</button>
-                    <button onclick="updateSpecs('enthusiast')">Enthusiast</button>
+                    <button id="budgetBtn" onclick="updateSpecs('budget')">Budget</button>
+                    <button id="generalBtn" onclick="updateSpecs('general')">General</button>
+                    <button id="businessBtn" onclick="updateSpecs('business')">Business</button>
+                    <button id="gamingBtn" onclick="updateSpecs('gaming')">Gaming</button>
+                    <button id="enthusiastBtn" onclick="updateSpecs('enthusiast')">Enthusiast</button>
                     <!--
 								<button onclick="updateSpecs('homeserver')">Home server</button>
 								<button onclick="updateSpecs('proserver')">Production server</button>-->
@@ -186,27 +186,6 @@
     <script>
         // Define your data in the form of an object of objects
         const specsData = {
-            'default': {
-                'cpuDesktop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'cpuLaptop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'cpuOr': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'ramDesktop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'ramLaptop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'ramOr': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'gpuDesktop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'gpuLaptop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'gpuOr': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'storageDesktop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'storageLaptop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'storageOr': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'psuDesktop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'psuLaptop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'psuOr': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'recDesktop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'recLaptop': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                'recOr': '🙂🤬👳‍♀️🦻😳🤓😜🧠',
-                // Add more properties as needed
-            },
             'budget': {
                 'cpuDesktop': 'AMD Ryzen™ 5 8600G',
                 'cpuLaptop': 'Intel i5-12600K',
@@ -316,25 +295,38 @@
         };
 
 
-        // Function to update the content of the table based on the ID
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSpecs('general'); // Set the default selection to 'general' when the page is loaded
+        });
+
         function updateSpecs(specId) {
+            // Remove 'selected' class from all buttons
+            document.querySelectorAll('button').forEach(button => {
+                button.classList.remove('selected');
+            });
+
+            // Add 'selected' class to the clicked button
+            const selectedButtonId = specId + 'Btn';
+            const selectedButton = document.getElementById(selectedButtonId);
+            if (selectedButton) {
+                selectedButton.classList.add('selected');
+            }
+
+            // Update spec content
             const specs = specsData[specId];
             if (specs) {
                 for (const key in specs) {
                     if (specs.hasOwnProperty(key)) {
                         const element = document.getElementById(key);
                         if (element) {
-                            // Clear existing content
-                            element.innerHTML = '';
-                            // Create new link element
+                            element.innerHTML = ''; // Clear existing content
                             const link = document.createElement('a');
                             link.href = '#';
                             link.textContent = specs[key];
                             link.onclick = function() {
-                                redirectToAmazon(specs[key]); // Pass the content to redirectToAmazon
+                                redirectToAmazon(specs[key]); // Custom logic for handling clicks
                                 return false; // Prevent default link behavior
                             };
-                            // Append link to cell
                             element.appendChild(link);
                         }
                     }
@@ -342,8 +334,6 @@
             }
         }
 
-        // Call the function initially to populate with default data
-        updateSpecs('default');
 
         // Function to redirect to Amazon with the specified search keyword
         function redirectToAmazon(keyword) {

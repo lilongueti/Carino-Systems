@@ -2879,6 +2879,12 @@ button:disabled,
     background-position: center
 }
 
+.selected {
+    background-color: #4CAF50;
+    /* Change color as needed */
+    color: white;
+}
+
 .software-download-item {
     --tw-border-opacity: 1;
     --tw-bg-opacity: 1;
