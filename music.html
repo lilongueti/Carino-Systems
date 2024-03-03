@@ -22,6 +22,8 @@
     <link rel="icon" href="./images/logo50x50.webp">
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <script src="https://www.youtube.com/iframe_api"></script>
+
 </head>
 
 <body class="is-preload">
@@ -47,7 +49,14 @@
                 <li><a href="#" class="button primary fit">Get Started</a></li>
                 <li><a href="#" class="button fit">Log In</a></li>
             </ul>
+            <div id="youtubePlayerContainer" style="display:none;">
+                <div id="youtubePlayer"></div>
+                <br>
+                <button onclick="closePlayer()">Close Player</button>
+            </div>
         </nav>
+        <div id="videoInfo">
+        </div>
 
         <div id="musicgrid"></div>
         <script>
@@ -446,15 +455,75 @@
                 // add more albums here
             ];
 
+            // Function to fetch video details
+            function fetchVideoDetails(videoId) {
+                const API_KEY = 'AIzaSyCxJJiioJa44xJ8OA9jrLNKqmTBblZlArc'; // Replace with your YouTube Data API key
+                const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.items.length > 0) {
+                            const videoDetails = data.items[0].snippet;
+                            displayVideoInfo(videoDetails);
+                        } else {
+                            console.log("No video details found.");
+                        }
+                    })
+                    .catch(error => console.error('Failed to fetch video details:', error));
+            }
+
+            // Function to display video details in your page
+            function displayVideoInfo(details) {
+                // Here you can update your page's DOM with video details like title and description
+                //console.log(details.title); // For example, log the title to the console
+                // Find the videoInfo div
+                const videoInfoDiv = document.getElementById('videoInfo');
+
+                // Update its content. Here, we're adding the video title and description.
+                // You can format it as you like and include other details.
+                videoInfoDiv.innerHTML = `
+                    <h2>Now playing - ${details.title}</h2>
+                    <p></p>
+                `;
+            }
+            ////////////////////////////////////////////////////////
             const musicgrid = document.getElementById('musicgrid');
+            let player; // This will hold our YouTube player
+
+            // This function creates an iframe (YouTube player) after the API code downloads.
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('youtubePlayer', {
+                    height: '390', // Adjust the size as needed
+                    width: '640',
+                    videoId: '', // Initial video ID (can be empty or any valid YouTube video ID)
+                    events: {
+                        'onReady': onPlayerReady,
+                        // 'onStateChange': onPlayerStateChange,
+                    }
+                });
+            }
+
+            function onPlayerReady(event) {
+                // Player is ready. You can set up additional options here.
+            }
 
             function addCell(album) {
-                const musiccell = document.createElement('a');
-                musiccell.href = `https://www.youtube.com/watch?v=${album.url}`;
-                musiccell.target = '_blank';
+                const musiccell = document.createElement('div');
                 musiccell.className = 'cell';
                 musiccell.style.backgroundImage = `url(images/lurking/${album.image})`;
+                musiccell.onclick = function() {
+                    fetchVideoDetails(album.url); // Fetch and display video details
+                    player.loadVideoById(album.url);
+                    document.getElementById('youtubePlayerContainer').style.display = 'block';
+                };
                 musicgrid.appendChild(musiccell);
+            }
+
+
+            function closePlayer() {
+                document.getElementById('youtubePlayerContainer').style.display = 'none';
+                player.stopVideo(); // Stops the video when closing the player
             }
 
             function populateGrid() {
@@ -468,8 +537,15 @@
                     populateGrid();
                 }
             }
+
             populateGrid();
             musicgrid.addEventListener('scroll', checkScroll);
+
+            // Load the YouTube Iframe API script asynchronously
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         </script>
         <!-- Footer -->
         <footer id="footer">

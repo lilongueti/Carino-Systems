@@ -4565,3 +4565,19 @@ body.is-menu-visible #menu .inner {
     .description {
         display: none
     }
+
+    #youtubePlayerContainer {
+        position: fixed;
+        /* Adjust as necessary for background playback */
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        /* Behind other content; adjust as necessary */
+        display: none;
+    }
+
+    #videoInfo {
+        padding: 20px;
+    }
