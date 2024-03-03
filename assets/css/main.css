@@ -3013,7 +3013,7 @@ button:disabled,
     -webkit-transition: -webkit-transform 0.25s ease, opacity 0.25s ease, -webkit-filter 1s ease, -webkit-filter 1s ease;
     -ms-transition: -ms-transform 0.25s ease, opacity 0.25s ease, -ms-filter 1s ease, -webkit-filter 1s ease;
     transition: transform 0.25s ease, opacity 0.25s ease, filter 1s ease, -webkit-filter 1s ease;
-    padding: 4em 4em 2em;
+    padding: 4em 1em 2em;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -3162,7 +3162,7 @@ button:disabled,
     }
 
     .tiles article {
-        height: 20em;
+        height: 12em;
         width: 100% !important
     }
 }
@@ -3619,7 +3619,6 @@ body.is-preload #header.alt {
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
-    padding: 3em 0 2em;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
