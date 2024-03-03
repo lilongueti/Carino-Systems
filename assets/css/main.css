@@ -3626,11 +3626,11 @@ body.is-preload #header.alt {
     border-bottom: 0 !important;
     cursor: default;
     height: 5vh;
-    margin-bottom: -3.25em;
+    margin-bottom: -0.25em;
     max-height: 32em;
     min-height: 16em;
     position: relative;
-    top: -3.25em
+    top: -0.25em
 }
 
 #banner:after {
