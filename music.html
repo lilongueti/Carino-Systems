@@ -55,7 +55,7 @@
                 <button onclick="closePlayer()">Close Player</button>
             </div>
         </nav>
-        <div id="videoInfo">
+        <div style="padding-left: 5%; background-color: rgb(219, 165, 48);" id="videoInfo">
         </div>
 
         <div id="musicgrid"></div>
@@ -465,7 +465,7 @@
                     .then(data => {
                         if (data.items.length > 0) {
                             const videoDetails = data.items[0].snippet;
-                            displayVideoInfo(videoDetails);
+                            displayVideoInfo(videoDetails, videoId); // Include videoId to displayVideoInfo
                         } else {
                             console.log("No video details found.");
                         }
@@ -474,19 +474,16 @@
             }
 
             // Function to display video details in your page
-            function displayVideoInfo(details) {
-                // Here you can update your page's DOM with video details like title and description
-                //console.log(details.title); // For example, log the title to the console
-                // Find the videoInfo div
+            function displayVideoInfo(details, videoId) {
                 const videoInfoDiv = document.getElementById('videoInfo');
+                const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
-                // Update its content. Here, we're adding the video title and description.
-                // You can format it as you like and include other details.
                 videoInfoDiv.innerHTML = `
-                    <h2>Now playing - ${details.title}</h2>
-                    <p></p>
-                `;
+                <h2>Now playing - ${details.title}</h2>
+                <p>URL: <a href="${videoUrl}" target="_blank">${videoUrl}</a></p>
+            `;
             }
+
             ////////////////////////////////////////////////////////
             const musicgrid = document.getElementById('musicgrid');
             let player; // This will hold our YouTube player
