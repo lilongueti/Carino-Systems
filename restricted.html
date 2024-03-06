@@ -101,7 +101,7 @@
                     <header class="major">
                         <h2>Caution</h2>
                     </header>
-                    <p>Some sites distribute software and content without a proper license nor quality. Some countries or institutions have no legal means nor resources to punish bad distribution practices, and lack the means to distribute legal software and content. This page serves as reference to some of the most common questionable methods that are safe to use and not recommended to follow. Accompanied by reliable sources and alternatives. It is recommended you only download content once you've made sure you're on a computer that you can't rely on for work or have really important data on it.<br>Make sure you've installed an adblock add-on for your browser, I recommend <b><a href="https://ublockorigin.com/">Ublock Origin</a>.</b></p>
+                    <p>Some sites distribute software and content without a proper license nor quality. Some countries or institutions have no legal means nor resources to punish bad distribution practices, and lack the means to distribute legal software and content. This page serves as reference of the most common questionable sources, <b style="color: red;">it is encouraged to block these sites and methods</b> while encouraging using its reliable alternatives. Only download content for testing purposes once you've made sure you're on a computer that you can't rely on for work or have really important data on it.<br>Make sure you've installed an adblock add-on for your browser, like <b><a href="https://ublockorigin.com/">Ublock Origin</a>.</b></p>
 
                 </div>
                 <input type="text" id="searchInput" style="background-color: #205497; color: rgb(255, 255, 255); border-color: brown;" placeholder="Describe the unthinkable...">
@@ -159,7 +159,6 @@
                 url2: 'https://fedoraproject.org/',
                 legalsource: 'Get a Windows License',
                 url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
-                cres: 'irm https://massgrave.dev/get | iex',
             },
             {
                 id: 'Activate Microsoft Office',
@@ -169,7 +168,33 @@
                 url2: 'https://www.libreoffice.org/',
                 legalsource: 'Get Microsoft 365',
                 url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
-                cres: 'irm https://massgrave.dev/get | iex',
+            },
+            {
+                id: 'YIFY Movies (Torrents)',
+                url1: 'https://yts.mx/',
+                solution: 'Website',
+                alternative: 'Watch public domain movies instead',
+                url2: 'https://publicdomainmovie.net/',
+                legalsource: 'Get a Netflix subscription instead',
+                url3: 'https://www.netflix.com/',
+            },
+            {
+                id: 'Nyaa (Anime and music Torrents)',
+                url1: 'https://nyaa.si/',
+                solution: 'Website',
+                alternative: 'Get official releases from Amazon instead',
+                url2: 'https://amazon.com',
+                legalsource: 'Get a Crunchyroll subscription',
+                url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
+            },
+            {
+                id: 'Rutracker (software, music and movie Torrents)',
+                url1: 'https://rutracker.org/',
+                solution: 'Website',
+                alternative: 'Get LibreOffice instead',
+                url2: 'https://www.libreoffice.org/',
+                legalsource: 'Get Microsoft 365',
+                url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
             },
             // add more albums here
         ];
@@ -226,18 +251,6 @@
                     console.error('Failed to copy text: ', err);
                 });
             }
-            // Create and append the buttons
-            ['msterminal'].forEach(os => {
-                const button = document.createElement('span');
-                const command = os === 'msterminal' ? `${software.cres}` : '';
-                button.className = `${os}-button span-space`;
-                button.setAttribute('data-text', command);
-                button.title = 'Click to copy command';
-                button.addEventListener('click', () => copyToClipboard(command));
-                section5.appendChild(button);
-            });
-            softcell.appendChild(section5);
-
             // Append the cell to the grid
             softwareid.appendChild(softcell);
         }
