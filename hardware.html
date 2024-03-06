@@ -24,6 +24,42 @@
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        /* Adjust based on your needs */
+        gap: 10px;
+        padding: 10px;
+    }
+
+    @media screen and (max-width: 1280px) {
+        .grid-container {
+            grid-template-columns: auto auto auto;
+        }
+    }
+
+    @media screen and (max-width: 780px) {
+        .grid-container {
+            grid-template-columns: auto auto;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .grid-container {
+            grid-template-columns: auto;
+        }
+    }
+
+    .grid-item {
+        padding: 20px;
+        font-size: 1.8vh;
+        text-align: center;
+        border: 1px solid #000;
+        border-radius: 60px;
+        background-color: rgb(44, 43, 43);
+    }
+</style>
 
 <body class="is-preload">
 
@@ -87,7 +123,7 @@
                     <h1>Hardware</h1>
                 </header>
                 <div class="content">
-                    <p>Mostly recommendations for some use cases.</p>
+                    <p>Recommendations for some use cases and sources to check on your warranty and hardware.</p>
                 </div>
             </div>
         </section>
@@ -161,6 +197,10 @@
                 </div>
                 <div>You can check price history of any articles on <b>Amazon</b> with <b><a href="https://keepa.com/">Keepa</a></b>.</div>
                 <br>
+                <div class="card" style="background-color: rgb(35, 88, 187);">
+                    <h1>Warranty</h1>
+                    <p>You can check your current device warranty for the following manufacturers or sellers.</p>
+                    <div id="warrantyGrid"></div> <!-- Target div for the grid -->
             </section>
         </div>
 
@@ -376,6 +416,106 @@
             window.location.href = "https://www.amazon.com/s?k=" + keyword;
             window.open(url, "_blank");
         }
+
+        // WARRANTY
+        // Updated const array with name and URL for each item
+        const warrantyItems = [{
+                name: 'Acer',
+                url: 'https://www.acer.com/us-en/support'
+            },
+            {
+                name: 'AMD',
+                url: 'https://www.amd.com/en/support/kb/warranty-information/warranty'
+            },
+            {
+                name: 'Asus',
+                url: 'https://www.asus.com/us/support/'
+            },
+            {
+                name: 'Apple',
+                url: 'https://checkcoverage.apple.com/'
+            },
+            {
+                name: 'Dell',
+                url: 'https://www.dell.com/support/home/'
+            },
+            {
+                name: 'Framework',
+                url: 'https://frame.work/support'
+            },
+            {
+                name: 'GigaByte',
+                url: 'https://www.gigabyte.com/Support'
+            },
+            {
+                name: 'Hewlett-Packard',
+                url: 'https://support.hp.com/us-en/checkwarranty'
+            },
+            {
+                name: 'Huawei',
+                url: 'https://consumer.huawei.com/en/support/'
+            },
+            {
+                name: 'Intel',
+                url: 'https://www.intel.com/content/www/us/en/support.html'
+            },
+            {
+                name: 'Lenovo',
+                url: 'https://pcsupport.lenovo.com/'
+            },
+            {
+                name: 'LG',
+                url: 'https://www.lg.com/us/support'
+            },
+            {
+                name: 'Microsoft',
+                url: 'https://account.microsoft.com/devices'
+            },
+            {
+                name: 'MSI',
+                url: 'https://www.msi.com/support/'
+            },
+            {
+                name: 'Samsung',
+                url: 'https://www.samsung.com/us/support/'
+            },
+            {
+                name: 'XPG',
+                url: 'https://www.xpg.com/en/support/'
+            },
+            {
+                name: 'Valve',
+                url: 'https://help.steampowered.com/'
+            },
+            // Add more items as needed
+        ];
+
+        function createGridForWarranty(warrantyId) {
+            const targetDiv = document.getElementById('warrantyGrid');
+
+            if (targetDiv && warrantyId) {
+                targetDiv.setAttribute('warrantyId', warrantyId);
+
+                let gridHtml = '<div class="grid-container">';
+
+                // Loop through the warrantyItems array to fill the grid
+                for (const item of warrantyItems) {
+                    // Linking the name to the URL
+                    gridHtml += `<div class="grid-item"><b><a href="${item.url}" target="_blank">${item.name}</a></b></div>`;
+                }
+
+                gridHtml += '</div>';
+                targetDiv.innerHTML = gridHtml;
+            }
+        }
+
+        // Example usage
+        createGridForWarranty('123');
+
+
+        // Example usage
+        // Call this function when you need to create the grid, providing a warrantyId
+        createGridForWarranty('123');
     </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
