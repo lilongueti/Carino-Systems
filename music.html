@@ -34,26 +34,20 @@
         <header id="header" class="alt style2">
             <a href="index.html" class="logo"><strong>Carino</strong> <span>Systems</span></a>
             <nav>
-                <a href="#menu">Menu</a>
+                <a href="#menu">Watch the video</a>
             </nav>
         </header>
         <!-- Menu -->
         <nav id="menu">
-            <ul class="links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="landing.html">Landing</a></li>
-                <li><a href="generic.html">Generic</a></li>
-                <li><a href="elements.html">Elements</a></li>
-            </ul>
-            <ul class="actions stacked">
-                <li><a href="#" class="button primary fit">Get Started</a></li>
-                <li><a href="#" class="button fit">Log In</a></li>
-            </ul>
-            <div id="youtubePlayerContainer" style="display:none;">
+            <div id="youtubePlayerContainer" class="actions" style="display:none;">
                 <div id="youtubePlayer"></div>
                 <br>
                 <button onclick="closePlayer()">Close Player</button>
             </div>
+            <ul class="actions stacked">
+                
+            </ul>
+            
         </nav>
         <div style="padding-left: 5%; background-color: rgb(219, 165, 48);" id="videoInfo">
         </div>
@@ -591,8 +585,8 @@
             // This function creates an iframe (YouTube player) after the API code downloads.
             function onYouTubeIframeAPIReady() {
                 player = new YT.Player('youtubePlayer', {
-                    height: '390', // Adjust the size as needed
-                    width: '640',
+                    height: '750em', // Adjust the size as needed
+                    width: '60%',
                     videoId: '', // Initial video ID (can be empty or any valid YouTube video ID)
                     events: {
                         'onReady': onPlayerReady,

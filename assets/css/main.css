@@ -4268,7 +4268,7 @@ context {
     -ms-justify-content: center;
     justify-content: center;
     pointer-events: none;
-    background: rgba(36, 41, 67, 0.9);
+    background: rgba(0, 0, 0, 0.712);
     box-shadow: none;
     height: 100%;
     left: 0;
@@ -4298,7 +4298,7 @@ context {
     overflow: auto;
     text-align: center;
     visibility: hidden;
-    width: 18em
+    width: 80%;
 }
 
 #menu .inner> :first-child {
@@ -4572,6 +4572,7 @@ body.is-menu-visible #menu .inner {
         right: 0;
         bottom: 0;
         left: 0;
+        max-width: fit-content;
         z-index: -1;
         /* Behind other content; adjust as necessary */
         display: none;
