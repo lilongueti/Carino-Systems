@@ -507,7 +507,7 @@ purposeMenu ()
     0)
         caution $1
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $gamingPackages $multimediaPackages $developmentPackages $virtconPackages $amdPackagesRPM $supportPackages $ciscoPackages $googlePackages $languagePackages $postFlags
-        #installSVP #Trying to find a FOSS alternative for smooth video
+        installSVP #Trying to find a FOSS alternative for smooth video
         distroboxContainers
         finalTweaks
         sudo usermod -aG libvirt $(whoami)
@@ -665,7 +665,7 @@ supportPackages="bleachbit remmina filezilla keepassxc bless xxd dynamips" #stac
 amdPackages="ocl-icd-dev* opencl-headers libdrm-dev* rocm*"
 nvidiaPackages="vdpauinfo libva-utils vulkan nvidia-xconfig xorg-x11-drv-nvidia-cuda libva-vdpau-driver" #libva-vdpau-driver kernel-headers kernel-devel xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 xorg-x11-drv-nvidia-cuda xorg-x11-drv-nvidia-cuda-libs
 xfcePackages="task-xfce-desktop @xfce-desktop-environment @Xfce @base-x"
-gnomePackages="task-gnome-desktop @workstation-product-environment @gnome @base-x"
+gnomePackages="task-gnome-desktop @workstation-product-environment @gnome @base-x gnome-extensions"
 kdePackages="task-kde-desktop @kde-desktop-environment @kde @base-x"
 lxqtPackages="task-lxqt-desktop @lxqt-desktop-environment"
 cinnamonPackages="task-cinnamon-desktop @cinnamon-desktop-environment"
@@ -701,5 +701,5 @@ googlePackages="https://dl.google.com/linux/direct/google-chrome-stable_current_
 ciscoPackages="https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm vpnc"
 # CustomPackages
 languagePackages="fcitx5 fcitx5-mozc"
-carinoPackages="lpf-spotify-client telegram-desktop texlive-scheme-full gnome-extensions"
+carinoPackages="lpf-spotify-client telegram-desktop texlive-scheme-full"
 identifyDistro
