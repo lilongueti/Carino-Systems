@@ -63,7 +63,7 @@ if [[ -f /etc/os-release ]]; then
     argInstall=install
     argUpdate=update
     preFlags=""
-    postFlags="--skip-broken --allowerasing -y"
+    postFlags="--allowerasing --skip-broken -y && sudo dnf install ffmpeg -allowerasing -y"
     essentialPackages="$essentialPackages $essentialPackagesRPM"
     amdPackages="$amdPackages $amdPackagesRPM"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
@@ -307,13 +307,13 @@ flathubEnable ()
     read option
     case $NAME in
     *Fedora*|*Nobara*|*Risi*|*Ultramarine*)
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     ;;
     *Red*)
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     ;;
     *Debian*|*Ubuntu*|*Kubuntu*|*Lubuntu*|*Xubuntu*|*Uwuntu*|*Linuxmint*)
-    flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     ;;
     *)
     ;;
@@ -656,7 +656,7 @@ basicUserPackages="gedit yt-dlp thunderbird mpv ffmpeg ffmpegthumbnailer tumbler
 basicSystemPackages="wine xrdp htop powertop neofetch tldr *gtkglext* libxdo-* ncdu scrot xclip"
 basicDesktopEnvironmentPackages="nautilus fontawesome-fonts"
 #Gaming packages will allow enduseres to play on the most popular platforms
-gamingPackages="steam goverlay lutris mumble"
+gamingPackages="steam goverlay lutris"
 #Multimedia pacakges allow the end user to use the most
 multimediaPackages="gimp krita blender kdenlive gstreamer* gscan2pdf python3-qt* python3-vapoursynth qt5-qtbase-devel vapoursynth-* libqt5* libass*" #qt5-qtbase-devel python3-qt5
 developmentPackages="gcc cargo npm python3-pip nodejs golang conda* dbeaver"
