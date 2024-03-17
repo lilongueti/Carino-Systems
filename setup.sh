@@ -361,18 +361,18 @@ installproton ()
   if [ $(ls ~/.steam/root/ | grep compatibilitytools.d) ]
   then
       CURRENTVERSION=$(ls ~/.steam/root/compatibilitytools.d | tail -c 3)
-      for I in 40 39 38 37 36 35 34 33 32 31 30
+      for I in 11 10 9 8 7 6 5 4 3 2 1
        do
            if [[ $CURRENTVERSION -eq $I ]]
            then
                echo -e "${GREEN}You already have the latest ProtonGE $I version.${ENDCOLOR}"
            else
                PROTONVERSION=$I
-               wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton8-$PROTONVERSION/GE-Proton8-$PROTONVERSION.tar.gz &> /dev/null
+               wget https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton9-$PROTONVERSION/GE-Proton9-$PROTONVERSION.tar.gz &> /dev/null
                if [ $? -eq 0 ]
                then
                    echo -e "Installing version $PROTONVERSION..."
-                   sudo tar -xf GE-Proton8-$PROTONVERSION.tar.gz -C ~/.steam/root/compatibilitytools.d && rm GE-Proton8-$PROTONVERSION.tar.gz
+                   sudo tar -xf GE-Proton9-$PROTONVERSION.tar.gz -C ~/.steam/root/compatibilitytools.d && rm GE-Proton9-$PROTONVERSION.tar.gz
                    echo -e "${GREEN}ProtonGE $PROTONVERSION has been installed.${ENDCOLOR}"
                    break
                else
@@ -430,7 +430,7 @@ distroboxContainers ()
 {
     distrobox-create --name fedora --image quay.io/fedora/fedora:39 -Y
     distrobox-create --name ubuntu --image docker.io/library/ubuntu:22.04 -Y
-    distrobox-create --name rhel --image registry.access.redhat.com/ubi9/ubi -Y
+    #distrobox-create --name rhel --image registry.access.redhat.com/ubi9/ubi -Y
     distrobox-create --name debian --image docker.io/library/debian:12 -Y
     #distrobox-create --name clearlinux --image docker.io/library/clearlinux:latest -Y
     #distrobox-create --name centos --image quay.io/centos/centos:stream9 -Y
@@ -453,6 +453,7 @@ purposeMenu ()
     2)
         caution $1
         sudo $pkgm $argInstall $preFlags $basicUserPackages $basicSystemPackages $supportPackages $googlePackages $gamingPackages $postFlags
+        installproton
         ;;
     3)
         caution $1
