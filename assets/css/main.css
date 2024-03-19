@@ -2879,6 +2879,75 @@ button:disabled,
     background-position: center
 }
 
+.mslin-button {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    background-image: url('../../images/icons/msoffice.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform
+}
+
+.mslin-button:active,
+.mslin-button:focus,
+.mslin-button:hover {
+    transform: scale(1.4)
+}
+
+.librelin-button {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    background-image: url('../../images/icons/libreoffice.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform
+}
+
+.librelin-button:active,
+.librelin-button:focus,
+.librelin-button:hover {
+    transform: scale(1.4)
+}
+
+.pdflin-button {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    background-image: url('../../images/icons/pdf.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform
+}
+
+.pdflin-button:active,
+.pdflin-button:focus,
+.pdflin-button:hover {
+    transform: scale(1.4)
+}
+
 .selected {
     background-color: #278136;
     /* Change color as needed */
@@ -2926,6 +2995,31 @@ button:disabled,
 }
 
 .softcell:hover {
+    transform: scale(1.1)
+}
+
+#documentationid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    overflow: auto;
+    height: fit-content;
+    position: relative;
+    scroll-behavior: smooth;
+    padding: 5px;
+    background: #292731
+}
+
+.documentationcell {
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+    background-color: #205497;
+    border: 10px solid #292731;
+    border-radius: 15px;
+    padding: 0
+}
+
+.documentation:hover {
     transform: scale(1.1)
 }
 
