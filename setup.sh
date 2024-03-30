@@ -623,6 +623,7 @@ finalTweaks ()
     ;;
     *hyprland*)
     curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/hyprland.conf > ~/.config/hypr/hyprland.conf
+    curl -s https://raw.githubusercontent.com/MiguelCarino/Carino-Systems/main/profiles/hyprland.conf > ~/.config/hypr/hyprland.conf
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark
     xdg-mime default thunar.desktop inode/directory
     mkdir ~/.config/hypr/
@@ -649,7 +650,7 @@ updateSystem ()
 # Declaring Packages
 # Generic GNU/Linux Packages
 #Essential packages are what will allow system review for advanced users and stable hardware experience
-essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers elinks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g* lsof xinput flatpak" #gcc-c++ lm_sensors.x86_64
+essentialPackages="pciutils git cmake wget nano curl jq mesa-va-drivers mesa-vdpau-drivers el1inks nasm ncurses-dev* lshw lm*sensors rsync rclone mediainfo cifs-utils ntfs-3g* lsof xinput flatpak" #gcc-c++ lm_sensors.x86_64
 #Server packages ensure SSH, FTP and RDP connectivity, so advanced users can configure and use the server remotely
 serverPackages="netcat-traditional xserver-xorg-video-dummy openssh-server cockpit expect ftp vsftpd sshpass"
 #Basic packages will allow endusers to perform basic activities or get basic features
