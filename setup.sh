@@ -63,7 +63,7 @@ if [[ -f /etc/os-release ]]; then
     argInstall=install
     argUpdate=update
     preFlags=""
-    postFlags="--allowerasing --skip-broken -y && sudo dnf install ffmpeg -allowerasing -y"
+    postFlags="--allowerasing --skip-broken -y && sudo dnf install ffmpeg --allowerasing -y"
     essentialPackages="$essentialPackages $essentialPackagesRPM"
     amdPackages="$amdPackages $amdPackagesRPM"
     nvidiaPackages="$nvidiaPackages $nvidiaPackagesRPM"
