@@ -3,9 +3,9 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     "margin": "9 13 -10 18",
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/language", "keyboard-state", "hyprland/submap"],
-    "modules-center": ["clock", "custom/weather"],
-    "modules-right": ["network", "pulseaudio", "cpu", "custom/mem", "custom/gpu", "custom/vram", "custom/storage", "backlight", "battery", "tray"],
+    "modules-left": ["hyprland/workspaces", "hyprland/language", "keyboard-state", "hyprland/submap", "custom/window"],
+    "modules-center": ["clock", "custom/dnf", "custom/weather"],
+    "modules-right": ["network", "pulseaudio", "cpu", "temperature", "custom/mem", "custom/gpu", "custom/gputemp" ,"custom/vram", "custom/storage", "backlight", "battery", "tray"],
 
 
     //***************************
@@ -17,20 +17,28 @@
     },
 
     "hyprland/language": {
-        "format-en": "US",
-        "format-ru": "RU",
+        "format-en": "US ⾆ |",
+        "format-es": "ES ⾆ |",
 	"min-length": 5,
 	"tooltip": false
     },
 
     "keyboard-state": {
-        //"numlock": true,
+        "numlock": true,
         "capslock": true,
         "format": "{icon} ",
         "format-icons": {
             "locked": " ",
             "unlocked": ""
         },
+    },
+
+    "custom/window": {
+        //"exec": "~/.config/waybar/scripts/window_title_module.sh",
+	//"exec": "hyprctl activewindow | awk '/title:/ {print $2 $3}'",
+	"exec": "hyprctl activewindow | awk '/title:/ {str = str $2 \" \" $3 \" \" $4 \" - \" } /initialTitle:/ {str = str $2 \" \" $3} END {printf \"%s\", str}'",
+	"interval": 2,
+        "format": "{}",
     },
 
     "custom/dnf": {
@@ -95,14 +103,14 @@
     },
 
     "custom/mem": {
-        "format": "{}",
+        "format": "{} ⾁",
         "interval": 3,
-        "exec": "free -h -g | awk '/Mem:/{printf $3}'",
+        "exec": "$HOME/.config/waybar/scripts/used_mem.sh",
         "tooltip": false,
     },
 
     "custom/storage": {
-        "format": "{}",
+        "format": "{} ⽥",
         "interval": 3, 
         "exec": "df / | awk 'NR==2{print $5}'",
         "tooltip": false,
@@ -110,30 +118,36 @@
 
    "custom/gpu": {
       "exec": "$HOME/.config/waybar/scripts/gpu_usage.sh",
+      "on-click": "kitty nvtop",
       "interval": 2,
-      "format": "{}",
+      "format": "{} ",
       "min-length": 4
    },
 
    "custom/vram": {
       "exec": "$HOME/.config/waybar/scripts/vram_usage.sh",
       "interval": 10,
-      "format": "{}"
+      "format": "{} ⾁"
    },
 
     "cpu": {
       "interval": 2,
-      "on-click": "htop",
-      "format": "{usage}%",
+      "format": "{usage}% ",
       "on-click": "kitty htop",
       "min-length": 4
+    },
+
+    "custom/networkspeed": {
+      "exec": "~/.config/waybar/scripts/networkspeed.sh",
+      "interval": 1,
+      "format": "{}"
     },
 
     "network": {
       "interface": "wlp5s0",
       "format": "{ifname}",
       //"format-wifi": "{essid} ({signalStrength}%) ",
-      "format-wifi": "MyDamnWifi ({signalStrength}%) ",
+      "format-wifi": "Wifi ({signalStrength}%) ",
       "format-ethernet": "{ipaddr}/{cidr} 󰊗",
       "format-disconnected": "", //An empty format will hide the module.
       "tooltip-format": "{ifname} via {gwaddr} 󰊗",
@@ -144,6 +158,14 @@
       "max-length": 50,
     },
     
+    "custom/gputemp": {
+       	"exec": "$HOME/.config/waybar/scripts/gpu_temp.sh",
+	//"critical-threshold": 80,
+       	"format": "{} {icon}",
+       	"format-icons": ["", "", "", "", ""],
+       	"tooltip": false,
+    },
+
     "temperature": {
         // "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
