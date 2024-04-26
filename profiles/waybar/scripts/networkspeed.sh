@@ -21,12 +21,12 @@ get_network_speed() {
     tx_speed=$((tx_bytes_new - tx_bytes))
 
     # Convert bytes to kilobytes
-    rx_speed_kb=$(echo "scale=2; $rx_speed / 1024" | bc)
-    tx_speed_kb=$(echo "scale=2; $tx_speed / 1024" | bc)
+    rx_speed_kb=$(echo "scale=2; $rx_speed / (1024 * 1024)" | bc)
+    tx_speed_kb=$(echo "scale=2; $tx_speed / (1024 * 1024)" | bc)
 
-    echo "↑$tx_speed_kb KB/s ↓$rx_speed_kb KB/s"
+    echo "↑$tx_speed_kb MB/s ↓$rx_speed_kb MB/s"
 }
 
 # Output the network speed
-echo \"$(get_network_speed)\"
+echo "$(get_network_speed)"
 

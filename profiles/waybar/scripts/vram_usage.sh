@@ -8,4 +8,5 @@ total_gb=$(echo "$total / 1024" | bc -l)
 used_gb=$(echo "$used / 1024" | bc -l)
 
 # Output for Waybar: Used GB / Total GB
-printf "%.2f GB / %.2f GB\n" $used_gb $total_gb
+#printf "%.2f GB / %.2f GB\n" $used_gb $total_gb
+printf	"%.2f GB" $used_gb

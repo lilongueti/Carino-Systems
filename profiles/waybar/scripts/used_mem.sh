@@ -11,4 +11,4 @@ used_ram_gb=$(echo "$used_ram" | sed 's/Gi/ /' | bc)
 total_ram_gb=$(echo "$total_ram" | sed 's/Gi/ /' | bc)
 
 # Print used and total memory in the desired format
-echo "$used_ram_gb GB / $total_ram_gb GB"
+echo "$used_ram_gb GB" # / $total_ram_gb GB"

@@ -3,9 +3,9 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     "margin": "9 13 -10 18",
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/language", "keyboard-state", "hyprland/submap", "custom/window"],
+    "modules-left": ["hyprland/workspaces", "hyprland/language", "keyboard-state", "hyprland/submap", "custom/window", "custom/steam_fps"],
     "modules-center": ["clock", "custom/dnf", "custom/weather"],
-    "modules-right": ["network", "pulseaudio", "cpu", "temperature", "custom/mem", "custom/gpu", "custom/gputemp" ,"custom/vram", "custom/storage", "backlight", "battery", "tray"],
+    "modules-right": ["network", "custom/networkspeed", "pulseaudio", "cpu", "temperature", "custom/mem", "custom/gpu", "custom/gputemp" ,"custom/vram", "backlight", "battery", "tray"],
 
 
     //***************************
@@ -17,8 +17,8 @@
     },
 
     "hyprland/language": {
-        "format-en": "US ⾆ |",
-        "format-es": "ES ⾆ |",
+        "format-en": "US 💬 |",
+        "format-es": "ES 💬 |",
 	"min-length": 5,
 	"tooltip": false
     },
@@ -39,6 +39,12 @@
 	"exec": "hyprctl activewindow | awk '/title:/ {str = str $2 \" \" $3 \" \" $4 \" - \" } /initialTitle:/ {str = str $2 \" \" $3} END {printf \"%s\", str}'",
 	"interval": 2,
         "format": "{}",
+    },
+
+    "custom/steam_fps": {
+	"format": "{output}",
+	"exec": "~/.config/waybar/scripts/steam_fps.py",
+	"interval": 1
     },
 
     "custom/dnf": {
@@ -67,7 +73,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%a, %b %d, %H:%M}"
+        "format": "{:%a, %b %d, %H:%M:%S}",
+	"interval": 1,
 	//"format": "{%a, %d %b  %H:%M:%S}",
 	//"tooltip-format": "<big>{:%Y %B}</big>\\n<tt><small>{calendar}</small></tt>",
     },
@@ -85,9 +92,9 @@
         "reverse-scrolling": 1,
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-bluetooth-muted": "  {icon} {format_source}",
         "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
+        "format-source": "{volume}% 🎙",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
@@ -103,8 +110,8 @@
     },
 
     "custom/mem": {
-        "format": "{} ⾁",
-        "interval": 3,
+        "format": "{}🐏",
+        "interval": 5,
         "exec": "$HOME/.config/waybar/scripts/used_mem.sh",
         "tooltip": false,
     },
@@ -126,8 +133,8 @@
 
    "custom/vram": {
       "exec": "$HOME/.config/waybar/scripts/vram_usage.sh",
-      "interval": 10,
-      "format": "{} ⾁"
+      "interval": 5,
+      "format": "{}🐏"
    },
 
     "cpu": {
@@ -144,7 +151,7 @@
     },
 
     "network": {
-      "interface": "wlp5s0",
+      "interface": "wlp6s0",
       "format": "{ifname}",
       //"format-wifi": "{essid} ({signalStrength}%) ",
       "format-wifi": "Wifi ({signalStrength}%) ",
