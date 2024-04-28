@@ -251,7 +251,7 @@ a {
 
 a:hover {
     border-bottom-color: transparent;
-    color: #f3f02b !important
+    color: #ffffff !important
 }
 
 a:active {
@@ -2945,6 +2945,75 @@ button:disabled,
 .pdflin-button:active,
 .pdflin-button:focus,
 .pdflin-button:hover {
+    transform: scale(1.4)
+}
+
+.dont-button {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    background-image: url('../../images/icons/pdf.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform
+}
+
+.dont-button:active,
+.dont-button:focus,
+.dont-button:hover {
+    transform: scale(1.4)
+}
+
+.do-button {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    background-image: url('../../images/icons/pdf.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform
+}
+
+.do-button:active,
+.do-button:focus,
+.do-button:hover {
+    transform: scale(1.4)
+}
+
+.pay-button {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    background-image: url('../../images/icons/pdf.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform
+}
+
+.pay-button:active,
+.pay-button:focus,
+.pay-button:hover {
     transform: scale(1.4)
 }
 

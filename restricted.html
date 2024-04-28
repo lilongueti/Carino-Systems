@@ -87,7 +87,7 @@
                     <h1>Restricted</h1>
                 </header>
                 <div class="content">
-                    <p>Everything shown here must be avoided.</p>
+                    <p>Please be mindful of your legal restraints.</p>
                 </div>
             </div>
         </section>
@@ -154,106 +154,111 @@
         const software = [{
                 id: 'Activate Microsoft Windows',
                 url1: 'https://github.com/massgravel/Microsoft-Activation-Scripts',
-                solution: 'Microsoft Activation Scripts (MAS)',
-                alternative: 'Get Fedora instead',
-                url2: 'https://fedoraproject.org/',
-                legalsource: 'Get a Windows License',
+                title1: 'Microsoft Activation Scripts (MAS)',
+                title2: 'Get Libre Office instead',
+                url2: 'https://www.libreoffice.org/',
+                title3: 'Get a Windows License',
                 url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
             },
             {
                 id: 'Activate Microsoft Office',
                 url1: 'https://github.com/massgravel/Microsoft-Activation-Scripts',
-                solution: 'Microsoft Activation Scripts (MAS)',
-                alternative: 'Get LibreOffice instead',
+                title1: 'Microsoft Activation Scripts (MAS)',
+                title2: 'Get LibreOffice instead',
                 url2: 'https://www.libreoffice.org/',
-                legalsource: 'Get Microsoft 365',
+                title3: 'Get Microsoft 365',
                 url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
             },
             {
                 id: 'YIFY Movies (Torrents)',
                 url1: 'https://yts.mx/',
-                solution: 'Website',
-                alternative: 'Watch public domain movies instead',
+                title1: 'Website',
+                title2: 'Watch public domain movies instead',
                 url2: 'https://publicdomainmovie.net/',
-                legalsource: 'Get a Netflix subscription instead',
+                title3: 'Get a Netflix subscription instead',
                 url3: 'https://www.netflix.com/',
             },
             {
                 id: 'Nyaa (Anime and music Torrents)',
                 url1: 'https://nyaa.si/',
-                solution: 'Website',
-                alternative: 'Get official releases from Amazon instead',
+                title1: 'Website',
+                title2: 'Get official releases from Amazon instead',
                 url2: 'https://amazon.com',
-                legalsource: 'Get a Crunchyroll subscription',
+                title3: 'Get a Crunchyroll subscription',
                 url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
             },
             {
                 id: 'Rutracker (software, music and movie Torrents)',
                 url1: 'https://rutracker.org/',
-                solution: 'Website',
-                alternative: 'Get LibreOffice instead',
+                title1: 'Website',
+                title2: 'Get LibreOffice instead',
                 url2: 'https://www.libreoffice.org/',
-                legalsource: 'Get Microsoft 365',
+                title3: 'Get Microsoft 365',
                 url3: 'https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365',
             },
             // add more albums here
         ];
 
         function addCell(software) {
-            // Create the cell as an anchor element
-            const softcell = document.createElement('a');
-            /*cell.href = album.url;*/
-            softcell.target = '_blank';
-            softcell.className = 'softcell';
-            /*cell.style.backgroundImage = `url(${album.image})`;*/
+    // Create the cell as an anchor element
+    const softcell = document.createElement('a');
+    softcell.target = '_blank';
+    softcell.className = 'softcell';
 
-            // Create the three sections within the cell
-            const section1 = document.createElement('div');
-            section1.className = 'section section1';
-            section1.textContent = `${software.id}`; // Content for the first section
-            section1.style.fontWeight = 'bold';
-            softcell.appendChild(section1);
+    // Create the three sections within the cell
+    const section1 = document.createElement('div');
+    section1.className = 'section section1';
+    section1.textContent = `${software.id}`; // Content for the first section
+    softcell.appendChild(section1);
 
-            const section2 = document.createElement('div');
-            section2.className = 'section section2';
-            const linksec2 = document.createElement('a'); //Starts defining link
-            linksec2.href = software.url1;
-            linksec2.textContent = `${software.solution}`;
-            linksec2.target = '_blank'; // Open link in a new tab
-            section2.appendChild(linksec2); //Append link defined
-            softcell.appendChild(section2);
+    /*const section2 = document.createElement('div');
+    section2.className = 'section section2';
+    const linksec2 = document.createElement('a');
+    linksec2.href = software.url;
+    linksec2.textContent = `${software.solution}`;
+    linksec2.target = '_blank'; // Open link in a new tab
+    section2.appendChild(linksec2);
+    softcell.appendChild(section2);*/
 
-            const section3 = document.createElement('div');
-            section3.className = 'section section3';
-            const linksec3 = document.createElement('a'); //Starts defining link
-            linksec3.href = software.url2;
-            linksec3.textContent = `${software.alternative}`;
-            linksec3.target = '_blank'; // Open link in a new tab
-            section3.appendChild(linksec3); //Append link defined
-            softcell.appendChild(section3);
+    const section3 = document.createElement('div');
+    section3.className = 'section section3';
 
-            const section4 = document.createElement('div');
-            section4.className = 'section section4';
-            const linksec4 = document.createElement('a'); //Starts defining link
-            linksec4.href = software.url3;
-            linksec4.textContent = `${software.legalsource}`;
-            linksec4.target = '_blank'; // Open link in a new tab
-            section4.appendChild(linksec4); //Append link defined
-            softcell.appendChild(section4);
+    // Create and append the buttons
+    ['dont', 'windows', 'macos'].forEach(os => {
+    const button = document.createElement('span');
+    const command = os === 'dont' ? `sudo dnf install ${software.clin}` :
+                    os === 'windows' ? `winget install -e --id ${software.cwin}` :
+                    `brew install ${software.cmac}`;
+    button.className = `${os}-button span-space`;
+    button.setAttribute('data-text', command);
+    // Set the button title based on the button
+    if (os === 'dont') {
+        button.title = `${software.title1}`;
+        button.addEventListener('click', () => {
+        window.location.href = software.url1;
+    });
+    } else if (os === 'windows') {
+        button.title = `${software.title2}`;
+        button.addEventListener('click', () => {
+        window.location.href = software.url2;
+    });
+    } else {
+        button.title = `${software.id}`;
+        button.addEventListener('click', () => {
+        window.location.href = software.url3;
+    });
+    }
+    
+    section3.appendChild(button);
+});
+    softcell.appendChild(section3);
 
-            const section5 = document.createElement('div');
-            section5.className = 'section section5';
-            // Function to copy text to clipboard
-            function copyToClipboard(text) {
-                navigator.clipboard.writeText(text).then(() => {
-                    console.log('Text copied to clipboard');
-                }).catch(err => {
-                    console.error('Failed to copy text: ', err);
-                });
-            }
-            // Append the cell to the grid
-            softwareid.appendChild(softcell);
-        }
+    // Append the cell to the grid
+    softwareid.appendChild(softcell);
+}
+
+// Populate the grid with cells for each software
+software.forEach(addCell);
         // Populate the grid with cells for each album
         software.forEach(addCell);
     </script>
