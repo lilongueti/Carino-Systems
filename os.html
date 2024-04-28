@@ -228,7 +228,7 @@
                     </header>
                     <p>Once you have your system installed, run the following command in your terminal.</p>
                     <div style="padding:10px; border-radius:5px;">
-                        <b><span class="fedora-button" id="fedora-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="bash <(curl -s https://carino.systems/setup.sh)">Click to copy</span><span class="windows-button" id="windows-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="iwr -useb https://carino.systems/setup.ps1 | iex">Click to copy</span><span class="macos-button" id="macos-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="macOS">Click to copy</span></b>
+                        <b><span class="fedora-button" id="fedora-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="bash <(curl -s https://carino.systems/setup.sh)">Click to copy</span><span class="windows-button" id="windows-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="iwr -useb https://carino.systems/setup.ps1 | iex">Click to copy</span><span class="macos-button" id="macos-button" style="width: 156px; height: 156px; padding-top: 130px; margin-left: 10px; margin-right: 10px;" data-text="macOS">Sorry, not available</span></b>
                     </div>
                 </div>
             </section>
@@ -337,13 +337,16 @@
                     behavior: 'smooth'
                 });
             });
+            
             //Copies commands to clipboard
             document.querySelectorAll('.fedora-button').forEach(element => {
                 element.addEventListener('click', function() {
                     const text = this.getAttribute('data-text');
                     navigator.clipboard.writeText(text).then(() => {
                         console.log('Text copied to clipboard');
-                        // You can add any notification here to show that the text was copied
+                        // Show alert message
+                        const message = `"The command: ${text}" has copied to the clipboard`;
+                        alert(message);
                     }).catch(err => {
                         console.error('Error in copying text: ', err);
                     });
@@ -355,7 +358,9 @@
                     const text = this.getAttribute('data-text');
                     navigator.clipboard.writeText(text).then(() => {
                         console.log('Text copied to clipboard');
-                        // You can add any notification here to show that the text was copied
+                        // Show alert message
+                        const message = `"The command: ${text}" has copied to the clipboard`;
+                        alert(message);
                     }).catch(err => {
                         console.error('Error in copying text: ', err);
                     });
@@ -367,13 +372,14 @@
                     const text = this.getAttribute('data-text');
                     navigator.clipboard.writeText(text).then(() => {
                         console.log('Text copied to clipboard');
-                        // You can add any notification here to show that the text was copied
+                        // Show alert message
+                        const message = `"The command: ${text}" has copied to the clipboard`;
+                        alert(message);
                     }).catch(err => {
                         console.error('Error in copying text: ', err);
                     });
                 });
             });
-
         });
     </script>
     <script src="assets/js/jquery.min.js"></script>
