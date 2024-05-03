@@ -3058,7 +3058,8 @@ button:disabled,
     background-position: center;
     transition: transform 0.3s ease;
     background-color: #205497;
-    border: 10px solid #292731;
+    margin: 10px;
+    border-bottom: 0px;
     border-radius: 15px;
     padding: 0
 }
