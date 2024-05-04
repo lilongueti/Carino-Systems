@@ -3,9 +3,9 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     "margin": "9 13 -10 18",
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/language", "keyboard-state", "hyprland/submap", "custom/window", "custom/steam_fps"],
+    "modules-left": ["hyprland/workspaces", "hyprland/language", "keyboard-state", "hyprland/submap", "custom/window"],
     "modules-center": ["clock", "custom/dnf", "custom/weather"],
-    "modules-right": ["network", "custom/networkspeed", "pulseaudio", "cpu", "temperature", "custom/mem", "custom/gpu", "custom/gputemp" ,"custom/vram", "backlight", "battery", "tray"],
+    "modules-right": ["network", "custom/networkspeed", "pulseaudio", "custom/cpu", "custom/gpu", "backlight", "battery", "tray"],
 
 
     //***************************
@@ -109,13 +109,6 @@
         "min-length": 13,
     },
 
-    "custom/mem": {
-        "format": "{}🐏",
-        "interval": 5,
-        "exec": "$HOME/.config/waybar/scripts/used_mem.sh",
-        "tooltip": false,
-    },
-
     "custom/storage": {
         "format": "{} ⽥",
         "interval": 3, 
@@ -127,21 +120,26 @@
       "exec": "$HOME/.config/waybar/scripts/gpu_usage.sh",
       "on-click": "kitty nvtop",
       "interval": 2,
-      "format": "{} ",
+      "format": "{}",
       "min-length": 4
    },
-
-   "custom/vram": {
-      "exec": "$HOME/.config/waybar/scripts/vram_usage.sh",
-      "interval": 5,
-      "format": "{}🐏"
-   },
-
-    "cpu": {
-      "interval": 2,
-      "format": "{usage}% ",
-      "on-click": "kitty htop",
-      "min-length": 4
+   
+    "custom/cpu": {
+        "exec": "$HOME/.config/waybar/scripts/cpu_usage.sh",
+        "on-click": "kitty htop",
+        "interval": 2,
+        "format": "{}",
+        "min-length": 4
+    },
+    
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false,
     },
 
     "custom/networkspeed": {
@@ -163,24 +161,6 @@
       "tooltip-format-disconnected": "Disconnected",
       "on-click": "kitty nmtui",
       "max-length": 50,
-    },
-    
-    "custom/gputemp": {
-       	"exec": "$HOME/.config/waybar/scripts/gpu_temp.sh",
-	//"critical-threshold": 80,
-       	"format": "{} {icon}",
-       	"format-icons": ["", "", "", "", ""],
-       	"tooltip": false,
-    },
-
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", "", "", ""],
-        "tooltip": false,
     },
 
     "backlight": {
