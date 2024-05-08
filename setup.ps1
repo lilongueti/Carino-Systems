@@ -141,7 +141,7 @@ switch ($b)
     "Oracle.JavaRuntimeEnvironment",
     #"Mozilla.Thunderbird",
     "AnyDeskSoftwareGmbH.AnyDesk",
-    "RustDesk.RustDesk",
+    #"RustDesk.RustDesk",
     #"Telegram.TelegramDesktop",
     "TheDocumentFoundation.LibreOffice",
     "KeePassXCTeam.KeePassXC",
@@ -214,7 +214,7 @@ switch ($b)
    }
 }
 #Setting up a new hostname
-Write-Host "Please, provide a name for your computer:"
-ForegroundColor Green
-$ComputerName = Read-Host
-Rename-Computer -NewName "$ComputerName"
+#Write-Host "Please, provide a name for your computer:"
+#ForegroundColor Green
+#$ComputerName = Read-Host
+#Rename-Computer -NewName "$ComputerName"
