@@ -112,12 +112,28 @@
     <script>
         const softwareid = document.getElementById('softwareid');
         const software = [{
-                id: 'Web Browser',
+                id: 'Private Web Browser',
                 url: 'https://www.mozilla.org/en-US/firefox/new/',
                 solution: 'Firefox',
                 clin: 'firefox',
                 cwin: 'Mozilla.Firefox',
                 cmac: '--cask firefox'
+            },
+            {
+                id: 'Popular Web Browser',
+                url: 'https://www.chromium.org/getting-involved/download-chromium/',
+                solution: 'Chromium',
+                clin: 'chromium',
+                cwin: 'Hibbiki.Chromium',
+                cmac: '--cask chromium'
+            },
+            {
+                id: 'Time tracker',
+                url: 'https://www.chromium.org/getting-involved/download-chromium/',
+                solution: 'ActivityWatch',
+                clin: 'sorry, not available',
+                cwin: 'ActivityWatch.ActivityWatch',
+                cmac: '--cask activitywatch'
             },
             {
                 id: 'Data Compression',
@@ -136,7 +152,7 @@
                 cmac: 'mariadb'
             },
             {
-                id: 'Objet Relational Database',
+                id: 'Object Relational Database',
                 url: 'https://www.postgresql.org',
                 solution: 'PostgreSQL',
                 clin: 'postgresql',
@@ -368,6 +384,14 @@
                 cmac: '--cask qgis'
             },
             {
+                id: 'Collaborative platform',
+                url: 'https://nextcloud.com/',
+                solution: 'Nextcloud',
+                clin: 'nextcloud',
+                cwin: 'Nextcloud.NextcloudDesktop',
+                cmac: '--cask nextcloud'
+            },
+            {
                 id: 'Collaborative global map',
                 url: 'https://www.openstreetmap.org/',
                 solution: 'Open Street Map',
@@ -419,7 +443,7 @@
                 id: 'Code Editor',
                 url: 'https://vscodium.com/',
                 solution: 'VSCodium',
-                clin: 'https://github.com/VSCodium/vscodium/releases/download/1.88.1.24104/codium-1.88.1.24104-el7.x86_64.rpm',
+                clin: 'https://github.com/VSCodium/vscodium/releases/download/1.89.0.24127/codium-1.89.0.24127-el7.x86_64.rpm',
                 cwin: 'VSCodium.VSCodium',
                 cmac: '--cask vscodium'
             },
