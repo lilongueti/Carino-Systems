@@ -25,6 +25,7 @@ purpose_setup_ko_KR="디스트리뷰션의 목적을 선택해 주세요:\n1. �
 purpose_setup_he_IL="בחרו את המטרה עבור ההפצה שלכם:\n1. בסיסי\n2. משחקים\n3. תאגידי\n4. פיתוח\n5. אסטרונומיה\n6. נוירו-מחשב\n7. עיצוב\n8. ג'אם\n9. מעבדת אבטחה\n10. רובוטיקה\n11. מדעי\n12. לא מקוון"
 
 # Declaring Global Functions
+
 info (){
   echo -e "${BLUE}$1${ENDCOLOR}"
 }
