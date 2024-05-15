@@ -525,7 +525,7 @@ purposeMenu ()
 serverSetup ()
 {
     sudo $pkgm update -y && sudo $pkgm upgrade -y
-    sudo $pkgm $argInstall $preFlags $essentialPackages $basicSystemPackages $serverPackages $supportPackages $developmentPackages $postFlags
+    sudo $pkgm $argInstall $preFlags $essentialPackages $basicSystemPackages $serverPackages $developmentPackages $postFlags
     #wget https://github.com/rustdesk/rustdesk/releases/download/1.2.3-2/rustdesk-1.2.3-2-x86_64.deb
     #wget https://download.anydesk.com/linux/anydesk_6.3.1-1_amd64.deb
     #sudo dpkg -i rustdesk-*
