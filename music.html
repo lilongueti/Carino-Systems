@@ -240,7 +240,7 @@
   </style>
     <div class="container">
     <div class="column">
-        <img src="images/lurking/mu_63.webp" style="max-height: 14em;"></img>
+        <img src="images/lurking/${album.url}" style="max-height: 14em;"></img>
     </div>
     <div class="column">
         <p style="font-size: 26px;">Now playing - <b>${details.title}</b>
@@ -287,6 +287,7 @@
                 musiccell.style.backgroundImage = `url(images/lurking/${album.image})`;
                 musiccell.onclick = function() {
                     fetchVideoDetails(album.url); // Fetch and display video details
+                    fetchVideoDetails(album.image); // Fetch and display video details
                     player.loadVideoById(album.url);
                     document.getElementById('youtubePlayerContainer').style.display = 'block';
                 };

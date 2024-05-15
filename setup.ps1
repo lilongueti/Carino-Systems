@@ -140,13 +140,13 @@ switch ($b)
     "OBSProject.OBSStudio",
     "Oracle.JavaRuntimeEnvironment",
     #"Mozilla.Thunderbird",
-    "AnyDeskSoftwareGmbH.AnyDesk",
+    #"AnyDeskSoftwareGmbH.AnyDesk",
     #"RustDesk.RustDesk",
     #"Telegram.TelegramDesktop",
-    "TheDocumentFoundation.LibreOffice",
-    "KeePassXCTeam.KeePassXC",
-    "Git.Git"
-    #"ONLYOFFICE.DesktopEditors"
+    #"TheDocumentFoundation.LibreOffice",
+    #"KeePassXCTeam.KeePassXC",
+    #"Git.Git"
+    "ONLYOFFICE.DesktopEditors"
 ) | foreach {winget install $_}
    }
    "4" {
