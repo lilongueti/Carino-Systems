@@ -1,0 +1,4 @@
+Contact: mailto:carino@cock.li
+Expires: 2024-12-06T07:36:00.000Z
+Preferred-Languages: en, es
+Canonical: https://carino.systems/.well-known/security.txt
