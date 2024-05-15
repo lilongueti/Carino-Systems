@@ -112,7 +112,7 @@
     <script>
         const softwareid = document.getElementById('softwareid');
         const software = [{
-                id: 'Private Web Browser',
+                id: 'Web Browser',
                 url: 'https://www.mozilla.org/en-US/firefox/new/',
                 solution: 'Firefox',
                 clin: 'firefox',
@@ -120,45 +120,21 @@
                 cmac: '--cask firefox'
             },
             {
+                id: 'Office Suite',
+                url: 'https://www.onlyoffice.com/download-desktop.aspx',
+                solution: 'Only Office',
+                clin: 'https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm',
+                cwin: 'ONLYOFFICE.DesktopEditors',
+                cmac: '--cask onlyoffice'
+            },/*
+            {
                 id: 'Popular Web Browser',
                 url: 'https://www.chromium.org/getting-involved/download-chromium/',
                 solution: 'Chromium',
                 clin: 'chromium',
                 cwin: 'Hibbiki.Chromium',
                 cmac: '--cask chromium'
-            },
-            {
-                id: 'Time and Activity Tracker',
-                url: 'https://activitywatch.net/downloads/',
-                solution: 'ActivityWatch',
-                clin: 'sorry, not available',
-                cwin: 'ActivityWatch.ActivityWatch',
-                cmac: '--cask activitywatch'
-            },
-            {
-                id: 'Data Compression',
-                url: 'https://www.7-zip.org/download.html',
-                solution: '7zip',
-                clin: 'p7zip',
-                cwin: 'M2Team.NanaZip',
-                cmac: 'sevenzip'
-            },
-            {
-                id: 'Relational Database',
-                url: 'https://mariadb.org/',
-                solution: 'MariaDB',
-                clin: 'mariadb',
-                cwin: 'MariaDB.Server',
-                cmac: 'mariadb'
-            },
-            {
-                id: 'Object Relational Database',
-                url: 'https://www.postgresql.org',
-                solution: 'PostgreSQL',
-                clin: 'postgresql',
-                cwin: 'PostgreSQL.PostgreSQL',
-                cmac: 'postgresql@14'
-            },
+            },*/
             {
                 id: 'Media Player',
                 url: 'https://mpv.io/installation/',
@@ -176,12 +152,12 @@
                 cmac: 'okular'
             },
             {
-                id: 'Office Suite',
-                url: 'https://www.onlyoffice.com/download-desktop.aspx',
-                solution: 'Only Office',
-                clin: 'https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors.x86_64.rpm',
-                cwin: 'ONLYOFFICE.DesktopEditors',
-                cmac: '--cask onlyoffice'
+                id: 'Data Compression',
+                url: 'https://www.7-zip.org/download.html',
+                solution: '7zip',
+                clin: 'p7zip',
+                cwin: 'M2Team.NanaZip',
+                cmac: 'sevenzip'
             },
             /*{
                 id: 'Office Suite',
@@ -230,6 +206,38 @@
                 clin: 'audacity',
                 cwin: 'Audacity.Audacity',
                 cmac: '--cask audacity'
+            },
+            {
+                id: 'Code Editor',
+                url: 'https://vscodium.com/',
+                solution: 'VSCodium',
+                clin: 'https://github.com/VSCodium/vscodium/releases/download/1.89.0.24127/codium-1.89.0.24127-el7.x86_64.rpm',
+                cwin: 'VSCodium.VSCodium',
+                cmac: '--cask vscodium'
+            },
+            {
+                id: 'Time and Activity Tracker',
+                url: 'https://activitywatch.net/downloads/',
+                solution: 'ActivityWatch',
+                clin: 'sorry, not available',
+                cwin: 'ActivityWatch.ActivityWatch',
+                cmac: '--cask activitywatch'
+            },
+            {
+                id: 'Relational Database',
+                url: 'https://mariadb.org/',
+                solution: 'MariaDB',
+                clin: 'mariadb',
+                cwin: 'MariaDB.Server',
+                cmac: 'mariadb'
+            },
+            {
+                id: 'Object Relational Database',
+                url: 'https://www.postgresql.org',
+                solution: 'PostgreSQL',
+                clin: 'postgresql',
+                cwin: 'PostgreSQL.PostgreSQL',
+                cmac: 'postgresql@14'
             },
             {
                 id: 'Digital Forensics Platform',
@@ -438,14 +446,6 @@
                 clin: 'musescore',
                 cwin: 'Musescore.Musescore',
                 cmac: '--cask musescore'
-            },
-            {
-                id: 'Code Editor',
-                url: 'https://vscodium.com/',
-                solution: 'VSCodium',
-                clin: 'https://github.com/VSCodium/vscodium/releases/download/1.89.0.24127/codium-1.89.0.24127-el7.x86_64.rpm',
-                cwin: 'VSCodium.VSCodium',
-                cmac: '--cask vscodium'
             },
             //{ id: 'Media Player', url: 'https://mpv.io/installation/', solution: 'mpv', clin: 'mpv', cwin: 'tsl0922.ImPlay', cmac: 'mpv' },
             //{ id: 'Media Player', url: 'https://mpv.io/installation/', solution: 'mpv', clin: 'mpv', cwin: 'tsl0922.ImPlay', cmac: 'mpv' },
