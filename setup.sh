@@ -682,7 +682,7 @@ hyprlandPackages="hyprland xorg-x11-server-Xwayland waybar xdg-desktop-portal-hy
 # Specific GNU/Linux Packages
 intelPackages="intel-media-*driver"
 essentialPackagesRPM="NetworkManager-tui xkill tigervnc-server dhcp-server"
-essentialPackagesDebian="software-properties-common build-essential manpages-dev linux-headers-amd64 linux-image-amd64 net-tools x11-utils tigervnc-standalone-server tigervnc-common tightvncserver isc-dhcp-server" #libncurses5-dev libncursesw5-dev libgtkglext1
+essentialPackagesDebian="software-properties-common build-essential manpages-dev net-tools x11-utils tigervnc-standalone-server tigervnc-common tightvncserver isc-dhcp-server" #libncurses5-dev libncursesw5-dev libgtkglext1 linux-headers-amd64 linux-image-amd64 
 virtconPackagesRPM="@virtualization libvirt libvirt-devel virt-install qemu-kvm qemu-img virt-manager"
 virtconPackagesDebian="libvirt-daemon-system libvirt-clients"
 amdPackagesRPM="xorg-x11-drv-amdgpu systemd-devel" #xorg-x11-dr*
