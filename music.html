@@ -191,9 +191,9 @@
             ];
 
             // Function to fetch video details
-            function fetchVideoDetails(videoId, album) {
+            function fetchVideoDetails(album) {
             const API_KEY = 'AIzaSyCxJJiioJa44xJ8OA9jrLNKqmTBblZlArc'; // Replace with your YouTube Data API key
-            const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`;
+            const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${album.url}&key=${API_KEY}`;
 
             fetch(url)
                 .then(response => response.json())
@@ -201,8 +201,8 @@
                     if (data.items.length > 0) {
                         const videoDetails = data.items[0].snippet;
                         console.log("Video Details:", videoDetails); // Check videoDetails object
-                        console.log("Album:", album); // Check album object
-                        displayVideoInfo(videoDetails, videoId, album); // Pass album to displayVideoInfo
+                        console.log("Album Image:", album.image); // Check album object
+                        displayVideoInfo(videoDetails, album); // Pass album to displayVideoInfo
                     } else {
                         console.log("No video details found.");
                     }
@@ -211,11 +211,11 @@
             }
 
             // Function to display video details in your page
-            function displayVideoInfo(details, videoId, album) {
+            function displayVideoInfo(details, album) {
             const videoInfoDiv = document.getElementById('videoInfo');
-            const videoCover = `images/lurking/${album}`;
-            const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
-            const videoUrlInvidious = `https://yewtu.be/watch?v=${videoId}`;
+            const videoCover = `images/lurking/${album.umage}`;
+            const videoUrl = `https://www.youtube.com/watch?v=${album.url}`;
+            const videoUrlInvidious = `https://yewtu.be/watch?v=${album.url}`;
 
             videoInfoDiv.innerHTML = `
             <style>
@@ -240,7 +240,7 @@
   </style>
     <div class="container">
     <div class="column">
-        <img src="images/lurking/${album}" style="max-height: 14em;"></img>
+        <img src="images/lurking/${album.image}" style="max-height: 14em;"></img>
     </div>
     <div class="column">
         <p style="font-size: 26px;">Now playing - <b>${details.title}</b>
@@ -286,7 +286,7 @@
                 musiccell.className = 'cell';
                 musiccell.style.backgroundImage = `url(images/lurking/${album.image})`;
                 musiccell.onclick = function() {
-                    fetchVideoDetails(album.url, album.image); // Fetch and display video details
+                    fetchVideoDetails(album); // Fetch and display video details
                     player.loadVideoById(album.url);
                     document.getElementById('youtubePlayerContainer').style.display = 'block';
                 };
