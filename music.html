@@ -286,8 +286,7 @@
                 musiccell.className = 'cell';
                 musiccell.style.backgroundImage = `url(images/lurking/${album.image})`;
                 musiccell.onclick = function() {
-                    fetchVideoDetails(album.url); // Fetch and display video details
-                    fetchVideoDetails(album.image); // Fetch and display video details
+                    fetchVideoDetails(album.url, album.image); // Fetch and display video details
                     player.loadVideoById(album.url);
                     document.getElementById('youtubePlayerContainer').style.display = 'block';
                 };
